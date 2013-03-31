@@ -475,3 +475,25 @@ if (ENABLE_EGL AND NOT WIN32 AND NOT APPLE)
 
     install (TARGETS egltrace LIBRARY DESTINATION ${WRAPPER_INSTALL_DIR})
 endif ()
+
+
+# Regal
+add_custom_command (
+    OUTPUT regaltrace.cpp
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/regaltrace.py > ${CMAKE_CURRENT_BINARY_DIR}/regaltrace.cpp
+    DEPENDS
+    regaltrace.py
+    #gltrace.py 
+    trace.py
+    ${CMAKE_SOURCE_DIR}/specs/cglapi.py
+    ${CMAKE_SOURCE_DIR}/specs/eglapi.py
+    ${CMAKE_SOURCE_DIR}/specs/glxapi.py
+    ${CMAKE_SOURCE_DIR}/specs/wglapi.py
+    ${CMAKE_SOURCE_DIR}/specs/glapi.py
+    ${CMAKE_SOURCE_DIR}/specs/glparams.py
+    ${CMAKE_SOURCE_DIR}/specs/gltypes.py
+    ${CMAKE_SOURCE_DIR}/specs/stdapi.py
+    )
+
+add_dependencies (regaltrace.cpp regalproc)
+
