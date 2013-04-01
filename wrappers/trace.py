@@ -438,14 +438,17 @@ class Tracer:
             print '// decl end - %s' % module.name
             print
 
+        self.traceFunctionImplBegin()
         for module in api.modules:
             print '// impl bgn - %s' % module.name
             for function in module.getAllFunctions():
                 self.traceFunctionImpl(function)
             print '// impl end - %s' % module.name
             print
+        self.traceFunctionImplEnd();
 
         self.footer(api)
+
 
     def header(self, api):
         print '#ifdef _WIN32'
@@ -462,6 +465,12 @@ class Tracer:
         print 'static std::map<void *, void *> g_WrappedObjects;'
 
     def footer(self, api):
+        pass
+
+    def traceFunctionImplBegin(self):
+        pass
+
+    def traceFunctionImplEnd(self):
         pass
 
     def traceFunctionDecl(self, function):
