@@ -423,7 +423,10 @@ class Tracer:
             print
 
         # Interfaces wrapers
+        print '// interfaces bgn'
         self.traceInterfaces(api)
+        print '// interfaces end'
+        print
 
         # Function wrappers
         self.interface = None

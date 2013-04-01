@@ -29,6 +29,7 @@
 
 
 from gltrace import GlTracer
+import specs.stdapi as stdapi
 from specs.stdapi import Module, API
 
 # graphics library
@@ -42,11 +43,39 @@ from specs.glxapi import glxapi
 from specs.wglapi import wglapi
 
 class RegalTracer(GlTracer):
+  
+    def prototype(self, function):
+        s = '%s %s( ' % ( function.type, function.name )
+        s += ', '.join( [ '%s %s' % (arg.type, arg.name) for arg in function.args ] );
+        s += ' )'
+        return s
 
     def isFunctionPublic(self, function):
         # calling via Regal is through dispatch tables, so no public functions needed
         return False
+
+    def invokeFunction(self, function):
+        print '    {'
+        print '        RegalContext *ctx = REGAL_GET_CONTEXT();'
+        print '        RegalAssert( ctx );'
+        print '        DispatchTable *_next = ctx->dispatcher.trace._next;'
+        print '        RegalAssert( _next );'
+        ret = ''
+        if function.type != stdapi.Void:
+            ret = '_result = '
+        print '        %s_next->call(&_next->%s)(%s);' % (ret, function.name, ', '.join([ '%s' % arg.name for arg in function.args ]))
+        print '    }'
     
+    def traceFunctionImpl(self, function):
+        print self.prototype(function) + ' {'
+        if function.type is not stdapi.Void:
+            print '    %s _result;' % function.type
+        self.traceFunctionImplBody(function)
+        if function.type is not stdapi.Void:
+            print '    return _result;'
+        print '}'
+        print
+
 
     def traceFunctionImplBody(self, function):
         if function.name == 'CGLReleaseContext':
@@ -97,6 +126,8 @@ if __name__ == '__main__':
     print
     print '#include "glsize.hpp"'
     print
+    print 'namespace Regal { namespace Trace {'
+    print
 
     cglmodule = Module('cgl')
     cglmodule.mergeModule(cglapi)
@@ -112,4 +143,8 @@ if __name__ == '__main__':
     api.addModule(eglmodule)
     tracer = RegalTracer()
     tracer.traceApi(api)
+
+    print
+    print '} /* namespace Trace */ } /* namespace Regal */'
+    print
 
