@@ -31,6 +31,7 @@
 #ifndef _EGLIMPORTS_HPP_
 #define _EGLIMPORTS_HPP_
 
+#if ! REGAL
 
 #include <KHR/khrplatform.h>
 
@@ -87,5 +88,6 @@ typedef int32_t  GLclampx;
 #undef _glext_h_
 #include "GLES/glext.h"
 
+#endif // ! REGAL
 
 #endif /* _EGLIMPORTS_HPP_ */

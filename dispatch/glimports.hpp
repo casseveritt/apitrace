@@ -41,10 +41,18 @@
 #  include <X11/Xlib.h>
 #endif /* !_WIN32 */
 
+// need to define REGAL elsewhere
+#define REGAL 1
 
+#if REGAL
+#define REGAL_SYS_EGL 1
+#define REGAL_SYS_OSX 1
+#include "GL/Regal.h"
+#define APIENTRY REGAL_CALL
+#define GL_APIENTRY REGAL_CALL
+#else
 #include <GL/gl.h>
 #include <GL/glext.h>
-
 
 // Windows 8 GL headers define GL_EXT_paletted_texture but not
 // GL_TEXTURE_INDEX_SIZE_EXT, and due to the way we include DirectX headers, it
@@ -123,6 +131,7 @@ CGLError CGLUpdateContext(CGLContextObj ctx);
 
 #endif
 
+#endif // REGAL
 
 #include "eglimports.hpp"
 
