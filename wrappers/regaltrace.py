@@ -98,14 +98,18 @@ if __name__ == '__main__':
     print '#include "glsize.hpp"'
     print
 
-    winsysmodule = Module()
-    winsysmodule.mergeModule(cglapi)
-    gfxmodule = Module()
+    cglmodule = Module('cgl')
+    cglmodule.mergeModule(cglapi)
+    eglmodule = Module('egl')
+    eglmodule.mergeModule(eglapi)
+
+    gfxmodule = Module('gfx')
     gfxmodule.mergeModule(glapi)
     gfxmodule.mergeModule(glesapi)
     api = API()
     api.addModule(gfxmodule)
-    api.addModule(winsysmodule)
+    api.addModule(cglmodule)
+    api.addModule(eglmodule)
     tracer = RegalTracer()
     tracer.traceApi(api)
 

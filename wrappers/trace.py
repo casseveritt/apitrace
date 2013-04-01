@@ -403,15 +403,24 @@ class Tracer:
 
         # Includes
         for module in api.modules:
+            hdr = ''
             for header in module.headers:
-                print header
+                hdr += header
+            if hdr != None and len(hdr) > 0 :
+                print '// header bgn - %s' % module.name
+                print '%s' % hdr
+                print '// header end - %s' % module.name
+                print
         print
 
         # Generate the serializer functions
-        types = api.getAllTypes()
         visitor = ComplexValueSerializer(self.serializerFactory())
-        map(visitor.visit, types)
-        print
+        for module in api.modules:
+            print '// types bgn - %s' % module.name
+            types = module.getAllTypes()
+            map(visitor.visit, types)
+            print '// types end - %s' % module.name
+            print
 
         # Interfaces wrapers
         self.traceInterfaces(api)
@@ -419,11 +428,19 @@ class Tracer:
         # Function wrappers
         self.interface = None
         self.base = None
-        for function in api.getAllFunctions():
-            self.traceFunctionDecl(function)
-        for function in api.getAllFunctions():
-            self.traceFunctionImpl(function)
-        print
+        for module in api.modules:
+            print '// decl bgn - %s' % module.name
+            for function in module.getAllFunctions():
+                self.traceFunctionDecl(function)
+            print '// decl end - %s' % module.name
+            print
+
+        for module in api.modules:
+            print '// impl bgn - %s' % module.name
+            for function in module.getAllFunctions():
+                self.traceFunctionImpl(function)
+            print '// impl end - %s' % module.name
+            print
 
         self.footer(api)
 

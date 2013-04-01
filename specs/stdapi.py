@@ -903,6 +903,23 @@ class Module:
                 return function
         return None
 
+    def getAllTypes(self):
+        collector = Collector()
+        for function in self.functions:
+            for arg in function.args:
+                collector.visit(arg.type)
+            collector.visit(function.type)
+        for interface in self.interfaces:
+            collector.visit(interface)
+            for method in interface.iterMethods():
+                for arg in method.args:
+                    collector.visit(arg.type)
+                collector.visit(method.type)
+        return collector.types
+
+    def getAllFunctions(self):
+        return self.functions
+
 
 class API:
     '''API abstraction.
