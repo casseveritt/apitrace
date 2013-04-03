@@ -42,7 +42,9 @@
 #endif /* !_WIN32 */
 
 // need to define REGAL elsewhere
-#define REGAL 1
+#ifndef REGAL
+#define REGAL 0
+#endif
 
 #if REGAL
 #define REGAL_SYS_EGL 1

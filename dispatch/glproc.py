@@ -506,8 +506,33 @@ void * _getPrivateProcAddress(const char *procName);
     def isFunctionPublic(self, module, function):
         return function.name in public_symbols or function.name.startswith('CGL')
 
+    def dispatchRegalModule(self, module):
+        for function in module.functions:
+            self.dispatchRegalFunction(module, function)
+        
+    def dispatchRegalFunction(self, module, function):
+        print 'static inline ' + function.prototype('_' + function.name) + ' {'
+        ret = ''
+        if module.name in [ 'GL', 'GLES' ]:
+            print '    RegalContext *ctx = REGAL_GET_CONTEXT();'
+            print '    RegalAssert( ctx );'
+            print '    DispatchTable *_next = ctx->dispatcher.trace._next;'
+            print '    RegalAssert( _next );'
+            if function.type != stdapi.Void:
+                ret = '_result = '
+            print '    %s_next->call(&_next->%s)(%s);' % (ret, function.name, ', '.join([ '%s' % arg.name for arg in function.args ]))
+        else:
+            print '    // this function is not really hooked up, but if it was, it\'d be recursive, which would be bad...'
+            if function.type != stdapi.Void:
+                ret = '_result = '
+            print '    %s%s(%s);' % (ret, function.name, ', '.join([ '%s' % arg.name for arg in function.args ]))
+        if function.type != stdapi.Void:
+            print '    return _result;'
+        print '}'
+        print
 
 if __name__ == '__main__':
+    dispatcher = GlDispatcher()
     print
     print '#ifndef _GLPROC_HPP_'
     print '#define _GLPROC_HPP_'
@@ -515,7 +540,8 @@ if __name__ == '__main__':
     print '#include "glimports.hpp"'
     print '#include "os.hpp"'
     print
-    dispatcher = GlDispatcher()
+    print '#if ! REGAL'
+    print
     print
     dispatcher.header()
     print
@@ -539,6 +565,37 @@ if __name__ == '__main__':
     print
     dispatcher.dispatchModule(glesapi)
     print
-
+    print '#else // ! REGAL'
+    print
+    print '#if REGAL_SYS_OSX'
+    print
+    dispatcher.dispatchRegalModule(cglapi)
+    print 
+    print '#endif // REGAL_SYS_OSX'
+    print
+    print '#if REGAL_SYS_EGL'
+    print
+    dispatcher.dispatchRegalModule(eglapi)
+    print 
+    print '#endif // REGAL_SYS_EGL'
+    print
+    print '#if REGAL_SYS_GLX'
+    print
+    dispatcher.dispatchRegalModule(glxapi)
+    print 
+    print '#endif // REGAL_SYS_GLX'
+    print
+    print '#if REGAL_SYS_WGL'
+    print
+    dispatcher.dispatchRegalModule(wglapi)
+    print
+    print '#endif // REGAL_SYS_WGL'
+    print
+    dispatcher.dispatchRegalModule(glapi)
+    print
+    dispatcher.dispatchRegalModule(glesapi)
+    print
+    print '#endif // ! REGAL'
+    print
     print '#endif /* !_GLPROC_HPP_ */'
     print

@@ -65,16 +65,10 @@ class RegalTracer(GlTracer):
         return False
 
     def invokeFunction(self, function):
-        print '    {'
-        print '        RegalContext *ctx = REGAL_GET_CONTEXT();'
-        print '        RegalAssert( ctx );'
-        print '        DispatchTable *_next = ctx->dispatcher.trace._next;'
-        print '        RegalAssert( _next );'
         ret = ''
         if function.type != stdapi.Void:
             ret = '_result = '
-        print '        %s_next->call(&_next->%s)(%s);' % (ret, function.name, ', '.join([ '%s' % arg.name for arg in function.args ]))
-        print '    }'
+        print '    %s_%s(%s);' % (ret, function.name, ', '.join([ '%s' % arg.name for arg in function.args ]))
     
     def traceFunctionImpl(self, function):
         print self.prototype(function) + ' {'
