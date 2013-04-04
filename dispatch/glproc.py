@@ -513,19 +513,21 @@ void * _getPrivateProcAddress(const char *procName);
     def dispatchRegalFunction(self, module, function):
         print 'static inline ' + function.prototype('_' + function.name) + ' {'
         ret = ''
+        if function.type is not stdapi.Void:
+            print '    %s _result = static_cast<%s>(0);' % (function.type,function.type)
         if module.name in [ 'GL', 'GLES' ]:
-            print '    RegalContext *ctx = REGAL_GET_CONTEXT();'
+            print '    Regal::RegalContext *ctx = REGAL_GET_CONTEXT();'
             print '    RegalAssert( ctx );'
-            print '    DispatchTable *_next = ctx->dispatcher.trace._next;'
+            print '    Regal::DispatchTable *_next = ctx->dispatcher.trace._next;'
             print '    RegalAssert( _next );'
             if function.type != stdapi.Void:
                 ret = '_result = '
             print '    %s_next->call(&_next->%s)(%s);' % (ret, function.name, ', '.join([ '%s' % arg.name for arg in function.args ]))
-        else:
-            print '    // this function is not really hooked up, but if it was, it\'d be recursive, which would be bad...'
-            if function.type != stdapi.Void:
-                ret = '_result = '
-            print '    %s%s(%s);' % (ret, function.name, ', '.join([ '%s' % arg.name for arg in function.args ]))
+        #else:
+            #print '    // this function is not really hooked up, but if it was, it\'d be recursive, which would be bad...'
+            #if function.type != stdapi.Void:
+            #    ret = '_result = '
+            #print '    %s%s(%s);' % (ret, function.name, ', '.join([ '%s' % arg.name for arg in function.args ]))
         if function.type != stdapi.Void:
             print '    return _result;'
         print '}'
@@ -566,6 +568,8 @@ if __name__ == '__main__':
     dispatcher.dispatchModule(glesapi)
     print
     print '#else // ! REGAL'
+    print 
+    print '#include "RegalContext.h"'
     print
     print '#if REGAL_SYS_OSX'
     print

@@ -127,11 +127,15 @@ glesapi.addFunctions([
 
     # GL_OES_matrix_palette
     GlFunction(Void, "glCurrentPaletteMatrixOES", [(GLuint, "index")]),
+    GlFunction(Void, "glLoadPaletteFromModelViewMatrixOES", []),
+    GlFunction(Void, "glMatrixIndexPointerOES", [(GLint, "size"), (GLenum, "type"), (GLsizei, "stride"), (GLpointerConst, "pointer")]),
+    GlFunction(Void, "glWeightPointerOES", [(GLint, "size"), (GLenum, "type"), (GLsizei, "stride"), (GLpointerConst, "pointer")]),
 
     # GL_OES_point_size_array
     GlFunction(Void, "glPointSizePointerOES", [(GLenum, "type"), (GLsizei, "stride"), (GLpointerConst, "ptr")]),
 
     # GL_OES_query_matrix
+    GlFunction(GLbitfield, "glQueryMatrixxOES", [(Array(GLfixed, 16), "mantissa"), (Array(GLint, 16), "exponent")]),
 
     # GL_OES_texture_cube_map
     GlFunction(Void, "glTexGenfOES", [(GLenum, "coord"), (GLenum, "pname"), (GLfloat, "param")]),
@@ -162,6 +166,12 @@ glesapi.addFunctions([
     GlFunction(Void, "glProgramBinaryOES", [(GLprogram, "program"), (GLenum, "binaryFormat"), (Blob(Const(GLvoid), "length"), "binary"), (GLsizei, "length")]),
 
     # GL_OES_draw_texture
+    GlFunction(Void, "glDrawTexfOES", [(GLfloat, "x"), (GLfloat, "y"), (GLfloat, "z"), (GLfloat, "width"), (GLfloat, "height")]),
+    GlFunction(Void, "glDrawTexfvOES", [(Array(Const(GLfloat), 4), "coords")]),
+    GlFunction(Void, "glDrawTexiOES", [(GLint, "x"), (GLint, "y"), (GLint, "z"), (GLint, "width"), (GLint, "height")]),
+    GlFunction(Void, "glDrawTexivOES", [(Array(Const(GLint), 4), "coords")]),
+    GlFunction(Void, "glDrawTexsOES", [(GLshort, "x"), (GLshort, "y"), (GLshort, "z"), (GLshort, "width"), (GLshort, "height")]),
+    GlFunction(Void, "glDrawTexsvOES", [(Array(Const(GLshort), 4), "coords")]),
 
     # GL_EXT_discard_framebuffer
     GlFunction(Void, "glDiscardFramebufferEXT", [(GLenum, "target"), (GLsizei, "numAttachments"), (Array(Const(GLenum), "numAttachments"), "attachments")]),
@@ -215,7 +225,15 @@ glesapi.addFunctions([
     GlFunction(Void, "glGetQueryObjectuivEXT", [(GLquery, "id"), (GLenum, "pname"), Out(Array(GLuint, "_gl_param_size(pname)"), "params")], sideeffects=False),
 
     # GL_EXT_separate_shader_objects
+    GlFunction(Void, "glUseProgramStagesEXT", [(GLpipeline, "pipeline"), (GLbitfield_shader, "stages"), (GLprogram, "program")]),
+    GlFunction(Void, "glActiveShaderProgramEXT", [(GLpipeline, "pipeline"), (GLprogram, "program")]),
+    GlFunction(GLprogram, "glCreateShaderProgramvEXT", [(GLenum, "type"), (GLsizei, "count"), (Const(Array(GLstringConst, "count")), "strings")]),
+    GlFunction(Void, "glBindProgramPipelineEXT", [(GLpipeline, "pipeline")]),
+    GlFunction(Void, "glDeleteProgramPipelinesEXT", [(GLsizei, "n"), (Array(Const(GLuint), "n"), "pipelines")]),
+    GlFunction(Void, "glGenProgramPipelinesEXT", [(GLsizei, "n"), Out(Array(GLpipeline, "n"), "pipelines")]),
+    GlFunction(GLboolean, "glIsProgramPipelineEXT", [(GLpipeline, "pipeline")], sideeffects=False),
     #GlFunction(Void, "glProgramParameteriEXT", [(GLprogram, "program"), (GLenum, "pname"), (GLint, "value")]),
+    GlFunction(Void, "glGetProgramPipelineivEXT", [(GLpipeline, "pipeline"), (GLenum, "pname"), Out(Array(GLint, "_gl_param_size(pname)"), "params")], sideeffects=False),
     #GlFunction(Void, "glProgramUniform1iEXT", [(GLprogram, "program"), (GLlocation, "location"), (GLint, "x")]),
     #GlFunction(Void, "glProgramUniform2iEXT", [(GLprogram, "program"), (GLlocation, "location"), (GLint, "x"), (GLint, "y")]),
     #GlFunction(Void, "glProgramUniform3iEXT", [(GLprogram, "program"), (GLlocation, "location"), (GLint, "x"), (GLint, "y"), (GLint, "z")]),
@@ -235,4 +253,6 @@ glesapi.addFunctions([
     #GlFunction(Void, "glProgramUniformMatrix2fvEXT", [(GLprogram, "program"), (GLlocation, "location"), (GLsizei, "count"), (GLboolean, "transpose"), (Array(Const(GLfloat), "count*2*2"), "value")]),
     #GlFunction(Void, "glProgramUniformMatrix3fvEXT", [(GLprogram, "program"), (GLlocation, "location"), (GLsizei, "count"), (GLboolean, "transpose"), (Array(Const(GLfloat), "count*3*3"), "value")]),
     #GlFunction(Void, "glProgramUniformMatrix4fvEXT", [(GLprogram, "program"), (GLlocation, "location"), (GLsizei, "count"), (GLboolean, "transpose"), (Array(Const(GLfloat), "count*4*4"), "value")]),
+    GlFunction(Void, "glValidateProgramPipelineEXT", [(GLpipeline, "pipeline")]),
+    GlFunction(Void, "glGetProgramPipelineInfoLogEXT", [(GLpipeline, "pipeline"), (GLsizei, "bufSize"), Out(Pointer(GLsizei), "length"), Out(GLstring, "infoLog")], sideeffects=False),
 ])

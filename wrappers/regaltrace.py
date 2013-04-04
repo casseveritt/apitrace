@@ -133,6 +133,7 @@ if __name__ == '__main__':
     print '#include "trace_writer_local.hpp"'
     print
     print '#include "glsize.hpp"'
+    print '#include "glproc.hpp"'
     print
     print '#include "RegalPrivate.h"'
 

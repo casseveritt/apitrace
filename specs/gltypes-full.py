@@ -222,6 +222,7 @@ GLbitfield_barrier = Flags(GLbitfield, [
     "GL_ELEMENT_ARRAY_BARRIER_BIT",             # 0x00000002
     "GL_UNIFORM_BARRIER_BIT",                   # 0x00000004
     "GL_TEXTURE_FETCH_BARRIER_BIT",             # 0x00000008
+    "GL_SHADER_GLOBAL_ACCESS_BARRIER_BIT_NV",   # 0x00000010
     "GL_SHADER_IMAGE_ACCESS_BARRIER_BIT",       # 0x00000020
     "GL_COMMAND_BARRIER_BIT",                   # 0x00000040
     "GL_PIXEL_BUFFER_BARRIER_BIT",              # 0x00000080
