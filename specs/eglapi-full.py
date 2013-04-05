@@ -219,6 +219,7 @@ EGLenum = Enum("EGLenum", [
     "EGL_D3D_TEXTURE_2D_SHARE_HANDLE_ANGLE",    # 0x3200
 
     # EGL_HI_clientpixmap / EGL_HI_colorformats
+    "EGL_CLIENT_PIXMAP_POINTER_HI",             # 0x8F74
     "EGL_COLOR_FORMAT_HI",                      # 0x8F70
     "EGL_COLOR_RGB_HI",                         # 0x8F71
     "EGL_COLOR_RGBA_HI",                        # 0x8F72
@@ -374,6 +375,7 @@ eglapi.addFunctions([
     Function(EGLBoolean, "eglGetSyncAttribNV", [(EGLSyncNV, "sync"), (EGLattrib, "attribute"), Out(Pointer(EGLint), "value")], sideeffects=False),
 
     # EGL_HI_clientpixmap
+    Function(EGLSurface, "eglCreatePixmapSurfaceHI", [(EGLDisplay, "dpy"), (EGLConfig, "config"), (Pointer(EGLClientPixmapHI), "pixmap")]),
 
     # EGL_MESA_drm_image
     Function(EGLImageKHR, "eglCreateDRMImageMESA", [(EGLDisplay, "dpy"), (EGLAttribList, "attrib_list")]),
