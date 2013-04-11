@@ -523,11 +523,12 @@ void * _getPrivateProcAddress(const char *procName);
             if function.type != stdapi.Void:
                 ret = '_result = '
             print '    %s_next->call(&_next->%s)(%s);' % (ret, function.name, ', '.join([ '%s' % arg.name for arg in function.args ]))
-        #else:
-            #print '    // this function is not really hooked up, but if it was, it\'d be recursive, which would be bad...'
-            #if function.type != stdapi.Void:
-            #    ret = '_result = '
-            #print '    %s%s(%s);' % (ret, function.name, ', '.join([ '%s' % arg.name for arg in function.args ]))
+        else:
+            print '    Regal::DispatchTableGlobal *_next = Regal::dispatcherGlobal.trace._next;'
+            print '    RegalAssert( _next );'
+            if function.type != stdapi.Void:
+                ret = '_result = '
+            print '    %s_next->call(&_next->%s)(%s);' % (ret, function.name, ', '.join([ '%s' % arg.name for arg in function.args ]))
         if function.type != stdapi.Void:
             print '    return _result;'
         print '}'

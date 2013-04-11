@@ -5,4 +5,5 @@ grep -v -f regal_exclude_glparams.txt glparams-full.py > glparams.py
 grep -v -f regal_exclude_gltypes.txt gltypes-full.py > gltypes.py
 
 grep -v -f regal_exclude_eglapi.txt eglapi-full.py > eglapi.py
+grep -v -f regal_exclude_cglapi.txt cglapi-full.py > cglapi.py
 

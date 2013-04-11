@@ -214,6 +214,7 @@ cglapi.addFunctions([
     Function(CGLError, "CGLSetOffScreen", [(CGLContextObj, "ctx"), (GLsizei, "width"), (GLsizei, "height"), (GLint, "rowbytes"), (OpaquePointer(Void), "baseaddr")]),
     Function(CGLError, "CGLGetOffScreen", [(CGLContextObj, "ctx"), Out(Pointer(GLsizei), "width"), Out(Pointer(GLsizei), "height"), Out(Pointer(GLint), "rowbytes"), Out(Pointer(OpaquePointer(Void)), "baseaddr")]),
     Function(CGLError, "CGLSetFullScreen", [(CGLContextObj, "ctx")]),
+    Function(CGLError, "CGLSetFullScreenOnDisplay", [(CGLContextObj, "ctx"), (GLuint, "display_mask")]),
     Function(CGLError, "CGLSetPBuffer", [(CGLContextObj, "ctx"), (CGLPBufferObj, "pbuffer"), (GLenum, "face"), (GLint, "level"), (GLint, "screen")]),
     Function(CGLError, "CGLGetPBuffer", [(CGLContextObj, "ctx"), Out(Pointer(CGLPBufferObj), "pbuffer"), Out(Pointer(GLenum), "face"), Out(Pointer(GLint), "level"), Out(Pointer(GLint), "screen")]),
     Function(CGLError, "CGLClearDrawable", [(CGLContextObj, "ctx")]),
@@ -244,6 +245,8 @@ cglapi.addFunctions([
     Function(CGLError, "CGLSetSurface", [(CGLContextObj, "ctx"), (CGSConnectionID, "cid"), (CGSWindowID, "wid"), (CGSSurfaceID, "sid")]),
     Function(CGLError, "CGLGetSurface", [(CGLContextObj, "ctx"), (Pointer(CGSConnectionID), "cid"), (Pointer(CGSWindowID), "wid"), (Pointer(CGSSurfaceID), "sid")]),
     Function(CGLError, "CGLUpdateContext", [(CGLContextObj, "ctx")]),
+    # XXX: Confirm CGLOpenCLMuxLockDown
+    Function(CGLError, "CGLOpenCLMuxLockDown", []),
     # FIXME: CGLAreContextsShared
     # FIXME: CGLBackDispatch
     # FIXME: CGLFrontDispatch
