@@ -2782,6 +2782,8 @@ glapi.addFunctions([
     GlFunction(Void, "glVertexArrayVertexAttribLOffsetEXT", [(GLarray, "vaobj"), (GLuint, "buffer"), (GLuint, "index"), (GLint, "size"), (GLenum, "type"), (GLsizei, "stride"), (GLintptr, "offset")]),
 
     # GL_NV_gpu_program5
+    GlFunction(Void, "glProgramSubroutineParametersuivNV", [(GLenum, "target"), (GLsizei, "count"), (Array(Const(GLuint), "count"), "params")]),
+    GlFunction(Void, "glGetProgramSubroutineParameteruivNV", [(GLenum, "target"), (GLuint, "index"), Out(Pointer(GLuint), "param")], sideeffects=False),
 
     # GL_NV_gpu_shader5
     GlFunction(Void, "glUniform1i64NV", [(GLint, "location"), (GLint64EXT, "x")]),

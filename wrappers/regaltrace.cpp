@@ -11824,884 +11824,890 @@ static const trace::FunctionSig _glGetVertexAttribLdvEXT_sig = {2285, "glGetVert
 static const char * _glVertexArrayVertexAttribLOffsetEXT_args[7] = {"vaobj", "buffer", "index", "size", "type", "stride", "offset"};
 static const trace::FunctionSig _glVertexArrayVertexAttribLOffsetEXT_sig = {2286, "glVertexArrayVertexAttribLOffsetEXT", 7, _glVertexArrayVertexAttribLOffsetEXT_args};
 
+static const char * _glProgramSubroutineParametersuivNV_args[3] = {"target", "count", "params"};
+static const trace::FunctionSig _glProgramSubroutineParametersuivNV_sig = {2287, "glProgramSubroutineParametersuivNV", 3, _glProgramSubroutineParametersuivNV_args};
+
+static const char * _glGetProgramSubroutineParameteruivNV_args[3] = {"target", "index", "param"};
+static const trace::FunctionSig _glGetProgramSubroutineParameteruivNV_sig = {2288, "glGetProgramSubroutineParameteruivNV", 3, _glGetProgramSubroutineParameteruivNV_args};
+
 static const char * _glUniform1i64NV_args[2] = {"location", "x"};
-static const trace::FunctionSig _glUniform1i64NV_sig = {2287, "glUniform1i64NV", 2, _glUniform1i64NV_args};
+static const trace::FunctionSig _glUniform1i64NV_sig = {2289, "glUniform1i64NV", 2, _glUniform1i64NV_args};
 
 static const char * _glUniform2i64NV_args[3] = {"location", "x", "y"};
-static const trace::FunctionSig _glUniform2i64NV_sig = {2288, "glUniform2i64NV", 3, _glUniform2i64NV_args};
+static const trace::FunctionSig _glUniform2i64NV_sig = {2290, "glUniform2i64NV", 3, _glUniform2i64NV_args};
 
 static const char * _glUniform3i64NV_args[4] = {"location", "x", "y", "z"};
-static const trace::FunctionSig _glUniform3i64NV_sig = {2289, "glUniform3i64NV", 4, _glUniform3i64NV_args};
+static const trace::FunctionSig _glUniform3i64NV_sig = {2291, "glUniform3i64NV", 4, _glUniform3i64NV_args};
 
 static const char * _glUniform4i64NV_args[5] = {"location", "x", "y", "z", "w"};
-static const trace::FunctionSig _glUniform4i64NV_sig = {2290, "glUniform4i64NV", 5, _glUniform4i64NV_args};
+static const trace::FunctionSig _glUniform4i64NV_sig = {2292, "glUniform4i64NV", 5, _glUniform4i64NV_args};
 
 static const char * _glUniform1i64vNV_args[3] = {"location", "count", "value"};
-static const trace::FunctionSig _glUniform1i64vNV_sig = {2291, "glUniform1i64vNV", 3, _glUniform1i64vNV_args};
+static const trace::FunctionSig _glUniform1i64vNV_sig = {2293, "glUniform1i64vNV", 3, _glUniform1i64vNV_args};
 
 static const char * _glUniform2i64vNV_args[3] = {"location", "count", "value"};
-static const trace::FunctionSig _glUniform2i64vNV_sig = {2292, "glUniform2i64vNV", 3, _glUniform2i64vNV_args};
+static const trace::FunctionSig _glUniform2i64vNV_sig = {2294, "glUniform2i64vNV", 3, _glUniform2i64vNV_args};
 
 static const char * _glUniform3i64vNV_args[3] = {"location", "count", "value"};
-static const trace::FunctionSig _glUniform3i64vNV_sig = {2293, "glUniform3i64vNV", 3, _glUniform3i64vNV_args};
+static const trace::FunctionSig _glUniform3i64vNV_sig = {2295, "glUniform3i64vNV", 3, _glUniform3i64vNV_args};
 
 static const char * _glUniform4i64vNV_args[3] = {"location", "count", "value"};
-static const trace::FunctionSig _glUniform4i64vNV_sig = {2294, "glUniform4i64vNV", 3, _glUniform4i64vNV_args};
+static const trace::FunctionSig _glUniform4i64vNV_sig = {2296, "glUniform4i64vNV", 3, _glUniform4i64vNV_args};
 
 static const char * _glUniform1ui64NV_args[2] = {"location", "x"};
-static const trace::FunctionSig _glUniform1ui64NV_sig = {2295, "glUniform1ui64NV", 2, _glUniform1ui64NV_args};
+static const trace::FunctionSig _glUniform1ui64NV_sig = {2297, "glUniform1ui64NV", 2, _glUniform1ui64NV_args};
 
 static const char * _glUniform2ui64NV_args[3] = {"location", "x", "y"};
-static const trace::FunctionSig _glUniform2ui64NV_sig = {2296, "glUniform2ui64NV", 3, _glUniform2ui64NV_args};
+static const trace::FunctionSig _glUniform2ui64NV_sig = {2298, "glUniform2ui64NV", 3, _glUniform2ui64NV_args};
 
 static const char * _glUniform3ui64NV_args[4] = {"location", "x", "y", "z"};
-static const trace::FunctionSig _glUniform3ui64NV_sig = {2297, "glUniform3ui64NV", 4, _glUniform3ui64NV_args};
+static const trace::FunctionSig _glUniform3ui64NV_sig = {2299, "glUniform3ui64NV", 4, _glUniform3ui64NV_args};
 
 static const char * _glUniform4ui64NV_args[5] = {"location", "x", "y", "z", "w"};
-static const trace::FunctionSig _glUniform4ui64NV_sig = {2298, "glUniform4ui64NV", 5, _glUniform4ui64NV_args};
+static const trace::FunctionSig _glUniform4ui64NV_sig = {2300, "glUniform4ui64NV", 5, _glUniform4ui64NV_args};
 
 static const char * _glUniform1ui64vNV_args[3] = {"location", "count", "value"};
-static const trace::FunctionSig _glUniform1ui64vNV_sig = {2299, "glUniform1ui64vNV", 3, _glUniform1ui64vNV_args};
+static const trace::FunctionSig _glUniform1ui64vNV_sig = {2301, "glUniform1ui64vNV", 3, _glUniform1ui64vNV_args};
 
 static const char * _glUniform2ui64vNV_args[3] = {"location", "count", "value"};
-static const trace::FunctionSig _glUniform2ui64vNV_sig = {2300, "glUniform2ui64vNV", 3, _glUniform2ui64vNV_args};
+static const trace::FunctionSig _glUniform2ui64vNV_sig = {2302, "glUniform2ui64vNV", 3, _glUniform2ui64vNV_args};
 
 static const char * _glUniform3ui64vNV_args[3] = {"location", "count", "value"};
-static const trace::FunctionSig _glUniform3ui64vNV_sig = {2301, "glUniform3ui64vNV", 3, _glUniform3ui64vNV_args};
+static const trace::FunctionSig _glUniform3ui64vNV_sig = {2303, "glUniform3ui64vNV", 3, _glUniform3ui64vNV_args};
 
 static const char * _glUniform4ui64vNV_args[3] = {"location", "count", "value"};
-static const trace::FunctionSig _glUniform4ui64vNV_sig = {2302, "glUniform4ui64vNV", 3, _glUniform4ui64vNV_args};
+static const trace::FunctionSig _glUniform4ui64vNV_sig = {2304, "glUniform4ui64vNV", 3, _glUniform4ui64vNV_args};
 
 static const char * _glGetUniformi64vNV_args[3] = {"program", "location", "params"};
-static const trace::FunctionSig _glGetUniformi64vNV_sig = {2303, "glGetUniformi64vNV", 3, _glGetUniformi64vNV_args};
+static const trace::FunctionSig _glGetUniformi64vNV_sig = {2305, "glGetUniformi64vNV", 3, _glGetUniformi64vNV_args};
 
 static const char * _glProgramUniform1i64NV_args[3] = {"program", "location", "x"};
-static const trace::FunctionSig _glProgramUniform1i64NV_sig = {2304, "glProgramUniform1i64NV", 3, _glProgramUniform1i64NV_args};
+static const trace::FunctionSig _glProgramUniform1i64NV_sig = {2306, "glProgramUniform1i64NV", 3, _glProgramUniform1i64NV_args};
 
 static const char * _glProgramUniform2i64NV_args[4] = {"program", "location", "x", "y"};
-static const trace::FunctionSig _glProgramUniform2i64NV_sig = {2305, "glProgramUniform2i64NV", 4, _glProgramUniform2i64NV_args};
+static const trace::FunctionSig _glProgramUniform2i64NV_sig = {2307, "glProgramUniform2i64NV", 4, _glProgramUniform2i64NV_args};
 
 static const char * _glProgramUniform3i64NV_args[5] = {"program", "location", "x", "y", "z"};
-static const trace::FunctionSig _glProgramUniform3i64NV_sig = {2306, "glProgramUniform3i64NV", 5, _glProgramUniform3i64NV_args};
+static const trace::FunctionSig _glProgramUniform3i64NV_sig = {2308, "glProgramUniform3i64NV", 5, _glProgramUniform3i64NV_args};
 
 static const char * _glProgramUniform4i64NV_args[6] = {"program", "location", "x", "y", "z", "w"};
-static const trace::FunctionSig _glProgramUniform4i64NV_sig = {2307, "glProgramUniform4i64NV", 6, _glProgramUniform4i64NV_args};
+static const trace::FunctionSig _glProgramUniform4i64NV_sig = {2309, "glProgramUniform4i64NV", 6, _glProgramUniform4i64NV_args};
 
 static const char * _glProgramUniform1i64vNV_args[4] = {"program", "location", "count", "value"};
-static const trace::FunctionSig _glProgramUniform1i64vNV_sig = {2308, "glProgramUniform1i64vNV", 4, _glProgramUniform1i64vNV_args};
+static const trace::FunctionSig _glProgramUniform1i64vNV_sig = {2310, "glProgramUniform1i64vNV", 4, _glProgramUniform1i64vNV_args};
 
 static const char * _glProgramUniform2i64vNV_args[4] = {"program", "location", "count", "value"};
-static const trace::FunctionSig _glProgramUniform2i64vNV_sig = {2309, "glProgramUniform2i64vNV", 4, _glProgramUniform2i64vNV_args};
+static const trace::FunctionSig _glProgramUniform2i64vNV_sig = {2311, "glProgramUniform2i64vNV", 4, _glProgramUniform2i64vNV_args};
 
 static const char * _glProgramUniform3i64vNV_args[4] = {"program", "location", "count", "value"};
-static const trace::FunctionSig _glProgramUniform3i64vNV_sig = {2310, "glProgramUniform3i64vNV", 4, _glProgramUniform3i64vNV_args};
+static const trace::FunctionSig _glProgramUniform3i64vNV_sig = {2312, "glProgramUniform3i64vNV", 4, _glProgramUniform3i64vNV_args};
 
 static const char * _glProgramUniform4i64vNV_args[4] = {"program", "location", "count", "value"};
-static const trace::FunctionSig _glProgramUniform4i64vNV_sig = {2311, "glProgramUniform4i64vNV", 4, _glProgramUniform4i64vNV_args};
+static const trace::FunctionSig _glProgramUniform4i64vNV_sig = {2313, "glProgramUniform4i64vNV", 4, _glProgramUniform4i64vNV_args};
 
 static const char * _glProgramUniform1ui64NV_args[3] = {"program", "location", "x"};
-static const trace::FunctionSig _glProgramUniform1ui64NV_sig = {2312, "glProgramUniform1ui64NV", 3, _glProgramUniform1ui64NV_args};
+static const trace::FunctionSig _glProgramUniform1ui64NV_sig = {2314, "glProgramUniform1ui64NV", 3, _glProgramUniform1ui64NV_args};
 
 static const char * _glProgramUniform2ui64NV_args[4] = {"program", "location", "x", "y"};
-static const trace::FunctionSig _glProgramUniform2ui64NV_sig = {2313, "glProgramUniform2ui64NV", 4, _glProgramUniform2ui64NV_args};
+static const trace::FunctionSig _glProgramUniform2ui64NV_sig = {2315, "glProgramUniform2ui64NV", 4, _glProgramUniform2ui64NV_args};
 
 static const char * _glProgramUniform3ui64NV_args[5] = {"program", "location", "x", "y", "z"};
-static const trace::FunctionSig _glProgramUniform3ui64NV_sig = {2314, "glProgramUniform3ui64NV", 5, _glProgramUniform3ui64NV_args};
+static const trace::FunctionSig _glProgramUniform3ui64NV_sig = {2316, "glProgramUniform3ui64NV", 5, _glProgramUniform3ui64NV_args};
 
 static const char * _glProgramUniform4ui64NV_args[6] = {"program", "location", "x", "y", "z", "w"};
-static const trace::FunctionSig _glProgramUniform4ui64NV_sig = {2315, "glProgramUniform4ui64NV", 6, _glProgramUniform4ui64NV_args};
+static const trace::FunctionSig _glProgramUniform4ui64NV_sig = {2317, "glProgramUniform4ui64NV", 6, _glProgramUniform4ui64NV_args};
 
 static const char * _glProgramUniform1ui64vNV_args[4] = {"program", "location", "count", "value"};
-static const trace::FunctionSig _glProgramUniform1ui64vNV_sig = {2316, "glProgramUniform1ui64vNV", 4, _glProgramUniform1ui64vNV_args};
+static const trace::FunctionSig _glProgramUniform1ui64vNV_sig = {2318, "glProgramUniform1ui64vNV", 4, _glProgramUniform1ui64vNV_args};
 
 static const char * _glProgramUniform2ui64vNV_args[4] = {"program", "location", "count", "value"};
-static const trace::FunctionSig _glProgramUniform2ui64vNV_sig = {2317, "glProgramUniform2ui64vNV", 4, _glProgramUniform2ui64vNV_args};
+static const trace::FunctionSig _glProgramUniform2ui64vNV_sig = {2319, "glProgramUniform2ui64vNV", 4, _glProgramUniform2ui64vNV_args};
 
 static const char * _glProgramUniform3ui64vNV_args[4] = {"program", "location", "count", "value"};
-static const trace::FunctionSig _glProgramUniform3ui64vNV_sig = {2318, "glProgramUniform3ui64vNV", 4, _glProgramUniform3ui64vNV_args};
+static const trace::FunctionSig _glProgramUniform3ui64vNV_sig = {2320, "glProgramUniform3ui64vNV", 4, _glProgramUniform3ui64vNV_args};
 
 static const char * _glProgramUniform4ui64vNV_args[4] = {"program", "location", "count", "value"};
-static const trace::FunctionSig _glProgramUniform4ui64vNV_sig = {2319, "glProgramUniform4ui64vNV", 4, _glProgramUniform4ui64vNV_args};
+static const trace::FunctionSig _glProgramUniform4ui64vNV_sig = {2321, "glProgramUniform4ui64vNV", 4, _glProgramUniform4ui64vNV_args};
 
 static const char * _glVertexAttribL1i64NV_args[2] = {"index", "x"};
-static const trace::FunctionSig _glVertexAttribL1i64NV_sig = {2320, "glVertexAttribL1i64NV", 2, _glVertexAttribL1i64NV_args};
+static const trace::FunctionSig _glVertexAttribL1i64NV_sig = {2322, "glVertexAttribL1i64NV", 2, _glVertexAttribL1i64NV_args};
 
 static const char * _glVertexAttribL2i64NV_args[3] = {"index", "x", "y"};
-static const trace::FunctionSig _glVertexAttribL2i64NV_sig = {2321, "glVertexAttribL2i64NV", 3, _glVertexAttribL2i64NV_args};
+static const trace::FunctionSig _glVertexAttribL2i64NV_sig = {2323, "glVertexAttribL2i64NV", 3, _glVertexAttribL2i64NV_args};
 
 static const char * _glVertexAttribL3i64NV_args[4] = {"index", "x", "y", "z"};
-static const trace::FunctionSig _glVertexAttribL3i64NV_sig = {2322, "glVertexAttribL3i64NV", 4, _glVertexAttribL3i64NV_args};
+static const trace::FunctionSig _glVertexAttribL3i64NV_sig = {2324, "glVertexAttribL3i64NV", 4, _glVertexAttribL3i64NV_args};
 
 static const char * _glVertexAttribL4i64NV_args[5] = {"index", "x", "y", "z", "w"};
-static const trace::FunctionSig _glVertexAttribL4i64NV_sig = {2323, "glVertexAttribL4i64NV", 5, _glVertexAttribL4i64NV_args};
+static const trace::FunctionSig _glVertexAttribL4i64NV_sig = {2325, "glVertexAttribL4i64NV", 5, _glVertexAttribL4i64NV_args};
 
 static const char * _glVertexAttribL1i64vNV_args[2] = {"index", "v"};
-static const trace::FunctionSig _glVertexAttribL1i64vNV_sig = {2324, "glVertexAttribL1i64vNV", 2, _glVertexAttribL1i64vNV_args};
+static const trace::FunctionSig _glVertexAttribL1i64vNV_sig = {2326, "glVertexAttribL1i64vNV", 2, _glVertexAttribL1i64vNV_args};
 
 static const char * _glVertexAttribL2i64vNV_args[2] = {"index", "v"};
-static const trace::FunctionSig _glVertexAttribL2i64vNV_sig = {2325, "glVertexAttribL2i64vNV", 2, _glVertexAttribL2i64vNV_args};
+static const trace::FunctionSig _glVertexAttribL2i64vNV_sig = {2327, "glVertexAttribL2i64vNV", 2, _glVertexAttribL2i64vNV_args};
 
 static const char * _glVertexAttribL3i64vNV_args[2] = {"index", "v"};
-static const trace::FunctionSig _glVertexAttribL3i64vNV_sig = {2326, "glVertexAttribL3i64vNV", 2, _glVertexAttribL3i64vNV_args};
+static const trace::FunctionSig _glVertexAttribL3i64vNV_sig = {2328, "glVertexAttribL3i64vNV", 2, _glVertexAttribL3i64vNV_args};
 
 static const char * _glVertexAttribL4i64vNV_args[2] = {"index", "v"};
-static const trace::FunctionSig _glVertexAttribL4i64vNV_sig = {2327, "glVertexAttribL4i64vNV", 2, _glVertexAttribL4i64vNV_args};
+static const trace::FunctionSig _glVertexAttribL4i64vNV_sig = {2329, "glVertexAttribL4i64vNV", 2, _glVertexAttribL4i64vNV_args};
 
 static const char * _glVertexAttribL1ui64NV_args[2] = {"index", "x"};
-static const trace::FunctionSig _glVertexAttribL1ui64NV_sig = {2328, "glVertexAttribL1ui64NV", 2, _glVertexAttribL1ui64NV_args};
+static const trace::FunctionSig _glVertexAttribL1ui64NV_sig = {2330, "glVertexAttribL1ui64NV", 2, _glVertexAttribL1ui64NV_args};
 
 static const char * _glVertexAttribL2ui64NV_args[3] = {"index", "x", "y"};
-static const trace::FunctionSig _glVertexAttribL2ui64NV_sig = {2329, "glVertexAttribL2ui64NV", 3, _glVertexAttribL2ui64NV_args};
+static const trace::FunctionSig _glVertexAttribL2ui64NV_sig = {2331, "glVertexAttribL2ui64NV", 3, _glVertexAttribL2ui64NV_args};
 
 static const char * _glVertexAttribL3ui64NV_args[4] = {"index", "x", "y", "z"};
-static const trace::FunctionSig _glVertexAttribL3ui64NV_sig = {2330, "glVertexAttribL3ui64NV", 4, _glVertexAttribL3ui64NV_args};
+static const trace::FunctionSig _glVertexAttribL3ui64NV_sig = {2332, "glVertexAttribL3ui64NV", 4, _glVertexAttribL3ui64NV_args};
 
 static const char * _glVertexAttribL4ui64NV_args[5] = {"index", "x", "y", "z", "w"};
-static const trace::FunctionSig _glVertexAttribL4ui64NV_sig = {2331, "glVertexAttribL4ui64NV", 5, _glVertexAttribL4ui64NV_args};
+static const trace::FunctionSig _glVertexAttribL4ui64NV_sig = {2333, "glVertexAttribL4ui64NV", 5, _glVertexAttribL4ui64NV_args};
 
 static const char * _glVertexAttribL1ui64vNV_args[2] = {"index", "v"};
-static const trace::FunctionSig _glVertexAttribL1ui64vNV_sig = {2332, "glVertexAttribL1ui64vNV", 2, _glVertexAttribL1ui64vNV_args};
+static const trace::FunctionSig _glVertexAttribL1ui64vNV_sig = {2334, "glVertexAttribL1ui64vNV", 2, _glVertexAttribL1ui64vNV_args};
 
 static const char * _glVertexAttribL2ui64vNV_args[2] = {"index", "v"};
-static const trace::FunctionSig _glVertexAttribL2ui64vNV_sig = {2333, "glVertexAttribL2ui64vNV", 2, _glVertexAttribL2ui64vNV_args};
+static const trace::FunctionSig _glVertexAttribL2ui64vNV_sig = {2335, "glVertexAttribL2ui64vNV", 2, _glVertexAttribL2ui64vNV_args};
 
 static const char * _glVertexAttribL3ui64vNV_args[2] = {"index", "v"};
-static const trace::FunctionSig _glVertexAttribL3ui64vNV_sig = {2334, "glVertexAttribL3ui64vNV", 2, _glVertexAttribL3ui64vNV_args};
+static const trace::FunctionSig _glVertexAttribL3ui64vNV_sig = {2336, "glVertexAttribL3ui64vNV", 2, _glVertexAttribL3ui64vNV_args};
 
 static const char * _glVertexAttribL4ui64vNV_args[2] = {"index", "v"};
-static const trace::FunctionSig _glVertexAttribL4ui64vNV_sig = {2335, "glVertexAttribL4ui64vNV", 2, _glVertexAttribL4ui64vNV_args};
+static const trace::FunctionSig _glVertexAttribL4ui64vNV_sig = {2337, "glVertexAttribL4ui64vNV", 2, _glVertexAttribL4ui64vNV_args};
 
 static const char * _glGetVertexAttribLi64vNV_args[3] = {"index", "pname", "params"};
-static const trace::FunctionSig _glGetVertexAttribLi64vNV_sig = {2336, "glGetVertexAttribLi64vNV", 3, _glGetVertexAttribLi64vNV_args};
+static const trace::FunctionSig _glGetVertexAttribLi64vNV_sig = {2338, "glGetVertexAttribLi64vNV", 3, _glGetVertexAttribLi64vNV_args};
 
 static const char * _glGetVertexAttribLui64vNV_args[3] = {"index", "pname", "params"};
-static const trace::FunctionSig _glGetVertexAttribLui64vNV_sig = {2337, "glGetVertexAttribLui64vNV", 3, _glGetVertexAttribLui64vNV_args};
+static const trace::FunctionSig _glGetVertexAttribLui64vNV_sig = {2339, "glGetVertexAttribLui64vNV", 3, _glGetVertexAttribLui64vNV_args};
 
 static const char * _glVertexAttribLFormatNV_args[4] = {"index", "size", "type", "stride"};
-static const trace::FunctionSig _glVertexAttribLFormatNV_sig = {2338, "glVertexAttribLFormatNV", 4, _glVertexAttribLFormatNV_args};
+static const trace::FunctionSig _glVertexAttribLFormatNV_sig = {2340, "glVertexAttribLFormatNV", 4, _glVertexAttribLFormatNV_args};
 
 static const char * _glGenNamesAMD_args[3] = {"identifier", "num", "names"};
-static const trace::FunctionSig _glGenNamesAMD_sig = {2339, "glGenNamesAMD", 3, _glGenNamesAMD_args};
+static const trace::FunctionSig _glGenNamesAMD_sig = {2341, "glGenNamesAMD", 3, _glGenNamesAMD_args};
 
 static const char * _glDeleteNamesAMD_args[3] = {"identifier", "num", "names"};
-static const trace::FunctionSig _glDeleteNamesAMD_sig = {2340, "glDeleteNamesAMD", 3, _glDeleteNamesAMD_args};
+static const trace::FunctionSig _glDeleteNamesAMD_sig = {2342, "glDeleteNamesAMD", 3, _glDeleteNamesAMD_args};
 
 static const char * _glIsNameAMD_args[2] = {"identifier", "name"};
-static const trace::FunctionSig _glIsNameAMD_sig = {2341, "glIsNameAMD", 2, _glIsNameAMD_args};
+static const trace::FunctionSig _glIsNameAMD_sig = {2343, "glIsNameAMD", 2, _glIsNameAMD_args};
 
 static const char * _glDebugMessageEnableAMD_args[5] = {"category", "severity", "count", "ids", "enabled"};
-static const trace::FunctionSig _glDebugMessageEnableAMD_sig = {2342, "glDebugMessageEnableAMD", 5, _glDebugMessageEnableAMD_args};
+static const trace::FunctionSig _glDebugMessageEnableAMD_sig = {2344, "glDebugMessageEnableAMD", 5, _glDebugMessageEnableAMD_args};
 
 static const char * _glDebugMessageInsertAMD_args[5] = {"category", "severity", "id", "length", "buf"};
-static const trace::FunctionSig _glDebugMessageInsertAMD_sig = {2343, "glDebugMessageInsertAMD", 5, _glDebugMessageInsertAMD_args};
+static const trace::FunctionSig _glDebugMessageInsertAMD_sig = {2345, "glDebugMessageInsertAMD", 5, _glDebugMessageInsertAMD_args};
 
 static const char * _glDebugMessageCallbackAMD_args[2] = {"callback", "userParam"};
-static const trace::FunctionSig _glDebugMessageCallbackAMD_sig = {2344, "glDebugMessageCallbackAMD", 2, _glDebugMessageCallbackAMD_args};
+static const trace::FunctionSig _glDebugMessageCallbackAMD_sig = {2346, "glDebugMessageCallbackAMD", 2, _glDebugMessageCallbackAMD_args};
 
 static const char * _glGetDebugMessageLogAMD_args[7] = {"count", "bufsize", "categories", "severities", "ids", "lengths", "message"};
-static const trace::FunctionSig _glGetDebugMessageLogAMD_sig = {2345, "glGetDebugMessageLogAMD", 7, _glGetDebugMessageLogAMD_args};
+static const trace::FunctionSig _glGetDebugMessageLogAMD_sig = {2347, "glGetDebugMessageLogAMD", 7, _glGetDebugMessageLogAMD_args};
 
 static const char * _glTexImage2DMultisampleCoverageNV_args[7] = {"target", "coverageSamples", "colorSamples", "internalFormat", "width", "height", "fixedSampleLocations"};
-static const trace::FunctionSig _glTexImage2DMultisampleCoverageNV_sig = {2346, "glTexImage2DMultisampleCoverageNV", 7, _glTexImage2DMultisampleCoverageNV_args};
+static const trace::FunctionSig _glTexImage2DMultisampleCoverageNV_sig = {2348, "glTexImage2DMultisampleCoverageNV", 7, _glTexImage2DMultisampleCoverageNV_args};
 
 static const char * _glTexImage3DMultisampleCoverageNV_args[8] = {"target", "coverageSamples", "colorSamples", "internalFormat", "width", "height", "depth", "fixedSampleLocations"};
-static const trace::FunctionSig _glTexImage3DMultisampleCoverageNV_sig = {2347, "glTexImage3DMultisampleCoverageNV", 8, _glTexImage3DMultisampleCoverageNV_args};
+static const trace::FunctionSig _glTexImage3DMultisampleCoverageNV_sig = {2349, "glTexImage3DMultisampleCoverageNV", 8, _glTexImage3DMultisampleCoverageNV_args};
 
 static const char * _glTextureImage2DMultisampleNV_args[7] = {"texture", "target", "samples", "internalFormat", "width", "height", "fixedSampleLocations"};
-static const trace::FunctionSig _glTextureImage2DMultisampleNV_sig = {2348, "glTextureImage2DMultisampleNV", 7, _glTextureImage2DMultisampleNV_args};
+static const trace::FunctionSig _glTextureImage2DMultisampleNV_sig = {2350, "glTextureImage2DMultisampleNV", 7, _glTextureImage2DMultisampleNV_args};
 
 static const char * _glTextureImage3DMultisampleNV_args[8] = {"texture", "target", "samples", "internalFormat", "width", "height", "depth", "fixedSampleLocations"};
-static const trace::FunctionSig _glTextureImage3DMultisampleNV_sig = {2349, "glTextureImage3DMultisampleNV", 8, _glTextureImage3DMultisampleNV_args};
+static const trace::FunctionSig _glTextureImage3DMultisampleNV_sig = {2351, "glTextureImage3DMultisampleNV", 8, _glTextureImage3DMultisampleNV_args};
 
 static const char * _glTextureImage2DMultisampleCoverageNV_args[8] = {"texture", "target", "coverageSamples", "colorSamples", "internalFormat", "width", "height", "fixedSampleLocations"};
-static const trace::FunctionSig _glTextureImage2DMultisampleCoverageNV_sig = {2350, "glTextureImage2DMultisampleCoverageNV", 8, _glTextureImage2DMultisampleCoverageNV_args};
+static const trace::FunctionSig _glTextureImage2DMultisampleCoverageNV_sig = {2352, "glTextureImage2DMultisampleCoverageNV", 8, _glTextureImage2DMultisampleCoverageNV_args};
 
 static const char * _glTextureImage3DMultisampleCoverageNV_args[9] = {"texture", "target", "coverageSamples", "colorSamples", "internalFormat", "width", "height", "depth", "fixedSampleLocations"};
-static const trace::FunctionSig _glTextureImage3DMultisampleCoverageNV_sig = {2351, "glTextureImage3DMultisampleCoverageNV", 9, _glTextureImage3DMultisampleCoverageNV_args};
+static const trace::FunctionSig _glTextureImage3DMultisampleCoverageNV_sig = {2353, "glTextureImage3DMultisampleCoverageNV", 9, _glTextureImage3DMultisampleCoverageNV_args};
 
 static const char * _glSetMultisamplefvAMD_args[3] = {"pname", "index", "val"};
-static const trace::FunctionSig _glSetMultisamplefvAMD_sig = {2352, "glSetMultisamplefvAMD", 3, _glSetMultisamplefvAMD_args};
+static const trace::FunctionSig _glSetMultisamplefvAMD_sig = {2354, "glSetMultisamplefvAMD", 3, _glSetMultisamplefvAMD_args};
 
 static const char * _glImportSyncEXT_args[3] = {"external_sync_type", "external_sync", "flags"};
-static const trace::FunctionSig _glImportSyncEXT_sig = {2353, "glImportSyncEXT", 3, _glImportSyncEXT_args};
+static const trace::FunctionSig _glImportSyncEXT_sig = {2355, "glImportSyncEXT", 3, _glImportSyncEXT_args};
 
 static const char * _glMultiDrawArraysIndirectAMD_args[4] = {"mode", "indirect", "primcount", "stride"};
-static const trace::FunctionSig _glMultiDrawArraysIndirectAMD_sig = {2354, "glMultiDrawArraysIndirectAMD", 4, _glMultiDrawArraysIndirectAMD_args};
+static const trace::FunctionSig _glMultiDrawArraysIndirectAMD_sig = {2356, "glMultiDrawArraysIndirectAMD", 4, _glMultiDrawArraysIndirectAMD_args};
 
 static const char * _glMultiDrawElementsIndirectAMD_args[5] = {"mode", "type", "indirect", "primcount", "stride"};
-static const trace::FunctionSig _glMultiDrawElementsIndirectAMD_sig = {2355, "glMultiDrawElementsIndirectAMD", 5, _glMultiDrawElementsIndirectAMD_args};
+static const trace::FunctionSig _glMultiDrawElementsIndirectAMD_sig = {2357, "glMultiDrawElementsIndirectAMD", 5, _glMultiDrawElementsIndirectAMD_args};
 
 static const char * _glNewBufferRegion_args[1] = {"type"};
-static const trace::FunctionSig _glNewBufferRegion_sig = {2356, "glNewBufferRegion", 1, _glNewBufferRegion_args};
+static const trace::FunctionSig _glNewBufferRegion_sig = {2358, "glNewBufferRegion", 1, _glNewBufferRegion_args};
 
 static const char * _glDeleteBufferRegion_args[1] = {"region"};
-static const trace::FunctionSig _glDeleteBufferRegion_sig = {2357, "glDeleteBufferRegion", 1, _glDeleteBufferRegion_args};
+static const trace::FunctionSig _glDeleteBufferRegion_sig = {2359, "glDeleteBufferRegion", 1, _glDeleteBufferRegion_args};
 
 static const char * _glReadBufferRegion_args[5] = {"region", "x", "y", "width", "height"};
-static const trace::FunctionSig _glReadBufferRegion_sig = {2358, "glReadBufferRegion", 5, _glReadBufferRegion_args};
+static const trace::FunctionSig _glReadBufferRegion_sig = {2360, "glReadBufferRegion", 5, _glReadBufferRegion_args};
 
 static const char * _glDrawBufferRegion_args[7] = {"region", "x", "y", "width", "height", "xDest", "yDest"};
-static const trace::FunctionSig _glDrawBufferRegion_sig = {2359, "glDrawBufferRegion", 7, _glDrawBufferRegion_args};
+static const trace::FunctionSig _glDrawBufferRegion_sig = {2361, "glDrawBufferRegion", 7, _glDrawBufferRegion_args};
 
 static const char ** _glBufferRegionEnabled_args = NULL;
-static const trace::FunctionSig _glBufferRegionEnabled_sig = {2360, "glBufferRegionEnabled", 0, _glBufferRegionEnabled_args};
+static const trace::FunctionSig _glBufferRegionEnabled_sig = {2362, "glBufferRegionEnabled", 0, _glBufferRegionEnabled_args};
 
 static const char * _glAddSwapHintRectWIN_args[4] = {"x", "y", "width", "height"};
-static const trace::FunctionSig _glAddSwapHintRectWIN_sig = {2361, "glAddSwapHintRectWIN", 4, _glAddSwapHintRectWIN_args};
+static const trace::FunctionSig _glAddSwapHintRectWIN_sig = {2363, "glAddSwapHintRectWIN", 4, _glAddSwapHintRectWIN_args};
 
 static const char * _glFrustumf_args[6] = {"left", "right", "bottom", "top", "zNear", "zFar"};
-static const trace::FunctionSig _glFrustumf_sig = {2362, "glFrustumf", 6, _glFrustumf_args};
+static const trace::FunctionSig _glFrustumf_sig = {2364, "glFrustumf", 6, _glFrustumf_args};
 
 static const char * _glOrthof_args[6] = {"left", "right", "bottom", "top", "zNear", "zFar"};
-static const trace::FunctionSig _glOrthof_sig = {2363, "glOrthof", 6, _glOrthof_args};
+static const trace::FunctionSig _glOrthof_sig = {2365, "glOrthof", 6, _glOrthof_args};
 
 static const char * _glClipPlanef_args[2] = {"plane", "equation"};
-static const trace::FunctionSig _glClipPlanef_sig = {2364, "glClipPlanef", 2, _glClipPlanef_args};
+static const trace::FunctionSig _glClipPlanef_sig = {2366, "glClipPlanef", 2, _glClipPlanef_args};
 
 static const char * _glGetClipPlanef_args[2] = {"plane", "equation"};
-static const trace::FunctionSig _glGetClipPlanef_sig = {2365, "glGetClipPlanef", 2, _glGetClipPlanef_args};
+static const trace::FunctionSig _glGetClipPlanef_sig = {2367, "glGetClipPlanef", 2, _glGetClipPlanef_args};
 
 static const char * _glAlphaFuncx_args[2] = {"func", "ref"};
-static const trace::FunctionSig _glAlphaFuncx_sig = {2366, "glAlphaFuncx", 2, _glAlphaFuncx_args};
+static const trace::FunctionSig _glAlphaFuncx_sig = {2368, "glAlphaFuncx", 2, _glAlphaFuncx_args};
 
 static const char * _glClearColorx_args[4] = {"red", "green", "blue", "alpha"};
-static const trace::FunctionSig _glClearColorx_sig = {2367, "glClearColorx", 4, _glClearColorx_args};
+static const trace::FunctionSig _glClearColorx_sig = {2369, "glClearColorx", 4, _glClearColorx_args};
 
 static const char * _glClearDepthx_args[1] = {"depth"};
-static const trace::FunctionSig _glClearDepthx_sig = {2368, "glClearDepthx", 1, _glClearDepthx_args};
+static const trace::FunctionSig _glClearDepthx_sig = {2370, "glClearDepthx", 1, _glClearDepthx_args};
 
 static const char * _glColor4x_args[4] = {"red", "green", "blue", "alpha"};
-static const trace::FunctionSig _glColor4x_sig = {2369, "glColor4x", 4, _glColor4x_args};
+static const trace::FunctionSig _glColor4x_sig = {2371, "glColor4x", 4, _glColor4x_args};
 
 static const char * _glDepthRangex_args[2] = {"zNear", "zFar"};
-static const trace::FunctionSig _glDepthRangex_sig = {2370, "glDepthRangex", 2, _glDepthRangex_args};
+static const trace::FunctionSig _glDepthRangex_sig = {2372, "glDepthRangex", 2, _glDepthRangex_args};
 
 static const char * _glFogx_args[2] = {"pname", "param"};
-static const trace::FunctionSig _glFogx_sig = {2371, "glFogx", 2, _glFogx_args};
+static const trace::FunctionSig _glFogx_sig = {2373, "glFogx", 2, _glFogx_args};
 
 static const char * _glFogxv_args[2] = {"pname", "params"};
-static const trace::FunctionSig _glFogxv_sig = {2372, "glFogxv", 2, _glFogxv_args};
+static const trace::FunctionSig _glFogxv_sig = {2374, "glFogxv", 2, _glFogxv_args};
 
 static const char * _glFrustumx_args[6] = {"left", "right", "bottom", "top", "zNear", "zFar"};
-static const trace::FunctionSig _glFrustumx_sig = {2373, "glFrustumx", 6, _glFrustumx_args};
+static const trace::FunctionSig _glFrustumx_sig = {2375, "glFrustumx", 6, _glFrustumx_args};
 
 static const char * _glLightModelx_args[2] = {"pname", "param"};
-static const trace::FunctionSig _glLightModelx_sig = {2374, "glLightModelx", 2, _glLightModelx_args};
+static const trace::FunctionSig _glLightModelx_sig = {2376, "glLightModelx", 2, _glLightModelx_args};
 
 static const char * _glLightModelxv_args[2] = {"pname", "params"};
-static const trace::FunctionSig _glLightModelxv_sig = {2375, "glLightModelxv", 2, _glLightModelxv_args};
+static const trace::FunctionSig _glLightModelxv_sig = {2377, "glLightModelxv", 2, _glLightModelxv_args};
 
 static const char * _glLightx_args[3] = {"light", "pname", "param"};
-static const trace::FunctionSig _glLightx_sig = {2376, "glLightx", 3, _glLightx_args};
+static const trace::FunctionSig _glLightx_sig = {2378, "glLightx", 3, _glLightx_args};
 
 static const char * _glLightxv_args[3] = {"light", "pname", "params"};
-static const trace::FunctionSig _glLightxv_sig = {2377, "glLightxv", 3, _glLightxv_args};
+static const trace::FunctionSig _glLightxv_sig = {2379, "glLightxv", 3, _glLightxv_args};
 
 static const char * _glLineWidthx_args[1] = {"width"};
-static const trace::FunctionSig _glLineWidthx_sig = {2378, "glLineWidthx", 1, _glLineWidthx_args};
+static const trace::FunctionSig _glLineWidthx_sig = {2380, "glLineWidthx", 1, _glLineWidthx_args};
 
 static const char * _glLoadMatrixx_args[1] = {"m"};
-static const trace::FunctionSig _glLoadMatrixx_sig = {2379, "glLoadMatrixx", 1, _glLoadMatrixx_args};
+static const trace::FunctionSig _glLoadMatrixx_sig = {2381, "glLoadMatrixx", 1, _glLoadMatrixx_args};
 
 static const char * _glMaterialx_args[3] = {"face", "pname", "param"};
-static const trace::FunctionSig _glMaterialx_sig = {2380, "glMaterialx", 3, _glMaterialx_args};
+static const trace::FunctionSig _glMaterialx_sig = {2382, "glMaterialx", 3, _glMaterialx_args};
 
 static const char * _glMaterialxv_args[3] = {"face", "pname", "params"};
-static const trace::FunctionSig _glMaterialxv_sig = {2381, "glMaterialxv", 3, _glMaterialxv_args};
+static const trace::FunctionSig _glMaterialxv_sig = {2383, "glMaterialxv", 3, _glMaterialxv_args};
 
 static const char * _glMultMatrixx_args[1] = {"m"};
-static const trace::FunctionSig _glMultMatrixx_sig = {2382, "glMultMatrixx", 1, _glMultMatrixx_args};
+static const trace::FunctionSig _glMultMatrixx_sig = {2384, "glMultMatrixx", 1, _glMultMatrixx_args};
 
 static const char * _glMultiTexCoord4x_args[5] = {"target", "s", "t", "r", "q"};
-static const trace::FunctionSig _glMultiTexCoord4x_sig = {2383, "glMultiTexCoord4x", 5, _glMultiTexCoord4x_args};
+static const trace::FunctionSig _glMultiTexCoord4x_sig = {2385, "glMultiTexCoord4x", 5, _glMultiTexCoord4x_args};
 
 static const char * _glNormal3x_args[3] = {"nx", "ny", "nz"};
-static const trace::FunctionSig _glNormal3x_sig = {2384, "glNormal3x", 3, _glNormal3x_args};
+static const trace::FunctionSig _glNormal3x_sig = {2386, "glNormal3x", 3, _glNormal3x_args};
 
 static const char * _glOrthox_args[6] = {"left", "right", "bottom", "top", "zNear", "zFar"};
-static const trace::FunctionSig _glOrthox_sig = {2385, "glOrthox", 6, _glOrthox_args};
+static const trace::FunctionSig _glOrthox_sig = {2387, "glOrthox", 6, _glOrthox_args};
 
 static const char * _glPointSizex_args[1] = {"size"};
-static const trace::FunctionSig _glPointSizex_sig = {2386, "glPointSizex", 1, _glPointSizex_args};
+static const trace::FunctionSig _glPointSizex_sig = {2388, "glPointSizex", 1, _glPointSizex_args};
 
 static const char * _glPolygonOffsetx_args[2] = {"factor", "units"};
-static const trace::FunctionSig _glPolygonOffsetx_sig = {2387, "glPolygonOffsetx", 2, _glPolygonOffsetx_args};
+static const trace::FunctionSig _glPolygonOffsetx_sig = {2389, "glPolygonOffsetx", 2, _glPolygonOffsetx_args};
 
 static const char * _glRotatex_args[4] = {"angle", "x", "y", "z"};
-static const trace::FunctionSig _glRotatex_sig = {2388, "glRotatex", 4, _glRotatex_args};
+static const trace::FunctionSig _glRotatex_sig = {2390, "glRotatex", 4, _glRotatex_args};
 
 static const char * _glSampleCoveragex_args[2] = {"value", "invert"};
-static const trace::FunctionSig _glSampleCoveragex_sig = {2389, "glSampleCoveragex", 2, _glSampleCoveragex_args};
+static const trace::FunctionSig _glSampleCoveragex_sig = {2391, "glSampleCoveragex", 2, _glSampleCoveragex_args};
 
 static const char * _glScalex_args[3] = {"x", "y", "z"};
-static const trace::FunctionSig _glScalex_sig = {2390, "glScalex", 3, _glScalex_args};
+static const trace::FunctionSig _glScalex_sig = {2392, "glScalex", 3, _glScalex_args};
 
 static const char * _glTexEnvx_args[3] = {"target", "pname", "param"};
-static const trace::FunctionSig _glTexEnvx_sig = {2391, "glTexEnvx", 3, _glTexEnvx_args};
+static const trace::FunctionSig _glTexEnvx_sig = {2393, "glTexEnvx", 3, _glTexEnvx_args};
 
 static const char * _glTexEnvxv_args[3] = {"target", "pname", "params"};
-static const trace::FunctionSig _glTexEnvxv_sig = {2392, "glTexEnvxv", 3, _glTexEnvxv_args};
+static const trace::FunctionSig _glTexEnvxv_sig = {2394, "glTexEnvxv", 3, _glTexEnvxv_args};
 
 static const char * _glTexParameterx_args[3] = {"target", "pname", "param"};
-static const trace::FunctionSig _glTexParameterx_sig = {2393, "glTexParameterx", 3, _glTexParameterx_args};
+static const trace::FunctionSig _glTexParameterx_sig = {2395, "glTexParameterx", 3, _glTexParameterx_args};
 
 static const char * _glTranslatex_args[3] = {"x", "y", "z"};
-static const trace::FunctionSig _glTranslatex_sig = {2394, "glTranslatex", 3, _glTranslatex_args};
+static const trace::FunctionSig _glTranslatex_sig = {2396, "glTranslatex", 3, _glTranslatex_args};
 
 static const char * _glClipPlanex_args[2] = {"plane", "equation"};
-static const trace::FunctionSig _glClipPlanex_sig = {2395, "glClipPlanex", 2, _glClipPlanex_args};
+static const trace::FunctionSig _glClipPlanex_sig = {2397, "glClipPlanex", 2, _glClipPlanex_args};
 
 static const char * _glGetClipPlanex_args[2] = {"plane", "equation"};
-static const trace::FunctionSig _glGetClipPlanex_sig = {2396, "glGetClipPlanex", 2, _glGetClipPlanex_args};
+static const trace::FunctionSig _glGetClipPlanex_sig = {2398, "glGetClipPlanex", 2, _glGetClipPlanex_args};
 
 static const char * _glGetFixedv_args[2] = {"pname", "params"};
-static const trace::FunctionSig _glGetFixedv_sig = {2397, "glGetFixedv", 2, _glGetFixedv_args};
+static const trace::FunctionSig _glGetFixedv_sig = {2399, "glGetFixedv", 2, _glGetFixedv_args};
 
 static const char * _glGetLightxv_args[3] = {"light", "pname", "params"};
-static const trace::FunctionSig _glGetLightxv_sig = {2398, "glGetLightxv", 3, _glGetLightxv_args};
+static const trace::FunctionSig _glGetLightxv_sig = {2400, "glGetLightxv", 3, _glGetLightxv_args};
 
 static const char * _glGetMaterialxv_args[3] = {"face", "pname", "params"};
-static const trace::FunctionSig _glGetMaterialxv_sig = {2399, "glGetMaterialxv", 3, _glGetMaterialxv_args};
+static const trace::FunctionSig _glGetMaterialxv_sig = {2401, "glGetMaterialxv", 3, _glGetMaterialxv_args};
 
 static const char * _glGetTexEnvxv_args[3] = {"target", "pname", "params"};
-static const trace::FunctionSig _glGetTexEnvxv_sig = {2400, "glGetTexEnvxv", 3, _glGetTexEnvxv_args};
+static const trace::FunctionSig _glGetTexEnvxv_sig = {2402, "glGetTexEnvxv", 3, _glGetTexEnvxv_args};
 
 static const char * _glGetTexParameterxv_args[3] = {"target", "pname", "params"};
-static const trace::FunctionSig _glGetTexParameterxv_sig = {2401, "glGetTexParameterxv", 3, _glGetTexParameterxv_args};
+static const trace::FunctionSig _glGetTexParameterxv_sig = {2403, "glGetTexParameterxv", 3, _glGetTexParameterxv_args};
 
 static const char * _glPointParameterx_args[2] = {"pname", "param"};
-static const trace::FunctionSig _glPointParameterx_sig = {2402, "glPointParameterx", 2, _glPointParameterx_args};
+static const trace::FunctionSig _glPointParameterx_sig = {2404, "glPointParameterx", 2, _glPointParameterx_args};
 
 static const char * _glPointParameterxv_args[2] = {"pname", "params"};
-static const trace::FunctionSig _glPointParameterxv_sig = {2403, "glPointParameterxv", 2, _glPointParameterxv_args};
+static const trace::FunctionSig _glPointParameterxv_sig = {2405, "glPointParameterxv", 2, _glPointParameterxv_args};
 
 static const char * _glTexParameterxv_args[3] = {"target", "pname", "params"};
-static const trace::FunctionSig _glTexParameterxv_sig = {2404, "glTexParameterxv", 3, _glTexParameterxv_args};
+static const trace::FunctionSig _glTexParameterxv_sig = {2406, "glTexParameterxv", 3, _glTexParameterxv_args};
 
 static const char * _glBlendEquationSeparateOES_args[2] = {"modeRGB", "modeAlpha"};
-static const trace::FunctionSig _glBlendEquationSeparateOES_sig = {2405, "glBlendEquationSeparateOES", 2, _glBlendEquationSeparateOES_args};
+static const trace::FunctionSig _glBlendEquationSeparateOES_sig = {2407, "glBlendEquationSeparateOES", 2, _glBlendEquationSeparateOES_args};
 
 static const char * _glBlendFuncSeparateOES_args[4] = {"sfactorRGB", "dfactorRGB", "sfactorAlpha", "dfactorAlpha"};
-static const trace::FunctionSig _glBlendFuncSeparateOES_sig = {2406, "glBlendFuncSeparateOES", 4, _glBlendFuncSeparateOES_args};
+static const trace::FunctionSig _glBlendFuncSeparateOES_sig = {2408, "glBlendFuncSeparateOES", 4, _glBlendFuncSeparateOES_args};
 
 static const char * _glBlendEquationOES_args[1] = {"mode"};
-static const trace::FunctionSig _glBlendEquationOES_sig = {2407, "glBlendEquationOES", 1, _glBlendEquationOES_args};
+static const trace::FunctionSig _glBlendEquationOES_sig = {2409, "glBlendEquationOES", 1, _glBlendEquationOES_args};
 
 static const char * _glIsRenderbufferOES_args[1] = {"renderbuffer"};
-static const trace::FunctionSig _glIsRenderbufferOES_sig = {2408, "glIsRenderbufferOES", 1, _glIsRenderbufferOES_args};
+static const trace::FunctionSig _glIsRenderbufferOES_sig = {2410, "glIsRenderbufferOES", 1, _glIsRenderbufferOES_args};
 
 static const char * _glBindRenderbufferOES_args[2] = {"target", "renderbuffer"};
-static const trace::FunctionSig _glBindRenderbufferOES_sig = {2409, "glBindRenderbufferOES", 2, _glBindRenderbufferOES_args};
+static const trace::FunctionSig _glBindRenderbufferOES_sig = {2411, "glBindRenderbufferOES", 2, _glBindRenderbufferOES_args};
 
 static const char * _glDeleteRenderbuffersOES_args[2] = {"n", "renderbuffers"};
-static const trace::FunctionSig _glDeleteRenderbuffersOES_sig = {2410, "glDeleteRenderbuffersOES", 2, _glDeleteRenderbuffersOES_args};
+static const trace::FunctionSig _glDeleteRenderbuffersOES_sig = {2412, "glDeleteRenderbuffersOES", 2, _glDeleteRenderbuffersOES_args};
 
 static const char * _glGenRenderbuffersOES_args[2] = {"n", "renderbuffers"};
-static const trace::FunctionSig _glGenRenderbuffersOES_sig = {2411, "glGenRenderbuffersOES", 2, _glGenRenderbuffersOES_args};
+static const trace::FunctionSig _glGenRenderbuffersOES_sig = {2413, "glGenRenderbuffersOES", 2, _glGenRenderbuffersOES_args};
 
 static const char * _glRenderbufferStorageOES_args[4] = {"target", "internalformat", "width", "height"};
-static const trace::FunctionSig _glRenderbufferStorageOES_sig = {2412, "glRenderbufferStorageOES", 4, _glRenderbufferStorageOES_args};
+static const trace::FunctionSig _glRenderbufferStorageOES_sig = {2414, "glRenderbufferStorageOES", 4, _glRenderbufferStorageOES_args};
 
 static const char * _glGetRenderbufferParameterivOES_args[3] = {"target", "pname", "params"};
-static const trace::FunctionSig _glGetRenderbufferParameterivOES_sig = {2413, "glGetRenderbufferParameterivOES", 3, _glGetRenderbufferParameterivOES_args};
+static const trace::FunctionSig _glGetRenderbufferParameterivOES_sig = {2415, "glGetRenderbufferParameterivOES", 3, _glGetRenderbufferParameterivOES_args};
 
 static const char * _glIsFramebufferOES_args[1] = {"framebuffer"};
-static const trace::FunctionSig _glIsFramebufferOES_sig = {2414, "glIsFramebufferOES", 1, _glIsFramebufferOES_args};
+static const trace::FunctionSig _glIsFramebufferOES_sig = {2416, "glIsFramebufferOES", 1, _glIsFramebufferOES_args};
 
 static const char * _glBindFramebufferOES_args[2] = {"target", "framebuffer"};
-static const trace::FunctionSig _glBindFramebufferOES_sig = {2415, "glBindFramebufferOES", 2, _glBindFramebufferOES_args};
+static const trace::FunctionSig _glBindFramebufferOES_sig = {2417, "glBindFramebufferOES", 2, _glBindFramebufferOES_args};
 
 static const char * _glDeleteFramebuffersOES_args[2] = {"n", "framebuffers"};
-static const trace::FunctionSig _glDeleteFramebuffersOES_sig = {2416, "glDeleteFramebuffersOES", 2, _glDeleteFramebuffersOES_args};
+static const trace::FunctionSig _glDeleteFramebuffersOES_sig = {2418, "glDeleteFramebuffersOES", 2, _glDeleteFramebuffersOES_args};
 
 static const char * _glGenFramebuffersOES_args[2] = {"n", "framebuffers"};
-static const trace::FunctionSig _glGenFramebuffersOES_sig = {2417, "glGenFramebuffersOES", 2, _glGenFramebuffersOES_args};
+static const trace::FunctionSig _glGenFramebuffersOES_sig = {2419, "glGenFramebuffersOES", 2, _glGenFramebuffersOES_args};
 
 static const char * _glCheckFramebufferStatusOES_args[1] = {"target"};
-static const trace::FunctionSig _glCheckFramebufferStatusOES_sig = {2418, "glCheckFramebufferStatusOES", 1, _glCheckFramebufferStatusOES_args};
+static const trace::FunctionSig _glCheckFramebufferStatusOES_sig = {2420, "glCheckFramebufferStatusOES", 1, _glCheckFramebufferStatusOES_args};
 
 static const char * _glFramebufferTexture2DOES_args[5] = {"target", "attachment", "textarget", "texture", "level"};
-static const trace::FunctionSig _glFramebufferTexture2DOES_sig = {2419, "glFramebufferTexture2DOES", 5, _glFramebufferTexture2DOES_args};
+static const trace::FunctionSig _glFramebufferTexture2DOES_sig = {2421, "glFramebufferTexture2DOES", 5, _glFramebufferTexture2DOES_args};
 
 static const char * _glFramebufferRenderbufferOES_args[4] = {"target", "attachment", "renderbuffertarget", "renderbuffer"};
-static const trace::FunctionSig _glFramebufferRenderbufferOES_sig = {2420, "glFramebufferRenderbufferOES", 4, _glFramebufferRenderbufferOES_args};
+static const trace::FunctionSig _glFramebufferRenderbufferOES_sig = {2422, "glFramebufferRenderbufferOES", 4, _glFramebufferRenderbufferOES_args};
 
 static const char * _glGetFramebufferAttachmentParameterivOES_args[4] = {"target", "attachment", "pname", "params"};
-static const trace::FunctionSig _glGetFramebufferAttachmentParameterivOES_sig = {2421, "glGetFramebufferAttachmentParameterivOES", 4, _glGetFramebufferAttachmentParameterivOES_args};
+static const trace::FunctionSig _glGetFramebufferAttachmentParameterivOES_sig = {2423, "glGetFramebufferAttachmentParameterivOES", 4, _glGetFramebufferAttachmentParameterivOES_args};
 
 static const char * _glGenerateMipmapOES_args[1] = {"target"};
-static const trace::FunctionSig _glGenerateMipmapOES_sig = {2422, "glGenerateMipmapOES", 1, _glGenerateMipmapOES_args};
+static const trace::FunctionSig _glGenerateMipmapOES_sig = {2424, "glGenerateMipmapOES", 1, _glGenerateMipmapOES_args};
 
 static const char * _glCurrentPaletteMatrixOES_args[1] = {"index"};
-static const trace::FunctionSig _glCurrentPaletteMatrixOES_sig = {2423, "glCurrentPaletteMatrixOES", 1, _glCurrentPaletteMatrixOES_args};
+static const trace::FunctionSig _glCurrentPaletteMatrixOES_sig = {2425, "glCurrentPaletteMatrixOES", 1, _glCurrentPaletteMatrixOES_args};
 
 static const char * _glPointSizePointerOES_args[3] = {"type", "stride", "ptr"};
-static const trace::FunctionSig _glPointSizePointerOES_sig = {2424, "glPointSizePointerOES", 3, _glPointSizePointerOES_args};
+static const trace::FunctionSig _glPointSizePointerOES_sig = {2426, "glPointSizePointerOES", 3, _glPointSizePointerOES_args};
 
 static const char * _glTexGenfOES_args[3] = {"coord", "pname", "param"};
-static const trace::FunctionSig _glTexGenfOES_sig = {2425, "glTexGenfOES", 3, _glTexGenfOES_args};
+static const trace::FunctionSig _glTexGenfOES_sig = {2427, "glTexGenfOES", 3, _glTexGenfOES_args};
 
 static const char * _glTexGenfvOES_args[3] = {"coord", "pname", "params"};
-static const trace::FunctionSig _glTexGenfvOES_sig = {2426, "glTexGenfvOES", 3, _glTexGenfvOES_args};
+static const trace::FunctionSig _glTexGenfvOES_sig = {2428, "glTexGenfvOES", 3, _glTexGenfvOES_args};
 
 static const char * _glTexGeniOES_args[3] = {"coord", "pname", "param"};
-static const trace::FunctionSig _glTexGeniOES_sig = {2427, "glTexGeniOES", 3, _glTexGeniOES_args};
+static const trace::FunctionSig _glTexGeniOES_sig = {2429, "glTexGeniOES", 3, _glTexGeniOES_args};
 
 static const char * _glTexGenivOES_args[3] = {"coord", "pname", "params"};
-static const trace::FunctionSig _glTexGenivOES_sig = {2428, "glTexGenivOES", 3, _glTexGenivOES_args};
+static const trace::FunctionSig _glTexGenivOES_sig = {2430, "glTexGenivOES", 3, _glTexGenivOES_args};
 
 static const char * _glTexGenxOES_args[3] = {"coord", "pname", "param"};
-static const trace::FunctionSig _glTexGenxOES_sig = {2429, "glTexGenxOES", 3, _glTexGenxOES_args};
+static const trace::FunctionSig _glTexGenxOES_sig = {2431, "glTexGenxOES", 3, _glTexGenxOES_args};
 
 static const char * _glTexGenxvOES_args[3] = {"coord", "pname", "params"};
-static const trace::FunctionSig _glTexGenxvOES_sig = {2430, "glTexGenxvOES", 3, _glTexGenxvOES_args};
+static const trace::FunctionSig _glTexGenxvOES_sig = {2432, "glTexGenxvOES", 3, _glTexGenxvOES_args};
 
 static const char * _glGetTexGenfvOES_args[3] = {"coord", "pname", "params"};
-static const trace::FunctionSig _glGetTexGenfvOES_sig = {2431, "glGetTexGenfvOES", 3, _glGetTexGenfvOES_args};
+static const trace::FunctionSig _glGetTexGenfvOES_sig = {2433, "glGetTexGenfvOES", 3, _glGetTexGenfvOES_args};
 
 static const char * _glGetTexGenivOES_args[3] = {"coord", "pname", "params"};
-static const trace::FunctionSig _glGetTexGenivOES_sig = {2432, "glGetTexGenivOES", 3, _glGetTexGenivOES_args};
+static const trace::FunctionSig _glGetTexGenivOES_sig = {2434, "glGetTexGenivOES", 3, _glGetTexGenivOES_args};
 
 static const char * _glGetTexGenxvOES_args[3] = {"coord", "pname", "params"};
-static const trace::FunctionSig _glGetTexGenxvOES_sig = {2433, "glGetTexGenxvOES", 3, _glGetTexGenxvOES_args};
+static const trace::FunctionSig _glGetTexGenxvOES_sig = {2435, "glGetTexGenxvOES", 3, _glGetTexGenxvOES_args};
 
 static const char * _glGetBufferPointervOES_args[3] = {"target", "pname", "params"};
-static const trace::FunctionSig _glGetBufferPointervOES_sig = {2434, "glGetBufferPointervOES", 3, _glGetBufferPointervOES_args};
+static const trace::FunctionSig _glGetBufferPointervOES_sig = {2436, "glGetBufferPointervOES", 3, _glGetBufferPointervOES_args};
 
 static const char * _glMapBufferOES_args[2] = {"target", "access"};
-static const trace::FunctionSig _glMapBufferOES_sig = {2435, "glMapBufferOES", 2, _glMapBufferOES_args};
+static const trace::FunctionSig _glMapBufferOES_sig = {2437, "glMapBufferOES", 2, _glMapBufferOES_args};
 
 static const char * _glUnmapBufferOES_args[1] = {"target"};
-static const trace::FunctionSig _glUnmapBufferOES_sig = {2436, "glUnmapBufferOES", 1, _glUnmapBufferOES_args};
+static const trace::FunctionSig _glUnmapBufferOES_sig = {2438, "glUnmapBufferOES", 1, _glUnmapBufferOES_args};
 
 static const char * _glTexImage3DOES_args[10] = {"target", "level", "internalformat", "width", "height", "depth", "border", "format", "type", "pixels"};
-static const trace::FunctionSig _glTexImage3DOES_sig = {2437, "glTexImage3DOES", 10, _glTexImage3DOES_args};
+static const trace::FunctionSig _glTexImage3DOES_sig = {2439, "glTexImage3DOES", 10, _glTexImage3DOES_args};
 
 static const char * _glTexSubImage3DOES_args[11] = {"target", "level", "xoffset", "yoffset", "zoffset", "width", "height", "depth", "format", "type", "pixels"};
-static const trace::FunctionSig _glTexSubImage3DOES_sig = {2438, "glTexSubImage3DOES", 11, _glTexSubImage3DOES_args};
+static const trace::FunctionSig _glTexSubImage3DOES_sig = {2440, "glTexSubImage3DOES", 11, _glTexSubImage3DOES_args};
 
 static const char * _glCopyTexSubImage3DOES_args[9] = {"target", "level", "xoffset", "yoffset", "zoffset", "x", "y", "width", "height"};
-static const trace::FunctionSig _glCopyTexSubImage3DOES_sig = {2439, "glCopyTexSubImage3DOES", 9, _glCopyTexSubImage3DOES_args};
+static const trace::FunctionSig _glCopyTexSubImage3DOES_sig = {2441, "glCopyTexSubImage3DOES", 9, _glCopyTexSubImage3DOES_args};
 
 static const char * _glCompressedTexImage3DOES_args[9] = {"target", "level", "internalformat", "width", "height", "depth", "border", "imageSize", "data"};
-static const trace::FunctionSig _glCompressedTexImage3DOES_sig = {2440, "glCompressedTexImage3DOES", 9, _glCompressedTexImage3DOES_args};
+static const trace::FunctionSig _glCompressedTexImage3DOES_sig = {2442, "glCompressedTexImage3DOES", 9, _glCompressedTexImage3DOES_args};
 
 static const char * _glCompressedTexSubImage3DOES_args[11] = {"target", "level", "xoffset", "yoffset", "zoffset", "width", "height", "depth", "format", "imageSize", "data"};
-static const trace::FunctionSig _glCompressedTexSubImage3DOES_sig = {2441, "glCompressedTexSubImage3DOES", 11, _glCompressedTexSubImage3DOES_args};
+static const trace::FunctionSig _glCompressedTexSubImage3DOES_sig = {2443, "glCompressedTexSubImage3DOES", 11, _glCompressedTexSubImage3DOES_args};
 
 static const char * _glFramebufferTexture3DOES_args[6] = {"target", "attachment", "textarget", "texture", "level", "zoffset"};
-static const trace::FunctionSig _glFramebufferTexture3DOES_sig = {2442, "glFramebufferTexture3DOES", 6, _glFramebufferTexture3DOES_args};
+static const trace::FunctionSig _glFramebufferTexture3DOES_sig = {2444, "glFramebufferTexture3DOES", 6, _glFramebufferTexture3DOES_args};
 
 static const char * _glGetProgramBinaryOES_args[5] = {"program", "bufSize", "length", "binaryFormat", "binary"};
-static const trace::FunctionSig _glGetProgramBinaryOES_sig = {2443, "glGetProgramBinaryOES", 5, _glGetProgramBinaryOES_args};
+static const trace::FunctionSig _glGetProgramBinaryOES_sig = {2445, "glGetProgramBinaryOES", 5, _glGetProgramBinaryOES_args};
 
 static const char * _glProgramBinaryOES_args[4] = {"program", "binaryFormat", "binary", "length"};
-static const trace::FunctionSig _glProgramBinaryOES_sig = {2444, "glProgramBinaryOES", 4, _glProgramBinaryOES_args};
+static const trace::FunctionSig _glProgramBinaryOES_sig = {2446, "glProgramBinaryOES", 4, _glProgramBinaryOES_args};
 
 static const char * _glDiscardFramebufferEXT_args[3] = {"target", "numAttachments", "attachments"};
-static const trace::FunctionSig _glDiscardFramebufferEXT_sig = {2445, "glDiscardFramebufferEXT", 3, _glDiscardFramebufferEXT_args};
+static const trace::FunctionSig _glDiscardFramebufferEXT_sig = {2447, "glDiscardFramebufferEXT", 3, _glDiscardFramebufferEXT_args};
 
 static const char * _glBindVertexArrayOES_args[1] = {"array"};
-static const trace::FunctionSig _glBindVertexArrayOES_sig = {2446, "glBindVertexArrayOES", 1, _glBindVertexArrayOES_args};
+static const trace::FunctionSig _glBindVertexArrayOES_sig = {2448, "glBindVertexArrayOES", 1, _glBindVertexArrayOES_args};
 
 static const char * _glDeleteVertexArraysOES_args[2] = {"n", "arrays"};
-static const trace::FunctionSig _glDeleteVertexArraysOES_sig = {2447, "glDeleteVertexArraysOES", 2, _glDeleteVertexArraysOES_args};
+static const trace::FunctionSig _glDeleteVertexArraysOES_sig = {2449, "glDeleteVertexArraysOES", 2, _glDeleteVertexArraysOES_args};
 
 static const char * _glGenVertexArraysOES_args[2] = {"n", "arrays"};
-static const trace::FunctionSig _glGenVertexArraysOES_sig = {2448, "glGenVertexArraysOES", 2, _glGenVertexArraysOES_args};
+static const trace::FunctionSig _glGenVertexArraysOES_sig = {2450, "glGenVertexArraysOES", 2, _glGenVertexArraysOES_args};
 
 static const char * _glIsVertexArrayOES_args[1] = {"array"};
-static const trace::FunctionSig _glIsVertexArrayOES_sig = {2449, "glIsVertexArrayOES", 1, _glIsVertexArrayOES_args};
+static const trace::FunctionSig _glIsVertexArrayOES_sig = {2451, "glIsVertexArrayOES", 1, _glIsVertexArrayOES_args};
 
 static const char * _glCoverageMaskNV_args[1] = {"mask"};
-static const trace::FunctionSig _glCoverageMaskNV_sig = {2450, "glCoverageMaskNV", 1, _glCoverageMaskNV_args};
+static const trace::FunctionSig _glCoverageMaskNV_sig = {2452, "glCoverageMaskNV", 1, _glCoverageMaskNV_args};
 
 static const char * _glCoverageOperationNV_args[1] = {"operation"};
-static const trace::FunctionSig _glCoverageOperationNV_sig = {2451, "glCoverageOperationNV", 1, _glCoverageOperationNV_args};
+static const trace::FunctionSig _glCoverageOperationNV_sig = {2453, "glCoverageOperationNV", 1, _glCoverageOperationNV_args};
 
 static const char * _glRenderbufferStorageMultisampleIMG_args[5] = {"target", "samples", "internalformat", "width", "height"};
-static const trace::FunctionSig _glRenderbufferStorageMultisampleIMG_sig = {2452, "glRenderbufferStorageMultisampleIMG", 5, _glRenderbufferStorageMultisampleIMG_args};
+static const trace::FunctionSig _glRenderbufferStorageMultisampleIMG_sig = {2454, "glRenderbufferStorageMultisampleIMG", 5, _glRenderbufferStorageMultisampleIMG_args};
 
 static const char * _glFramebufferTexture2DMultisampleIMG_args[6] = {"target", "attachment", "textarget", "texture", "level", "samples"};
-static const trace::FunctionSig _glFramebufferTexture2DMultisampleIMG_sig = {2453, "glFramebufferTexture2DMultisampleIMG", 6, _glFramebufferTexture2DMultisampleIMG_args};
+static const trace::FunctionSig _glFramebufferTexture2DMultisampleIMG_sig = {2455, "glFramebufferTexture2DMultisampleIMG", 6, _glFramebufferTexture2DMultisampleIMG_args};
 
 static const char * _glRenderbufferStorageMultisampleAPPLE_args[5] = {"target", "samples", "internalformat", "width", "height"};
-static const trace::FunctionSig _glRenderbufferStorageMultisampleAPPLE_sig = {2454, "glRenderbufferStorageMultisampleAPPLE", 5, _glRenderbufferStorageMultisampleAPPLE_args};
+static const trace::FunctionSig _glRenderbufferStorageMultisampleAPPLE_sig = {2456, "glRenderbufferStorageMultisampleAPPLE", 5, _glRenderbufferStorageMultisampleAPPLE_args};
 
 static const char ** _glResolveMultisampleFramebufferAPPLE_args = NULL;
-static const trace::FunctionSig _glResolveMultisampleFramebufferAPPLE_sig = {2455, "glResolveMultisampleFramebufferAPPLE", 0, _glResolveMultisampleFramebufferAPPLE_args};
+static const trace::FunctionSig _glResolveMultisampleFramebufferAPPLE_sig = {2457, "glResolveMultisampleFramebufferAPPLE", 0, _glResolveMultisampleFramebufferAPPLE_args};
 
 static const char * _glBlitFramebufferANGLE_args[10] = {"srcX0", "srcY0", "srcX1", "srcY1", "dstX0", "dstY0", "dstX1", "dstY1", "mask", "filter"};
-static const trace::FunctionSig _glBlitFramebufferANGLE_sig = {2456, "glBlitFramebufferANGLE", 10, _glBlitFramebufferANGLE_args};
+static const trace::FunctionSig _glBlitFramebufferANGLE_sig = {2458, "glBlitFramebufferANGLE", 10, _glBlitFramebufferANGLE_args};
 
 static const char * _glRenderbufferStorageMultisampleANGLE_args[5] = {"target", "samples", "internalformat", "width", "height"};
-static const trace::FunctionSig _glRenderbufferStorageMultisampleANGLE_sig = {2457, "glRenderbufferStorageMultisampleANGLE", 5, _glRenderbufferStorageMultisampleANGLE_args};
+static const trace::FunctionSig _glRenderbufferStorageMultisampleANGLE_sig = {2459, "glRenderbufferStorageMultisampleANGLE", 5, _glRenderbufferStorageMultisampleANGLE_args};
 
 static const char * _glDrawBuffersNV_args[2] = {"n", "bufs"};
-static const trace::FunctionSig _glDrawBuffersNV_sig = {2458, "glDrawBuffersNV", 2, _glDrawBuffersNV_args};
+static const trace::FunctionSig _glDrawBuffersNV_sig = {2460, "glDrawBuffersNV", 2, _glDrawBuffersNV_args};
 
 static const char * _glReadBufferNV_args[1] = {"mode"};
-static const trace::FunctionSig _glReadBufferNV_sig = {2459, "glReadBufferNV", 1, _glReadBufferNV_args};
+static const trace::FunctionSig _glReadBufferNV_sig = {2461, "glReadBufferNV", 1, _glReadBufferNV_args};
 
 static const char * _glLabelObjectEXT_args[4] = {"type", "object", "length", "label"};
-static const trace::FunctionSig _glLabelObjectEXT_sig = {2460, "glLabelObjectEXT", 4, _glLabelObjectEXT_args};
+static const trace::FunctionSig _glLabelObjectEXT_sig = {2462, "glLabelObjectEXT", 4, _glLabelObjectEXT_args};
 
 static const char * _glGetObjectLabelEXT_args[5] = {"type", "object", "bufSize", "length", "label"};
-static const trace::FunctionSig _glGetObjectLabelEXT_sig = {2461, "glGetObjectLabelEXT", 5, _glGetObjectLabelEXT_args};
+static const trace::FunctionSig _glGetObjectLabelEXT_sig = {2463, "glGetObjectLabelEXT", 5, _glGetObjectLabelEXT_args};
 
 static const char * _glInsertEventMarkerEXT_args[2] = {"length", "marker"};
-static const trace::FunctionSig _glInsertEventMarkerEXT_sig = {2462, "glInsertEventMarkerEXT", 2, _glInsertEventMarkerEXT_args};
+static const trace::FunctionSig _glInsertEventMarkerEXT_sig = {2464, "glInsertEventMarkerEXT", 2, _glInsertEventMarkerEXT_args};
 
 static const char * _glPushGroupMarkerEXT_args[2] = {"length", "marker"};
-static const trace::FunctionSig _glPushGroupMarkerEXT_sig = {2463, "glPushGroupMarkerEXT", 2, _glPushGroupMarkerEXT_args};
+static const trace::FunctionSig _glPushGroupMarkerEXT_sig = {2465, "glPushGroupMarkerEXT", 2, _glPushGroupMarkerEXT_args};
 
 static const char ** _glPopGroupMarkerEXT_args = NULL;
-static const trace::FunctionSig _glPopGroupMarkerEXT_sig = {2464, "glPopGroupMarkerEXT", 0, _glPopGroupMarkerEXT_args};
+static const trace::FunctionSig _glPopGroupMarkerEXT_sig = {2466, "glPopGroupMarkerEXT", 0, _glPopGroupMarkerEXT_args};
 
 static const char * _glGenQueriesEXT_args[2] = {"n", "ids"};
-static const trace::FunctionSig _glGenQueriesEXT_sig = {2465, "glGenQueriesEXT", 2, _glGenQueriesEXT_args};
+static const trace::FunctionSig _glGenQueriesEXT_sig = {2467, "glGenQueriesEXT", 2, _glGenQueriesEXT_args};
 
 static const char * _glDeleteQueriesEXT_args[2] = {"n", "ids"};
-static const trace::FunctionSig _glDeleteQueriesEXT_sig = {2466, "glDeleteQueriesEXT", 2, _glDeleteQueriesEXT_args};
+static const trace::FunctionSig _glDeleteQueriesEXT_sig = {2468, "glDeleteQueriesEXT", 2, _glDeleteQueriesEXT_args};
 
 static const char * _glIsQueryEXT_args[1] = {"id"};
-static const trace::FunctionSig _glIsQueryEXT_sig = {2467, "glIsQueryEXT", 1, _glIsQueryEXT_args};
+static const trace::FunctionSig _glIsQueryEXT_sig = {2469, "glIsQueryEXT", 1, _glIsQueryEXT_args};
 
 static const char * _glBeginQueryEXT_args[2] = {"target", "id"};
-static const trace::FunctionSig _glBeginQueryEXT_sig = {2468, "glBeginQueryEXT", 2, _glBeginQueryEXT_args};
+static const trace::FunctionSig _glBeginQueryEXT_sig = {2470, "glBeginQueryEXT", 2, _glBeginQueryEXT_args};
 
 static const char * _glEndQueryEXT_args[1] = {"target"};
-static const trace::FunctionSig _glEndQueryEXT_sig = {2469, "glEndQueryEXT", 1, _glEndQueryEXT_args};
+static const trace::FunctionSig _glEndQueryEXT_sig = {2471, "glEndQueryEXT", 1, _glEndQueryEXT_args};
 
 static const char * _glGetQueryivEXT_args[3] = {"target", "pname", "params"};
-static const trace::FunctionSig _glGetQueryivEXT_sig = {2470, "glGetQueryivEXT", 3, _glGetQueryivEXT_args};
+static const trace::FunctionSig _glGetQueryivEXT_sig = {2472, "glGetQueryivEXT", 3, _glGetQueryivEXT_args};
 
 static const char * _glGetQueryObjectuivEXT_args[3] = {"id", "pname", "params"};
-static const trace::FunctionSig _glGetQueryObjectuivEXT_sig = {2471, "glGetQueryObjectuivEXT", 3, _glGetQueryObjectuivEXT_args};
+static const trace::FunctionSig _glGetQueryObjectuivEXT_sig = {2473, "glGetQueryObjectuivEXT", 3, _glGetQueryObjectuivEXT_args};
 
 // decl end - gfx
 
 // decl bgn - cgl
 static const char * _CGLSetCurrentContext_args[1] = {"ctx"};
-static const trace::FunctionSig _CGLSetCurrentContext_sig = {2472, "CGLSetCurrentContext", 1, _CGLSetCurrentContext_args};
+static const trace::FunctionSig _CGLSetCurrentContext_sig = {2474, "CGLSetCurrentContext", 1, _CGLSetCurrentContext_args};
 
 static const char ** _CGLGetCurrentContext_args = NULL;
-static const trace::FunctionSig _CGLGetCurrentContext_sig = {2473, "CGLGetCurrentContext", 0, _CGLGetCurrentContext_args};
+static const trace::FunctionSig _CGLGetCurrentContext_sig = {2475, "CGLGetCurrentContext", 0, _CGLGetCurrentContext_args};
 
 static const char * _CGLChoosePixelFormat_args[3] = {"attribs", "pix", "npix"};
-static const trace::FunctionSig _CGLChoosePixelFormat_sig = {2474, "CGLChoosePixelFormat", 3, _CGLChoosePixelFormat_args};
+static const trace::FunctionSig _CGLChoosePixelFormat_sig = {2476, "CGLChoosePixelFormat", 3, _CGLChoosePixelFormat_args};
 
 static const char * _CGLDestroyPixelFormat_args[1] = {"pix"};
-static const trace::FunctionSig _CGLDestroyPixelFormat_sig = {2475, "CGLDestroyPixelFormat", 1, _CGLDestroyPixelFormat_args};
+static const trace::FunctionSig _CGLDestroyPixelFormat_sig = {2477, "CGLDestroyPixelFormat", 1, _CGLDestroyPixelFormat_args};
 
 static const char * _CGLDescribePixelFormat_args[4] = {"pix", "pix_num", "attrib", "value"};
-static const trace::FunctionSig _CGLDescribePixelFormat_sig = {2476, "CGLDescribePixelFormat", 4, _CGLDescribePixelFormat_args};
+static const trace::FunctionSig _CGLDescribePixelFormat_sig = {2478, "CGLDescribePixelFormat", 4, _CGLDescribePixelFormat_args};
 
 static const char * _CGLReleasePixelFormat_args[1] = {"pix"};
-static const trace::FunctionSig _CGLReleasePixelFormat_sig = {2477, "CGLReleasePixelFormat", 1, _CGLReleasePixelFormat_args};
+static const trace::FunctionSig _CGLReleasePixelFormat_sig = {2479, "CGLReleasePixelFormat", 1, _CGLReleasePixelFormat_args};
 
 static const char * _CGLRetainPixelFormat_args[1] = {"pix"};
-static const trace::FunctionSig _CGLRetainPixelFormat_sig = {2478, "CGLRetainPixelFormat", 1, _CGLRetainPixelFormat_args};
+static const trace::FunctionSig _CGLRetainPixelFormat_sig = {2480, "CGLRetainPixelFormat", 1, _CGLRetainPixelFormat_args};
 
 static const char * _CGLGetPixelFormatRetainCount_args[1] = {"pix"};
-static const trace::FunctionSig _CGLGetPixelFormatRetainCount_sig = {2479, "CGLGetPixelFormatRetainCount", 1, _CGLGetPixelFormatRetainCount_args};
+static const trace::FunctionSig _CGLGetPixelFormatRetainCount_sig = {2481, "CGLGetPixelFormatRetainCount", 1, _CGLGetPixelFormatRetainCount_args};
 
 static const char * _CGLQueryRendererInfo_args[3] = {"display_mask", "rend", "nrend"};
-static const trace::FunctionSig _CGLQueryRendererInfo_sig = {2480, "CGLQueryRendererInfo", 3, _CGLQueryRendererInfo_args};
+static const trace::FunctionSig _CGLQueryRendererInfo_sig = {2482, "CGLQueryRendererInfo", 3, _CGLQueryRendererInfo_args};
 
 static const char * _CGLDestroyRendererInfo_args[1] = {"rend"};
-static const trace::FunctionSig _CGLDestroyRendererInfo_sig = {2481, "CGLDestroyRendererInfo", 1, _CGLDestroyRendererInfo_args};
+static const trace::FunctionSig _CGLDestroyRendererInfo_sig = {2483, "CGLDestroyRendererInfo", 1, _CGLDestroyRendererInfo_args};
 
 static const char * _CGLDescribeRenderer_args[4] = {"rend", "rend_num", "prop", "value"};
-static const trace::FunctionSig _CGLDescribeRenderer_sig = {2482, "CGLDescribeRenderer", 4, _CGLDescribeRenderer_args};
+static const trace::FunctionSig _CGLDescribeRenderer_sig = {2484, "CGLDescribeRenderer", 4, _CGLDescribeRenderer_args};
 
 static const char * _CGLCreateContext_args[3] = {"pix", "share", "ctx"};
-static const trace::FunctionSig _CGLCreateContext_sig = {2483, "CGLCreateContext", 3, _CGLCreateContext_args};
+static const trace::FunctionSig _CGLCreateContext_sig = {2485, "CGLCreateContext", 3, _CGLCreateContext_args};
 
 static const char * _CGLDestroyContext_args[1] = {"ctx"};
-static const trace::FunctionSig _CGLDestroyContext_sig = {2484, "CGLDestroyContext", 1, _CGLDestroyContext_args};
+static const trace::FunctionSig _CGLDestroyContext_sig = {2486, "CGLDestroyContext", 1, _CGLDestroyContext_args};
 
 static const char * _CGLCopyContext_args[3] = {"src", "dst", "mask"};
-static const trace::FunctionSig _CGLCopyContext_sig = {2485, "CGLCopyContext", 3, _CGLCopyContext_args};
+static const trace::FunctionSig _CGLCopyContext_sig = {2487, "CGLCopyContext", 3, _CGLCopyContext_args};
 
 static const char * _CGLRetainContext_args[1] = {"ctx"};
-static const trace::FunctionSig _CGLRetainContext_sig = {2486, "CGLRetainContext", 1, _CGLRetainContext_args};
+static const trace::FunctionSig _CGLRetainContext_sig = {2488, "CGLRetainContext", 1, _CGLRetainContext_args};
 
 static const char * _CGLReleaseContext_args[1] = {"ctx"};
-static const trace::FunctionSig _CGLReleaseContext_sig = {2487, "CGLReleaseContext", 1, _CGLReleaseContext_args};
+static const trace::FunctionSig _CGLReleaseContext_sig = {2489, "CGLReleaseContext", 1, _CGLReleaseContext_args};
 
 static const char * _CGLGetContextRetainCount_args[1] = {"ctx"};
-static const trace::FunctionSig _CGLGetContextRetainCount_sig = {2488, "CGLGetContextRetainCount", 1, _CGLGetContextRetainCount_args};
+static const trace::FunctionSig _CGLGetContextRetainCount_sig = {2490, "CGLGetContextRetainCount", 1, _CGLGetContextRetainCount_args};
 
 static const char * _CGLGetPixelFormat_args[1] = {"ctx"};
-static const trace::FunctionSig _CGLGetPixelFormat_sig = {2489, "CGLGetPixelFormat", 1, _CGLGetPixelFormat_args};
+static const trace::FunctionSig _CGLGetPixelFormat_sig = {2491, "CGLGetPixelFormat", 1, _CGLGetPixelFormat_args};
 
 static const char * _CGLCreatePBuffer_args[6] = {"width", "height", "target", "internalFormat", "max_level", "pbuffer"};
-static const trace::FunctionSig _CGLCreatePBuffer_sig = {2490, "CGLCreatePBuffer", 6, _CGLCreatePBuffer_args};
+static const trace::FunctionSig _CGLCreatePBuffer_sig = {2492, "CGLCreatePBuffer", 6, _CGLCreatePBuffer_args};
 
 static const char * _CGLDestroyPBuffer_args[1] = {"pbuffer"};
-static const trace::FunctionSig _CGLDestroyPBuffer_sig = {2491, "CGLDestroyPBuffer", 1, _CGLDestroyPBuffer_args};
+static const trace::FunctionSig _CGLDestroyPBuffer_sig = {2493, "CGLDestroyPBuffer", 1, _CGLDestroyPBuffer_args};
 
 static const char * _CGLDescribePBuffer_args[6] = {"obj", "width", "height", "target", "internalFormat", "mipmap"};
-static const trace::FunctionSig _CGLDescribePBuffer_sig = {2492, "CGLDescribePBuffer", 6, _CGLDescribePBuffer_args};
+static const trace::FunctionSig _CGLDescribePBuffer_sig = {2494, "CGLDescribePBuffer", 6, _CGLDescribePBuffer_args};
 
 static const char * _CGLTexImagePBuffer_args[3] = {"ctx", "pbuffer", "source"};
-static const trace::FunctionSig _CGLTexImagePBuffer_sig = {2493, "CGLTexImagePBuffer", 3, _CGLTexImagePBuffer_args};
+static const trace::FunctionSig _CGLTexImagePBuffer_sig = {2495, "CGLTexImagePBuffer", 3, _CGLTexImagePBuffer_args};
 
 static const char * _CGLRetainPBuffer_args[1] = {"pbuffer"};
-static const trace::FunctionSig _CGLRetainPBuffer_sig = {2494, "CGLRetainPBuffer", 1, _CGLRetainPBuffer_args};
+static const trace::FunctionSig _CGLRetainPBuffer_sig = {2496, "CGLRetainPBuffer", 1, _CGLRetainPBuffer_args};
 
 static const char * _CGLReleasePBuffer_args[1] = {"pbuffer"};
-static const trace::FunctionSig _CGLReleasePBuffer_sig = {2495, "CGLReleasePBuffer", 1, _CGLReleasePBuffer_args};
+static const trace::FunctionSig _CGLReleasePBuffer_sig = {2497, "CGLReleasePBuffer", 1, _CGLReleasePBuffer_args};
 
 static const char * _CGLGetPBufferRetainCount_args[1] = {"pbuffer"};
-static const trace::FunctionSig _CGLGetPBufferRetainCount_sig = {2496, "CGLGetPBufferRetainCount", 1, _CGLGetPBufferRetainCount_args};
+static const trace::FunctionSig _CGLGetPBufferRetainCount_sig = {2498, "CGLGetPBufferRetainCount", 1, _CGLGetPBufferRetainCount_args};
 
 static const char * _CGLSetOffScreen_args[5] = {"ctx", "width", "height", "rowbytes", "baseaddr"};
-static const trace::FunctionSig _CGLSetOffScreen_sig = {2497, "CGLSetOffScreen", 5, _CGLSetOffScreen_args};
+static const trace::FunctionSig _CGLSetOffScreen_sig = {2499, "CGLSetOffScreen", 5, _CGLSetOffScreen_args};
 
 static const char * _CGLGetOffScreen_args[5] = {"ctx", "width", "height", "rowbytes", "baseaddr"};
-static const trace::FunctionSig _CGLGetOffScreen_sig = {2498, "CGLGetOffScreen", 5, _CGLGetOffScreen_args};
+static const trace::FunctionSig _CGLGetOffScreen_sig = {2500, "CGLGetOffScreen", 5, _CGLGetOffScreen_args};
 
 static const char * _CGLSetFullScreen_args[1] = {"ctx"};
-static const trace::FunctionSig _CGLSetFullScreen_sig = {2499, "CGLSetFullScreen", 1, _CGLSetFullScreen_args};
+static const trace::FunctionSig _CGLSetFullScreen_sig = {2501, "CGLSetFullScreen", 1, _CGLSetFullScreen_args};
 
 static const char * _CGLSetPBuffer_args[5] = {"ctx", "pbuffer", "face", "level", "screen"};
-static const trace::FunctionSig _CGLSetPBuffer_sig = {2500, "CGLSetPBuffer", 5, _CGLSetPBuffer_args};
+static const trace::FunctionSig _CGLSetPBuffer_sig = {2502, "CGLSetPBuffer", 5, _CGLSetPBuffer_args};
 
 static const char * _CGLGetPBuffer_args[5] = {"ctx", "pbuffer", "face", "level", "screen"};
-static const trace::FunctionSig _CGLGetPBuffer_sig = {2501, "CGLGetPBuffer", 5, _CGLGetPBuffer_args};
+static const trace::FunctionSig _CGLGetPBuffer_sig = {2503, "CGLGetPBuffer", 5, _CGLGetPBuffer_args};
 
 static const char * _CGLClearDrawable_args[1] = {"ctx"};
-static const trace::FunctionSig _CGLClearDrawable_sig = {2502, "CGLClearDrawable", 1, _CGLClearDrawable_args};
+static const trace::FunctionSig _CGLClearDrawable_sig = {2504, "CGLClearDrawable", 1, _CGLClearDrawable_args};
 
 static const char * _CGLFlushDrawable_args[1] = {"ctx"};
-static const trace::FunctionSig _CGLFlushDrawable_sig = {2503, "CGLFlushDrawable", 1, _CGLFlushDrawable_args};
+static const trace::FunctionSig _CGLFlushDrawable_sig = {2505, "CGLFlushDrawable", 1, _CGLFlushDrawable_args};
 
 static const char * _CGLEnable_args[2] = {"ctx", "pname"};
-static const trace::FunctionSig _CGLEnable_sig = {2504, "CGLEnable", 2, _CGLEnable_args};
+static const trace::FunctionSig _CGLEnable_sig = {2506, "CGLEnable", 2, _CGLEnable_args};
 
 static const char * _CGLDisable_args[2] = {"ctx", "pname"};
-static const trace::FunctionSig _CGLDisable_sig = {2505, "CGLDisable", 2, _CGLDisable_args};
+static const trace::FunctionSig _CGLDisable_sig = {2507, "CGLDisable", 2, _CGLDisable_args};
 
 static const char * _CGLIsEnabled_args[3] = {"ctx", "pname", "enable"};
-static const trace::FunctionSig _CGLIsEnabled_sig = {2506, "CGLIsEnabled", 3, _CGLIsEnabled_args};
+static const trace::FunctionSig _CGLIsEnabled_sig = {2508, "CGLIsEnabled", 3, _CGLIsEnabled_args};
 
 static const char * _CGLSetParameter_args[3] = {"ctx", "pname", "params"};
-static const trace::FunctionSig _CGLSetParameter_sig = {2507, "CGLSetParameter", 3, _CGLSetParameter_args};
+static const trace::FunctionSig _CGLSetParameter_sig = {2509, "CGLSetParameter", 3, _CGLSetParameter_args};
 
 static const char * _CGLGetParameter_args[3] = {"ctx", "pname", "params"};
-static const trace::FunctionSig _CGLGetParameter_sig = {2508, "CGLGetParameter", 3, _CGLGetParameter_args};
+static const trace::FunctionSig _CGLGetParameter_sig = {2510, "CGLGetParameter", 3, _CGLGetParameter_args};
 
 static const char * _CGLSetVirtualScreen_args[2] = {"ctx", "screen"};
-static const trace::FunctionSig _CGLSetVirtualScreen_sig = {2509, "CGLSetVirtualScreen", 2, _CGLSetVirtualScreen_args};
+static const trace::FunctionSig _CGLSetVirtualScreen_sig = {2511, "CGLSetVirtualScreen", 2, _CGLSetVirtualScreen_args};
 
 static const char * _CGLGetVirtualScreen_args[2] = {"ctx", "screen"};
-static const trace::FunctionSig _CGLGetVirtualScreen_sig = {2510, "CGLGetVirtualScreen", 2, _CGLGetVirtualScreen_args};
+static const trace::FunctionSig _CGLGetVirtualScreen_sig = {2512, "CGLGetVirtualScreen", 2, _CGLGetVirtualScreen_args};
 
 static const char * _CGLSetGlobalOption_args[2] = {"pname", "params"};
-static const trace::FunctionSig _CGLSetGlobalOption_sig = {2511, "CGLSetGlobalOption", 2, _CGLSetGlobalOption_args};
+static const trace::FunctionSig _CGLSetGlobalOption_sig = {2513, "CGLSetGlobalOption", 2, _CGLSetGlobalOption_args};
 
 static const char * _CGLGetGlobalOption_args[2] = {"pname", "params"};
-static const trace::FunctionSig _CGLGetGlobalOption_sig = {2512, "CGLGetGlobalOption", 2, _CGLGetGlobalOption_args};
+static const trace::FunctionSig _CGLGetGlobalOption_sig = {2514, "CGLGetGlobalOption", 2, _CGLGetGlobalOption_args};
 
 static const char * _CGLSetOption_args[2] = {"pname", "param"};
-static const trace::FunctionSig _CGLSetOption_sig = {2513, "CGLSetOption", 2, _CGLSetOption_args};
+static const trace::FunctionSig _CGLSetOption_sig = {2515, "CGLSetOption", 2, _CGLSetOption_args};
 
 static const char * _CGLGetOption_args[2] = {"pname", "param"};
-static const trace::FunctionSig _CGLGetOption_sig = {2514, "CGLGetOption", 2, _CGLGetOption_args};
+static const trace::FunctionSig _CGLGetOption_sig = {2516, "CGLGetOption", 2, _CGLGetOption_args};
 
 static const char * _CGLLockContext_args[1] = {"ctx"};
-static const trace::FunctionSig _CGLLockContext_sig = {2515, "CGLLockContext", 1, _CGLLockContext_args};
+static const trace::FunctionSig _CGLLockContext_sig = {2517, "CGLLockContext", 1, _CGLLockContext_args};
 
 static const char * _CGLUnlockContext_args[1] = {"ctx"};
-static const trace::FunctionSig _CGLUnlockContext_sig = {2516, "CGLUnlockContext", 1, _CGLUnlockContext_args};
+static const trace::FunctionSig _CGLUnlockContext_sig = {2518, "CGLUnlockContext", 1, _CGLUnlockContext_args};
 
 static const char * _CGLGetVersion_args[2] = {"majorvers", "minorvers"};
-static const trace::FunctionSig _CGLGetVersion_sig = {2517, "CGLGetVersion", 2, _CGLGetVersion_args};
+static const trace::FunctionSig _CGLGetVersion_sig = {2519, "CGLGetVersion", 2, _CGLGetVersion_args};
 
 static const char * _CGLErrorString_args[1] = {"error"};
-static const trace::FunctionSig _CGLErrorString_sig = {2518, "CGLErrorString", 1, _CGLErrorString_args};
+static const trace::FunctionSig _CGLErrorString_sig = {2520, "CGLErrorString", 1, _CGLErrorString_args};
 
 static const char * _CGLTexImageIOSurface2D_args[9] = {"ctx", "target", "internal_format", "width", "height", "format", "type", "ioSurface", "plane"};
-static const trace::FunctionSig _CGLTexImageIOSurface2D_sig = {2519, "CGLTexImageIOSurface2D", 9, _CGLTexImageIOSurface2D_args};
+static const trace::FunctionSig _CGLTexImageIOSurface2D_sig = {2521, "CGLTexImageIOSurface2D", 9, _CGLTexImageIOSurface2D_args};
 
 static const char * _CGLGetShareGroup_args[1] = {"ctx"};
-static const trace::FunctionSig _CGLGetShareGroup_sig = {2520, "CGLGetShareGroup", 1, _CGLGetShareGroup_args};
+static const trace::FunctionSig _CGLGetShareGroup_sig = {2522, "CGLGetShareGroup", 1, _CGLGetShareGroup_args};
 
 static const char * _CGLSetSurface_args[4] = {"ctx", "cid", "wid", "sid"};
-static const trace::FunctionSig _CGLSetSurface_sig = {2521, "CGLSetSurface", 4, _CGLSetSurface_args};
+static const trace::FunctionSig _CGLSetSurface_sig = {2523, "CGLSetSurface", 4, _CGLSetSurface_args};
 
 static const char * _CGLGetSurface_args[4] = {"ctx", "cid", "wid", "sid"};
-static const trace::FunctionSig _CGLGetSurface_sig = {2522, "CGLGetSurface", 4, _CGLGetSurface_args};
+static const trace::FunctionSig _CGLGetSurface_sig = {2524, "CGLGetSurface", 4, _CGLGetSurface_args};
 
 static const char * _CGLUpdateContext_args[1] = {"ctx"};
-static const trace::FunctionSig _CGLUpdateContext_sig = {2523, "CGLUpdateContext", 1, _CGLUpdateContext_args};
+static const trace::FunctionSig _CGLUpdateContext_sig = {2525, "CGLUpdateContext", 1, _CGLUpdateContext_args};
 
 // decl end - cgl
 
 // decl bgn - egl
 static const char ** _eglGetError_args = NULL;
-static const trace::FunctionSig _eglGetError_sig = {2524, "eglGetError", 0, _eglGetError_args};
+static const trace::FunctionSig _eglGetError_sig = {2526, "eglGetError", 0, _eglGetError_args};
 
 static const char * _eglGetDisplay_args[1] = {"display_id"};
-static const trace::FunctionSig _eglGetDisplay_sig = {2525, "eglGetDisplay", 1, _eglGetDisplay_args};
+static const trace::FunctionSig _eglGetDisplay_sig = {2527, "eglGetDisplay", 1, _eglGetDisplay_args};
 
 static const char * _eglInitialize_args[3] = {"dpy", "major", "minor"};
-static const trace::FunctionSig _eglInitialize_sig = {2526, "eglInitialize", 3, _eglInitialize_args};
+static const trace::FunctionSig _eglInitialize_sig = {2528, "eglInitialize", 3, _eglInitialize_args};
 
 static const char * _eglTerminate_args[1] = {"dpy"};
-static const trace::FunctionSig _eglTerminate_sig = {2527, "eglTerminate", 1, _eglTerminate_args};
+static const trace::FunctionSig _eglTerminate_sig = {2529, "eglTerminate", 1, _eglTerminate_args};
 
 static const char * _eglQueryString_args[2] = {"dpy", "name"};
-static const trace::FunctionSig _eglQueryString_sig = {2528, "eglQueryString", 2, _eglQueryString_args};
+static const trace::FunctionSig _eglQueryString_sig = {2530, "eglQueryString", 2, _eglQueryString_args};
 
 static const char * _eglGetConfigs_args[4] = {"dpy", "configs", "config_size", "num_config"};
-static const trace::FunctionSig _eglGetConfigs_sig = {2529, "eglGetConfigs", 4, _eglGetConfigs_args};
+static const trace::FunctionSig _eglGetConfigs_sig = {2531, "eglGetConfigs", 4, _eglGetConfigs_args};
 
 static const char * _eglChooseConfig_args[5] = {"dpy", "attrib_list", "configs", "config_size", "num_config"};
-static const trace::FunctionSig _eglChooseConfig_sig = {2530, "eglChooseConfig", 5, _eglChooseConfig_args};
+static const trace::FunctionSig _eglChooseConfig_sig = {2532, "eglChooseConfig", 5, _eglChooseConfig_args};
 
 static const char * _eglGetConfigAttrib_args[4] = {"dpy", "config", "attribute", "value"};
-static const trace::FunctionSig _eglGetConfigAttrib_sig = {2531, "eglGetConfigAttrib", 4, _eglGetConfigAttrib_args};
+static const trace::FunctionSig _eglGetConfigAttrib_sig = {2533, "eglGetConfigAttrib", 4, _eglGetConfigAttrib_args};
 
 static const char * _eglCreateWindowSurface_args[4] = {"dpy", "config", "win", "attrib_list"};
-static const trace::FunctionSig _eglCreateWindowSurface_sig = {2532, "eglCreateWindowSurface", 4, _eglCreateWindowSurface_args};
+static const trace::FunctionSig _eglCreateWindowSurface_sig = {2534, "eglCreateWindowSurface", 4, _eglCreateWindowSurface_args};
 
 static const char * _eglCreatePbufferSurface_args[3] = {"dpy", "config", "attrib_list"};
-static const trace::FunctionSig _eglCreatePbufferSurface_sig = {2533, "eglCreatePbufferSurface", 3, _eglCreatePbufferSurface_args};
+static const trace::FunctionSig _eglCreatePbufferSurface_sig = {2535, "eglCreatePbufferSurface", 3, _eglCreatePbufferSurface_args};
 
 static const char * _eglCreatePixmapSurface_args[4] = {"dpy", "config", "pixmap", "attrib_list"};
-static const trace::FunctionSig _eglCreatePixmapSurface_sig = {2534, "eglCreatePixmapSurface", 4, _eglCreatePixmapSurface_args};
+static const trace::FunctionSig _eglCreatePixmapSurface_sig = {2536, "eglCreatePixmapSurface", 4, _eglCreatePixmapSurface_args};
 
 static const char * _eglDestroySurface_args[2] = {"dpy", "surface"};
-static const trace::FunctionSig _eglDestroySurface_sig = {2535, "eglDestroySurface", 2, _eglDestroySurface_args};
+static const trace::FunctionSig _eglDestroySurface_sig = {2537, "eglDestroySurface", 2, _eglDestroySurface_args};
 
 static const char * _eglQuerySurface_args[4] = {"dpy", "surface", "attribute", "value"};
-static const trace::FunctionSig _eglQuerySurface_sig = {2536, "eglQuerySurface", 4, _eglQuerySurface_args};
+static const trace::FunctionSig _eglQuerySurface_sig = {2538, "eglQuerySurface", 4, _eglQuerySurface_args};
 
 static const char * _eglBindAPI_args[1] = {"api"};
-static const trace::FunctionSig _eglBindAPI_sig = {2537, "eglBindAPI", 1, _eglBindAPI_args};
+static const trace::FunctionSig _eglBindAPI_sig = {2539, "eglBindAPI", 1, _eglBindAPI_args};
 
 static const char ** _eglQueryAPI_args = NULL;
-static const trace::FunctionSig _eglQueryAPI_sig = {2538, "eglQueryAPI", 0, _eglQueryAPI_args};
+static const trace::FunctionSig _eglQueryAPI_sig = {2540, "eglQueryAPI", 0, _eglQueryAPI_args};
 
 static const char ** _eglWaitClient_args = NULL;
-static const trace::FunctionSig _eglWaitClient_sig = {2539, "eglWaitClient", 0, _eglWaitClient_args};
+static const trace::FunctionSig _eglWaitClient_sig = {2541, "eglWaitClient", 0, _eglWaitClient_args};
 
 static const char ** _eglReleaseThread_args = NULL;
-static const trace::FunctionSig _eglReleaseThread_sig = {2540, "eglReleaseThread", 0, _eglReleaseThread_args};
+static const trace::FunctionSig _eglReleaseThread_sig = {2542, "eglReleaseThread", 0, _eglReleaseThread_args};
 
 static const char * _eglCreatePbufferFromClientBuffer_args[5] = {"dpy", "buftype", "buffer", "config", "attrib_list"};
-static const trace::FunctionSig _eglCreatePbufferFromClientBuffer_sig = {2541, "eglCreatePbufferFromClientBuffer", 5, _eglCreatePbufferFromClientBuffer_args};
+static const trace::FunctionSig _eglCreatePbufferFromClientBuffer_sig = {2543, "eglCreatePbufferFromClientBuffer", 5, _eglCreatePbufferFromClientBuffer_args};
 
 static const char * _eglSurfaceAttrib_args[4] = {"dpy", "surface", "attribute", "value"};
-static const trace::FunctionSig _eglSurfaceAttrib_sig = {2542, "eglSurfaceAttrib", 4, _eglSurfaceAttrib_args};
+static const trace::FunctionSig _eglSurfaceAttrib_sig = {2544, "eglSurfaceAttrib", 4, _eglSurfaceAttrib_args};
 
 static const char * _eglBindTexImage_args[3] = {"dpy", "surface", "buffer"};
-static const trace::FunctionSig _eglBindTexImage_sig = {2543, "eglBindTexImage", 3, _eglBindTexImage_args};
+static const trace::FunctionSig _eglBindTexImage_sig = {2545, "eglBindTexImage", 3, _eglBindTexImage_args};
 
 static const char * _eglReleaseTexImage_args[3] = {"dpy", "surface", "buffer"};
-static const trace::FunctionSig _eglReleaseTexImage_sig = {2544, "eglReleaseTexImage", 3, _eglReleaseTexImage_args};
+static const trace::FunctionSig _eglReleaseTexImage_sig = {2546, "eglReleaseTexImage", 3, _eglReleaseTexImage_args};
 
 static const char * _eglSwapInterval_args[2] = {"dpy", "interval"};
-static const trace::FunctionSig _eglSwapInterval_sig = {2545, "eglSwapInterval", 2, _eglSwapInterval_args};
+static const trace::FunctionSig _eglSwapInterval_sig = {2547, "eglSwapInterval", 2, _eglSwapInterval_args};
 
 static const char * _eglCreateContext_args[4] = {"dpy", "config", "share_context", "attrib_list"};
-static const trace::FunctionSig _eglCreateContext_sig = {2546, "eglCreateContext", 4, _eglCreateContext_args};
+static const trace::FunctionSig _eglCreateContext_sig = {2548, "eglCreateContext", 4, _eglCreateContext_args};
 
 static const char * _eglDestroyContext_args[2] = {"dpy", "ctx"};
-static const trace::FunctionSig _eglDestroyContext_sig = {2547, "eglDestroyContext", 2, _eglDestroyContext_args};
+static const trace::FunctionSig _eglDestroyContext_sig = {2549, "eglDestroyContext", 2, _eglDestroyContext_args};
 
 static const char * _eglMakeCurrent_args[4] = {"dpy", "draw", "read", "ctx"};
-static const trace::FunctionSig _eglMakeCurrent_sig = {2548, "eglMakeCurrent", 4, _eglMakeCurrent_args};
+static const trace::FunctionSig _eglMakeCurrent_sig = {2550, "eglMakeCurrent", 4, _eglMakeCurrent_args};
 
 static const char ** _eglGetCurrentContext_args = NULL;
-static const trace::FunctionSig _eglGetCurrentContext_sig = {2549, "eglGetCurrentContext", 0, _eglGetCurrentContext_args};
+static const trace::FunctionSig _eglGetCurrentContext_sig = {2551, "eglGetCurrentContext", 0, _eglGetCurrentContext_args};
 
 static const char * _eglGetCurrentSurface_args[1] = {"readdraw"};
-static const trace::FunctionSig _eglGetCurrentSurface_sig = {2550, "eglGetCurrentSurface", 1, _eglGetCurrentSurface_args};
+static const trace::FunctionSig _eglGetCurrentSurface_sig = {2552, "eglGetCurrentSurface", 1, _eglGetCurrentSurface_args};
 
 static const char ** _eglGetCurrentDisplay_args = NULL;
-static const trace::FunctionSig _eglGetCurrentDisplay_sig = {2551, "eglGetCurrentDisplay", 0, _eglGetCurrentDisplay_args};
+static const trace::FunctionSig _eglGetCurrentDisplay_sig = {2553, "eglGetCurrentDisplay", 0, _eglGetCurrentDisplay_args};
 
 static const char * _eglQueryContext_args[4] = {"dpy", "ctx", "attribute", "value"};
-static const trace::FunctionSig _eglQueryContext_sig = {2552, "eglQueryContext", 4, _eglQueryContext_args};
+static const trace::FunctionSig _eglQueryContext_sig = {2554, "eglQueryContext", 4, _eglQueryContext_args};
 
 static const char ** _eglWaitGL_args = NULL;
-static const trace::FunctionSig _eglWaitGL_sig = {2553, "eglWaitGL", 0, _eglWaitGL_args};
+static const trace::FunctionSig _eglWaitGL_sig = {2555, "eglWaitGL", 0, _eglWaitGL_args};
 
 static const char * _eglWaitNative_args[1] = {"engine"};
-static const trace::FunctionSig _eglWaitNative_sig = {2554, "eglWaitNative", 1, _eglWaitNative_args};
+static const trace::FunctionSig _eglWaitNative_sig = {2556, "eglWaitNative", 1, _eglWaitNative_args};
 
 static const char * _eglSwapBuffers_args[2] = {"dpy", "surface"};
-static const trace::FunctionSig _eglSwapBuffers_sig = {2555, "eglSwapBuffers", 2, _eglSwapBuffers_args};
+static const trace::FunctionSig _eglSwapBuffers_sig = {2557, "eglSwapBuffers", 2, _eglSwapBuffers_args};
 
 static const char * _eglCopyBuffers_args[3] = {"dpy", "surface", "target"};
-static const trace::FunctionSig _eglCopyBuffers_sig = {2556, "eglCopyBuffers", 3, _eglCopyBuffers_args};
+static const trace::FunctionSig _eglCopyBuffers_sig = {2558, "eglCopyBuffers", 3, _eglCopyBuffers_args};
 
 static const char * _eglGetProcAddress_args[1] = {"procname"};
-static const trace::FunctionSig _eglGetProcAddress_sig = {2557, "eglGetProcAddress", 1, _eglGetProcAddress_args};
+static const trace::FunctionSig _eglGetProcAddress_sig = {2559, "eglGetProcAddress", 1, _eglGetProcAddress_args};
 
 static const char * _eglLockSurfaceKHR_args[3] = {"display", "surface", "attrib_list"};
-static const trace::FunctionSig _eglLockSurfaceKHR_sig = {2558, "eglLockSurfaceKHR", 3, _eglLockSurfaceKHR_args};
+static const trace::FunctionSig _eglLockSurfaceKHR_sig = {2560, "eglLockSurfaceKHR", 3, _eglLockSurfaceKHR_args};
 
 static const char * _eglUnlockSurfaceKHR_args[2] = {"display", "surface"};
-static const trace::FunctionSig _eglUnlockSurfaceKHR_sig = {2559, "eglUnlockSurfaceKHR", 2, _eglUnlockSurfaceKHR_args};
+static const trace::FunctionSig _eglUnlockSurfaceKHR_sig = {2561, "eglUnlockSurfaceKHR", 2, _eglUnlockSurfaceKHR_args};
 
 static const char * _eglCreateImageKHR_args[5] = {"dpy", "ctx", "target", "buffer", "attrib_list"};
-static const trace::FunctionSig _eglCreateImageKHR_sig = {2560, "eglCreateImageKHR", 5, _eglCreateImageKHR_args};
+static const trace::FunctionSig _eglCreateImageKHR_sig = {2562, "eglCreateImageKHR", 5, _eglCreateImageKHR_args};
 
 static const char * _eglDestroyImageKHR_args[2] = {"dpy", "image"};
-static const trace::FunctionSig _eglDestroyImageKHR_sig = {2561, "eglDestroyImageKHR", 2, _eglDestroyImageKHR_args};
+static const trace::FunctionSig _eglDestroyImageKHR_sig = {2563, "eglDestroyImageKHR", 2, _eglDestroyImageKHR_args};
 
 static const char * _eglCreateSyncKHR_args[3] = {"dpy", "type", "attrib_list"};
-static const trace::FunctionSig _eglCreateSyncKHR_sig = {2562, "eglCreateSyncKHR", 3, _eglCreateSyncKHR_args};
+static const trace::FunctionSig _eglCreateSyncKHR_sig = {2564, "eglCreateSyncKHR", 3, _eglCreateSyncKHR_args};
 
 static const char * _eglDestroySyncKHR_args[2] = {"dpy", "sync"};
-static const trace::FunctionSig _eglDestroySyncKHR_sig = {2563, "eglDestroySyncKHR", 2, _eglDestroySyncKHR_args};
+static const trace::FunctionSig _eglDestroySyncKHR_sig = {2565, "eglDestroySyncKHR", 2, _eglDestroySyncKHR_args};
 
 static const char * _eglClientWaitSyncKHR_args[4] = {"dpy", "sync", "flags", "timeout"};
-static const trace::FunctionSig _eglClientWaitSyncKHR_sig = {2564, "eglClientWaitSyncKHR", 4, _eglClientWaitSyncKHR_args};
+static const trace::FunctionSig _eglClientWaitSyncKHR_sig = {2566, "eglClientWaitSyncKHR", 4, _eglClientWaitSyncKHR_args};
 
 static const char * _eglGetSyncAttribKHR_args[4] = {"dpy", "sync", "attribute", "value"};
-static const trace::FunctionSig _eglGetSyncAttribKHR_sig = {2565, "eglGetSyncAttribKHR", 4, _eglGetSyncAttribKHR_args};
+static const trace::FunctionSig _eglGetSyncAttribKHR_sig = {2567, "eglGetSyncAttribKHR", 4, _eglGetSyncAttribKHR_args};
 
 static const char * _eglCreateFenceSyncNV_args[3] = {"dpy", "condition", "attrib_list"};
-static const trace::FunctionSig _eglCreateFenceSyncNV_sig = {2566, "eglCreateFenceSyncNV", 3, _eglCreateFenceSyncNV_args};
+static const trace::FunctionSig _eglCreateFenceSyncNV_sig = {2568, "eglCreateFenceSyncNV", 3, _eglCreateFenceSyncNV_args};
 
 static const char * _eglDestroySyncNV_args[1] = {"sync"};
-static const trace::FunctionSig _eglDestroySyncNV_sig = {2567, "eglDestroySyncNV", 1, _eglDestroySyncNV_args};
+static const trace::FunctionSig _eglDestroySyncNV_sig = {2569, "eglDestroySyncNV", 1, _eglDestroySyncNV_args};
 
 static const char * _eglFenceNV_args[1] = {"sync"};
-static const trace::FunctionSig _eglFenceNV_sig = {2568, "eglFenceNV", 1, _eglFenceNV_args};
+static const trace::FunctionSig _eglFenceNV_sig = {2570, "eglFenceNV", 1, _eglFenceNV_args};
 
 static const char * _eglClientWaitSyncNV_args[3] = {"sync", "flags", "timeout"};
-static const trace::FunctionSig _eglClientWaitSyncNV_sig = {2569, "eglClientWaitSyncNV", 3, _eglClientWaitSyncNV_args};
+static const trace::FunctionSig _eglClientWaitSyncNV_sig = {2571, "eglClientWaitSyncNV", 3, _eglClientWaitSyncNV_args};
 
 static const char * _eglSignalSyncNV_args[2] = {"sync", "mode"};
-static const trace::FunctionSig _eglSignalSyncNV_sig = {2570, "eglSignalSyncNV", 2, _eglSignalSyncNV_args};
+static const trace::FunctionSig _eglSignalSyncNV_sig = {2572, "eglSignalSyncNV", 2, _eglSignalSyncNV_args};
 
 static const char * _eglGetSyncAttribNV_args[3] = {"sync", "attribute", "value"};
-static const trace::FunctionSig _eglGetSyncAttribNV_sig = {2571, "eglGetSyncAttribNV", 3, _eglGetSyncAttribNV_args};
+static const trace::FunctionSig _eglGetSyncAttribNV_sig = {2573, "eglGetSyncAttribNV", 3, _eglGetSyncAttribNV_args};
 
 static const char * _eglCreateDRMImageMESA_args[2] = {"dpy", "attrib_list"};
-static const trace::FunctionSig _eglCreateDRMImageMESA_sig = {2572, "eglCreateDRMImageMESA", 2, _eglCreateDRMImageMESA_args};
+static const trace::FunctionSig _eglCreateDRMImageMESA_sig = {2574, "eglCreateDRMImageMESA", 2, _eglCreateDRMImageMESA_args};
 
 static const char * _eglExportDRMImageMESA_args[5] = {"dpy", "image", "name", "handle", "stride"};
-static const trace::FunctionSig _eglExportDRMImageMESA_sig = {2573, "eglExportDRMImageMESA", 5, _eglExportDRMImageMESA_args};
+static const trace::FunctionSig _eglExportDRMImageMESA_sig = {2575, "eglExportDRMImageMESA", 5, _eglExportDRMImageMESA_args};
 
 static const char * _eglPostSubBufferNV_args[6] = {"dpy", "surface", "x", "y", "width", "height"};
-static const trace::FunctionSig _eglPostSubBufferNV_sig = {2574, "eglPostSubBufferNV", 6, _eglPostSubBufferNV_args};
+static const trace::FunctionSig _eglPostSubBufferNV_sig = {2576, "eglPostSubBufferNV", 6, _eglPostSubBufferNV_args};
 
 static const char * _eglQuerySurfacePointerANGLE_args[4] = {"dpy", "surface", "attribute", "value"};
-static const trace::FunctionSig _eglQuerySurfacePointerANGLE_sig = {2575, "eglQuerySurfacePointerANGLE", 4, _eglQuerySurfacePointerANGLE_args};
+static const trace::FunctionSig _eglQuerySurfacePointerANGLE_sig = {2577, "eglQuerySurfacePointerANGLE", 4, _eglQuerySurfacePointerANGLE_args};
 
 static const char ** _eglGetSystemTimeFrequencyNV_args = NULL;
-static const trace::FunctionSig _eglGetSystemTimeFrequencyNV_sig = {2576, "eglGetSystemTimeFrequencyNV", 0, _eglGetSystemTimeFrequencyNV_args};
+static const trace::FunctionSig _eglGetSystemTimeFrequencyNV_sig = {2578, "eglGetSystemTimeFrequencyNV", 0, _eglGetSystemTimeFrequencyNV_args};
 
 static const char ** _eglGetSystemTimeNV_args = NULL;
-static const trace::FunctionSig _eglGetSystemTimeNV_sig = {2577, "eglGetSystemTimeNV", 0, _eglGetSystemTimeNV_args};
+static const trace::FunctionSig _eglGetSystemTimeNV_sig = {2579, "eglGetSystemTimeNV", 0, _eglGetSystemTimeNV_args};
 
 // decl end - egl
 
@@ -70734,6 +70740,63 @@ void glVertexArrayVertexAttribLOffsetEXT( GLuint vaobj, GLuint buffer, GLuint in
     trace::localWriter.endLeave();
 }
 
+void glProgramSubroutineParametersuivNV( GLenum target, GLsizei count, const GLuint * params ) {
+    unsigned _call = trace::localWriter.beginEnter(&_glProgramSubroutineParametersuivNV_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writeEnum(&_enumGLenum_sig, target);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(count);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    if (params) {
+        size_t _cCGLuint83 = count > 0 ? count : 0;
+        trace::localWriter.beginArray(_cCGLuint83);
+        for (size_t _iCGLuint83 = 0; _iCGLuint83 < _cCGLuint83; ++_iCGLuint83) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writeUInt((params)[_iCGLuint83]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _glProgramSubroutineParametersuivNV(target, count, params);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.endLeave();
+}
+
+void glGetProgramSubroutineParameteruivNV( GLenum target, GLuint index, GLuint * param ) {
+    unsigned _call = trace::localWriter.beginEnter(&_glGetProgramSubroutineParameteruivNV_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writeEnum(&_enumGLenum_sig, target);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(index);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _glGetProgramSubroutineParameteruivNV(target, index, param);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    trace::localWriter.beginArg(2);
+    if (param) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.writeUInt(*param);
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    }
+    trace::localWriter.endLeave();
+}
+
 void glUniform1i64NV( GLint location, GLint64EXT x ) {
     unsigned _call = trace::localWriter.beginEnter(&_glUniform1i64NV_sig);
     trace::localWriter.beginArg(0);
@@ -72105,11 +72168,11 @@ void glDeleteNamesAMD( GLenum identifier, GLuint num, const GLuint * names ) {
     trace::localWriter.endArg();
     trace::localWriter.beginArg(2);
     if (names) {
-        size_t _cCGLuint83 = num > 0 ? num : 0;
-        trace::localWriter.beginArray(_cCGLuint83);
-        for (size_t _iCGLuint83 = 0; _iCGLuint83 < _cCGLuint83; ++_iCGLuint83) {
+        size_t _cCGLuint84 = num > 0 ? num : 0;
+        trace::localWriter.beginArray(_cCGLuint84);
+        for (size_t _iCGLuint84 = 0; _iCGLuint84 < _cCGLuint84; ++_iCGLuint84) {
             trace::localWriter.beginElement();
-    trace::localWriter.writeUInt((names)[_iCGLuint83]);
+    trace::localWriter.writeUInt((names)[_iCGLuint84]);
             trace::localWriter.endElement();
         }
         trace::localWriter.endArray();
@@ -72159,11 +72222,11 @@ void glDebugMessageEnableAMD( GLenum category, GLenum severity, GLsizei count, c
     trace::localWriter.endArg();
     trace::localWriter.beginArg(3);
     if (ids) {
-        size_t _cCGLuint84 = count > 0 ? count : 0;
-        trace::localWriter.beginArray(_cCGLuint84);
-        for (size_t _iCGLuint84 = 0; _iCGLuint84 < _cCGLuint84; ++_iCGLuint84) {
+        size_t _cCGLuint85 = count > 0 ? count : 0;
+        trace::localWriter.beginArray(_cCGLuint85);
+        for (size_t _iCGLuint85 = 0; _iCGLuint85 < _cCGLuint85; ++_iCGLuint85) {
             trace::localWriter.beginElement();
-    trace::localWriter.writeUInt((ids)[_iCGLuint84]);
+    trace::localWriter.writeUInt((ids)[_iCGLuint85]);
             trace::localWriter.endElement();
         }
         trace::localWriter.endArray();
