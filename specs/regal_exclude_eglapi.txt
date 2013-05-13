@@ -1,0 +1,5 @@
+eglCreatePixmapSurfaceHI
+eglSignalSyncKHR
+glEGLImageTargetTexture2DOES
+glEGLImageTargetRenderbufferStorageOES
+EGL_CLIENT_PIXMAP_POINTER_HI
