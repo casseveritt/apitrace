@@ -327,6 +327,7 @@ glxapi.addFunctions([
     #Function(Void, "glXDestroyGLXVideoSourceSGIX", [(Display, "dpy"), (GLXVideoSourceSGIX, "glxvideosource")]),
 
     # GLX_EXT_import_context
+    Function(Display, "glXGetCurrentDisplayEXT", []),
     Function(Int, "glXQueryContextInfoEXT", [(Display, "dpy"), (GLXContext, "context"), (Int, "attribute"), (OpaquePointer(Int), "value")]),
     Function(GLXContextID, "glXGetContextIDEXT", [(Const(GLXContext), "context")]),
     Function(GLXContext, "glXImportContextEXT", [(Display, "dpy"), (GLXContextID, "contextID")]),
