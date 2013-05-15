@@ -196,7 +196,7 @@ void Visitor::visit(Repr *node) { node->machineValue->visit(*this); }
 static Null null;
 
 const Value & Value::operator[](size_t index) const {
-    const Array *array = dynamic_cast<const Array *>(this);
+    const Array *array = toArray();
     if (array) {
         if (index < array->values.size()) {
             return *array->values[index];
