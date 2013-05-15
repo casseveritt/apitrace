@@ -129,7 +129,41 @@ LocalWriter::open(void) {
 }
 
 static unsigned next_thread_num = 1;
+#if _WIN32
 static thread_specific unsigned thread_num = 0;
+unsigned getThreadNum() {
+    unsigned this_thread_num = thread_num;
+    if( this_thread_num == 0 ) {
+        this_thread_num = thread_num = next_thread_num++;
+    }
+    return this_thread_num;
+}
+#else
+#include <pthread.h>
+pthread_key_t thread_num_key = 0;
+pthread_mutex_t mutex;
+unsigned getThreadNum() {
+    if( thread_num_key == 0 ) {
+        pthread_key_create( &thread_num_key, NULL );
+        pthread_mutexattr_t mutexattr;
+
+        pthread_mutexattr_init(&mutexattr);
+        pthread_mutexattr_settype(&mutexattr, PTHREAD_MUTEX_RECURSIVE);
+        pthread_mutex_init(&mutex, &mutexattr);
+    }
+    ptrdiff_t d = static_cast<char *>( pthread_getspecific( thread_num_key ) ) - static_cast<char *>( NULL );
+    unsigned this_thread_num = d;
+    if( this_thread_num == 0 ) {
+        pthread_mutex_lock( &mutex );
+        this_thread_num = next_thread_num++;
+        pthread_setspecific( thread_num_key, reinterpret_cast<void *>( this_thread_num ) );
+        pthread_mutex_unlock( &mutex );
+    }
+    return this_thread_num;
+}
+#endif
+
+
 
 unsigned LocalWriter::beginEnter(const FunctionSig *sig) {
     mutex.lock();
@@ -139,10 +173,7 @@ unsigned LocalWriter::beginEnter(const FunctionSig *sig) {
         open();
     }
 
-    unsigned this_thread_num = thread_num;
-    if (!this_thread_num) {
-        this_thread_num = thread_num = next_thread_num++;
-    }
+    unsigned thread_num = getThreadNum();
 
     assert(thread_num > 0);
     unsigned thread_id = thread_num - 1;

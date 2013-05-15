@@ -57,6 +57,7 @@ public:
     }
 };
 
+#if _WIN32
 static thread_specific ThreadState *thread_state;
 
 static ThreadState *get_ts(void)
@@ -68,6 +69,22 @@ static ThreadState *get_ts(void)
 
     return ts;
 }
+#else
+#include <pthread.h>
+pthread_key_t thread_state_key = 0;
+static ThreadState *get_ts() {
+    if( thread_state_key == 0 ) {
+        pthread_key_create( &thread_state_key, NULL );
+    }
+    ThreadState *ts = static_cast<ThreadState *>( pthread_getspecific( thread_state_key ) );
+    if( !ts ) {
+        ts = new ThreadState;
+        pthread_setspecific( thread_state_key, ts );
+    }
+    return ts;
+}
+
+#endif
 
 static void _retainContext(context_ptr_t ctx)
 {
