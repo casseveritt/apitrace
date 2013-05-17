@@ -4611,6 +4611,7 @@ static const trace::BitmaskSig _bitmaskGLbitfield6_sig = {
 
 // types end - gfx
 
+#if REGAL_SYS_OSX
 // types bgn - cgl
 static const trace::EnumValue _enumCGLError_values[] = {
     {"kCGLNoError", kCGLNoError},
@@ -4770,7 +4771,9 @@ static const trace::EnumSig _enumCGLGlobalOption_sig = {
 };
 
 // types end - cgl
+#endif // REGAL_SYS_OSX
 
+#if REGAL_SYS_EGL
 // types bgn - egl
 static const trace::EnumValue _enumEGLint1_values[] = {
     {"EGL_SUCCESS", EGL_SUCCESS},
@@ -4970,6 +4973,502 @@ static const trace::EnumSig _enumEGLenum_sig = {
 };
 
 // types end - egl
+#endif // REGAL_SYS_EGL
+
+#if REGAL_SYS_GLX
+// types bgn - glx
+static const trace::EnumValue _enumint2_values[] = {
+    {"GLX_BUFFER_SIZE", GLX_BUFFER_SIZE},
+    {"GLX_LEVEL", GLX_LEVEL},
+    {"GLX_RGBA", GLX_RGBA},
+    {"GLX_DOUBLEBUFFER", GLX_DOUBLEBUFFER},
+    {"GLX_STEREO", GLX_STEREO},
+    {"GLX_AUX_BUFFERS", GLX_AUX_BUFFERS},
+    {"GLX_RED_SIZE", GLX_RED_SIZE},
+    {"GLX_GREEN_SIZE", GLX_GREEN_SIZE},
+    {"GLX_BLUE_SIZE", GLX_BLUE_SIZE},
+    {"GLX_ALPHA_SIZE", GLX_ALPHA_SIZE},
+    {"GLX_DEPTH_SIZE", GLX_DEPTH_SIZE},
+    {"GLX_STENCIL_SIZE", GLX_STENCIL_SIZE},
+    {"GLX_ACCUM_RED_SIZE", GLX_ACCUM_RED_SIZE},
+    {"GLX_ACCUM_GREEN_SIZE", GLX_ACCUM_GREEN_SIZE},
+    {"GLX_ACCUM_BLUE_SIZE", GLX_ACCUM_BLUE_SIZE},
+    {"GLX_ACCUM_ALPHA_SIZE", GLX_ACCUM_ALPHA_SIZE},
+    {"GLX_CONFIG_CAVEAT", GLX_CONFIG_CAVEAT},
+    {"GLX_X_VISUAL_TYPE", GLX_X_VISUAL_TYPE},
+    {"GLX_TRANSPARENT_TYPE", GLX_TRANSPARENT_TYPE},
+    {"GLX_TRANSPARENT_INDEX_VALUE", GLX_TRANSPARENT_INDEX_VALUE},
+    {"GLX_TRANSPARENT_RED_VALUE", GLX_TRANSPARENT_RED_VALUE},
+    {"GLX_TRANSPARENT_GREEN_VALUE", GLX_TRANSPARENT_GREEN_VALUE},
+    {"GLX_TRANSPARENT_BLUE_VALUE", GLX_TRANSPARENT_BLUE_VALUE},
+    {"GLX_TRANSPARENT_ALPHA_VALUE", GLX_TRANSPARENT_ALPHA_VALUE},
+    {"GLX_CONTEXT_MAJOR_VERSION_ARB", GLX_CONTEXT_MAJOR_VERSION_ARB},
+    {"GLX_CONTEXT_MINOR_VERSION_ARB", GLX_CONTEXT_MINOR_VERSION_ARB},
+    {"GLX_CONTEXT_FLAGS_ARB", GLX_CONTEXT_FLAGS_ARB},
+    {"GLX_BIND_TO_TEXTURE_RGB_EXT", GLX_BIND_TO_TEXTURE_RGB_EXT},
+    {"GLX_BIND_TO_TEXTURE_RGBA_EXT", GLX_BIND_TO_TEXTURE_RGBA_EXT},
+    {"GLX_BIND_TO_MIPMAP_TEXTURE_EXT", GLX_BIND_TO_MIPMAP_TEXTURE_EXT},
+    {"GLX_BIND_TO_TEXTURE_TARGETS_EXT", GLX_BIND_TO_TEXTURE_TARGETS_EXT},
+    {"GLX_Y_INVERTED_EXT", GLX_Y_INVERTED_EXT},
+    {"GLX_TEXTURE_FORMAT_EXT", GLX_TEXTURE_FORMAT_EXT},
+    {"GLX_TEXTURE_TARGET_EXT", GLX_TEXTURE_TARGET_EXT},
+    {"GLX_MIPMAP_TEXTURE_EXT", GLX_MIPMAP_TEXTURE_EXT},
+    {"GLX_TEXTURE_FORMAT_NONE_EXT", GLX_TEXTURE_FORMAT_NONE_EXT},
+    {"GLX_TEXTURE_FORMAT_RGB_EXT", GLX_TEXTURE_FORMAT_RGB_EXT},
+    {"GLX_TEXTURE_FORMAT_RGBA_EXT", GLX_TEXTURE_FORMAT_RGBA_EXT},
+    {"GLX_TEXTURE_1D_EXT", GLX_TEXTURE_1D_EXT},
+    {"GLX_TEXTURE_2D_EXT", GLX_TEXTURE_2D_EXT},
+    {"GLX_TEXTURE_RECTANGLE_EXT", GLX_TEXTURE_RECTANGLE_EXT},
+    {"GLX_FRONT_LEFT_EXT", GLX_FRONT_LEFT_EXT},
+    {"GLX_FRONT_RIGHT_EXT", GLX_FRONT_RIGHT_EXT},
+    {"GLX_BACK_LEFT_EXT", GLX_BACK_LEFT_EXT},
+    {"GLX_BACK_RIGHT_EXT", GLX_BACK_RIGHT_EXT},
+    {"GLX_AUX0_EXT", GLX_AUX0_EXT},
+    {"GLX_AUX1_EXT", GLX_AUX1_EXT},
+    {"GLX_AUX2_EXT", GLX_AUX2_EXT},
+    {"GLX_AUX3_EXT", GLX_AUX3_EXT},
+    {"GLX_AUX4_EXT", GLX_AUX4_EXT},
+    {"GLX_AUX5_EXT", GLX_AUX5_EXT},
+    {"GLX_AUX6_EXT", GLX_AUX6_EXT},
+    {"GLX_AUX7_EXT", GLX_AUX7_EXT},
+    {"GLX_AUX8_EXT", GLX_AUX8_EXT},
+    {"GLX_AUX9_EXT", GLX_AUX9_EXT},
+    {"GLX_NONE", GLX_NONE},
+    {"GLX_SLOW_CONFIG", GLX_SLOW_CONFIG},
+    {"GLX_TRUE_COLOR", GLX_TRUE_COLOR},
+    {"GLX_DIRECT_COLOR", GLX_DIRECT_COLOR},
+    {"GLX_PSEUDO_COLOR", GLX_PSEUDO_COLOR},
+    {"GLX_STATIC_COLOR", GLX_STATIC_COLOR},
+    {"GLX_GRAY_SCALE", GLX_GRAY_SCALE},
+    {"GLX_STATIC_GRAY", GLX_STATIC_GRAY},
+    {"GLX_TRANSPARENT_RGB", GLX_TRANSPARENT_RGB},
+    {"GLX_TRANSPARENT_INDEX", GLX_TRANSPARENT_INDEX},
+    {"GLX_VISUAL_ID", GLX_VISUAL_ID},
+    {"GLX_SCREEN", GLX_SCREEN},
+    {"GLX_NON_CONFORMANT_CONFIG", GLX_NON_CONFORMANT_CONFIG},
+    {"GLX_DRAWABLE_TYPE", GLX_DRAWABLE_TYPE},
+    {"GLX_RENDER_TYPE", GLX_RENDER_TYPE},
+    {"GLX_X_RENDERABLE", GLX_X_RENDERABLE},
+    {"GLX_FBCONFIG_ID", GLX_FBCONFIG_ID},
+    {"GLX_RGBA_TYPE", GLX_RGBA_TYPE},
+    {"GLX_COLOR_INDEX_TYPE", GLX_COLOR_INDEX_TYPE},
+    {"GLX_MAX_PBUFFER_WIDTH", GLX_MAX_PBUFFER_WIDTH},
+    {"GLX_MAX_PBUFFER_HEIGHT", GLX_MAX_PBUFFER_HEIGHT},
+    {"GLX_MAX_PBUFFER_PIXELS", GLX_MAX_PBUFFER_PIXELS},
+    {"GLX_PRESERVED_CONTENTS", GLX_PRESERVED_CONTENTS},
+    {"GLX_LARGEST_PBUFFER", GLX_LARGEST_PBUFFER},
+    {"GLX_WIDTH", GLX_WIDTH},
+    {"GLX_HEIGHT", GLX_HEIGHT},
+    {"GLX_EVENT_MASK", GLX_EVENT_MASK},
+    {"GLX_DAMAGED", GLX_DAMAGED},
+    {"GLX_SAVED", GLX_SAVED},
+    {"GLX_WINDOW", GLX_WINDOW},
+    {"GLX_PBUFFER", GLX_PBUFFER},
+    {"GLX_PBUFFER_HEIGHT", GLX_PBUFFER_HEIGHT},
+    {"GLX_PBUFFER_WIDTH", GLX_PBUFFER_WIDTH},
+    {"GLX_CONTEXT_PROFILE_MASK_ARB", GLX_CONTEXT_PROFILE_MASK_ARB},
+    {"GLX_SAMPLE_BUFFERS", GLX_SAMPLE_BUFFERS},
+    {"GLX_SAMPLES", GLX_SAMPLES},
+    {"GLX_DONT_CARE", GLX_DONT_CARE},
+};
+
+static const trace::EnumSig _enumint2_sig = {
+    6, 92, _enumint2_values
+};
+
+static const char * _structXVisualInfo_members[10] = {
+    "visual",
+    "visualid",
+    "screen",
+    "depth",
+    "c_class",
+    "red_mask",
+    "green_mask",
+    "blue_mask",
+    "colormap_size",
+    "bits_per_rgb",
+};
+static const trace::StructSig _structXVisualInfo_sig = {
+    0, "XVisualInfo", 10, _structXVisualInfo_members
+};
+
+static const trace::EnumValue _enumint1_values[] = {
+    {"False", False},
+    {"True", True},
+};
+
+static const trace::EnumSig _enumint1_sig = {
+    5, 2, _enumint1_values
+};
+
+static const trace::EnumValue _enumint3_values[] = {
+    {"GLX_BAD_SCREEN", GLX_BAD_SCREEN},
+    {"GLX_BAD_ATTRIBUTE", GLX_BAD_ATTRIBUTE},
+    {"GLX_NO_EXTENSION", GLX_NO_EXTENSION},
+    {"GLX_BAD_VISUAL", GLX_BAD_VISUAL},
+    {"GLX_BAD_CONTEXT", GLX_BAD_CONTEXT},
+    {"GLX_BAD_VALUE", GLX_BAD_VALUE},
+    {"GLX_BAD_ENUM", GLX_BAD_ENUM},
+};
+
+static const trace::EnumSig _enumint3_sig = {
+    7, 7, _enumint3_values
+};
+
+static const trace::EnumValue _enumint4_values[] = {
+    {"GLX_VENDOR", GLX_VENDOR},
+    {"GLX_VERSION", GLX_VERSION},
+    {"GLX_EXTENSIONS", GLX_EXTENSIONS},
+};
+
+static const trace::EnumSig _enumint4_sig = {
+    8, 3, _enumint4_values
+};
+
+static const trace::EnumValue _enumint6_values[] = {
+    {"GLX_NONE", GLX_NONE},
+    {"GLX_SLOW_CONFIG", GLX_SLOW_CONFIG},
+    {"GLX_TRUE_COLOR", GLX_TRUE_COLOR},
+    {"GLX_DIRECT_COLOR", GLX_DIRECT_COLOR},
+    {"GLX_PSEUDO_COLOR", GLX_PSEUDO_COLOR},
+    {"GLX_STATIC_COLOR", GLX_STATIC_COLOR},
+    {"GLX_GRAY_SCALE", GLX_GRAY_SCALE},
+    {"GLX_STATIC_GRAY", GLX_STATIC_GRAY},
+    {"GLX_TRANSPARENT_RGB", GLX_TRANSPARENT_RGB},
+    {"GLX_TRANSPARENT_INDEX", GLX_TRANSPARENT_INDEX},
+    {"GLX_VISUAL_ID", GLX_VISUAL_ID},
+    {"GLX_SCREEN", GLX_SCREEN},
+    {"GLX_NON_CONFORMANT_CONFIG", GLX_NON_CONFORMANT_CONFIG},
+    {"GLX_DRAWABLE_TYPE", GLX_DRAWABLE_TYPE},
+    {"GLX_RENDER_TYPE", GLX_RENDER_TYPE},
+    {"GLX_X_RENDERABLE", GLX_X_RENDERABLE},
+    {"GLX_FBCONFIG_ID", GLX_FBCONFIG_ID},
+    {"GLX_RGBA_TYPE", GLX_RGBA_TYPE},
+    {"GLX_COLOR_INDEX_TYPE", GLX_COLOR_INDEX_TYPE},
+    {"GLX_MAX_PBUFFER_WIDTH", GLX_MAX_PBUFFER_WIDTH},
+    {"GLX_MAX_PBUFFER_HEIGHT", GLX_MAX_PBUFFER_HEIGHT},
+    {"GLX_MAX_PBUFFER_PIXELS", GLX_MAX_PBUFFER_PIXELS},
+    {"GLX_PRESERVED_CONTENTS", GLX_PRESERVED_CONTENTS},
+    {"GLX_LARGEST_PBUFFER", GLX_LARGEST_PBUFFER},
+    {"GLX_WIDTH", GLX_WIDTH},
+    {"GLX_HEIGHT", GLX_HEIGHT},
+    {"GLX_EVENT_MASK", GLX_EVENT_MASK},
+    {"GLX_DAMAGED", GLX_DAMAGED},
+    {"GLX_SAVED", GLX_SAVED},
+    {"GLX_WINDOW", GLX_WINDOW},
+    {"GLX_PBUFFER", GLX_PBUFFER},
+    {"GLX_PBUFFER_HEIGHT", GLX_PBUFFER_HEIGHT},
+    {"GLX_PBUFFER_WIDTH", GLX_PBUFFER_WIDTH},
+};
+
+static const trace::EnumSig _enumint6_sig = {
+    9, 33, _enumint6_values
+};
+
+// types end - glx
+#endif // REGAL_SYS_GLX
+
+#if REGAL_SYS_WGL
+// types bgn - wgl
+static const trace::EnumValue _enumBOOL_values[] = {
+    {"FALSE", FALSE},
+    {"TRUE", TRUE},
+};
+
+static const trace::EnumSig _enumBOOL_sig = {
+    20, 2, _enumBOOL_values
+};
+
+static const trace::BitmaskFlag _bitmaskDWORD1_flags[] = {
+    {"PFD_DOUBLEBUFFER", PFD_DOUBLEBUFFER},
+    {"PFD_STEREO", PFD_STEREO},
+    {"PFD_DRAW_TO_WINDOW", PFD_DRAW_TO_WINDOW},
+    {"PFD_DRAW_TO_BITMAP", PFD_DRAW_TO_BITMAP},
+    {"PFD_SUPPORT_GDI", PFD_SUPPORT_GDI},
+    {"PFD_SUPPORT_OPENGL", PFD_SUPPORT_OPENGL},
+    {"PFD_GENERIC_FORMAT", PFD_GENERIC_FORMAT},
+    {"PFD_NEED_PALETTE", PFD_NEED_PALETTE},
+    {"PFD_NEED_SYSTEM_PALETTE", PFD_NEED_SYSTEM_PALETTE},
+    {"PFD_SWAP_EXCHANGE", PFD_SWAP_EXCHANGE},
+    {"PFD_SWAP_COPY", PFD_SWAP_COPY},
+    {"PFD_SWAP_LAYER_BUFFERS", PFD_SWAP_LAYER_BUFFERS},
+    {"PFD_GENERIC_ACCELERATED", PFD_GENERIC_ACCELERATED},
+    {"PFD_SUPPORT_DIRECTDRAW", PFD_SUPPORT_DIRECTDRAW},
+    {"PFD_SUPPORT_COMPOSITION", PFD_SUPPORT_COMPOSITION},
+    {"PFD_DEPTH_DONTCARE", PFD_DEPTH_DONTCARE},
+    {"PFD_DOUBLEBUFFER_DONTCARE", PFD_DOUBLEBUFFER_DONTCARE},
+    {"PFD_STEREO_DONTCARE", PFD_STEREO_DONTCARE},
+};
+
+static const trace::BitmaskSig _bitmaskDWORD1_sig = {
+    8, 18, _bitmaskDWORD1_flags
+};
+
+static const char * _structPIXELFORMATDESCRIPTOR_members[26] = {
+    "nSize",
+    "nVersion",
+    "dwFlags",
+    "iPixelType",
+    "cColorBits",
+    "cRedBits",
+    "cRedShift",
+    "cGreenBits",
+    "cGreenShift",
+    "cBlueBits",
+    "cBlueShift",
+    "cAlphaBits",
+    "cAlphaShift",
+    "cAccumBits",
+    "cAccumRedBits",
+    "cAccumGreenBits",
+    "cAccumBlueBits",
+    "cAccumAlphaBits",
+    "cDepthBits",
+    "cStencilBits",
+    "cAuxBuffers",
+    "iLayerType",
+    "bReserved",
+    "dwLayerMask",
+    "dwVisibleMask",
+    "dwDamageMask",
+};
+static const trace::StructSig _structPIXELFORMATDESCRIPTOR_sig = {
+    14, "PIXELFORMATDESCRIPTOR", 26, _structPIXELFORMATDESCRIPTOR_members
+};
+
+static const char * _structLAYERPLANEDESCRIPTOR_members[24] = {
+    "nSize",
+    "nVersion",
+    "dwFlags",
+    "iPixelType",
+    "cColorBits",
+    "cRedBits",
+    "cRedShift",
+    "cGreenBits",
+    "cGreenShift",
+    "cBlueBits",
+    "cBlueShift",
+    "cAlphaBits",
+    "cAlphaShift",
+    "cAccumBits",
+    "cAccumRedBits",
+    "cAccumGreenBits",
+    "cAccumBlueBits",
+    "cAccumAlphaBits",
+    "cDepthBits",
+    "cStencilBits",
+    "cAuxBuffers",
+    "iLayerPlane",
+    "bReserved",
+    "crTransparent",
+};
+static const trace::StructSig _structLAYERPLANEDESCRIPTOR_sig = {
+    17, "LAYERPLANEDESCRIPTOR", 24, _structLAYERPLANEDESCRIPTOR_members
+};
+
+static const char * _structWGLSWAP_members[2] = {
+    "hdc",
+    "uiFlags",
+};
+static const trace::StructSig _structWGLSWAP_sig = {
+    18, "WGLSWAP", 2, _structWGLSWAP_members
+};
+
+static const char * _structPOINTFLOAT_members[2] = {
+    "x",
+    "y",
+};
+static const trace::StructSig _structPOINTFLOAT_sig = {
+    15, "POINTFLOAT", 2, _structPOINTFLOAT_members
+};
+
+static const char * _structGLYPHMETRICSFLOAT_members[5] = {
+    "gmfBlackBoxX",
+    "gmfBlackBoxY",
+    "gmfptGlyphOrigin",
+    "gmfCellIncX",
+    "gmfCellIncY",
+};
+static const trace::StructSig _structGLYPHMETRICSFLOAT_sig = {
+    16, "GLYPHMETRICSFLOAT", 5, _structGLYPHMETRICSFLOAT_members
+};
+
+static const trace::EnumValue _enumint21_values[] = {
+    {"WGL_NUMBER_PIXEL_FORMATS_ARB", WGL_NUMBER_PIXEL_FORMATS_ARB},
+    {"WGL_DRAW_TO_WINDOW_ARB", WGL_DRAW_TO_WINDOW_ARB},
+    {"WGL_DRAW_TO_BITMAP_ARB", WGL_DRAW_TO_BITMAP_ARB},
+    {"WGL_ACCELERATION_ARB", WGL_ACCELERATION_ARB},
+    {"WGL_NEED_PALETTE_ARB", WGL_NEED_PALETTE_ARB},
+    {"WGL_NEED_SYSTEM_PALETTE_ARB", WGL_NEED_SYSTEM_PALETTE_ARB},
+    {"WGL_SWAP_LAYER_BUFFERS_ARB", WGL_SWAP_LAYER_BUFFERS_ARB},
+    {"WGL_SWAP_METHOD_ARB", WGL_SWAP_METHOD_ARB},
+    {"WGL_NUMBER_OVERLAYS_ARB", WGL_NUMBER_OVERLAYS_ARB},
+    {"WGL_NUMBER_UNDERLAYS_ARB", WGL_NUMBER_UNDERLAYS_ARB},
+    {"WGL_TRANSPARENT_ARB", WGL_TRANSPARENT_ARB},
+    {"WGL_TRANSPARENT_VALUE_EXT", WGL_TRANSPARENT_VALUE_EXT},
+    {"WGL_SHARE_DEPTH_ARB", WGL_SHARE_DEPTH_ARB},
+    {"WGL_SHARE_STENCIL_ARB", WGL_SHARE_STENCIL_ARB},
+    {"WGL_SHARE_ACCUM_ARB", WGL_SHARE_ACCUM_ARB},
+    {"WGL_SUPPORT_GDI_ARB", WGL_SUPPORT_GDI_ARB},
+    {"WGL_SUPPORT_OPENGL_ARB", WGL_SUPPORT_OPENGL_ARB},
+    {"WGL_DOUBLE_BUFFER_ARB", WGL_DOUBLE_BUFFER_ARB},
+    {"WGL_STEREO_ARB", WGL_STEREO_ARB},
+    {"WGL_PIXEL_TYPE_ARB", WGL_PIXEL_TYPE_ARB},
+    {"WGL_COLOR_BITS_ARB", WGL_COLOR_BITS_ARB},
+    {"WGL_RED_BITS_ARB", WGL_RED_BITS_ARB},
+    {"WGL_RED_SHIFT_ARB", WGL_RED_SHIFT_ARB},
+    {"WGL_GREEN_BITS_ARB", WGL_GREEN_BITS_ARB},
+    {"WGL_GREEN_SHIFT_ARB", WGL_GREEN_SHIFT_ARB},
+    {"WGL_BLUE_BITS_ARB", WGL_BLUE_BITS_ARB},
+    {"WGL_BLUE_SHIFT_ARB", WGL_BLUE_SHIFT_ARB},
+    {"WGL_ALPHA_BITS_ARB", WGL_ALPHA_BITS_ARB},
+    {"WGL_ALPHA_SHIFT_ARB", WGL_ALPHA_SHIFT_ARB},
+    {"WGL_ACCUM_BITS_ARB", WGL_ACCUM_BITS_ARB},
+    {"WGL_ACCUM_RED_BITS_ARB", WGL_ACCUM_RED_BITS_ARB},
+    {"WGL_ACCUM_GREEN_BITS_ARB", WGL_ACCUM_GREEN_BITS_ARB},
+    {"WGL_ACCUM_BLUE_BITS_ARB", WGL_ACCUM_BLUE_BITS_ARB},
+    {"WGL_ACCUM_ALPHA_BITS_ARB", WGL_ACCUM_ALPHA_BITS_ARB},
+    {"WGL_DEPTH_BITS_ARB", WGL_DEPTH_BITS_ARB},
+    {"WGL_STENCIL_BITS_ARB", WGL_STENCIL_BITS_ARB},
+    {"WGL_AUX_BUFFERS_ARB", WGL_AUX_BUFFERS_ARB},
+    {"WGL_NO_ACCELERATION_ARB", WGL_NO_ACCELERATION_ARB},
+    {"WGL_GENERIC_ACCELERATION_ARB", WGL_GENERIC_ACCELERATION_ARB},
+    {"WGL_FULL_ACCELERATION_ARB", WGL_FULL_ACCELERATION_ARB},
+    {"WGL_SWAP_EXCHANGE_ARB", WGL_SWAP_EXCHANGE_ARB},
+    {"WGL_SWAP_COPY_ARB", WGL_SWAP_COPY_ARB},
+    {"WGL_SWAP_UNDEFINED_ARB", WGL_SWAP_UNDEFINED_ARB},
+    {"WGL_TYPE_RGBA_ARB", WGL_TYPE_RGBA_ARB},
+    {"WGL_TYPE_COLORINDEX_ARB", WGL_TYPE_COLORINDEX_ARB},
+    {"WGL_DRAW_TO_PBUFFER_ARB", WGL_DRAW_TO_PBUFFER_ARB},
+    {"WGL_MAX_PBUFFER_PIXELS_ARB", WGL_MAX_PBUFFER_PIXELS_ARB},
+    {"WGL_MAX_PBUFFER_WIDTH_ARB", WGL_MAX_PBUFFER_WIDTH_ARB},
+    {"WGL_MAX_PBUFFER_HEIGHT_ARB", WGL_MAX_PBUFFER_HEIGHT_ARB},
+    {"WGL_OPTIMAL_PBUFFER_WIDTH_EXT", WGL_OPTIMAL_PBUFFER_WIDTH_EXT},
+    {"WGL_OPTIMAL_PBUFFER_HEIGHT_EXT", WGL_OPTIMAL_PBUFFER_HEIGHT_EXT},
+    {"WGL_PBUFFER_LARGEST_ARB", WGL_PBUFFER_LARGEST_ARB},
+    {"WGL_PBUFFER_WIDTH_ARB", WGL_PBUFFER_WIDTH_ARB},
+    {"WGL_PBUFFER_HEIGHT_ARB", WGL_PBUFFER_HEIGHT_ARB},
+    {"WGL_PBUFFER_LOST_ARB", WGL_PBUFFER_LOST_ARB},
+    {"WGL_TRANSPARENT_RED_VALUE_ARB", WGL_TRANSPARENT_RED_VALUE_ARB},
+    {"WGL_TRANSPARENT_GREEN_VALUE_ARB", WGL_TRANSPARENT_GREEN_VALUE_ARB},
+    {"WGL_TRANSPARENT_BLUE_VALUE_ARB", WGL_TRANSPARENT_BLUE_VALUE_ARB},
+    {"WGL_TRANSPARENT_ALPHA_VALUE_ARB", WGL_TRANSPARENT_ALPHA_VALUE_ARB},
+    {"WGL_TRANSPARENT_INDEX_VALUE_ARB", WGL_TRANSPARENT_INDEX_VALUE_ARB},
+    {"WGL_DEPTH_FLOAT_EXT", WGL_DEPTH_FLOAT_EXT},
+    {"WGL_SAMPLE_BUFFERS_ARB", WGL_SAMPLE_BUFFERS_ARB},
+    {"WGL_SAMPLES_ARB", WGL_SAMPLES_ARB},
+    {"WGL_GENLOCK_SOURCE_MULTIVIEW_I3D", WGL_GENLOCK_SOURCE_MULTIVIEW_I3D},
+    {"WGL_GENLOCK_SOURCE_EXTENAL_SYNC_I3D", WGL_GENLOCK_SOURCE_EXTENAL_SYNC_I3D},
+    {"WGL_GENLOCK_SOURCE_EXTENAL_FIELD_I3D", WGL_GENLOCK_SOURCE_EXTENAL_FIELD_I3D},
+    {"WGL_GENLOCK_SOURCE_EXTENAL_TTL_I3D", WGL_GENLOCK_SOURCE_EXTENAL_TTL_I3D},
+    {"WGL_GENLOCK_SOURCE_DIGITAL_SYNC_I3D", WGL_GENLOCK_SOURCE_DIGITAL_SYNC_I3D},
+    {"WGL_GENLOCK_SOURCE_DIGITAL_FIELD_I3D", WGL_GENLOCK_SOURCE_DIGITAL_FIELD_I3D},
+    {"WGL_GENLOCK_SOURCE_EDGE_FALLING_I3D", WGL_GENLOCK_SOURCE_EDGE_FALLING_I3D},
+    {"WGL_GENLOCK_SOURCE_EDGE_RISING_I3D", WGL_GENLOCK_SOURCE_EDGE_RISING_I3D},
+    {"WGL_GENLOCK_SOURCE_EDGE_BOTH_I3D", WGL_GENLOCK_SOURCE_EDGE_BOTH_I3D},
+    {"WGL_GAMMA_TABLE_SIZE_I3D", WGL_GAMMA_TABLE_SIZE_I3D},
+    {"WGL_GAMMA_EXCLUDE_DESKTOP_I3D", WGL_GAMMA_EXCLUDE_DESKTOP_I3D},
+    {"WGL_DIGITAL_VIDEO_CURSOR_ALPHA_FRAMEBUFFER_I3D", WGL_DIGITAL_VIDEO_CURSOR_ALPHA_FRAMEBUFFER_I3D},
+    {"WGL_DIGITAL_VIDEO_CURSOR_ALPHA_VALUE_I3D", WGL_DIGITAL_VIDEO_CURSOR_ALPHA_VALUE_I3D},
+    {"WGL_DIGITAL_VIDEO_CURSOR_INCLUDED_I3D", WGL_DIGITAL_VIDEO_CURSOR_INCLUDED_I3D},
+    {"WGL_DIGITAL_VIDEO_GAMMA_CORRECTED_I3D", WGL_DIGITAL_VIDEO_GAMMA_CORRECTED_I3D},
+    {"WGL_STEREO_EMITTER_ENABLE_3DL", WGL_STEREO_EMITTER_ENABLE_3DL},
+    {"WGL_STEREO_EMITTER_DISABLE_3DL", WGL_STEREO_EMITTER_DISABLE_3DL},
+    {"WGL_STEREO_POLARITY_NORMAL_3DL", WGL_STEREO_POLARITY_NORMAL_3DL},
+    {"WGL_STEREO_POLARITY_INVERT_3DL", WGL_STEREO_POLARITY_INVERT_3DL},
+    {"WGL_SAMPLE_BUFFERS_3DFX", WGL_SAMPLE_BUFFERS_3DFX},
+    {"WGL_SAMPLES_3DFX", WGL_SAMPLES_3DFX},
+    {"WGL_BIND_TO_TEXTURE_RGB_ARB", WGL_BIND_TO_TEXTURE_RGB_ARB},
+    {"WGL_BIND_TO_TEXTURE_RGBA_ARB", WGL_BIND_TO_TEXTURE_RGBA_ARB},
+    {"WGL_TEXTURE_FORMAT_ARB", WGL_TEXTURE_FORMAT_ARB},
+    {"WGL_TEXTURE_TARGET_ARB", WGL_TEXTURE_TARGET_ARB},
+    {"WGL_MIPMAP_TEXTURE_ARB", WGL_MIPMAP_TEXTURE_ARB},
+    {"WGL_TEXTURE_RGB_ARB", WGL_TEXTURE_RGB_ARB},
+    {"WGL_TEXTURE_RGBA_ARB", WGL_TEXTURE_RGBA_ARB},
+    {"WGL_NO_TEXTURE_ARB", WGL_NO_TEXTURE_ARB},
+    {"WGL_TEXTURE_CUBE_MAP_ARB", WGL_TEXTURE_CUBE_MAP_ARB},
+    {"WGL_TEXTURE_1D_ARB", WGL_TEXTURE_1D_ARB},
+    {"WGL_TEXTURE_2D_ARB", WGL_TEXTURE_2D_ARB},
+    {"WGL_MIPMAP_LEVEL_ARB", WGL_MIPMAP_LEVEL_ARB},
+    {"WGL_CUBE_MAP_FACE_ARB", WGL_CUBE_MAP_FACE_ARB},
+    {"WGL_TEXTURE_CUBE_MAP_POSITIVE_X_ARB", WGL_TEXTURE_CUBE_MAP_POSITIVE_X_ARB},
+    {"WGL_TEXTURE_CUBE_MAP_NEGATIVE_X_ARB", WGL_TEXTURE_CUBE_MAP_NEGATIVE_X_ARB},
+    {"WGL_TEXTURE_CUBE_MAP_POSITIVE_Y_ARB", WGL_TEXTURE_CUBE_MAP_POSITIVE_Y_ARB},
+    {"WGL_TEXTURE_CUBE_MAP_NEGATIVE_Y_ARB", WGL_TEXTURE_CUBE_MAP_NEGATIVE_Y_ARB},
+    {"WGL_TEXTURE_CUBE_MAP_POSITIVE_Z_ARB", WGL_TEXTURE_CUBE_MAP_POSITIVE_Z_ARB},
+    {"WGL_TEXTURE_CUBE_MAP_NEGATIVE_Z_ARB", WGL_TEXTURE_CUBE_MAP_NEGATIVE_Z_ARB},
+    {"WGL_FRONT_LEFT_ARB", WGL_FRONT_LEFT_ARB},
+    {"WGL_FRONT_RIGHT_ARB", WGL_FRONT_RIGHT_ARB},
+    {"WGL_BACK_LEFT_ARB", WGL_BACK_LEFT_ARB},
+    {"WGL_BACK_RIGHT_ARB", WGL_BACK_RIGHT_ARB},
+    {"WGL_AUX0_ARB", WGL_AUX0_ARB},
+    {"WGL_AUX1_ARB", WGL_AUX1_ARB},
+    {"WGL_AUX2_ARB", WGL_AUX2_ARB},
+    {"WGL_AUX3_ARB", WGL_AUX3_ARB},
+    {"WGL_AUX4_ARB", WGL_AUX4_ARB},
+    {"WGL_AUX5_ARB", WGL_AUX5_ARB},
+    {"WGL_AUX6_ARB", WGL_AUX6_ARB},
+    {"WGL_AUX7_ARB", WGL_AUX7_ARB},
+    {"WGL_AUX8_ARB", WGL_AUX8_ARB},
+    {"WGL_AUX9_ARB", WGL_AUX9_ARB},
+    {"WGL_CONTEXT_MAJOR_VERSION_ARB", WGL_CONTEXT_MAJOR_VERSION_ARB},
+    {"WGL_CONTEXT_MINOR_VERSION_ARB", WGL_CONTEXT_MINOR_VERSION_ARB},
+    {"WGL_CONTEXT_LAYER_PLANE_ARB", WGL_CONTEXT_LAYER_PLANE_ARB},
+    {"WGL_CONTEXT_FLAGS_ARB", WGL_CONTEXT_FLAGS_ARB},
+    {"WGL_BIND_TO_TEXTURE_RECTANGLE_RGB_NV", WGL_BIND_TO_TEXTURE_RECTANGLE_RGB_NV},
+    {"WGL_BIND_TO_TEXTURE_RECTANGLE_RGBA_NV", WGL_BIND_TO_TEXTURE_RECTANGLE_RGBA_NV},
+    {"WGL_TEXTURE_RECTANGLE_NV", WGL_TEXTURE_RECTANGLE_NV},
+    {"WGL_BIND_TO_TEXTURE_DEPTH_NV", WGL_BIND_TO_TEXTURE_DEPTH_NV},
+    {"WGL_BIND_TO_TEXTURE_RECTANGLE_DEPTH_NV", WGL_BIND_TO_TEXTURE_RECTANGLE_DEPTH_NV},
+    {"WGL_DEPTH_TEXTURE_FORMAT_NV", WGL_DEPTH_TEXTURE_FORMAT_NV},
+    {"WGL_TEXTURE_DEPTH_COMPONENT_NV", WGL_TEXTURE_DEPTH_COMPONENT_NV},
+    {"WGL_DEPTH_COMPONENT_NV", WGL_DEPTH_COMPONENT_NV},
+    {"WGL_TYPE_RGBA_UNSIGNED_FLOAT_EXT", WGL_TYPE_RGBA_UNSIGNED_FLOAT_EXT},
+    {"WGL_FRAMEBUFFER_SRGB_CAPABLE_ARB", WGL_FRAMEBUFFER_SRGB_CAPABLE_ARB},
+    {"WGL_FLOAT_COMPONENTS_NV", WGL_FLOAT_COMPONENTS_NV},
+    {"WGL_BIND_TO_TEXTURE_RECTANGLE_FLOAT_R_NV", WGL_BIND_TO_TEXTURE_RECTANGLE_FLOAT_R_NV},
+    {"WGL_BIND_TO_TEXTURE_RECTANGLE_FLOAT_RG_NV", WGL_BIND_TO_TEXTURE_RECTANGLE_FLOAT_RG_NV},
+    {"WGL_BIND_TO_TEXTURE_RECTANGLE_FLOAT_RGB_NV", WGL_BIND_TO_TEXTURE_RECTANGLE_FLOAT_RGB_NV},
+    {"WGL_BIND_TO_TEXTURE_RECTANGLE_FLOAT_RGBA_NV", WGL_BIND_TO_TEXTURE_RECTANGLE_FLOAT_RGBA_NV},
+    {"WGL_TEXTURE_FLOAT_R_NV", WGL_TEXTURE_FLOAT_R_NV},
+    {"WGL_TEXTURE_FLOAT_RG_NV", WGL_TEXTURE_FLOAT_RG_NV},
+    {"WGL_TEXTURE_FLOAT_RGB_NV", WGL_TEXTURE_FLOAT_RGB_NV},
+    {"WGL_TEXTURE_FLOAT_RGBA_NV", WGL_TEXTURE_FLOAT_RGBA_NV},
+    {"WGL_COLOR_SAMPLES_NV", WGL_COLOR_SAMPLES_NV},
+    {"WGL_BIND_TO_VIDEO_RGB_NV", WGL_BIND_TO_VIDEO_RGB_NV},
+    {"WGL_BIND_TO_VIDEO_RGBA_NV", WGL_BIND_TO_VIDEO_RGBA_NV},
+    {"WGL_BIND_TO_VIDEO_RGB_AND_DEPTH_NV", WGL_BIND_TO_VIDEO_RGB_AND_DEPTH_NV},
+    {"WGL_VIDEO_OUT_COLOR_NV", WGL_VIDEO_OUT_COLOR_NV},
+    {"WGL_VIDEO_OUT_ALPHA_NV", WGL_VIDEO_OUT_ALPHA_NV},
+    {"WGL_VIDEO_OUT_DEPTH_NV", WGL_VIDEO_OUT_DEPTH_NV},
+    {"WGL_VIDEO_OUT_COLOR_AND_ALPHA_NV", WGL_VIDEO_OUT_COLOR_AND_ALPHA_NV},
+    {"WGL_VIDEO_OUT_COLOR_AND_DEPTH_NV", WGL_VIDEO_OUT_COLOR_AND_DEPTH_NV},
+    {"WGL_VIDEO_OUT_FRAME", WGL_VIDEO_OUT_FRAME},
+    {"WGL_VIDEO_OUT_FIELD_1", WGL_VIDEO_OUT_FIELD_1},
+    {"WGL_VIDEO_OUT_FIELD_2", WGL_VIDEO_OUT_FIELD_2},
+    {"WGL_VIDEO_OUT_STACKED_FIELDS_1_2", WGL_VIDEO_OUT_STACKED_FIELDS_1_2},
+    {"WGL_VIDEO_OUT_STACKED_FIELDS_2_1", WGL_VIDEO_OUT_STACKED_FIELDS_2_1},
+    {"WGL_UNIQUE_ID_NV", WGL_UNIQUE_ID_NV},
+    {"WGL_NUM_VIDEO_CAPTURE_SLOTS_NV", WGL_NUM_VIDEO_CAPTURE_SLOTS_NV},
+    {"WGL_ERROR_INCOMPATIBLE_AFFINITY_MASKS_NV", WGL_ERROR_INCOMPATIBLE_AFFINITY_MASKS_NV},
+    {"WGL_ERROR_MISSING_AFFINITY_MASK_NV", WGL_ERROR_MISSING_AFFINITY_MASK_NV},
+    {"WGL_NUM_VIDEO_SLOTS_NV", WGL_NUM_VIDEO_SLOTS_NV},
+    {"WGL_TYPE_RGBA_FLOAT_ARB", WGL_TYPE_RGBA_FLOAT_ARB},
+    {"WGL_GPU_FASTEST_TARGET_GPUS_AMD", WGL_GPU_FASTEST_TARGET_GPUS_AMD},
+    {"WGL_GPU_RAM_AMD", WGL_GPU_RAM_AMD},
+    {"WGL_GPU_CLOCK_AMD", WGL_GPU_CLOCK_AMD},
+    {"WGL_GPU_NUM_PIPES_AMD", WGL_GPU_NUM_PIPES_AMD},
+    {"WGL_GPU_NUM_SIMD_AMD", WGL_GPU_NUM_SIMD_AMD},
+    {"WGL_GPU_NUM_RB_AMD", WGL_GPU_NUM_RB_AMD},
+    {"WGL_GPU_NUM_SPI_AMD", WGL_GPU_NUM_SPI_AMD},
+};
+
+static const trace::EnumSig _enumint21_sig = {
+    22, 167, _enumint21_values
+};
+
+// types end - wgl
+#endif // REGAL_SYS_WGL
 
 // interfaces bgn
 // interfaces end
@@ -12387,6 +12886,7 @@ static const trace::FunctionSig _glGetQueryObjectuivEXT_sig = {2473, "glGetQuery
 
 // decl end - gfx
 
+#if REGAL_SYS_OSX
 // decl bgn - cgl
 static const char * _CGLSetCurrentContext_args[1] = {"ctx"};
 static const trace::FunctionSig _CGLSetCurrentContext_sig = {2474, "CGLSetCurrentContext", 1, _CGLSetCurrentContext_args};
@@ -12545,7 +13045,9 @@ static const char * _CGLUpdateContext_args[1] = {"ctx"};
 static const trace::FunctionSig _CGLUpdateContext_sig = {2525, "CGLUpdateContext", 1, _CGLUpdateContext_args};
 
 // decl end - cgl
+#endif // REGAL_SYS_OSX
 
+#if REGAL_SYS_EGL
 // decl bgn - egl
 static const char ** _eglGetError_args = NULL;
 static const trace::FunctionSig _eglGetError_sig = {2526, "eglGetError", 0, _eglGetError_args};
@@ -12710,11 +13212,465 @@ static const char ** _eglGetSystemTimeNV_args = NULL;
 static const trace::FunctionSig _eglGetSystemTimeNV_sig = {2579, "eglGetSystemTimeNV", 0, _eglGetSystemTimeNV_args};
 
 // decl end - egl
+#endif // REGAL_SYS_EGL
+
+#if REGAL_SYS_GLX
+// decl bgn - glx
+static const char * _glXChooseVisual_args[3] = {"dpy", "screen", "attribList"};
+static const trace::FunctionSig _glXChooseVisual_sig = {2580, "glXChooseVisual", 3, _glXChooseVisual_args};
+
+static const char * _glXCreateContext_args[4] = {"dpy", "vis", "shareList", "direct"};
+static const trace::FunctionSig _glXCreateContext_sig = {2581, "glXCreateContext", 4, _glXCreateContext_args};
+
+static const char * _glXDestroyContext_args[2] = {"dpy", "ctx"};
+static const trace::FunctionSig _glXDestroyContext_sig = {2582, "glXDestroyContext", 2, _glXDestroyContext_args};
+
+static const char * _glXMakeCurrent_args[3] = {"dpy", "drawable", "ctx"};
+static const trace::FunctionSig _glXMakeCurrent_sig = {2583, "glXMakeCurrent", 3, _glXMakeCurrent_args};
+
+static const char * _glXCopyContext_args[4] = {"dpy", "src", "dst", "mask"};
+static const trace::FunctionSig _glXCopyContext_sig = {2584, "glXCopyContext", 4, _glXCopyContext_args};
+
+static const char * _glXSwapBuffers_args[2] = {"dpy", "drawable"};
+static const trace::FunctionSig _glXSwapBuffers_sig = {2585, "glXSwapBuffers", 2, _glXSwapBuffers_args};
+
+static const char * _glXCreateGLXPixmap_args[3] = {"dpy", "visual", "pixmap"};
+static const trace::FunctionSig _glXCreateGLXPixmap_sig = {2586, "glXCreateGLXPixmap", 3, _glXCreateGLXPixmap_args};
+
+static const char * _glXDestroyGLXPixmap_args[2] = {"dpy", "pixmap"};
+static const trace::FunctionSig _glXDestroyGLXPixmap_sig = {2587, "glXDestroyGLXPixmap", 2, _glXDestroyGLXPixmap_args};
+
+static const char * _glXQueryExtension_args[3] = {"dpy", "errorb", "event"};
+static const trace::FunctionSig _glXQueryExtension_sig = {2588, "glXQueryExtension", 3, _glXQueryExtension_args};
+
+static const char * _glXQueryVersion_args[3] = {"dpy", "maj", "min"};
+static const trace::FunctionSig _glXQueryVersion_sig = {2589, "glXQueryVersion", 3, _glXQueryVersion_args};
+
+static const char * _glXIsDirect_args[2] = {"dpy", "ctx"};
+static const trace::FunctionSig _glXIsDirect_sig = {2590, "glXIsDirect", 2, _glXIsDirect_args};
+
+static const char * _glXGetConfig_args[4] = {"dpy", "visual", "attrib", "value"};
+static const trace::FunctionSig _glXGetConfig_sig = {2591, "glXGetConfig", 4, _glXGetConfig_args};
+
+static const char ** _glXGetCurrentContext_args = NULL;
+static const trace::FunctionSig _glXGetCurrentContext_sig = {2592, "glXGetCurrentContext", 0, _glXGetCurrentContext_args};
+
+static const char ** _glXGetCurrentDrawable_args = NULL;
+static const trace::FunctionSig _glXGetCurrentDrawable_sig = {2593, "glXGetCurrentDrawable", 0, _glXGetCurrentDrawable_args};
+
+static const char ** _glXWaitGL_args = NULL;
+static const trace::FunctionSig _glXWaitGL_sig = {2594, "glXWaitGL", 0, _glXWaitGL_args};
+
+static const char ** _glXWaitX_args = NULL;
+static const trace::FunctionSig _glXWaitX_sig = {2595, "glXWaitX", 0, _glXWaitX_args};
+
+static const char * _glXUseXFont_args[4] = {"font", "first", "count", "list"};
+static const trace::FunctionSig _glXUseXFont_sig = {2596, "glXUseXFont", 4, _glXUseXFont_args};
+
+static const char * _glXQueryExtensionsString_args[2] = {"dpy", "screen"};
+static const trace::FunctionSig _glXQueryExtensionsString_sig = {2597, "glXQueryExtensionsString", 2, _glXQueryExtensionsString_args};
+
+static const char * _glXQueryServerString_args[3] = {"dpy", "screen", "name"};
+static const trace::FunctionSig _glXQueryServerString_sig = {2598, "glXQueryServerString", 3, _glXQueryServerString_args};
+
+static const char * _glXGetClientString_args[2] = {"dpy", "name"};
+static const trace::FunctionSig _glXGetClientString_sig = {2599, "glXGetClientString", 2, _glXGetClientString_args};
+
+static const char ** _glXGetCurrentDisplay_args = NULL;
+static const trace::FunctionSig _glXGetCurrentDisplay_sig = {2600, "glXGetCurrentDisplay", 0, _glXGetCurrentDisplay_args};
+
+static const char * _glXChooseFBConfig_args[4] = {"dpy", "screen", "attribList", "nitems"};
+static const trace::FunctionSig _glXChooseFBConfig_sig = {2601, "glXChooseFBConfig", 4, _glXChooseFBConfig_args};
+
+static const char * _glXGetFBConfigAttrib_args[4] = {"dpy", "config", "attribute", "value"};
+static const trace::FunctionSig _glXGetFBConfigAttrib_sig = {2602, "glXGetFBConfigAttrib", 4, _glXGetFBConfigAttrib_args};
+
+static const char * _glXGetFBConfigs_args[3] = {"dpy", "screen", "nelements"};
+static const trace::FunctionSig _glXGetFBConfigs_sig = {2603, "glXGetFBConfigs", 3, _glXGetFBConfigs_args};
+
+static const char * _glXGetVisualFromFBConfig_args[2] = {"dpy", "config"};
+static const trace::FunctionSig _glXGetVisualFromFBConfig_sig = {2604, "glXGetVisualFromFBConfig", 2, _glXGetVisualFromFBConfig_args};
+
+static const char * _glXCreateWindow_args[4] = {"dpy", "config", "win", "attribList"};
+static const trace::FunctionSig _glXCreateWindow_sig = {2605, "glXCreateWindow", 4, _glXCreateWindow_args};
+
+static const char * _glXDestroyWindow_args[2] = {"dpy", "window"};
+static const trace::FunctionSig _glXDestroyWindow_sig = {2606, "glXDestroyWindow", 2, _glXDestroyWindow_args};
+
+static const char * _glXCreatePixmap_args[4] = {"dpy", "config", "pixmap", "attribList"};
+static const trace::FunctionSig _glXCreatePixmap_sig = {2607, "glXCreatePixmap", 4, _glXCreatePixmap_args};
+
+static const char * _glXDestroyPixmap_args[2] = {"dpy", "pixmap"};
+static const trace::FunctionSig _glXDestroyPixmap_sig = {2608, "glXDestroyPixmap", 2, _glXDestroyPixmap_args};
+
+static const char * _glXCreatePbuffer_args[3] = {"dpy", "config", "attribList"};
+static const trace::FunctionSig _glXCreatePbuffer_sig = {2609, "glXCreatePbuffer", 3, _glXCreatePbuffer_args};
+
+static const char * _glXDestroyPbuffer_args[2] = {"dpy", "pbuf"};
+static const trace::FunctionSig _glXDestroyPbuffer_sig = {2610, "glXDestroyPbuffer", 2, _glXDestroyPbuffer_args};
+
+static const char * _glXQueryDrawable_args[4] = {"dpy", "draw", "attribute", "value"};
+static const trace::FunctionSig _glXQueryDrawable_sig = {2611, "glXQueryDrawable", 4, _glXQueryDrawable_args};
+
+static const char * _glXCreateNewContext_args[5] = {"dpy", "config", "renderType", "shareList", "direct"};
+static const trace::FunctionSig _glXCreateNewContext_sig = {2612, "glXCreateNewContext", 5, _glXCreateNewContext_args};
+
+static const char * _glXMakeContextCurrent_args[4] = {"dpy", "draw", "read", "ctx"};
+static const trace::FunctionSig _glXMakeContextCurrent_sig = {2613, "glXMakeContextCurrent", 4, _glXMakeContextCurrent_args};
+
+static const char ** _glXGetCurrentReadDrawable_args = NULL;
+static const trace::FunctionSig _glXGetCurrentReadDrawable_sig = {2614, "glXGetCurrentReadDrawable", 0, _glXGetCurrentReadDrawable_args};
+
+static const char * _glXQueryContext_args[4] = {"dpy", "ctx", "attribute", "value"};
+static const trace::FunctionSig _glXQueryContext_sig = {2615, "glXQueryContext", 4, _glXQueryContext_args};
+
+static const char * _glXSelectEvent_args[3] = {"dpy", "drawable", "mask"};
+static const trace::FunctionSig _glXSelectEvent_sig = {2616, "glXSelectEvent", 3, _glXSelectEvent_args};
+
+static const char * _glXGetSelectedEvent_args[3] = {"dpy", "drawable", "mask"};
+static const trace::FunctionSig _glXGetSelectedEvent_sig = {2617, "glXGetSelectedEvent", 3, _glXGetSelectedEvent_args};
+
+static const char * _glXCreateContextAttribsARB_args[5] = {"dpy", "config", "share_context", "direct", "attrib_list"};
+static const trace::FunctionSig _glXCreateContextAttribsARB_sig = {2618, "glXCreateContextAttribsARB", 5, _glXCreateContextAttribsARB_args};
+
+static const char * _glXSwapIntervalSGI_args[1] = {"interval"};
+static const trace::FunctionSig _glXSwapIntervalSGI_sig = {2619, "glXSwapIntervalSGI", 1, _glXSwapIntervalSGI_args};
+
+static const char * _glXGetVideoSyncSGI_args[1] = {"count"};
+static const trace::FunctionSig _glXGetVideoSyncSGI_sig = {2620, "glXGetVideoSyncSGI", 1, _glXGetVideoSyncSGI_args};
+
+static const char * _glXWaitVideoSyncSGI_args[3] = {"divisor", "remainder", "count"};
+static const trace::FunctionSig _glXWaitVideoSyncSGI_sig = {2621, "glXWaitVideoSyncSGI", 3, _glXWaitVideoSyncSGI_args};
+
+static const char * _glXMakeCurrentReadSGI_args[4] = {"dpy", "draw", "read", "ctx"};
+static const trace::FunctionSig _glXMakeCurrentReadSGI_sig = {2622, "glXMakeCurrentReadSGI", 4, _glXMakeCurrentReadSGI_args};
+
+static const char ** _glXGetCurrentReadDrawableSGI_args = NULL;
+static const trace::FunctionSig _glXGetCurrentReadDrawableSGI_sig = {2623, "glXGetCurrentReadDrawableSGI", 0, _glXGetCurrentReadDrawableSGI_args};
+
+static const char * _glXQueryContextInfoEXT_args[4] = {"dpy", "context", "attribute", "value"};
+static const trace::FunctionSig _glXQueryContextInfoEXT_sig = {2624, "glXQueryContextInfoEXT", 4, _glXQueryContextInfoEXT_args};
+
+static const char * _glXGetContextIDEXT_args[1] = {"context"};
+static const trace::FunctionSig _glXGetContextIDEXT_sig = {2625, "glXGetContextIDEXT", 1, _glXGetContextIDEXT_args};
+
+static const char * _glXImportContextEXT_args[2] = {"dpy", "contextID"};
+static const trace::FunctionSig _glXImportContextEXT_sig = {2626, "glXImportContextEXT", 2, _glXImportContextEXT_args};
+
+static const char * _glXFreeContextEXT_args[2] = {"dpy", "context"};
+static const trace::FunctionSig _glXFreeContextEXT_sig = {2627, "glXFreeContextEXT", 2, _glXFreeContextEXT_args};
+
+static const char * _glXGetFBConfigAttribSGIX_args[4] = {"dpy", "config", "attribute", "value"};
+static const trace::FunctionSig _glXGetFBConfigAttribSGIX_sig = {2628, "glXGetFBConfigAttribSGIX", 4, _glXGetFBConfigAttribSGIX_args};
+
+static const char * _glXChooseFBConfigSGIX_args[4] = {"dpy", "screen", "attrib_list", "nelements"};
+static const trace::FunctionSig _glXChooseFBConfigSGIX_sig = {2629, "glXChooseFBConfigSGIX", 4, _glXChooseFBConfigSGIX_args};
+
+static const char * _glXCreateGLXPixmapWithConfigSGIX_args[3] = {"dpy", "config", "pixmap"};
+static const trace::FunctionSig _glXCreateGLXPixmapWithConfigSGIX_sig = {2630, "glXCreateGLXPixmapWithConfigSGIX", 3, _glXCreateGLXPixmapWithConfigSGIX_args};
+
+static const char * _glXCreateContextWithConfigSGIX_args[5] = {"dpy", "config", "render_type", "share_list", "direct"};
+static const trace::FunctionSig _glXCreateContextWithConfigSGIX_sig = {2631, "glXCreateContextWithConfigSGIX", 5, _glXCreateContextWithConfigSGIX_args};
+
+static const char * _glXGetVisualFromFBConfigSGIX_args[2] = {"dpy", "config"};
+static const trace::FunctionSig _glXGetVisualFromFBConfigSGIX_sig = {2632, "glXGetVisualFromFBConfigSGIX", 2, _glXGetVisualFromFBConfigSGIX_args};
+
+static const char * _glXGetFBConfigFromVisualSGIX_args[2] = {"dpy", "vis"};
+static const trace::FunctionSig _glXGetFBConfigFromVisualSGIX_sig = {2633, "glXGetFBConfigFromVisualSGIX", 2, _glXGetFBConfigFromVisualSGIX_args};
+
+static const char * _glXCreateGLXPbufferSGIX_args[5] = {"dpy", "config", "width", "height", "attrib_list"};
+static const trace::FunctionSig _glXCreateGLXPbufferSGIX_sig = {2634, "glXCreateGLXPbufferSGIX", 5, _glXCreateGLXPbufferSGIX_args};
+
+static const char * _glXDestroyGLXPbufferSGIX_args[2] = {"dpy", "pbuf"};
+static const trace::FunctionSig _glXDestroyGLXPbufferSGIX_sig = {2635, "glXDestroyGLXPbufferSGIX", 2, _glXDestroyGLXPbufferSGIX_args};
+
+static const char * _glXQueryGLXPbufferSGIX_args[4] = {"dpy", "pbuf", "attribute", "value"};
+static const trace::FunctionSig _glXQueryGLXPbufferSGIX_sig = {2636, "glXQueryGLXPbufferSGIX", 4, _glXQueryGLXPbufferSGIX_args};
+
+static const char * _glXSelectEventSGIX_args[3] = {"dpy", "drawable", "mask"};
+static const trace::FunctionSig _glXSelectEventSGIX_sig = {2637, "glXSelectEventSGIX", 3, _glXSelectEventSGIX_args};
+
+static const char * _glXGetSelectedEventSGIX_args[3] = {"dpy", "drawable", "mask"};
+static const trace::FunctionSig _glXGetSelectedEventSGIX_sig = {2638, "glXGetSelectedEventSGIX", 3, _glXGetSelectedEventSGIX_args};
+
+static const char * _glXCushionSGI_args[3] = {"dpy", "window", "cushion"};
+static const trace::FunctionSig _glXCushionSGI_sig = {2639, "glXCushionSGI", 3, _glXCushionSGI_args};
+
+static const char * _glXBindChannelToWindowSGIX_args[4] = {"display", "screen", "channel", "window"};
+static const trace::FunctionSig _glXBindChannelToWindowSGIX_sig = {2640, "glXBindChannelToWindowSGIX", 4, _glXBindChannelToWindowSGIX_args};
+
+static const char * _glXChannelRectSGIX_args[7] = {"display", "screen", "channel", "x", "y", "w", "h"};
+static const trace::FunctionSig _glXChannelRectSGIX_sig = {2641, "glXChannelRectSGIX", 7, _glXChannelRectSGIX_args};
+
+static const char * _glXQueryChannelRectSGIX_args[7] = {"display", "screen", "channel", "dx", "dy", "dw", "dh"};
+static const trace::FunctionSig _glXQueryChannelRectSGIX_sig = {2642, "glXQueryChannelRectSGIX", 7, _glXQueryChannelRectSGIX_args};
+
+static const char * _glXQueryChannelDeltasSGIX_args[7] = {"display", "screen", "channel", "x", "y", "w", "h"};
+static const trace::FunctionSig _glXQueryChannelDeltasSGIX_sig = {2643, "glXQueryChannelDeltasSGIX", 7, _glXQueryChannelDeltasSGIX_args};
+
+static const char * _glXChannelRectSyncSGIX_args[4] = {"display", "screen", "channel", "synctype"};
+static const trace::FunctionSig _glXChannelRectSyncSGIX_sig = {2644, "glXChannelRectSyncSGIX", 4, _glXChannelRectSyncSGIX_args};
+
+static const char * _glXJoinSwapGroupSGIX_args[3] = {"dpy", "drawable", "member"};
+static const trace::FunctionSig _glXJoinSwapGroupSGIX_sig = {2645, "glXJoinSwapGroupSGIX", 3, _glXJoinSwapGroupSGIX_args};
+
+static const char * _glXBindSwapBarrierSGIX_args[3] = {"dpy", "drawable", "barrier"};
+static const trace::FunctionSig _glXBindSwapBarrierSGIX_sig = {2646, "glXBindSwapBarrierSGIX", 3, _glXBindSwapBarrierSGIX_args};
+
+static const char * _glXQueryMaxSwapBarriersSGIX_args[3] = {"dpy", "screen", "max"};
+static const trace::FunctionSig _glXQueryMaxSwapBarriersSGIX_sig = {2647, "glXQueryMaxSwapBarriersSGIX", 3, _glXQueryMaxSwapBarriersSGIX_args};
+
+static const char * _glXCopySubBufferMESA_args[6] = {"dpy", "drawable", "x", "y", "width", "height"};
+static const trace::FunctionSig _glXCopySubBufferMESA_sig = {2648, "glXCopySubBufferMESA", 6, _glXCopySubBufferMESA_args};
+
+static const char * _glXCreateGLXPixmapMESA_args[4] = {"dpy", "visual", "pixmap", "cmap"};
+static const trace::FunctionSig _glXCreateGLXPixmapMESA_sig = {2649, "glXCreateGLXPixmapMESA", 4, _glXCreateGLXPixmapMESA_args};
+
+static const char * _glXReleaseBuffersMESA_args[2] = {"dpy", "drawable"};
+static const trace::FunctionSig _glXReleaseBuffersMESA_sig = {2650, "glXReleaseBuffersMESA", 2, _glXReleaseBuffersMESA_args};
+
+static const char * _glXSet3DfxModeMESA_args[1] = {"mode"};
+static const trace::FunctionSig _glXSet3DfxModeMESA_sig = {2651, "glXSet3DfxModeMESA", 1, _glXSet3DfxModeMESA_args};
+
+static const char * _glXSwapIntervalMESA_args[1] = {"interval"};
+static const trace::FunctionSig _glXSwapIntervalMESA_sig = {2652, "glXSwapIntervalMESA", 1, _glXSwapIntervalMESA_args};
+
+static const char ** _glXGetSwapIntervalMESA_args = NULL;
+static const trace::FunctionSig _glXGetSwapIntervalMESA_sig = {2653, "glXGetSwapIntervalMESA", 0, _glXGetSwapIntervalMESA_args};
+
+static const char * _glXGetSyncValuesOML_args[5] = {"dpy", "drawable", "ust", "msc", "sbc"};
+static const trace::FunctionSig _glXGetSyncValuesOML_sig = {2654, "glXGetSyncValuesOML", 5, _glXGetSyncValuesOML_args};
+
+static const char * _glXGetMscRateOML_args[4] = {"dpy", "drawable", "numerator", "denominator"};
+static const trace::FunctionSig _glXGetMscRateOML_sig = {2655, "glXGetMscRateOML", 4, _glXGetMscRateOML_args};
+
+static const char * _glXSwapBuffersMscOML_args[5] = {"dpy", "drawable", "target_msc", "divisor", "remainder"};
+static const trace::FunctionSig _glXSwapBuffersMscOML_sig = {2656, "glXSwapBuffersMscOML", 5, _glXSwapBuffersMscOML_args};
+
+static const char * _glXWaitForMscOML_args[8] = {"dpy", "drawable", "target_msc", "divisor", "remainder", "ust", "msc", "sbc"};
+static const trace::FunctionSig _glXWaitForMscOML_sig = {2657, "glXWaitForMscOML", 8, _glXWaitForMscOML_args};
+
+static const char * _glXWaitForSbcOML_args[6] = {"dpy", "drawable", "target_sbc", "ust", "msc", "sbc"};
+static const trace::FunctionSig _glXWaitForSbcOML_sig = {2658, "glXWaitForSbcOML", 6, _glXWaitForSbcOML_args};
+
+static const char * _glXGetAGPOffsetMESA_args[1] = {"pointer"};
+static const trace::FunctionSig _glXGetAGPOffsetMESA_sig = {2659, "glXGetAGPOffsetMESA", 1, _glXGetAGPOffsetMESA_args};
+
+static const char * _glXBindTexImageEXT_args[4] = {"display", "drawable", "buffer", "attrib_list"};
+static const trace::FunctionSig _glXBindTexImageEXT_sig = {2660, "glXBindTexImageEXT", 4, _glXBindTexImageEXT_args};
+
+static const char * _glXReleaseTexImageEXT_args[3] = {"display", "drawable", "buffer"};
+static const trace::FunctionSig _glXReleaseTexImageEXT_sig = {2661, "glXReleaseTexImageEXT", 3, _glXReleaseTexImageEXT_args};
+
+static const char * _glXJoinSwapGroupNV_args[3] = {"dpy", "drawable", "group"};
+static const trace::FunctionSig _glXJoinSwapGroupNV_sig = {2662, "glXJoinSwapGroupNV", 3, _glXJoinSwapGroupNV_args};
+
+static const char * _glXBindSwapBarrierNV_args[3] = {"dpy", "group", "barrier"};
+static const trace::FunctionSig _glXBindSwapBarrierNV_sig = {2663, "glXBindSwapBarrierNV", 3, _glXBindSwapBarrierNV_args};
+
+static const char * _glXQuerySwapGroupNV_args[4] = {"dpy", "drawable", "group", "barrier"};
+static const trace::FunctionSig _glXQuerySwapGroupNV_sig = {2664, "glXQuerySwapGroupNV", 4, _glXQuerySwapGroupNV_args};
+
+static const char * _glXQueryMaxSwapGroupsNV_args[4] = {"dpy", "screen", "maxGroups", "maxBarriers"};
+static const trace::FunctionSig _glXQueryMaxSwapGroupsNV_sig = {2665, "glXQueryMaxSwapGroupsNV", 4, _glXQueryMaxSwapGroupsNV_args};
+
+static const char * _glXQueryFrameCountNV_args[3] = {"dpy", "screen", "count"};
+static const trace::FunctionSig _glXQueryFrameCountNV_sig = {2666, "glXQueryFrameCountNV", 3, _glXQueryFrameCountNV_args};
+
+static const char * _glXResetFrameCountNV_args[2] = {"dpy", "screen"};
+static const trace::FunctionSig _glXResetFrameCountNV_sig = {2667, "glXResetFrameCountNV", 2, _glXResetFrameCountNV_args};
+
+static const char * _glXSwapIntervalEXT_args[3] = {"dpy", "drawable", "interval"};
+static const trace::FunctionSig _glXSwapIntervalEXT_sig = {2668, "glXSwapIntervalEXT", 3, _glXSwapIntervalEXT_args};
+
+static const char * _glXCopyImageSubDataNV_args[18] = {"dpy", "srcCtx", "srcName", "srcTarget", "srcLevel", "srcX", "srcY", "srcZ", "dstCtx", "dstName", "dstTarget", "dstLevel", "dstX", "dstY", "dstZ", "width", "height", "depth"};
+static const trace::FunctionSig _glXCopyImageSubDataNV_sig = {2669, "glXCopyImageSubDataNV", 18, _glXCopyImageSubDataNV_args};
+
+static const char * _glXAllocateMemoryNV_args[4] = {"size", "readfreq", "writefreq", "priority"};
+static const trace::FunctionSig _glXAllocateMemoryNV_sig = {2670, "glXAllocateMemoryNV", 4, _glXAllocateMemoryNV_args};
+
+static const char * _glXFreeMemoryNV_args[1] = {"pointer"};
+static const trace::FunctionSig _glXFreeMemoryNV_sig = {2671, "glXFreeMemoryNV", 1, _glXFreeMemoryNV_args};
+
+static const char * _glXGetProcAddressARB_args[1] = {"procName"};
+static const trace::FunctionSig _glXGetProcAddressARB_sig = {2672, "glXGetProcAddressARB", 1, _glXGetProcAddressARB_args};
+
+static const char * _glXGetProcAddress_args[1] = {"procName"};
+static const trace::FunctionSig _glXGetProcAddress_sig = {2673, "glXGetProcAddress", 1, _glXGetProcAddress_args};
+
+// decl end - glx
+#endif // REGAL_SYS_GLX
+
+#if REGAL_SYS_WGL
+// decl bgn - wgl
+static const char * _wglCreateContext_args[1] = {"hdc"};
+static const trace::FunctionSig _wglCreateContext_sig = {2674, "wglCreateContext", 1, _wglCreateContext_args};
+
+static const char * _wglDeleteContext_args[1] = {"hglrc"};
+static const trace::FunctionSig _wglDeleteContext_sig = {2675, "wglDeleteContext", 1, _wglDeleteContext_args};
+
+static const char ** _wglGetCurrentContext_args = NULL;
+static const trace::FunctionSig _wglGetCurrentContext_sig = {2676, "wglGetCurrentContext", 0, _wglGetCurrentContext_args};
+
+static const char * _wglMakeCurrent_args[2] = {"hdc", "hglrc"};
+static const trace::FunctionSig _wglMakeCurrent_sig = {2677, "wglMakeCurrent", 2, _wglMakeCurrent_args};
+
+static const char * _wglCopyContext_args[3] = {"hglrcSrc", "hglrcDst", "mask"};
+static const trace::FunctionSig _wglCopyContext_sig = {2678, "wglCopyContext", 3, _wglCopyContext_args};
+
+static const char * _wglChoosePixelFormat_args[2] = {"hdc", "ppfd"};
+static const trace::FunctionSig _wglChoosePixelFormat_sig = {2679, "wglChoosePixelFormat", 2, _wglChoosePixelFormat_args};
+
+static const char * _wglDescribePixelFormat_args[4] = {"hdc", "iPixelFormat", "nBytes", "ppfd"};
+static const trace::FunctionSig _wglDescribePixelFormat_sig = {2680, "wglDescribePixelFormat", 4, _wglDescribePixelFormat_args};
+
+static const char ** _wglGetCurrentDC_args = NULL;
+static const trace::FunctionSig _wglGetCurrentDC_sig = {2681, "wglGetCurrentDC", 0, _wglGetCurrentDC_args};
+
+static const char * _wglGetDefaultProcAddress_args[1] = {"lpszProc"};
+static const trace::FunctionSig _wglGetDefaultProcAddress_sig = {2682, "wglGetDefaultProcAddress", 1, _wglGetDefaultProcAddress_args};
+
+static const char * _wglGetPixelFormat_args[1] = {"hdc"};
+static const trace::FunctionSig _wglGetPixelFormat_sig = {2683, "wglGetPixelFormat", 1, _wglGetPixelFormat_args};
+
+static const char * _wglSetPixelFormat_args[3] = {"hdc", "iPixelFormat", "ppfd"};
+static const trace::FunctionSig _wglSetPixelFormat_sig = {2684, "wglSetPixelFormat", 3, _wglSetPixelFormat_args};
+
+static const char * _wglSwapBuffers_args[1] = {"hdc"};
+static const trace::FunctionSig _wglSwapBuffers_sig = {2685, "wglSwapBuffers", 1, _wglSwapBuffers_args};
+
+static const char * _wglShareLists_args[2] = {"hglrc1", "hglrc2"};
+static const trace::FunctionSig _wglShareLists_sig = {2686, "wglShareLists", 2, _wglShareLists_args};
+
+static const char * _wglCreateLayerContext_args[2] = {"hdc", "iLayerPlane"};
+static const trace::FunctionSig _wglCreateLayerContext_sig = {2687, "wglCreateLayerContext", 2, _wglCreateLayerContext_args};
+
+static const char * _wglDescribeLayerPlane_args[5] = {"hdc", "iPixelFormat", "iLayerPlane", "nBytes", "plpd"};
+static const trace::FunctionSig _wglDescribeLayerPlane_sig = {2688, "wglDescribeLayerPlane", 5, _wglDescribeLayerPlane_args};
+
+static const char * _wglSetLayerPaletteEntries_args[5] = {"hdc", "iLayerPlane", "iStart", "cEntries", "pcr"};
+static const trace::FunctionSig _wglSetLayerPaletteEntries_sig = {2689, "wglSetLayerPaletteEntries", 5, _wglSetLayerPaletteEntries_args};
+
+static const char * _wglGetLayerPaletteEntries_args[5] = {"hdc", "iLayerPlane", "iStart", "cEntries", "pcr"};
+static const trace::FunctionSig _wglGetLayerPaletteEntries_sig = {2690, "wglGetLayerPaletteEntries", 5, _wglGetLayerPaletteEntries_args};
+
+static const char * _wglRealizeLayerPalette_args[3] = {"hdc", "iLayerPlane", "bRealize"};
+static const trace::FunctionSig _wglRealizeLayerPalette_sig = {2691, "wglRealizeLayerPalette", 3, _wglRealizeLayerPalette_args};
+
+static const char * _wglSwapLayerBuffers_args[2] = {"hdc", "fuPlanes"};
+static const trace::FunctionSig _wglSwapLayerBuffers_sig = {2692, "wglSwapLayerBuffers", 2, _wglSwapLayerBuffers_args};
+
+static const char * _wglUseFontBitmapsA_args[4] = {"hdc", "first", "count", "listBase"};
+static const trace::FunctionSig _wglUseFontBitmapsA_sig = {2693, "wglUseFontBitmapsA", 4, _wglUseFontBitmapsA_args};
+
+static const char * _wglUseFontBitmapsW_args[4] = {"hdc", "first", "count", "listBase"};
+static const trace::FunctionSig _wglUseFontBitmapsW_sig = {2694, "wglUseFontBitmapsW", 4, _wglUseFontBitmapsW_args};
+
+static const char * _wglSwapMultipleBuffers_args[2] = {"n", "ps"};
+static const trace::FunctionSig _wglSwapMultipleBuffers_sig = {2695, "wglSwapMultipleBuffers", 2, _wglSwapMultipleBuffers_args};
+
+static const char * _wglUseFontOutlinesA_args[8] = {"hdc", "first", "count", "listBase", "deviation", "extrusion", "format", "lpgmf"};
+static const trace::FunctionSig _wglUseFontOutlinesA_sig = {2696, "wglUseFontOutlinesA", 8, _wglUseFontOutlinesA_args};
+
+static const char * _wglUseFontOutlinesW_args[8] = {"hdc", "first", "count", "listBase", "deviation", "extrusion", "format", "lpgmf"};
+static const trace::FunctionSig _wglUseFontOutlinesW_sig = {2697, "wglUseFontOutlinesW", 8, _wglUseFontOutlinesW_args};
+
+static const char * _wglCreateBufferRegionARB_args[3] = {"hDC", "iLayerPlane", "uType"};
+static const trace::FunctionSig _wglCreateBufferRegionARB_sig = {2698, "wglCreateBufferRegionARB", 3, _wglCreateBufferRegionARB_args};
+
+static const char * _wglDeleteBufferRegionARB_args[1] = {"hRegion"};
+static const trace::FunctionSig _wglDeleteBufferRegionARB_sig = {2699, "wglDeleteBufferRegionARB", 1, _wglDeleteBufferRegionARB_args};
+
+static const char * _wglSaveBufferRegionARB_args[5] = {"hRegion", "x", "y", "width", "height"};
+static const trace::FunctionSig _wglSaveBufferRegionARB_sig = {2700, "wglSaveBufferRegionARB", 5, _wglSaveBufferRegionARB_args};
+
+static const char * _wglRestoreBufferRegionARB_args[7] = {"hRegion", "x", "y", "width", "height", "xSrc", "ySrc"};
+static const trace::FunctionSig _wglRestoreBufferRegionARB_sig = {2701, "wglRestoreBufferRegionARB", 7, _wglRestoreBufferRegionARB_args};
+
+static const char * _wglGetExtensionsStringARB_args[1] = {"hdc"};
+static const trace::FunctionSig _wglGetExtensionsStringARB_sig = {2702, "wglGetExtensionsStringARB", 1, _wglGetExtensionsStringARB_args};
+
+static const char * _wglGetPixelFormatAttribivARB_args[6] = {"hdc", "iPixelFormat", "iLayerPlane", "nAttributes", "piAttributes", "piValues"};
+static const trace::FunctionSig _wglGetPixelFormatAttribivARB_sig = {2703, "wglGetPixelFormatAttribivARB", 6, _wglGetPixelFormatAttribivARB_args};
+
+static const char * _wglGetPixelFormatAttribfvARB_args[6] = {"hdc", "iPixelFormat", "iLayerPlane", "nAttributes", "piAttributes", "pfValues"};
+static const trace::FunctionSig _wglGetPixelFormatAttribfvARB_sig = {2704, "wglGetPixelFormatAttribfvARB", 6, _wglGetPixelFormatAttribfvARB_args};
+
+static const char * _wglChoosePixelFormatARB_args[6] = {"hdc", "piAttribIList", "pfAttribFList", "nMaxFormats", "piFormats", "nNumFormats"};
+static const trace::FunctionSig _wglChoosePixelFormatARB_sig = {2705, "wglChoosePixelFormatARB", 6, _wglChoosePixelFormatARB_args};
+
+static const char * _wglMakeContextCurrentARB_args[3] = {"hDrawDC", "hReadDC", "hglrc"};
+static const trace::FunctionSig _wglMakeContextCurrentARB_sig = {2706, "wglMakeContextCurrentARB", 3, _wglMakeContextCurrentARB_args};
+
+static const char ** _wglGetCurrentReadDCARB_args = NULL;
+static const trace::FunctionSig _wglGetCurrentReadDCARB_sig = {2707, "wglGetCurrentReadDCARB", 0, _wglGetCurrentReadDCARB_args};
+
+static const char * _wglCreatePbufferARB_args[5] = {"hDC", "iPixelFormat", "iWidth", "iHeight", "piAttribList"};
+static const trace::FunctionSig _wglCreatePbufferARB_sig = {2708, "wglCreatePbufferARB", 5, _wglCreatePbufferARB_args};
+
+static const char * _wglGetPbufferDCARB_args[1] = {"hPbuffer"};
+static const trace::FunctionSig _wglGetPbufferDCARB_sig = {2709, "wglGetPbufferDCARB", 1, _wglGetPbufferDCARB_args};
+
+static const char * _wglReleasePbufferDCARB_args[2] = {"hPbuffer", "hDC"};
+static const trace::FunctionSig _wglReleasePbufferDCARB_sig = {2710, "wglReleasePbufferDCARB", 2, _wglReleasePbufferDCARB_args};
+
+static const char * _wglDestroyPbufferARB_args[1] = {"hPbuffer"};
+static const trace::FunctionSig _wglDestroyPbufferARB_sig = {2711, "wglDestroyPbufferARB", 1, _wglDestroyPbufferARB_args};
+
+static const char * _wglQueryPbufferARB_args[3] = {"hPbuffer", "iAttribute", "piValue"};
+static const trace::FunctionSig _wglQueryPbufferARB_sig = {2712, "wglQueryPbufferARB", 3, _wglQueryPbufferARB_args};
+
+static const char * _wglBindTexImageARB_args[2] = {"hPbuffer", "iBuffer"};
+static const trace::FunctionSig _wglBindTexImageARB_sig = {2713, "wglBindTexImageARB", 2, _wglBindTexImageARB_args};
+
+static const char * _wglReleaseTexImageARB_args[2] = {"hPbuffer", "iBuffer"};
+static const trace::FunctionSig _wglReleaseTexImageARB_sig = {2714, "wglReleaseTexImageARB", 2, _wglReleaseTexImageARB_args};
+
+static const char * _wglSetPbufferAttribARB_args[2] = {"hPbuffer", "piAttribList"};
+static const trace::FunctionSig _wglSetPbufferAttribARB_sig = {2715, "wglSetPbufferAttribARB", 2, _wglSetPbufferAttribARB_args};
+
+static const char * _wglCreateContextAttribsARB_args[3] = {"hDC", "hShareContext", "attribList"};
+static const trace::FunctionSig _wglCreateContextAttribsARB_sig = {2716, "wglCreateContextAttribsARB", 3, _wglCreateContextAttribsARB_args};
+
+static const char ** _wglGetExtensionsStringEXT_args = NULL;
+static const trace::FunctionSig _wglGetExtensionsStringEXT_sig = {2717, "wglGetExtensionsStringEXT", 0, _wglGetExtensionsStringEXT_args};
+
+static const char * _wglMakeContextCurrentEXT_args[3] = {"hDrawDC", "hReadDC", "hglrc"};
+static const trace::FunctionSig _wglMakeContextCurrentEXT_sig = {2718, "wglMakeContextCurrentEXT", 3, _wglMakeContextCurrentEXT_args};
+
+static const char ** _wglGetCurrentReadDCEXT_args = NULL;
+static const trace::FunctionSig _wglGetCurrentReadDCEXT_sig = {2719, "wglGetCurrentReadDCEXT", 0, _wglGetCurrentReadDCEXT_args};
+
+static const char * _wglGetPixelFormatAttribivEXT_args[6] = {"hdc", "iPixelFormat", "iLayerPlane", "nAttributes", "piAttributes", "piValues"};
+static const trace::FunctionSig _wglGetPixelFormatAttribivEXT_sig = {2720, "wglGetPixelFormatAttribivEXT", 6, _wglGetPixelFormatAttribivEXT_args};
+
+static const char * _wglGetPixelFormatAttribfvEXT_args[6] = {"hdc", "iPixelFormat", "iLayerPlane", "nAttributes", "piAttributes", "pfValues"};
+static const trace::FunctionSig _wglGetPixelFormatAttribfvEXT_sig = {2721, "wglGetPixelFormatAttribfvEXT", 6, _wglGetPixelFormatAttribfvEXT_args};
+
+static const char * _wglChoosePixelFormatEXT_args[6] = {"hdc", "piAttribIList", "pfAttribFList", "nMaxFormats", "piFormats", "nNumFormats"};
+static const trace::FunctionSig _wglChoosePixelFormatEXT_sig = {2722, "wglChoosePixelFormatEXT", 6, _wglChoosePixelFormatEXT_args};
+
+static const char * _wglSwapIntervalEXT_args[1] = {"interval"};
+static const trace::FunctionSig _wglSwapIntervalEXT_sig = {2723, "wglSwapIntervalEXT", 1, _wglSwapIntervalEXT_args};
+
+static const char ** _wglGetSwapIntervalEXT_args = NULL;
+static const trace::FunctionSig _wglGetSwapIntervalEXT_sig = {2724, "wglGetSwapIntervalEXT", 0, _wglGetSwapIntervalEXT_args};
+
+static const char * _wglAllocateMemoryNV_args[4] = {"size", "readfreq", "writefreq", "priority"};
+static const trace::FunctionSig _wglAllocateMemoryNV_sig = {2725, "wglAllocateMemoryNV", 4, _wglAllocateMemoryNV_args};
+
+static const char * _wglFreeMemoryNV_args[1] = {"pointer"};
+static const trace::FunctionSig _wglFreeMemoryNV_sig = {2726, "wglFreeMemoryNV", 1, _wglFreeMemoryNV_args};
+
+static const char * _wglGetProcAddress_args[1] = {"lpszProc"};
+static const trace::FunctionSig _wglGetProcAddress_sig = {2727, "wglGetProcAddress", 1, _wglGetProcAddress_args};
+
+// decl end - wgl
+#endif // REGAL_SYS_WGL
 
 
 namespace Regal { namespace Trace {
 
-// impl bgn - gfx
 void glCullFace( GLenum mode ) {
     unsigned _call = trace::localWriter.beginEnter(&_glCullFace_sig);
     trace::localWriter.beginArg(0);
@@ -75454,9 +76410,14 @@ void glGetQueryObjectuivEXT( GLuint id, GLenum pname, GLuint * params ) {
     trace::localWriter.endLeave();
 }
 
-// impl end - gfx
 
-// impl bgn - cgl
+} /* namespace Trace */ } /* namespace Regal */
+
+
+#if REGAL_SYS_OSX
+
+namespace Regal { namespace Trace {
+
 CGLError CGLSetCurrentContext( CGLContextObj ctx ) {
     CGLError _result;
     unsigned _call = trace::localWriter.beginEnter(&_CGLSetCurrentContext_sig);
@@ -76863,9 +77824,15 @@ CGLError CGLUpdateContext( CGLContextObj ctx ) {
     return _result;
 }
 
-// impl end - cgl
 
-// impl bgn - egl
+} /* namespace Trace */ } /* namespace Regal */
+
+#endif // REGAL_SYS_OSX
+
+#if REGAL_SYS_EGL
+
+namespace Regal { namespace Trace {
+
 EGLint eglGetError(  ) {
     EGLint _result;
     unsigned _call = trace::localWriter.beginEnter(&_eglGetError_sig);
@@ -78319,10 +79286,4274 @@ EGLuint64NV eglGetSystemTimeNV(  ) {
     return _result;
 }
 
-// impl end - egl
+
+} /* namespace Trace */ } /* namespace Regal */
+
+#endif // REGAL_SYS_EGL
+
+#if REGAL_SYS_GLX
+
+namespace Regal { namespace Trace {
+
+XVisualInfo * glXChooseVisual( Display * dpy, int screen, int * attribList ) {
+    XVisualInfo * _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXChooseVisual_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(screen);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    if (attribList) {
+        size_t _cint2 = _AttribList_size(attribList) > 0 ? _AttribList_size(attribList) : 0;
+        trace::localWriter.beginArray(_cint2);
+        for (size_t _iint2 = 0; _iint2 < _cint2; ++_iint2) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writeEnum(&_enumint2_sig, (attribList)[_iint2]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXChooseVisual(dpy, screen, attribList);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    if (_result) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.beginStruct(&_structXVisualInfo_sig);
+    trace::localWriter.writePointer((uintptr_t)(*_result).visual);
+    trace::localWriter.writeUInt((*_result).visualid);
+    trace::localWriter.writeSInt((*_result).screen);
+    trace::localWriter.writeSInt((*_result).depth);
+    trace::localWriter.writeSInt((*_result).c_class);
+    trace::localWriter.writeUInt((*_result).red_mask);
+    trace::localWriter.writeUInt((*_result).green_mask);
+    trace::localWriter.writeUInt((*_result).blue_mask);
+    trace::localWriter.writeSInt((*_result).colormap_size);
+    trace::localWriter.writeSInt((*_result).bits_per_rgb);
+    trace::localWriter.endStruct();
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+GLXContext glXCreateContext( Display * dpy, XVisualInfo * vis, GLXContext shareList, int direct ) {
+    GLXContext _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXCreateContext_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    if (vis) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.beginStruct(&_structXVisualInfo_sig);
+    trace::localWriter.writePointer((uintptr_t)(*vis).visual);
+    trace::localWriter.writeUInt((*vis).visualid);
+    trace::localWriter.writeSInt((*vis).screen);
+    trace::localWriter.writeSInt((*vis).depth);
+    trace::localWriter.writeSInt((*vis).c_class);
+    trace::localWriter.writeUInt((*vis).red_mask);
+    trace::localWriter.writeUInt((*vis).green_mask);
+    trace::localWriter.writeUInt((*vis).blue_mask);
+    trace::localWriter.writeSInt((*vis).colormap_size);
+    trace::localWriter.writeSInt((*vis).bits_per_rgb);
+    trace::localWriter.endStruct();
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writePointer((uintptr_t)shareList);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeEnum(&_enumint1_sig, direct);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXCreateContext(dpy, vis, shareList, direct);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writePointer((uintptr_t)_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+void glXDestroyContext( Display * dpy, GLXContext ctx ) {
+    unsigned _call = trace::localWriter.beginEnter(&_glXDestroyContext_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writePointer((uintptr_t)ctx);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _glXDestroyContext(dpy, ctx);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.endLeave();
+}
+
+int glXMakeCurrent( Display * dpy, GLXDrawable drawable, GLXContext ctx ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXMakeCurrent_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(drawable);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writePointer((uintptr_t)ctx);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXMakeCurrent(dpy, drawable, ctx);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumint1_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+void glXCopyContext( Display * dpy, GLXContext src, GLXContext dst, unsigned long mask ) {
+    unsigned _call = trace::localWriter.beginEnter(&_glXCopyContext_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writePointer((uintptr_t)src);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writePointer((uintptr_t)dst);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeUInt(mask);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _glXCopyContext(dpy, src, dst, mask);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.endLeave();
+}
+
+void glXSwapBuffers( Display * dpy, GLXDrawable drawable ) {
+    unsigned _call = trace::localWriter.beginEnter(&_glXSwapBuffers_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(drawable);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _glXSwapBuffers(dpy, drawable);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.endLeave();
+}
+
+GLXPixmap glXCreateGLXPixmap( Display * dpy, XVisualInfo * visual, Pixmap pixmap ) {
+    GLXPixmap _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXCreateGLXPixmap_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    if (visual) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.beginStruct(&_structXVisualInfo_sig);
+    trace::localWriter.writePointer((uintptr_t)(*visual).visual);
+    trace::localWriter.writeUInt((*visual).visualid);
+    trace::localWriter.writeSInt((*visual).screen);
+    trace::localWriter.writeSInt((*visual).depth);
+    trace::localWriter.writeSInt((*visual).c_class);
+    trace::localWriter.writeUInt((*visual).red_mask);
+    trace::localWriter.writeUInt((*visual).green_mask);
+    trace::localWriter.writeUInt((*visual).blue_mask);
+    trace::localWriter.writeSInt((*visual).colormap_size);
+    trace::localWriter.writeSInt((*visual).bits_per_rgb);
+    trace::localWriter.endStruct();
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeUInt(pixmap);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXCreateGLXPixmap(dpy, visual, pixmap);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeUInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+void glXDestroyGLXPixmap( Display * dpy, GLXPixmap pixmap ) {
+    unsigned _call = trace::localWriter.beginEnter(&_glXDestroyGLXPixmap_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(pixmap);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _glXDestroyGLXPixmap(dpy, pixmap);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.endLeave();
+}
+
+int glXQueryExtension( Display * dpy, int * errorb, int * event ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXQueryExtension_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXQueryExtension(dpy, errorb, event);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    trace::localWriter.beginArg(1);
+    if (errorb) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.writeSInt(*errorb);
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    if (event) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.writeSInt(*event);
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumint1_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int glXQueryVersion( Display * dpy, int * maj, int * min ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXQueryVersion_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXQueryVersion(dpy, maj, min);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    trace::localWriter.beginArg(1);
+    if (maj) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.writeSInt(*maj);
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    if (min) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.writeSInt(*min);
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumint1_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int glXIsDirect( Display * dpy, GLXContext ctx ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXIsDirect_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writePointer((uintptr_t)ctx);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXIsDirect(dpy, ctx);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumint1_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int glXGetConfig( Display * dpy, XVisualInfo * visual, int attrib, int * value ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXGetConfig_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    if (visual) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.beginStruct(&_structXVisualInfo_sig);
+    trace::localWriter.writePointer((uintptr_t)(*visual).visual);
+    trace::localWriter.writeUInt((*visual).visualid);
+    trace::localWriter.writeSInt((*visual).screen);
+    trace::localWriter.writeSInt((*visual).depth);
+    trace::localWriter.writeSInt((*visual).c_class);
+    trace::localWriter.writeUInt((*visual).red_mask);
+    trace::localWriter.writeUInt((*visual).green_mask);
+    trace::localWriter.writeUInt((*visual).blue_mask);
+    trace::localWriter.writeSInt((*visual).colormap_size);
+    trace::localWriter.writeSInt((*visual).bits_per_rgb);
+    trace::localWriter.endStruct();
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeEnum(&_enumint2_sig, attrib);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXGetConfig(dpy, visual, attrib, value);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    trace::localWriter.beginArg(3);
+    if (value) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.writeSInt(*value);
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumint3_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+GLXContext glXGetCurrentContext(  ) {
+    GLXContext _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXGetCurrentContext_sig);
+    trace::localWriter.endEnter();
+    _result = _glXGetCurrentContext();
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writePointer((uintptr_t)_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+GLXDrawable glXGetCurrentDrawable(  ) {
+    GLXDrawable _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXGetCurrentDrawable_sig);
+    trace::localWriter.endEnter();
+    _result = _glXGetCurrentDrawable();
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeUInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+void glXWaitGL(  ) {
+    unsigned _call = trace::localWriter.beginEnter(&_glXWaitGL_sig);
+    trace::localWriter.endEnter();
+    _glXWaitGL();
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.endLeave();
+}
+
+void glXWaitX(  ) {
+    unsigned _call = trace::localWriter.beginEnter(&_glXWaitX_sig);
+    trace::localWriter.endEnter();
+    _glXWaitX();
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.endLeave();
+}
+
+void glXUseXFont( Font font, int first, int count, int list ) {
+    unsigned _call = trace::localWriter.beginEnter(&_glXUseXFont_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writeUInt(font);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(first);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeSInt(count);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeSInt(list);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _glXUseXFont(font, first, count, list);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.endLeave();
+}
+
+const char * glXQueryExtensionsString( Display * dpy, int screen ) {
+    const char * _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXQueryExtensionsString_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(screen);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXQueryExtensionsString(dpy, screen);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeString(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+const char * glXQueryServerString( Display * dpy, int screen, int name ) {
+    const char * _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXQueryServerString_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(screen);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeEnum(&_enumint4_sig, name);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXQueryServerString(dpy, screen, name);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeString(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+const char * glXGetClientString( Display * dpy, int name ) {
+    const char * _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXGetClientString_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeEnum(&_enumint4_sig, name);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXGetClientString(dpy, name);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeString(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+Display * glXGetCurrentDisplay(  ) {
+    Display * _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXGetCurrentDisplay_sig);
+    trace::localWriter.endEnter();
+    _result = _glXGetCurrentDisplay();
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writePointer((uintptr_t)_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+GLXFBConfig * glXChooseFBConfig( Display * dpy, int screen, const int * attribList, int * nitems ) {
+    GLXFBConfig * _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXChooseFBConfig_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(screen);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    if (attribList) {
+        size_t _cCint2 = _AttribPairList_size(attribList) > 0 ? _AttribPairList_size(attribList) : 0;
+        trace::localWriter.beginArray(_cCint2);
+        for (size_t _iCint2 = 0; _iCint2 < _cCint2; ++_iCint2) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writeEnum(&_enumint2_sig, (attribList)[_iCint2]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXChooseFBConfig(dpy, screen, attribList, nitems);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    trace::localWriter.beginArg(3);
+    if (nitems) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.writeSInt(*nitems);
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    }
+    trace::localWriter.beginReturn();
+    if (_result) {
+        size_t _cGLXFBConfig = *nitems > 0 ? *nitems : 0;
+        trace::localWriter.beginArray(_cGLXFBConfig);
+        for (size_t _iGLXFBConfig = 0; _iGLXFBConfig < _cGLXFBConfig; ++_iGLXFBConfig) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writePointer((uintptr_t)(_result)[_iGLXFBConfig]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int glXGetFBConfigAttrib( Display * dpy, GLXFBConfig config, int attribute, int * value ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXGetFBConfigAttrib_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writePointer((uintptr_t)config);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeEnum(&_enumint2_sig, attribute);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXGetFBConfigAttrib(dpy, config, attribute, value);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    trace::localWriter.beginArg(3);
+    if (value) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.writeSInt(*value);
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeSInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+GLXFBConfig * glXGetFBConfigs( Display * dpy, int screen, int * nelements ) {
+    GLXFBConfig * _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXGetFBConfigs_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(screen);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXGetFBConfigs(dpy, screen, nelements);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    trace::localWriter.beginArg(2);
+    if (nelements) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.writeSInt(*nelements);
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    }
+    trace::localWriter.beginReturn();
+    if (_result) {
+        size_t _cGLXFBConfig = *nelements > 0 ? *nelements : 0;
+        trace::localWriter.beginArray(_cGLXFBConfig);
+        for (size_t _iGLXFBConfig = 0; _iGLXFBConfig < _cGLXFBConfig; ++_iGLXFBConfig) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writePointer((uintptr_t)(_result)[_iGLXFBConfig]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+XVisualInfo * glXGetVisualFromFBConfig( Display * dpy, GLXFBConfig config ) {
+    XVisualInfo * _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXGetVisualFromFBConfig_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writePointer((uintptr_t)config);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXGetVisualFromFBConfig(dpy, config);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    if (_result) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.beginStruct(&_structXVisualInfo_sig);
+    trace::localWriter.writePointer((uintptr_t)(*_result).visual);
+    trace::localWriter.writeUInt((*_result).visualid);
+    trace::localWriter.writeSInt((*_result).screen);
+    trace::localWriter.writeSInt((*_result).depth);
+    trace::localWriter.writeSInt((*_result).c_class);
+    trace::localWriter.writeUInt((*_result).red_mask);
+    trace::localWriter.writeUInt((*_result).green_mask);
+    trace::localWriter.writeUInt((*_result).blue_mask);
+    trace::localWriter.writeSInt((*_result).colormap_size);
+    trace::localWriter.writeSInt((*_result).bits_per_rgb);
+    trace::localWriter.endStruct();
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+GLXWindow glXCreateWindow( Display * dpy, GLXFBConfig config, Window win, const int * attribList ) {
+    GLXWindow _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXCreateWindow_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writePointer((uintptr_t)config);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeUInt(win);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    if (attribList) {
+        size_t _cCint = _AttribPairList_size(attribList) > 0 ? _AttribPairList_size(attribList) : 0;
+        trace::localWriter.beginArray(_cCint);
+        for (size_t _iCint = 0; _iCint < _cCint; ++_iCint) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writeSInt((attribList)[_iCint]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXCreateWindow(dpy, config, win, attribList);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeUInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+void glXDestroyWindow( Display * dpy, GLXWindow window ) {
+    unsigned _call = trace::localWriter.beginEnter(&_glXDestroyWindow_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(window);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _glXDestroyWindow(dpy, window);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.endLeave();
+}
+
+GLXPixmap glXCreatePixmap( Display * dpy, GLXFBConfig config, Pixmap pixmap, const int * attribList ) {
+    GLXPixmap _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXCreatePixmap_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writePointer((uintptr_t)config);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeUInt(pixmap);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    if (attribList) {
+        size_t _cCint1 = _AttribPairList_size(attribList) > 0 ? _AttribPairList_size(attribList) : 0;
+        trace::localWriter.beginArray(_cCint1);
+        for (size_t _iCint1 = 0; _iCint1 < _cCint1; ++_iCint1) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writeSInt((attribList)[_iCint1]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXCreatePixmap(dpy, config, pixmap, attribList);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeUInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+void glXDestroyPixmap( Display * dpy, GLXPixmap pixmap ) {
+    unsigned _call = trace::localWriter.beginEnter(&_glXDestroyPixmap_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(pixmap);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _glXDestroyPixmap(dpy, pixmap);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.endLeave();
+}
+
+GLXPbuffer glXCreatePbuffer( Display * dpy, GLXFBConfig config, const int * attribList ) {
+    GLXPbuffer _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXCreatePbuffer_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writePointer((uintptr_t)config);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    if (attribList) {
+        size_t _cCint6 = _AttribPairList_size(attribList) > 0 ? _AttribPairList_size(attribList) : 0;
+        trace::localWriter.beginArray(_cCint6);
+        for (size_t _iCint6 = 0; _iCint6 < _cCint6; ++_iCint6) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writeEnum(&_enumint6_sig, (attribList)[_iCint6]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXCreatePbuffer(dpy, config, attribList);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeUInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+void glXDestroyPbuffer( Display * dpy, GLXPbuffer pbuf ) {
+    unsigned _call = trace::localWriter.beginEnter(&_glXDestroyPbuffer_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(pbuf);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _glXDestroyPbuffer(dpy, pbuf);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.endLeave();
+}
+
+void glXQueryDrawable( Display * dpy, GLXDrawable draw, int attribute, unsigned int * value ) {
+    unsigned _call = trace::localWriter.beginEnter(&_glXQueryDrawable_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(draw);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeEnum(&_enumint6_sig, attribute);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _glXQueryDrawable(dpy, draw, attribute, value);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    trace::localWriter.beginArg(3);
+    if (value) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.writeUInt(*value);
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    }
+    trace::localWriter.endLeave();
+}
+
+GLXContext glXCreateNewContext( Display * dpy, GLXFBConfig config, int renderType, GLXContext shareList, int direct ) {
+    GLXContext _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXCreateNewContext_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writePointer((uintptr_t)config);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeEnum(&_enumint6_sig, renderType);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writePointer((uintptr_t)shareList);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(4);
+    trace::localWriter.writeEnum(&_enumint1_sig, direct);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXCreateNewContext(dpy, config, renderType, shareList, direct);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writePointer((uintptr_t)_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int glXMakeContextCurrent( Display * dpy, GLXDrawable draw, GLXDrawable read, GLXContext ctx ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXMakeContextCurrent_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(draw);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeUInt(read);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writePointer((uintptr_t)ctx);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXMakeContextCurrent(dpy, draw, read, ctx);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumint1_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+GLXDrawable glXGetCurrentReadDrawable(  ) {
+    GLXDrawable _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXGetCurrentReadDrawable_sig);
+    trace::localWriter.endEnter();
+    _result = _glXGetCurrentReadDrawable();
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeUInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int glXQueryContext( Display * dpy, GLXContext ctx, int attribute, int * value ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXQueryContext_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writePointer((uintptr_t)ctx);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeEnum(&_enumint6_sig, attribute);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXQueryContext(dpy, ctx, attribute, value);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    trace::localWriter.beginArg(3);
+    if (value) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.writeSInt(*value);
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeSInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+void glXSelectEvent( Display * dpy, GLXDrawable drawable, unsigned long mask ) {
+    unsigned _call = trace::localWriter.beginEnter(&_glXSelectEvent_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(drawable);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeUInt(mask);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _glXSelectEvent(dpy, drawable, mask);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.endLeave();
+}
+
+void glXGetSelectedEvent( Display * dpy, GLXDrawable drawable, unsigned long * mask ) {
+    unsigned _call = trace::localWriter.beginEnter(&_glXGetSelectedEvent_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(drawable);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _glXGetSelectedEvent(dpy, drawable, mask);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    trace::localWriter.beginArg(2);
+    if (mask) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.writeUInt(*mask);
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    }
+    trace::localWriter.endLeave();
+}
+
+GLXContext glXCreateContextAttribsARB( Display * dpy, GLXFBConfig config, GLXContext share_context, int direct, const int * attrib_list ) {
+    GLXContext _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXCreateContextAttribsARB_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writePointer((uintptr_t)config);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writePointer((uintptr_t)share_context);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeEnum(&_enumint1_sig, direct);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(4);
+    if (attrib_list) {
+        size_t _cCint21 = _AttribPairList_size(attrib_list) > 0 ? _AttribPairList_size(attrib_list) : 0;
+        trace::localWriter.beginArray(_cCint21);
+        for (size_t _iCint21 = 0; _iCint21 < _cCint21; ++_iCint21) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writeEnum(&_enumint2_sig, (attrib_list)[_iCint21]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXCreateContextAttribsARB(dpy, config, share_context, direct, attrib_list);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writePointer((uintptr_t)_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int glXSwapIntervalSGI( int interval ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXSwapIntervalSGI_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writeSInt(interval);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXSwapIntervalSGI(interval);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeSInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int glXGetVideoSyncSGI( unsigned int * count ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXGetVideoSyncSGI_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)count);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXGetVideoSyncSGI(count);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeSInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int glXWaitVideoSyncSGI( int divisor, int remainder, unsigned int * count ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXWaitVideoSyncSGI_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writeSInt(divisor);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(remainder);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writePointer((uintptr_t)count);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXWaitVideoSyncSGI(divisor, remainder, count);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeSInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int glXMakeCurrentReadSGI( Display * dpy, GLXDrawable draw, GLXDrawable read, GLXContext ctx ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXMakeCurrentReadSGI_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(draw);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeUInt(read);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writePointer((uintptr_t)ctx);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXMakeCurrentReadSGI(dpy, draw, read, ctx);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumint1_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+GLXDrawable glXGetCurrentReadDrawableSGI(  ) {
+    GLXDrawable _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXGetCurrentReadDrawableSGI_sig);
+    trace::localWriter.endEnter();
+    _result = _glXGetCurrentReadDrawableSGI();
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeUInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int glXQueryContextInfoEXT( Display * dpy, GLXContext context, int attribute, int * value ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXQueryContextInfoEXT_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writePointer((uintptr_t)context);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeSInt(attribute);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writePointer((uintptr_t)value);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXQueryContextInfoEXT(dpy, context, attribute, value);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeSInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+GLXContextID glXGetContextIDEXT( const GLXContext context ) {
+    GLXContextID _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXGetContextIDEXT_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)context);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXGetContextIDEXT(context);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeUInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+GLXContext glXImportContextEXT( Display * dpy, GLXContextID contextID ) {
+    GLXContext _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXImportContextEXT_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(contextID);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXImportContextEXT(dpy, contextID);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writePointer((uintptr_t)_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+void glXFreeContextEXT( Display * dpy, GLXContext context ) {
+    unsigned _call = trace::localWriter.beginEnter(&_glXFreeContextEXT_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writePointer((uintptr_t)context);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _glXFreeContextEXT(dpy, context);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.endLeave();
+}
+
+int glXGetFBConfigAttribSGIX( Display * dpy, GLXFBConfigSGIX config, int attribute, int * value ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXGetFBConfigAttribSGIX_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writePointer((uintptr_t)config);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeSInt(attribute);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXGetFBConfigAttribSGIX(dpy, config, attribute, value);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    trace::localWriter.beginArg(3);
+    if (value) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.writeSInt(*value);
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeSInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+GLXFBConfigSGIX * glXChooseFBConfigSGIX( Display * dpy, int screen, int * attrib_list, int * nelements ) {
+    GLXFBConfigSGIX * _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXChooseFBConfigSGIX_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(screen);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    if (attrib_list) {
+        size_t _cint = _AttribPairList_size(attrib_list) > 0 ? _AttribPairList_size(attrib_list) : 0;
+        trace::localWriter.beginArray(_cint);
+        for (size_t _iint = 0; _iint < _cint; ++_iint) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writeSInt((attrib_list)[_iint]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXChooseFBConfigSGIX(dpy, screen, attrib_list, nelements);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    trace::localWriter.beginArg(3);
+    if (nelements) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.writeSInt(*nelements);
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writePointer((uintptr_t)_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+GLXPixmap glXCreateGLXPixmapWithConfigSGIX( Display * dpy, GLXFBConfigSGIX config, Pixmap pixmap ) {
+    GLXPixmap _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXCreateGLXPixmapWithConfigSGIX_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writePointer((uintptr_t)config);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeUInt(pixmap);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXCreateGLXPixmapWithConfigSGIX(dpy, config, pixmap);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeUInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+GLXContext glXCreateContextWithConfigSGIX( Display * dpy, GLXFBConfigSGIX config, int render_type, GLXContext share_list, int direct ) {
+    GLXContext _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXCreateContextWithConfigSGIX_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writePointer((uintptr_t)config);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeSInt(render_type);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writePointer((uintptr_t)share_list);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(4);
+    trace::localWriter.writeEnum(&_enumint1_sig, direct);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXCreateContextWithConfigSGIX(dpy, config, render_type, share_list, direct);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writePointer((uintptr_t)_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+XVisualInfo * glXGetVisualFromFBConfigSGIX( Display * dpy, GLXFBConfigSGIX config ) {
+    XVisualInfo * _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXGetVisualFromFBConfigSGIX_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writePointer((uintptr_t)config);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXGetVisualFromFBConfigSGIX(dpy, config);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    if (_result) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.beginStruct(&_structXVisualInfo_sig);
+    trace::localWriter.writePointer((uintptr_t)(*_result).visual);
+    trace::localWriter.writeUInt((*_result).visualid);
+    trace::localWriter.writeSInt((*_result).screen);
+    trace::localWriter.writeSInt((*_result).depth);
+    trace::localWriter.writeSInt((*_result).c_class);
+    trace::localWriter.writeUInt((*_result).red_mask);
+    trace::localWriter.writeUInt((*_result).green_mask);
+    trace::localWriter.writeUInt((*_result).blue_mask);
+    trace::localWriter.writeSInt((*_result).colormap_size);
+    trace::localWriter.writeSInt((*_result).bits_per_rgb);
+    trace::localWriter.endStruct();
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+GLXFBConfigSGIX glXGetFBConfigFromVisualSGIX( Display * dpy, XVisualInfo * vis ) {
+    GLXFBConfigSGIX _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXGetFBConfigFromVisualSGIX_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXGetFBConfigFromVisualSGIX(dpy, vis);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    trace::localWriter.beginArg(1);
+    if (vis) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.beginStruct(&_structXVisualInfo_sig);
+    trace::localWriter.writePointer((uintptr_t)(*vis).visual);
+    trace::localWriter.writeUInt((*vis).visualid);
+    trace::localWriter.writeSInt((*vis).screen);
+    trace::localWriter.writeSInt((*vis).depth);
+    trace::localWriter.writeSInt((*vis).c_class);
+    trace::localWriter.writeUInt((*vis).red_mask);
+    trace::localWriter.writeUInt((*vis).green_mask);
+    trace::localWriter.writeUInt((*vis).blue_mask);
+    trace::localWriter.writeSInt((*vis).colormap_size);
+    trace::localWriter.writeSInt((*vis).bits_per_rgb);
+    trace::localWriter.endStruct();
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writePointer((uintptr_t)_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+GLXPbufferSGIX glXCreateGLXPbufferSGIX( Display * dpy, GLXFBConfigSGIX config, unsigned int width, unsigned int height, int * attrib_list ) {
+    GLXPbufferSGIX _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXCreateGLXPbufferSGIX_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writePointer((uintptr_t)config);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeUInt(width);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeUInt(height);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(4);
+    if (attrib_list) {
+        size_t _cint = _AttribPairList_size(attrib_list) > 0 ? _AttribPairList_size(attrib_list) : 0;
+        trace::localWriter.beginArray(_cint);
+        for (size_t _iint = 0; _iint < _cint; ++_iint) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writeSInt((attrib_list)[_iint]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXCreateGLXPbufferSGIX(dpy, config, width, height, attrib_list);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeUInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+void glXDestroyGLXPbufferSGIX( Display * dpy, GLXPbufferSGIX pbuf ) {
+    unsigned _call = trace::localWriter.beginEnter(&_glXDestroyGLXPbufferSGIX_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(pbuf);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _glXDestroyGLXPbufferSGIX(dpy, pbuf);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.endLeave();
+}
+
+void glXQueryGLXPbufferSGIX( Display * dpy, GLXPbufferSGIX pbuf, int attribute, unsigned int * value ) {
+    unsigned _call = trace::localWriter.beginEnter(&_glXQueryGLXPbufferSGIX_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(pbuf);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeSInt(attribute);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _glXQueryGLXPbufferSGIX(dpy, pbuf, attribute, value);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    trace::localWriter.beginArg(3);
+    if (value) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.writeUInt(*value);
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    }
+    trace::localWriter.endLeave();
+}
+
+void glXSelectEventSGIX( Display * dpy, GLXDrawable drawable, unsigned long mask ) {
+    unsigned _call = trace::localWriter.beginEnter(&_glXSelectEventSGIX_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(drawable);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeUInt(mask);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _glXSelectEventSGIX(dpy, drawable, mask);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.endLeave();
+}
+
+void glXGetSelectedEventSGIX( Display * dpy, GLXDrawable drawable, unsigned long * mask ) {
+    unsigned _call = trace::localWriter.beginEnter(&_glXGetSelectedEventSGIX_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(drawable);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _glXGetSelectedEventSGIX(dpy, drawable, mask);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    trace::localWriter.beginArg(2);
+    if (mask) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.writeUInt(*mask);
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    }
+    trace::localWriter.endLeave();
+}
+
+void glXCushionSGI( Display * dpy, Window window, float cushion ) {
+    unsigned _call = trace::localWriter.beginEnter(&_glXCushionSGI_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(window);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeFloat(cushion);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _glXCushionSGI(dpy, window, cushion);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.endLeave();
+}
+
+int glXBindChannelToWindowSGIX( Display * display, int screen, int channel, Window window ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXBindChannelToWindowSGIX_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)display);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(screen);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeSInt(channel);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeUInt(window);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXBindChannelToWindowSGIX(display, screen, channel, window);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeSInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int glXChannelRectSGIX( Display * display, int screen, int channel, int x, int y, int w, int h ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXChannelRectSGIX_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)display);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(screen);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeSInt(channel);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeSInt(x);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(4);
+    trace::localWriter.writeSInt(y);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(5);
+    trace::localWriter.writeSInt(w);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(6);
+    trace::localWriter.writeSInt(h);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXChannelRectSGIX(display, screen, channel, x, y, w, h);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeSInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int glXQueryChannelRectSGIX( Display * display, int screen, int channel, int * dx, int * dy, int * dw, int * dh ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXQueryChannelRectSGIX_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)display);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(screen);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeSInt(channel);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writePointer((uintptr_t)dx);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(4);
+    trace::localWriter.writePointer((uintptr_t)dy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(5);
+    trace::localWriter.writePointer((uintptr_t)dw);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(6);
+    trace::localWriter.writePointer((uintptr_t)dh);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXQueryChannelRectSGIX(display, screen, channel, dx, dy, dw, dh);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeSInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int glXQueryChannelDeltasSGIX( Display * display, int screen, int channel, int * x, int * y, int * w, int * h ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXQueryChannelDeltasSGIX_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)display);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(screen);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeSInt(channel);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writePointer((uintptr_t)x);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(4);
+    trace::localWriter.writePointer((uintptr_t)y);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(5);
+    trace::localWriter.writePointer((uintptr_t)w);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(6);
+    trace::localWriter.writePointer((uintptr_t)h);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXQueryChannelDeltasSGIX(display, screen, channel, x, y, w, h);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeSInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int glXChannelRectSyncSGIX( Display * display, int screen, int channel, GLenum synctype ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXChannelRectSyncSGIX_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)display);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(screen);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeSInt(channel);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeEnum(&_enumGLenum_sig, synctype);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXChannelRectSyncSGIX(display, screen, channel, synctype);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeSInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+void glXJoinSwapGroupSGIX( Display * dpy, GLXDrawable drawable, GLXDrawable member ) {
+    unsigned _call = trace::localWriter.beginEnter(&_glXJoinSwapGroupSGIX_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(drawable);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeUInt(member);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _glXJoinSwapGroupSGIX(dpy, drawable, member);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.endLeave();
+}
+
+void glXBindSwapBarrierSGIX( Display * dpy, GLXDrawable drawable, int barrier ) {
+    unsigned _call = trace::localWriter.beginEnter(&_glXBindSwapBarrierSGIX_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(drawable);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeSInt(barrier);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _glXBindSwapBarrierSGIX(dpy, drawable, barrier);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.endLeave();
+}
+
+int glXQueryMaxSwapBarriersSGIX( Display * dpy, int screen, int * max ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXQueryMaxSwapBarriersSGIX_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(screen);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writePointer((uintptr_t)max);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXQueryMaxSwapBarriersSGIX(dpy, screen, max);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumint1_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+void glXCopySubBufferMESA( Display * dpy, GLXDrawable drawable, int x, int y, int width, int height ) {
+    unsigned _call = trace::localWriter.beginEnter(&_glXCopySubBufferMESA_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(drawable);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeSInt(x);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeSInt(y);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(4);
+    trace::localWriter.writeSInt(width);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(5);
+    trace::localWriter.writeSInt(height);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _glXCopySubBufferMESA(dpy, drawable, x, y, width, height);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.endLeave();
+}
+
+GLXPixmap glXCreateGLXPixmapMESA( Display * dpy, XVisualInfo * visual, Pixmap pixmap, Colormap cmap ) {
+    GLXPixmap _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXCreateGLXPixmapMESA_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    if (visual) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.beginStruct(&_structXVisualInfo_sig);
+    trace::localWriter.writePointer((uintptr_t)(*visual).visual);
+    trace::localWriter.writeUInt((*visual).visualid);
+    trace::localWriter.writeSInt((*visual).screen);
+    trace::localWriter.writeSInt((*visual).depth);
+    trace::localWriter.writeSInt((*visual).c_class);
+    trace::localWriter.writeUInt((*visual).red_mask);
+    trace::localWriter.writeUInt((*visual).green_mask);
+    trace::localWriter.writeUInt((*visual).blue_mask);
+    trace::localWriter.writeSInt((*visual).colormap_size);
+    trace::localWriter.writeSInt((*visual).bits_per_rgb);
+    trace::localWriter.endStruct();
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeUInt(pixmap);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeUInt(cmap);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXCreateGLXPixmapMESA(dpy, visual, pixmap, cmap);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeUInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int glXReleaseBuffersMESA( Display * dpy, GLXDrawable drawable ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXReleaseBuffersMESA_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(drawable);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXReleaseBuffersMESA(dpy, drawable);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumint1_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int glXSet3DfxModeMESA( int mode ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXSet3DfxModeMESA_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writeSInt(mode);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXSet3DfxModeMESA(mode);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumint1_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int glXSwapIntervalMESA( unsigned int interval ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXSwapIntervalMESA_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writeUInt(interval);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXSwapIntervalMESA(interval);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeSInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int glXGetSwapIntervalMESA(  ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXGetSwapIntervalMESA_sig);
+    trace::localWriter.endEnter();
+    _result = _glXGetSwapIntervalMESA();
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeSInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int glXGetSyncValuesOML( Display * dpy, GLXDrawable drawable, int64_t * ust, int64_t * msc, int64_t * sbc ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXGetSyncValuesOML_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(drawable);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writePointer((uintptr_t)ust);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writePointer((uintptr_t)msc);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(4);
+    trace::localWriter.writePointer((uintptr_t)sbc);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXGetSyncValuesOML(dpy, drawable, ust, msc, sbc);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumint1_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int glXGetMscRateOML( Display * dpy, GLXDrawable drawable, int32_t * numerator, int32_t * denominator ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXGetMscRateOML_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(drawable);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writePointer((uintptr_t)numerator);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writePointer((uintptr_t)denominator);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXGetMscRateOML(dpy, drawable, numerator, denominator);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumint1_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int64_t glXSwapBuffersMscOML( Display * dpy, GLXDrawable drawable, int64_t target_msc, int64_t divisor, int64_t remainder ) {
+    int64_t _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXSwapBuffersMscOML_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(drawable);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeSInt(target_msc);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeSInt(divisor);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(4);
+    trace::localWriter.writeSInt(remainder);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXSwapBuffersMscOML(dpy, drawable, target_msc, divisor, remainder);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeSInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int glXWaitForMscOML( Display * dpy, GLXDrawable drawable, int64_t target_msc, int64_t divisor, int64_t remainder, int64_t * ust, int64_t * msc, int64_t * sbc ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXWaitForMscOML_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(drawable);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeSInt(target_msc);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeSInt(divisor);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(4);
+    trace::localWriter.writeSInt(remainder);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(5);
+    trace::localWriter.writePointer((uintptr_t)ust);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(6);
+    trace::localWriter.writePointer((uintptr_t)msc);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(7);
+    trace::localWriter.writePointer((uintptr_t)sbc);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXWaitForMscOML(dpy, drawable, target_msc, divisor, remainder, ust, msc, sbc);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumint1_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int glXWaitForSbcOML( Display * dpy, GLXDrawable drawable, int64_t target_sbc, int64_t * ust, int64_t * msc, int64_t * sbc ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXWaitForSbcOML_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(drawable);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeSInt(target_sbc);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writePointer((uintptr_t)ust);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(4);
+    trace::localWriter.writePointer((uintptr_t)msc);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(5);
+    trace::localWriter.writePointer((uintptr_t)sbc);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXWaitForSbcOML(dpy, drawable, target_sbc, ust, msc, sbc);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumint1_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+unsigned int glXGetAGPOffsetMESA( const void * pointer ) {
+    unsigned int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXGetAGPOffsetMESA_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)pointer);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXGetAGPOffsetMESA(pointer);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeUInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+void glXBindTexImageEXT( Display * display, GLXDrawable drawable, int buffer, const int * attrib_list ) {
+    unsigned _call = trace::localWriter.beginEnter(&_glXBindTexImageEXT_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)display);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(drawable);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeSInt(buffer);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    if (attrib_list) {
+        size_t _cCint3 = _AttribPairList_size(attrib_list) > 0 ? _AttribPairList_size(attrib_list) : 0;
+        trace::localWriter.beginArray(_cCint3);
+        for (size_t _iCint3 = 0; _iCint3 < _cCint3; ++_iCint3) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writeSInt((attrib_list)[_iCint3]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _glXBindTexImageEXT(display, drawable, buffer, attrib_list);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.endLeave();
+}
+
+void glXReleaseTexImageEXT( Display * display, GLXDrawable drawable, int buffer ) {
+    unsigned _call = trace::localWriter.beginEnter(&_glXReleaseTexImageEXT_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)display);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(drawable);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeSInt(buffer);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _glXReleaseTexImageEXT(display, drawable, buffer);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.endLeave();
+}
+
+int glXJoinSwapGroupNV( Display * dpy, GLXDrawable drawable, GLuint group ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXJoinSwapGroupNV_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(drawable);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeUInt(group);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXJoinSwapGroupNV(dpy, drawable, group);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumint1_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int glXBindSwapBarrierNV( Display * dpy, GLuint group, GLuint barrier ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXBindSwapBarrierNV_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(group);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeUInt(barrier);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXBindSwapBarrierNV(dpy, group, barrier);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumint1_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int glXQuerySwapGroupNV( Display * dpy, GLXDrawable drawable, GLuint * group, GLuint * barrier ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXQuerySwapGroupNV_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(drawable);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writePointer((uintptr_t)group);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writePointer((uintptr_t)barrier);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXQuerySwapGroupNV(dpy, drawable, group, barrier);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumint1_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int glXQueryMaxSwapGroupsNV( Display * dpy, int screen, GLuint * maxGroups, GLuint * maxBarriers ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXQueryMaxSwapGroupsNV_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(screen);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writePointer((uintptr_t)maxGroups);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writePointer((uintptr_t)maxBarriers);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXQueryMaxSwapGroupsNV(dpy, screen, maxGroups, maxBarriers);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumint1_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int glXQueryFrameCountNV( Display * dpy, int screen, GLuint * count ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXQueryFrameCountNV_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(screen);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writePointer((uintptr_t)count);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXQueryFrameCountNV(dpy, screen, count);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumint1_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int glXResetFrameCountNV( Display * dpy, int screen ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXResetFrameCountNV_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(screen);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXResetFrameCountNV(dpy, screen);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumint1_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+void glXSwapIntervalEXT( Display * dpy, GLXDrawable drawable, int interval ) {
+    unsigned _call = trace::localWriter.beginEnter(&_glXSwapIntervalEXT_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(drawable);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeSInt(interval);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _glXSwapIntervalEXT(dpy, drawable, interval);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.endLeave();
+}
+
+void glXCopyImageSubDataNV( Display * dpy, GLXContext srcCtx, GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, GLXContext dstCtx, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei width, GLsizei height, GLsizei depth ) {
+    unsigned _call = trace::localWriter.beginEnter(&_glXCopyImageSubDataNV_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)dpy);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writePointer((uintptr_t)srcCtx);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeUInt(srcName);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeEnum(&_enumGLenum_sig, srcTarget);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(4);
+    trace::localWriter.writeSInt(srcLevel);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(5);
+    trace::localWriter.writeSInt(srcX);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(6);
+    trace::localWriter.writeSInt(srcY);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(7);
+    trace::localWriter.writeSInt(srcZ);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(8);
+    trace::localWriter.writePointer((uintptr_t)dstCtx);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(9);
+    trace::localWriter.writeUInt(dstName);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(10);
+    trace::localWriter.writeEnum(&_enumGLenum_sig, dstTarget);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(11);
+    trace::localWriter.writeSInt(dstLevel);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(12);
+    trace::localWriter.writeSInt(dstX);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(13);
+    trace::localWriter.writeSInt(dstY);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(14);
+    trace::localWriter.writeSInt(dstZ);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(15);
+    trace::localWriter.writeSInt(width);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(16);
+    trace::localWriter.writeSInt(height);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(17);
+    trace::localWriter.writeSInt(depth);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _glXCopyImageSubDataNV(dpy, srcCtx, srcName, srcTarget, srcLevel, srcX, srcY, srcZ, dstCtx, dstName, dstTarget, dstLevel, dstX, dstY, dstZ, width, height, depth);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.endLeave();
+}
+
+void * glXAllocateMemoryNV( GLsizei size, GLfloat readfreq, GLfloat writefreq, GLfloat priority ) {
+    void * _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXAllocateMemoryNV_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writeSInt(size);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeFloat(readfreq);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeFloat(writefreq);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeFloat(priority);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXAllocateMemoryNV(size, readfreq, writefreq, priority);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writePointer((uintptr_t)_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+void glXFreeMemoryNV( void * pointer ) {
+    unsigned _call = trace::localWriter.beginEnter(&_glXFreeMemoryNV_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)pointer);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _glXFreeMemoryNV(pointer);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.endLeave();
+}
+
+__GLXextFuncPtr glXGetProcAddressARB( const GLubyte * procName ) {
+    __GLXextFuncPtr _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXGetProcAddressARB_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writeString(reinterpret_cast<const char *>(procName));
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXGetProcAddressARB(procName);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writePointer((uintptr_t)_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+__GLXextFuncPtr glXGetProcAddress( const GLubyte * procName ) {
+    __GLXextFuncPtr _result;
+    unsigned _call = trace::localWriter.beginEnter(&_glXGetProcAddress_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writeString(reinterpret_cast<const char *>(procName));
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _glXGetProcAddress(procName);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writePointer((uintptr_t)_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
 
 
 } /* namespace Trace */ } /* namespace Regal */
+
+#endif // REGAL_SYS_GLX
+
+#if REGAL_SYS_WGL
+
+namespace Regal { namespace Trace {
+
+HGLRC wglCreateContext( HDC hdc ) {
+    HGLRC _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglCreateContext_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hdc);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglCreateContext(hdc);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writePointer((uintptr_t)_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+BOOL wglDeleteContext( HGLRC hglrc ) {
+    BOOL _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglDeleteContext_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hglrc);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglDeleteContext(hglrc);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumBOOL_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+HGLRC wglGetCurrentContext(  ) {
+    HGLRC _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglGetCurrentContext_sig);
+    trace::localWriter.endEnter();
+    _result = _wglGetCurrentContext();
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writePointer((uintptr_t)_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+BOOL wglMakeCurrent( HDC hdc, HGLRC hglrc ) {
+    BOOL _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglMakeCurrent_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hdc);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writePointer((uintptr_t)hglrc);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglMakeCurrent(hdc, hglrc);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumBOOL_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+BOOL wglCopyContext( HGLRC hglrcSrc, HGLRC hglrcDst, UINT mask ) {
+    BOOL _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglCopyContext_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hglrcSrc);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writePointer((uintptr_t)hglrcDst);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeUInt(mask);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglCopyContext(hglrcSrc, hglrcDst, mask);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumBOOL_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int wglChoosePixelFormat( HDC hdc, const PIXELFORMATDESCRIPTOR * ppfd ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglChoosePixelFormat_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hdc);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    if (ppfd) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.beginStruct(&_structPIXELFORMATDESCRIPTOR_sig);
+    trace::localWriter.writeUInt((*ppfd).nSize);
+    trace::localWriter.writeUInt((*ppfd).nVersion);
+    trace::localWriter.writeBitmask(&_bitmaskDWORD1_sig, (*ppfd).dwFlags);
+    trace::localWriter.writeUInt((*ppfd).iPixelType);
+    trace::localWriter.writeUInt((*ppfd).cColorBits);
+    trace::localWriter.writeUInt((*ppfd).cRedBits);
+    trace::localWriter.writeUInt((*ppfd).cRedShift);
+    trace::localWriter.writeUInt((*ppfd).cGreenBits);
+    trace::localWriter.writeUInt((*ppfd).cGreenShift);
+    trace::localWriter.writeUInt((*ppfd).cBlueBits);
+    trace::localWriter.writeUInt((*ppfd).cBlueShift);
+    trace::localWriter.writeUInt((*ppfd).cAlphaBits);
+    trace::localWriter.writeUInt((*ppfd).cAlphaShift);
+    trace::localWriter.writeUInt((*ppfd).cAccumBits);
+    trace::localWriter.writeUInt((*ppfd).cAccumRedBits);
+    trace::localWriter.writeUInt((*ppfd).cAccumGreenBits);
+    trace::localWriter.writeUInt((*ppfd).cAccumBlueBits);
+    trace::localWriter.writeUInt((*ppfd).cAccumAlphaBits);
+    trace::localWriter.writeUInt((*ppfd).cDepthBits);
+    trace::localWriter.writeUInt((*ppfd).cStencilBits);
+    trace::localWriter.writeUInt((*ppfd).cAuxBuffers);
+    trace::localWriter.writeUInt((*ppfd).iLayerType);
+    trace::localWriter.writeUInt((*ppfd).bReserved);
+    trace::localWriter.writeUInt((*ppfd).dwLayerMask);
+    trace::localWriter.writeUInt((*ppfd).dwVisibleMask);
+    trace::localWriter.writeUInt((*ppfd).dwDamageMask);
+    trace::localWriter.endStruct();
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglChoosePixelFormat(hdc, ppfd);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeSInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int wglDescribePixelFormat( HDC hdc, int iPixelFormat, UINT nBytes, PIXELFORMATDESCRIPTOR * ppfd ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglDescribePixelFormat_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hdc);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(iPixelFormat);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeUInt(nBytes);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglDescribePixelFormat(hdc, iPixelFormat, nBytes, ppfd);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    trace::localWriter.beginArg(3);
+    if (ppfd) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.beginStruct(&_structPIXELFORMATDESCRIPTOR_sig);
+    trace::localWriter.writeUInt((*ppfd).nSize);
+    trace::localWriter.writeUInt((*ppfd).nVersion);
+    trace::localWriter.writeBitmask(&_bitmaskDWORD1_sig, (*ppfd).dwFlags);
+    trace::localWriter.writeUInt((*ppfd).iPixelType);
+    trace::localWriter.writeUInt((*ppfd).cColorBits);
+    trace::localWriter.writeUInt((*ppfd).cRedBits);
+    trace::localWriter.writeUInt((*ppfd).cRedShift);
+    trace::localWriter.writeUInt((*ppfd).cGreenBits);
+    trace::localWriter.writeUInt((*ppfd).cGreenShift);
+    trace::localWriter.writeUInt((*ppfd).cBlueBits);
+    trace::localWriter.writeUInt((*ppfd).cBlueShift);
+    trace::localWriter.writeUInt((*ppfd).cAlphaBits);
+    trace::localWriter.writeUInt((*ppfd).cAlphaShift);
+    trace::localWriter.writeUInt((*ppfd).cAccumBits);
+    trace::localWriter.writeUInt((*ppfd).cAccumRedBits);
+    trace::localWriter.writeUInt((*ppfd).cAccumGreenBits);
+    trace::localWriter.writeUInt((*ppfd).cAccumBlueBits);
+    trace::localWriter.writeUInt((*ppfd).cAccumAlphaBits);
+    trace::localWriter.writeUInt((*ppfd).cDepthBits);
+    trace::localWriter.writeUInt((*ppfd).cStencilBits);
+    trace::localWriter.writeUInt((*ppfd).cAuxBuffers);
+    trace::localWriter.writeUInt((*ppfd).iLayerType);
+    trace::localWriter.writeUInt((*ppfd).bReserved);
+    trace::localWriter.writeUInt((*ppfd).dwLayerMask);
+    trace::localWriter.writeUInt((*ppfd).dwVisibleMask);
+    trace::localWriter.writeUInt((*ppfd).dwDamageMask);
+    trace::localWriter.endStruct();
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeSInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+HDC wglGetCurrentDC(  ) {
+    HDC _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglGetCurrentDC_sig);
+    trace::localWriter.endEnter();
+    _result = _wglGetCurrentDC();
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writePointer((uintptr_t)_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+PROC wglGetDefaultProcAddress( const char * lpszProc ) {
+    PROC _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglGetDefaultProcAddress_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writeString(lpszProc);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglGetDefaultProcAddress(lpszProc);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writePointer((uintptr_t)_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int wglGetPixelFormat( HDC hdc ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglGetPixelFormat_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hdc);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglGetPixelFormat(hdc);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeSInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+BOOL wglSetPixelFormat( HDC hdc, int iPixelFormat, const PIXELFORMATDESCRIPTOR * ppfd ) {
+    BOOL _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglSetPixelFormat_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hdc);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(iPixelFormat);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    if (ppfd) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.beginStruct(&_structPIXELFORMATDESCRIPTOR_sig);
+    trace::localWriter.writeUInt((*ppfd).nSize);
+    trace::localWriter.writeUInt((*ppfd).nVersion);
+    trace::localWriter.writeBitmask(&_bitmaskDWORD1_sig, (*ppfd).dwFlags);
+    trace::localWriter.writeUInt((*ppfd).iPixelType);
+    trace::localWriter.writeUInt((*ppfd).cColorBits);
+    trace::localWriter.writeUInt((*ppfd).cRedBits);
+    trace::localWriter.writeUInt((*ppfd).cRedShift);
+    trace::localWriter.writeUInt((*ppfd).cGreenBits);
+    trace::localWriter.writeUInt((*ppfd).cGreenShift);
+    trace::localWriter.writeUInt((*ppfd).cBlueBits);
+    trace::localWriter.writeUInt((*ppfd).cBlueShift);
+    trace::localWriter.writeUInt((*ppfd).cAlphaBits);
+    trace::localWriter.writeUInt((*ppfd).cAlphaShift);
+    trace::localWriter.writeUInt((*ppfd).cAccumBits);
+    trace::localWriter.writeUInt((*ppfd).cAccumRedBits);
+    trace::localWriter.writeUInt((*ppfd).cAccumGreenBits);
+    trace::localWriter.writeUInt((*ppfd).cAccumBlueBits);
+    trace::localWriter.writeUInt((*ppfd).cAccumAlphaBits);
+    trace::localWriter.writeUInt((*ppfd).cDepthBits);
+    trace::localWriter.writeUInt((*ppfd).cStencilBits);
+    trace::localWriter.writeUInt((*ppfd).cAuxBuffers);
+    trace::localWriter.writeUInt((*ppfd).iLayerType);
+    trace::localWriter.writeUInt((*ppfd).bReserved);
+    trace::localWriter.writeUInt((*ppfd).dwLayerMask);
+    trace::localWriter.writeUInt((*ppfd).dwVisibleMask);
+    trace::localWriter.writeUInt((*ppfd).dwDamageMask);
+    trace::localWriter.endStruct();
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglSetPixelFormat(hdc, iPixelFormat, ppfd);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumBOOL_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+BOOL wglSwapBuffers( HDC hdc ) {
+    BOOL _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglSwapBuffers_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hdc);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglSwapBuffers(hdc);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumBOOL_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+BOOL wglShareLists( HGLRC hglrc1, HGLRC hglrc2 ) {
+    BOOL _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglShareLists_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hglrc1);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writePointer((uintptr_t)hglrc2);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglShareLists(hglrc1, hglrc2);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumBOOL_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+HGLRC wglCreateLayerContext( HDC hdc, int iLayerPlane ) {
+    HGLRC _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglCreateLayerContext_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hdc);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(iLayerPlane);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglCreateLayerContext(hdc, iLayerPlane);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writePointer((uintptr_t)_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+BOOL wglDescribeLayerPlane( HDC hdc, int iPixelFormat, int iLayerPlane, UINT nBytes, LAYERPLANEDESCRIPTOR * plpd ) {
+    BOOL _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglDescribeLayerPlane_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hdc);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(iPixelFormat);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeSInt(iLayerPlane);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeUInt(nBytes);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglDescribeLayerPlane(hdc, iPixelFormat, iLayerPlane, nBytes, plpd);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    trace::localWriter.beginArg(4);
+    if (plpd) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.beginStruct(&_structLAYERPLANEDESCRIPTOR_sig);
+    trace::localWriter.writeUInt((*plpd).nSize);
+    trace::localWriter.writeUInt((*plpd).nVersion);
+    trace::localWriter.writeUInt((*plpd).dwFlags);
+    trace::localWriter.writeUInt((*plpd).iPixelType);
+    trace::localWriter.writeUInt((*plpd).cColorBits);
+    trace::localWriter.writeUInt((*plpd).cRedBits);
+    trace::localWriter.writeUInt((*plpd).cRedShift);
+    trace::localWriter.writeUInt((*plpd).cGreenBits);
+    trace::localWriter.writeUInt((*plpd).cGreenShift);
+    trace::localWriter.writeUInt((*plpd).cBlueBits);
+    trace::localWriter.writeUInt((*plpd).cBlueShift);
+    trace::localWriter.writeUInt((*plpd).cAlphaBits);
+    trace::localWriter.writeUInt((*plpd).cAlphaShift);
+    trace::localWriter.writeUInt((*plpd).cAccumBits);
+    trace::localWriter.writeUInt((*plpd).cAccumRedBits);
+    trace::localWriter.writeUInt((*plpd).cAccumGreenBits);
+    trace::localWriter.writeUInt((*plpd).cAccumBlueBits);
+    trace::localWriter.writeUInt((*plpd).cAccumAlphaBits);
+    trace::localWriter.writeUInt((*plpd).cDepthBits);
+    trace::localWriter.writeUInt((*plpd).cStencilBits);
+    trace::localWriter.writeUInt((*plpd).cAuxBuffers);
+    trace::localWriter.writeUInt((*plpd).iLayerPlane);
+    trace::localWriter.writeUInt((*plpd).bReserved);
+    trace::localWriter.writeUInt((*plpd).crTransparent);
+    trace::localWriter.endStruct();
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumBOOL_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int wglSetLayerPaletteEntries( HDC hdc, int iLayerPlane, int iStart, int cEntries, const COLORREF * pcr ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglSetLayerPaletteEntries_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hdc);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(iLayerPlane);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeSInt(iStart);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeSInt(cEntries);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(4);
+    if (pcr) {
+        size_t _cCCOLORREF1 = cEntries > 0 ? cEntries : 0;
+        trace::localWriter.beginArray(_cCCOLORREF1);
+        for (size_t _iCCOLORREF1 = 0; _iCCOLORREF1 < _cCCOLORREF1; ++_iCCOLORREF1) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writeUInt((pcr)[_iCCOLORREF1]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglSetLayerPaletteEntries(hdc, iLayerPlane, iStart, cEntries, pcr);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeSInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int wglGetLayerPaletteEntries( HDC hdc, int iLayerPlane, int iStart, int cEntries, COLORREF * pcr ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglGetLayerPaletteEntries_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hdc);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(iLayerPlane);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeSInt(iStart);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeSInt(cEntries);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglGetLayerPaletteEntries(hdc, iLayerPlane, iStart, cEntries, pcr);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    trace::localWriter.beginArg(4);
+    if (pcr) {
+        size_t _cCOLORREF1 = cEntries > 0 ? cEntries : 0;
+        trace::localWriter.beginArray(_cCOLORREF1);
+        for (size_t _iCOLORREF1 = 0; _iCOLORREF1 < _cCOLORREF1; ++_iCOLORREF1) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writeUInt((pcr)[_iCOLORREF1]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeSInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+BOOL wglRealizeLayerPalette( HDC hdc, int iLayerPlane, BOOL bRealize ) {
+    BOOL _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglRealizeLayerPalette_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hdc);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(iLayerPlane);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeEnum(&_enumBOOL_sig, bRealize);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglRealizeLayerPalette(hdc, iLayerPlane, bRealize);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumBOOL_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+BOOL wglSwapLayerBuffers( HDC hdc, UINT fuPlanes ) {
+    BOOL _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglSwapLayerBuffers_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hdc);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(fuPlanes);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglSwapLayerBuffers(hdc, fuPlanes);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumBOOL_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+BOOL wglUseFontBitmapsA( HDC hdc, DWORD first, DWORD count, DWORD listBase ) {
+    BOOL _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglUseFontBitmapsA_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hdc);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(first);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeUInt(count);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeUInt(listBase);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglUseFontBitmapsA(hdc, first, count, listBase);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumBOOL_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+BOOL wglUseFontBitmapsW( HDC hdc, DWORD first, DWORD count, DWORD listBase ) {
+    BOOL _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglUseFontBitmapsW_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hdc);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(first);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeUInt(count);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeUInt(listBase);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglUseFontBitmapsW(hdc, first, count, listBase);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumBOOL_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+DWORD wglSwapMultipleBuffers( UINT n, const WGLSWAP * ps ) {
+    DWORD _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglSwapMultipleBuffers_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writeUInt(n);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    if (ps) {
+        size_t _cCWGLSWAP = n > 0 ? n : 0;
+        trace::localWriter.beginArray(_cCWGLSWAP);
+        for (size_t _iCWGLSWAP = 0; _iCWGLSWAP < _cCWGLSWAP; ++_iCWGLSWAP) {
+            trace::localWriter.beginElement();
+    trace::localWriter.beginStruct(&_structWGLSWAP_sig);
+    trace::localWriter.writePointer((uintptr_t)((ps)[_iCWGLSWAP]).hdc);
+    trace::localWriter.writeUInt(((ps)[_iCWGLSWAP]).uiFlags);
+    trace::localWriter.endStruct();
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglSwapMultipleBuffers(n, ps);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeUInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+BOOL wglUseFontOutlinesA( HDC hdc, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, GLYPHMETRICSFLOAT * lpgmf ) {
+    BOOL _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglUseFontOutlinesA_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hdc);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(first);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeUInt(count);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeUInt(listBase);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(4);
+    trace::localWriter.writeFloat(deviation);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(5);
+    trace::localWriter.writeFloat(extrusion);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(6);
+    trace::localWriter.writeSInt(format);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(7);
+    if (lpgmf) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.beginStruct(&_structGLYPHMETRICSFLOAT_sig);
+    trace::localWriter.writeFloat((*lpgmf).gmfBlackBoxX);
+    trace::localWriter.writeFloat((*lpgmf).gmfBlackBoxY);
+    trace::localWriter.beginStruct(&_structPOINTFLOAT_sig);
+    trace::localWriter.writeFloat(((*lpgmf).gmfptGlyphOrigin).x);
+    trace::localWriter.writeFloat(((*lpgmf).gmfptGlyphOrigin).y);
+    trace::localWriter.endStruct();
+    trace::localWriter.writeFloat((*lpgmf).gmfCellIncX);
+    trace::localWriter.writeFloat((*lpgmf).gmfCellIncY);
+    trace::localWriter.endStruct();
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglUseFontOutlinesA(hdc, first, count, listBase, deviation, extrusion, format, lpgmf);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumBOOL_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+BOOL wglUseFontOutlinesW( HDC hdc, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, GLYPHMETRICSFLOAT * lpgmf ) {
+    BOOL _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglUseFontOutlinesW_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hdc);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeUInt(first);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeUInt(count);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeUInt(listBase);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(4);
+    trace::localWriter.writeFloat(deviation);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(5);
+    trace::localWriter.writeFloat(extrusion);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(6);
+    trace::localWriter.writeSInt(format);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(7);
+    if (lpgmf) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.beginStruct(&_structGLYPHMETRICSFLOAT_sig);
+    trace::localWriter.writeFloat((*lpgmf).gmfBlackBoxX);
+    trace::localWriter.writeFloat((*lpgmf).gmfBlackBoxY);
+    trace::localWriter.beginStruct(&_structPOINTFLOAT_sig);
+    trace::localWriter.writeFloat(((*lpgmf).gmfptGlyphOrigin).x);
+    trace::localWriter.writeFloat(((*lpgmf).gmfptGlyphOrigin).y);
+    trace::localWriter.endStruct();
+    trace::localWriter.writeFloat((*lpgmf).gmfCellIncX);
+    trace::localWriter.writeFloat((*lpgmf).gmfCellIncY);
+    trace::localWriter.endStruct();
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglUseFontOutlinesW(hdc, first, count, listBase, deviation, extrusion, format, lpgmf);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumBOOL_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+HANDLE wglCreateBufferRegionARB( HDC hDC, int iLayerPlane, UINT uType ) {
+    HANDLE _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglCreateBufferRegionARB_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hDC);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(iLayerPlane);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeUInt(uType);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglCreateBufferRegionARB(hDC, iLayerPlane, uType);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writePointer((uintptr_t)_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+void wglDeleteBufferRegionARB( HANDLE hRegion ) {
+    unsigned _call = trace::localWriter.beginEnter(&_wglDeleteBufferRegionARB_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hRegion);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _wglDeleteBufferRegionARB(hRegion);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.endLeave();
+}
+
+BOOL wglSaveBufferRegionARB( HANDLE hRegion, int x, int y, int width, int height ) {
+    BOOL _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglSaveBufferRegionARB_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hRegion);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(x);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeSInt(y);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeSInt(width);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(4);
+    trace::localWriter.writeSInt(height);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglSaveBufferRegionARB(hRegion, x, y, width, height);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumBOOL_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+BOOL wglRestoreBufferRegionARB( HANDLE hRegion, int x, int y, int width, int height, int xSrc, int ySrc ) {
+    BOOL _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglRestoreBufferRegionARB_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hRegion);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(x);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeSInt(y);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeSInt(width);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(4);
+    trace::localWriter.writeSInt(height);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(5);
+    trace::localWriter.writeSInt(xSrc);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(6);
+    trace::localWriter.writeSInt(ySrc);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglRestoreBufferRegionARB(hRegion, x, y, width, height, xSrc, ySrc);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumBOOL_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+const char * wglGetExtensionsStringARB( HDC hdc ) {
+    const char * _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglGetExtensionsStringARB_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hdc);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglGetExtensionsStringARB(hdc);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeString(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+BOOL wglGetPixelFormatAttribivARB( HDC hdc, int iPixelFormat, int iLayerPlane, UINT nAttributes, int * piAttributes, int * piValues ) {
+    BOOL _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglGetPixelFormatAttribivARB_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hdc);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(iPixelFormat);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeSInt(iLayerPlane);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeUInt(nAttributes);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(4);
+    if (piAttributes) {
+        size_t _cint21 = nAttributes > 0 ? nAttributes : 0;
+        trace::localWriter.beginArray(_cint21);
+        for (size_t _iint21 = 0; _iint21 < _cint21; ++_iint21) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writeEnum(&_enumint21_sig, (piAttributes)[_iint21]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglGetPixelFormatAttribivARB(hdc, iPixelFormat, iLayerPlane, nAttributes, piAttributes, piValues);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    trace::localWriter.beginArg(5);
+    if (piValues) {
+        size_t _cint = nAttributes > 0 ? nAttributes : 0;
+        trace::localWriter.beginArray(_cint);
+        for (size_t _iint = 0; _iint < _cint; ++_iint) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writeSInt((piValues)[_iint]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumBOOL_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+BOOL wglGetPixelFormatAttribfvARB( HDC hdc, int iPixelFormat, int iLayerPlane, UINT nAttributes, int * piAttributes, FLOAT * pfValues ) {
+    BOOL _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglGetPixelFormatAttribfvARB_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hdc);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(iPixelFormat);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeSInt(iLayerPlane);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeUInt(nAttributes);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(4);
+    if (piAttributes) {
+        size_t _cint21 = nAttributes > 0 ? nAttributes : 0;
+        trace::localWriter.beginArray(_cint21);
+        for (size_t _iint21 = 0; _iint21 < _cint21; ++_iint21) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writeEnum(&_enumint21_sig, (piAttributes)[_iint21]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglGetPixelFormatAttribfvARB(hdc, iPixelFormat, iLayerPlane, nAttributes, piAttributes, pfValues);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    trace::localWriter.beginArg(5);
+    if (pfValues) {
+        size_t _cFLOAT = nAttributes > 0 ? nAttributes : 0;
+        trace::localWriter.beginArray(_cFLOAT);
+        for (size_t _iFLOAT = 0; _iFLOAT < _cFLOAT; ++_iFLOAT) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writeFloat((pfValues)[_iFLOAT]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumBOOL_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+BOOL wglChoosePixelFormatARB( HDC hdc, const int * piAttribIList, const FLOAT * pfAttribFList, UINT nMaxFormats, int * piFormats, UINT * nNumFormats ) {
+    BOOL _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglChoosePixelFormatARB_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hdc);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    if (piAttribIList) {
+        size_t _cCint211 = _AttribPairList_size(piAttribIList) > 0 ? _AttribPairList_size(piAttribIList) : 0;
+        trace::localWriter.beginArray(_cCint211);
+        for (size_t _iCint211 = 0; _iCint211 < _cCint211; ++_iCint211) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writeEnum(&_enumint21_sig, (piAttribIList)[_iCint211]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    if (pfAttribFList) {
+        size_t _cCFLOAT = _AttribPairList_size(pfAttribFList) > 0 ? _AttribPairList_size(pfAttribFList) : 0;
+        trace::localWriter.beginArray(_cCFLOAT);
+        for (size_t _iCFLOAT = 0; _iCFLOAT < _cCFLOAT; ++_iCFLOAT) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writeFloat((pfAttribFList)[_iCFLOAT]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeUInt(nMaxFormats);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglChoosePixelFormatARB(hdc, piAttribIList, pfAttribFList, nMaxFormats, piFormats, nNumFormats);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    trace::localWriter.beginArg(4);
+    if (piFormats) {
+        size_t _cint = (*nNumFormats) > 0 ? (*nNumFormats) : 0;
+        trace::localWriter.beginArray(_cint);
+        for (size_t _iint = 0; _iint < _cint; ++_iint) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writeSInt((piFormats)[_iint]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(5);
+    if (nNumFormats) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.writeUInt(*nNumFormats);
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumBOOL_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+BOOL wglMakeContextCurrentARB( HDC hDrawDC, HDC hReadDC, HGLRC hglrc ) {
+    BOOL _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglMakeContextCurrentARB_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hDrawDC);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writePointer((uintptr_t)hReadDC);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writePointer((uintptr_t)hglrc);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglMakeContextCurrentARB(hDrawDC, hReadDC, hglrc);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumBOOL_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+HDC wglGetCurrentReadDCARB(  ) {
+    HDC _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglGetCurrentReadDCARB_sig);
+    trace::localWriter.endEnter();
+    _result = _wglGetCurrentReadDCARB();
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writePointer((uintptr_t)_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+HPBUFFERARB wglCreatePbufferARB( HDC hDC, int iPixelFormat, int iWidth, int iHeight, const int * piAttribList ) {
+    HPBUFFERARB _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglCreatePbufferARB_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hDC);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(iPixelFormat);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeSInt(iWidth);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeSInt(iHeight);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(4);
+    if (piAttribList) {
+        size_t _cCint212 = _AttribPairList_size(piAttribList) > 0 ? _AttribPairList_size(piAttribList) : 0;
+        trace::localWriter.beginArray(_cCint212);
+        for (size_t _iCint212 = 0; _iCint212 < _cCint212; ++_iCint212) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writeEnum(&_enumint21_sig, (piAttribList)[_iCint212]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglCreatePbufferARB(hDC, iPixelFormat, iWidth, iHeight, piAttribList);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writePointer((uintptr_t)_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+HDC wglGetPbufferDCARB( HPBUFFERARB hPbuffer ) {
+    HDC _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglGetPbufferDCARB_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hPbuffer);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglGetPbufferDCARB(hPbuffer);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writePointer((uintptr_t)_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int wglReleasePbufferDCARB( HPBUFFERARB hPbuffer, HDC hDC ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglReleasePbufferDCARB_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hPbuffer);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writePointer((uintptr_t)hDC);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglReleasePbufferDCARB(hPbuffer, hDC);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeSInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+BOOL wglDestroyPbufferARB( HPBUFFERARB hPbuffer ) {
+    BOOL _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglDestroyPbufferARB_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hPbuffer);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglDestroyPbufferARB(hPbuffer);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumBOOL_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+BOOL wglQueryPbufferARB( HPBUFFERARB hPbuffer, int iAttribute, int * piValue ) {
+    BOOL _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglQueryPbufferARB_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hPbuffer);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeEnum(&_enumint21_sig, iAttribute);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglQueryPbufferARB(hPbuffer, iAttribute, piValue);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    trace::localWriter.beginArg(2);
+    if (piValue) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.writeSInt(*piValue);
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumBOOL_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+BOOL wglBindTexImageARB( HPBUFFERARB hPbuffer, int iBuffer ) {
+    BOOL _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglBindTexImageARB_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hPbuffer);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(iBuffer);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglBindTexImageARB(hPbuffer, iBuffer);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumBOOL_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+BOOL wglReleaseTexImageARB( HPBUFFERARB hPbuffer, int iBuffer ) {
+    BOOL _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglReleaseTexImageARB_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hPbuffer);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(iBuffer);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglReleaseTexImageARB(hPbuffer, iBuffer);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumBOOL_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+BOOL wglSetPbufferAttribARB( HPBUFFERARB hPbuffer, const int * piAttribList ) {
+    BOOL _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglSetPbufferAttribARB_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hPbuffer);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    if (piAttribList) {
+        size_t _cCint213 = _AttribPairList_size(piAttribList) > 0 ? _AttribPairList_size(piAttribList) : 0;
+        trace::localWriter.beginArray(_cCint213);
+        for (size_t _iCint213 = 0; _iCint213 < _cCint213; ++_iCint213) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writeEnum(&_enumint21_sig, (piAttribList)[_iCint213]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglSetPbufferAttribARB(hPbuffer, piAttribList);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumBOOL_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+HGLRC wglCreateContextAttribsARB( HDC hDC, HGLRC hShareContext, const int * attribList ) {
+    HGLRC _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglCreateContextAttribsARB_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hDC);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writePointer((uintptr_t)hShareContext);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    if (attribList) {
+        size_t _cCint214 = _AttribPairList_size(attribList) > 0 ? _AttribPairList_size(attribList) : 0;
+        trace::localWriter.beginArray(_cCint214);
+        for (size_t _iCint214 = 0; _iCint214 < _cCint214; ++_iCint214) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writeEnum(&_enumint21_sig, (attribList)[_iCint214]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglCreateContextAttribsARB(hDC, hShareContext, attribList);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writePointer((uintptr_t)_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+const char * wglGetExtensionsStringEXT(  ) {
+    const char * _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglGetExtensionsStringEXT_sig);
+    trace::localWriter.endEnter();
+    _result = _wglGetExtensionsStringEXT();
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeString(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+BOOL wglMakeContextCurrentEXT( HDC hDrawDC, HDC hReadDC, HGLRC hglrc ) {
+    BOOL _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglMakeContextCurrentEXT_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hDrawDC);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writePointer((uintptr_t)hReadDC);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writePointer((uintptr_t)hglrc);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglMakeContextCurrentEXT(hDrawDC, hReadDC, hglrc);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumBOOL_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+HDC wglGetCurrentReadDCEXT(  ) {
+    HDC _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglGetCurrentReadDCEXT_sig);
+    trace::localWriter.endEnter();
+    _result = _wglGetCurrentReadDCEXT();
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writePointer((uintptr_t)_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+BOOL wglGetPixelFormatAttribivEXT( HDC hdc, int iPixelFormat, int iLayerPlane, UINT nAttributes, int * piAttributes, int * piValues ) {
+    BOOL _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglGetPixelFormatAttribivEXT_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hdc);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(iPixelFormat);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeSInt(iLayerPlane);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeUInt(nAttributes);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(4);
+    if (piAttributes) {
+        size_t _cint21 = nAttributes > 0 ? nAttributes : 0;
+        trace::localWriter.beginArray(_cint21);
+        for (size_t _iint21 = 0; _iint21 < _cint21; ++_iint21) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writeEnum(&_enumint21_sig, (piAttributes)[_iint21]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglGetPixelFormatAttribivEXT(hdc, iPixelFormat, iLayerPlane, nAttributes, piAttributes, piValues);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    trace::localWriter.beginArg(5);
+    if (piValues) {
+        size_t _cint = nAttributes > 0 ? nAttributes : 0;
+        trace::localWriter.beginArray(_cint);
+        for (size_t _iint = 0; _iint < _cint; ++_iint) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writeSInt((piValues)[_iint]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumBOOL_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+BOOL wglGetPixelFormatAttribfvEXT( HDC hdc, int iPixelFormat, int iLayerPlane, UINT nAttributes, int * piAttributes, FLOAT * pfValues ) {
+    BOOL _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglGetPixelFormatAttribfvEXT_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hdc);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeSInt(iPixelFormat);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeSInt(iLayerPlane);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeUInt(nAttributes);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(4);
+    if (piAttributes) {
+        size_t _cint21 = nAttributes > 0 ? nAttributes : 0;
+        trace::localWriter.beginArray(_cint21);
+        for (size_t _iint21 = 0; _iint21 < _cint21; ++_iint21) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writeEnum(&_enumint21_sig, (piAttributes)[_iint21]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglGetPixelFormatAttribfvEXT(hdc, iPixelFormat, iLayerPlane, nAttributes, piAttributes, pfValues);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    trace::localWriter.beginArg(5);
+    if (pfValues) {
+        size_t _cFLOAT = nAttributes > 0 ? nAttributes : 0;
+        trace::localWriter.beginArray(_cFLOAT);
+        for (size_t _iFLOAT = 0; _iFLOAT < _cFLOAT; ++_iFLOAT) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writeFloat((pfValues)[_iFLOAT]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumBOOL_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+BOOL wglChoosePixelFormatEXT( HDC hdc, const int * piAttribIList, const FLOAT * pfAttribFList, UINT nMaxFormats, int * piFormats, UINT * nNumFormats ) {
+    BOOL _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglChoosePixelFormatEXT_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)hdc);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    if (piAttribIList) {
+        size_t _cCint215 = _AttribPairList_size(piAttribIList) > 0 ? _AttribPairList_size(piAttribIList) : 0;
+        trace::localWriter.beginArray(_cCint215);
+        for (size_t _iCint215 = 0; _iCint215 < _cCint215; ++_iCint215) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writeEnum(&_enumint21_sig, (piAttribIList)[_iCint215]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    if (pfAttribFList) {
+        size_t _cCFLOAT1 = _AttribPairList_size(pfAttribFList) > 0 ? _AttribPairList_size(pfAttribFList) : 0;
+        trace::localWriter.beginArray(_cCFLOAT1);
+        for (size_t _iCFLOAT1 = 0; _iCFLOAT1 < _cCFLOAT1; ++_iCFLOAT1) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writeFloat((pfAttribFList)[_iCFLOAT1]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeUInt(nMaxFormats);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglChoosePixelFormatEXT(hdc, piAttribIList, pfAttribFList, nMaxFormats, piFormats, nNumFormats);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    trace::localWriter.beginArg(4);
+    if (piFormats) {
+        size_t _cint = *nNumFormats > 0 ? *nNumFormats : 0;
+        trace::localWriter.beginArray(_cint);
+        for (size_t _iint = 0; _iint < _cint; ++_iint) {
+            trace::localWriter.beginElement();
+    trace::localWriter.writeSInt((piFormats)[_iint]);
+            trace::localWriter.endElement();
+        }
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(5);
+    if (nNumFormats) {
+        trace::localWriter.beginArray(1);
+        trace::localWriter.beginElement();
+    trace::localWriter.writeUInt(*nNumFormats);
+        trace::localWriter.endElement();
+        trace::localWriter.endArray();
+    } else {
+        trace::localWriter.writeNull();
+    }
+    trace::localWriter.endArg();
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumBOOL_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+BOOL wglSwapIntervalEXT( int interval ) {
+    BOOL _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglSwapIntervalEXT_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writeSInt(interval);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglSwapIntervalEXT(interval);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeEnum(&_enumBOOL_sig, _result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+int wglGetSwapIntervalEXT(  ) {
+    int _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglGetSwapIntervalEXT_sig);
+    trace::localWriter.endEnter();
+    _result = _wglGetSwapIntervalEXT();
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writeSInt(_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+void * wglAllocateMemoryNV( GLsizei size, GLfloat readfreq, GLfloat writefreq, GLfloat priority ) {
+    void * _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglAllocateMemoryNV_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writeSInt(size);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(1);
+    trace::localWriter.writeFloat(readfreq);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(2);
+    trace::localWriter.writeFloat(writefreq);
+    trace::localWriter.endArg();
+    trace::localWriter.beginArg(3);
+    trace::localWriter.writeFloat(priority);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglAllocateMemoryNV(size, readfreq, writefreq, priority);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writePointer((uintptr_t)_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+void wglFreeMemoryNV( void * pointer ) {
+    unsigned _call = trace::localWriter.beginEnter(&_wglFreeMemoryNV_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writePointer((uintptr_t)pointer);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _wglFreeMemoryNV(pointer);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.endLeave();
+}
+
+PROC wglGetProcAddress( const char * lpszProc ) {
+    PROC _result;
+    unsigned _call = trace::localWriter.beginEnter(&_wglGetProcAddress_sig);
+    trace::localWriter.beginArg(0);
+    trace::localWriter.writeString(lpszProc);
+    trace::localWriter.endArg();
+    trace::localWriter.endEnter();
+    _result = _wglGetProcAddress(lpszProc);
+    trace::localWriter.beginLeave(_call);
+    if (true) {
+    }
+    trace::localWriter.beginReturn();
+    trace::localWriter.writePointer((uintptr_t)_result);
+    trace::localWriter.endReturn();
+    trace::localWriter.endLeave();
+    return _result;
+}
+
+
+} /* namespace Trace */ } /* namespace Regal */
+
+#endif // REGAL_SYS_WGL
 
 static void _trace_user_arrays(GLuint count)
 {

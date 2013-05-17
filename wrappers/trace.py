@@ -416,10 +416,10 @@ class Tracer:
         # Generate the serializer functions
         visitor = ComplexValueSerializer(self.serializerFactory())
         for module in api.modules:
-            print '// types bgn - %s' % module.name
+            self.traceTypeDeclBegin( module )
             types = module.getAllTypes()
             map(visitor.visit, types)
-            print '// types end - %s' % module.name
+            self.traceTypeDeclEnd( module )
             print
 
         # Interfaces wrapers
@@ -432,20 +432,18 @@ class Tracer:
         self.interface = None
         self.base = None
         for module in api.modules:
-            print '// decl bgn - %s' % module.name
+            self.traceFunctionDeclBegin( module )
             for function in module.getAllFunctions():
                 self.traceFunctionDecl(function)
-            print '// decl end - %s' % module.name
+            self.traceFunctionDeclEnd( module )
             print
 
-        self.traceFunctionImplBegin()
         for module in api.modules:
-            print '// impl bgn - %s' % module.name
+            self.traceFunctionImplBegin( module )
             for function in module.getAllFunctions():
                 self.traceFunctionImpl(function)
-            print '// impl end - %s' % module.name
+            self.traceFunctionImplEnd( module );
             print
-        self.traceFunctionImplEnd();
 
         self.footer(api)
 
@@ -467,11 +465,35 @@ class Tracer:
     def footer(self, api):
         pass
 
-    def traceFunctionImplBegin(self):
+    def traceModuleGuardBegin(self, module):
         pass
 
-    def traceFunctionImplEnd(self):
+    def traceModuleGuardEnd(self, module):
         pass
+
+    def traceFunctionImplBegin(self, module):
+        self.traceModuleGuardBegin( module )
+        print '// impl bgn - %s' % module.name
+
+    def traceFunctionImplEnd(self, module):
+        print '// impl end - %s' % module.name
+        self.traceModuleGuardEnd( module )
+
+    def traceFunctionDeclBegin(self, module):
+        self.traceModuleGuardBegin( module )
+        print '// decl bgn - %s' % module.name
+
+    def traceFunctionDeclEnd(self, module):
+        print '// decl end - %s' % module.name
+        self.traceModuleGuardEnd( module )
+
+    def traceTypeDeclBegin(self, module):
+        self.traceModuleGuardBegin( module )
+	print '// types bgn - %s' % module.name
+
+    def traceTypeDeclEnd(self, module):
+	print '// types end - %s' % module.name
+        self.traceModuleGuardEnd( module )
 
     def traceFunctionDecl(self, function):
         # Per-function declarations

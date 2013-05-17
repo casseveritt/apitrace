@@ -39,6 +39,7 @@
  * Handle to the true OpenGL library.
  * XXX: Not really used yet.
  */
+#ifndef REGAL
 #if defined(_WIN32)
 HMODULE _libGlHandle = NULL;
 #else
@@ -149,3 +150,4 @@ _getPrivateProcAddress(const char *procName)
 }
 
 #endif
+#endif // REGAL

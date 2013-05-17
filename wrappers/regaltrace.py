@@ -43,16 +43,29 @@ from specs.glxapi import glxapi
 from specs.wglapi import wglapi
 
 class RegalTracer(GlTracer):
-  
-    def traceFunctionImplBegin(self):
+
+    name2guard = { 'cgl' : 'REGAL_SYS_OSX', 'egl' : 'REGAL_SYS_EGL', 'glx' : 'REGAL_SYS_GLX', 'wgl' : 'REGAL_SYS_WGL' }
+
+    def traceModuleGuardBegin(self, module):
+        if module.name in self.name2guard:
+            print '#if %s' % self.name2guard[module.name]
+        
+
+    def traceModuleGuardEnd(self, module):
+        if module.name in self.name2guard:
+            print '#endif // %s' % self.name2guard[module.name]
+
+    def traceFunctionImplBegin(self, module):
+        self.traceModuleGuardBegin( module )
         print
         print 'namespace Regal { namespace Trace {'
         print
 
-    def traceFunctionImplEnd(self):
+    def traceFunctionImplEnd(self, module):
         print
         print '} /* namespace Trace */ } /* namespace Regal */'
         print
+        self.traceModuleGuardEnd( module )
 
     def prototype(self, function):
         s = '%s %s( ' % ( function.type, function.name )
@@ -141,6 +154,10 @@ if __name__ == '__main__':
     cglmodule.mergeModule(cglapi)
     eglmodule = Module('egl')
     eglmodule.mergeModule(eglapi)
+    glxmodule = Module('glx')
+    glxmodule.mergeModule(glxapi)
+    wglmodule = Module('wgl')
+    wglmodule.mergeModule(wglapi)
 
     gfxmodule = Module('gfx')
     gfxmodule.mergeModule(glapi)
@@ -149,6 +166,8 @@ if __name__ == '__main__':
     api.addModule(gfxmodule)
     api.addModule(cglmodule)
     api.addModule(eglmodule)
+    api.addModule(glxmodule)
+    api.addModule(wglmodule)
     tracer = RegalTracer()
     tracer.traceApi(api)
 
