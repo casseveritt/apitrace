@@ -42,17 +42,16 @@
 #endif /* !_WIN32 */
 
 // need to define REGAL elsewhere
-#ifndef REGAL
-#define REGAL 0
-#endif
+#define REGAL 1
 
 #if REGAL
-#define REGAL_SYS_EGL 1
-#define REGAL_SYS_OSX 1
 #include "GL/Regal.h"
 #define APIENTRY REGAL_CALL
 #define GL_APIENTRY REGAL_CALL
-#else
+#if !REGAL_SYS_EGL
+typedef void * EGLImageKHR;
+#endif
+#else // ! REGAL
 #include <GL/gl.h>
 #include <GL/glext.h>
 
@@ -133,7 +132,7 @@ CGLError CGLUpdateContext(CGLContextObj ctx);
 
 #endif
 
-#endif // REGAL
+#endif // ! REGAL
 
 #include "eglimports.hpp"
 
