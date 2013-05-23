@@ -63170,7 +63170,7 @@ void glTextureParameterivEXT( GLuint texture, GLenum target, GLenum pname, const
     trace::localWriter.endLeave();
 }
 
-void glTextureImage1DEXT( GLuint texture, GLenum target, GLint level, GLenum internalformat, GLsizei width, GLint border, GLenum format, GLenum type, const GLvoid * pixels ) {
+void glTextureImage1DEXT( GLuint texture, GLenum target, GLint level, GLint internalformat, GLsizei width, GLint border, GLenum format, GLenum type, const GLvoid * pixels ) {
     unsigned _call = trace::localWriter.beginEnter(&_glTextureImage1DEXT_sig);
     trace::localWriter.beginArg(0);
     trace::localWriter.writeUInt(texture);
@@ -63182,7 +63182,7 @@ void glTextureImage1DEXT( GLuint texture, GLenum target, GLint level, GLenum int
     trace::localWriter.writeSInt(level);
     trace::localWriter.endArg();
     trace::localWriter.beginArg(3);
-    trace::localWriter.writeEnum(&_enumGLenum_sig, internalformat);
+    trace::localWriter.writeSInt(internalformat);
     trace::localWriter.endArg();
     trace::localWriter.beginArg(4);
     trace::localWriter.writeSInt(width);
@@ -63217,7 +63217,7 @@ void glTextureImage1DEXT( GLuint texture, GLenum target, GLint level, GLenum int
     trace::localWriter.endLeave();
 }
 
-void glTextureImage2DEXT( GLuint texture, GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const GLvoid * pixels ) {
+void glTextureImage2DEXT( GLuint texture, GLenum target, GLint level, GLint internalformat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const GLvoid * pixels ) {
     unsigned _call = trace::localWriter.beginEnter(&_glTextureImage2DEXT_sig);
     trace::localWriter.beginArg(0);
     trace::localWriter.writeUInt(texture);
@@ -63229,7 +63229,7 @@ void glTextureImage2DEXT( GLuint texture, GLenum target, GLint level, GLenum int
     trace::localWriter.writeSInt(level);
     trace::localWriter.endArg();
     trace::localWriter.beginArg(3);
-    trace::localWriter.writeEnum(&_enumGLenum_sig, internalformat);
+    trace::localWriter.writeSInt(internalformat);
     trace::localWriter.endArg();
     trace::localWriter.beginArg(4);
     trace::localWriter.writeSInt(width);
@@ -63666,7 +63666,7 @@ void glGetTextureLevelParameterivEXT( GLuint texture, GLenum target, GLint level
     trace::localWriter.endLeave();
 }
 
-void glTextureImage3DEXT( GLuint texture, GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLenum format, GLenum type, const GLvoid * pixels ) {
+void glTextureImage3DEXT( GLuint texture, GLenum target, GLint level, GLint internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLenum format, GLenum type, const GLvoid * pixels ) {
     unsigned _call = trace::localWriter.beginEnter(&_glTextureImage3DEXT_sig);
     trace::localWriter.beginArg(0);
     trace::localWriter.writeUInt(texture);
@@ -63678,7 +63678,7 @@ void glTextureImage3DEXT( GLuint texture, GLenum target, GLint level, GLenum int
     trace::localWriter.writeSInt(level);
     trace::localWriter.endArg();
     trace::localWriter.beginArg(3);
-    trace::localWriter.writeEnum(&_enumGLenum_sig, internalformat);
+    trace::localWriter.writeSInt(internalformat);
     trace::localWriter.endArg();
     trace::localWriter.beginArg(4);
     trace::localWriter.writeSInt(width);
