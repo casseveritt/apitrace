@@ -206,6 +206,12 @@ static void retrace_CGLCreateContext(trace::Call &call) {
 
     Context *context = glretrace::createContext(sharedContext);
     context_map[ctx] = context;
+
+    // since there's a CGLSetSurface bug
+    glws::Drawable *new_drawable = getDrawable(ctx);
+    Context *new_context = getContext(ctx);
+
+    glretrace::makeCurrent(call, new_drawable, new_context);
 }
 
 
