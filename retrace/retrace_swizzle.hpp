@@ -74,6 +74,28 @@ public:
         }
         return it->second;
     }
+
+    T & lookupUniformLocation( const T &key ) {
+      typename base_type::iterator it;
+      it = base.find(key);
+      if (it != base.end()) {
+        return it->second;
+      }
+
+      // otherwise add it by finding the nearest mapped slot number and populating the map
+      int baseKey = key;
+      while( baseKey > 0 ) {
+        it = base.find(baseKey);
+        if (it != base.end()) {
+          break;
+        }
+        baseKey--;
+      }
+      for( int k = baseKey+1; k <= key; k++ ) {
+        base[k] = base[k-1]+1;
+      }
+      return base[key];
+    }
 };
 
 
