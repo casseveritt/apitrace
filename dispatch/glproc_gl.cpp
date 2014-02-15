@@ -90,6 +90,11 @@ static const char *libgl_filename = "/System/Library/Frameworks/OpenGL.framework
 void * _libgl_sym(const char *symbol)
 {
     void *result;
+    const char * trace_libgl = getenv("TRACE_LIBGL");
+
+    if( trace_libgl ) {
+        libgl_filename = trace_libgl;
+    }
 
     if (!_libGlHandle) {
         /* 

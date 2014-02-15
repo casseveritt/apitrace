@@ -24,6 +24,18 @@ add_custom_command (
 )
 
 add_custom_command (
+    OUTPUT glperfretrace_gl.cpp
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/glperfretrace.py > ${CMAKE_CURRENT_BINARY_DIR}/glperfretrace_gl.cpp
+    DEPENDS
+                glperfretrace.py
+                retrace.py
+                ${CMAKE_SOURCE_DIR}/specs/glapi.py
+                ${CMAKE_SOURCE_DIR}/specs/glesapi.py
+                ${CMAKE_SOURCE_DIR}/specs/gltypes.py
+                ${CMAKE_SOURCE_DIR}/specs/stdapi.py
+)
+
+add_custom_command (
     OUTPUT glstate_params.cpp
     COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/glstate_params.py > ${CMAKE_CURRENT_BINARY_DIR}/glstate_params.cpp
     DEPENDS
@@ -112,6 +124,70 @@ if (WIN32 OR APPLE OR X11_FOUND)
     endif ()
 
     install (TARGETS glretrace RUNTIME DESTINATION bin) 
+endif ()
+
+add_library (glperfretrace_common STATIC
+    glperfretrace_gl.cpp
+    glretrace_cgl.cpp
+    glretrace_glx.cpp
+    glretrace_wgl.cpp
+    glretrace_egl.cpp
+    glretrace_main.cpp
+    glretrace_ws.cpp
+    glstate.cpp
+    glstate_images.cpp
+    glstate_params.cpp
+    glstate_shaders.cpp
+    glws.cpp
+)
+add_dependencies (glperfretrace_common glproc)
+target_link_libraries (glperfretrace_common
+    retrace_common
+)
+
+if (WIN32 OR APPLE OR X11_FOUND)
+    add_executable (glperfretrace
+        ${glws_os}
+    )
+
+    add_dependencies (glperfretrace glproc)
+
+    target_link_libraries (glperfretrace
+        retrace_common
+        glperfretrace_common
+        glproc_gl
+    )
+
+    if (WIN32)
+    else ()
+        if (APPLE)
+            target_link_libraries (glperfretrace
+                "-framework Cocoa"
+                "-framework ApplicationServices" # CGS*
+                #"-framework OpenGL" # CGL*
+            )
+        else ()
+            target_link_libraries (glperfretrace ${X11_X11_LIB})
+        endif ()
+
+        target_link_libraries (glperfretrace
+            # gdb doesn't like when pthreads is loaded through dlopen (which happens
+            # when dlopen'ing libGL), so link pthreads to avoid this issue.  See also
+            # http://stackoverflow.com/questions/2702628/gdb-cannot-find-new-threads-generic-error
+            ${CMAKE_THREAD_LIBS_INIT}
+            dl
+        )
+
+        if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+            target_link_libraries (glperfretrace rt)
+            if (READPROC_H_FOUND)
+                target_link_libraries (glperfretrace ${proc_LIBRARY})
+            endif ()
+        endif ()
+
+    endif ()
+
+    install (TARGETS glperfretrace RUNTIME DESTINATION bin) 
 endif ()
 
 if (ENABLE_EGL AND X11_FOUND AND NOT WIN32 AND NOT APPLE AND NOT ENABLE_WAFFLE)
