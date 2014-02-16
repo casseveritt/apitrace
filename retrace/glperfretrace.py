@@ -27,18 +27,18 @@
 """GL retracer generator."""
 
 
-from retrace import Retracer
+from perfretrace import PerfRetracer
 import specs.stdapi as stdapi
 import specs.glapi as glapi
 import specs.glesapi as glesapi
 
 
-class GlRetracer(Retracer):
+class GlPerfRetracer(PerfRetracer):
 
-    table_name = 'glretrace::gl_callbacks'
+    table_name = 'glperfretrace::gl_callbacks'
 
     def retraceFunction(self, function):
-        Retracer.retraceFunction(self, function)
+        PerfRetracer.retraceFunction(self, function)
 
     array_pointer_function_names = set((
         "glVertexPointer",
@@ -190,6 +190,7 @@ class GlRetracer(Retracer):
         is_draw_elements = function.name in self.draw_elements_function_names
         is_misc_draw = function.name in self.misc_draw_function_names
 
+        print r'    glperfretrace::Context *ctx = glperfretrace::getCurrentContext();'
         if is_array_pointer or is_draw_array or is_draw_elements:
             print '    if (retrace::parser.version < 1) {'
 
@@ -223,15 +224,15 @@ class GlRetracer(Retracer):
         if function.name == 'glStringMarkerGREMEDY':
             return
         if function.name == 'glFrameTerminatorGREMEDY':
-            print '    glretrace::frame_complete(call);'
+            print '    glperfretrace::frame_complete(call);'
             return
 
-        Retracer.retraceFunctionBody(self, function)
+        PerfRetracer.retraceFunctionBody(self, function)
 
         # Post-snapshots
         if function.name in ('glFlush', 'glFinish'):
             print '    if (!retrace::doubleBuffer) {'
-            print '        glretrace::frame_complete(call);'
+            print '        glperfretrace::frame_complete(call);'
             print '    }'
         if is_draw_array or is_draw_elements or is_misc_draw:
             print '    assert(call.flags & trace::CALL_FLAG_RENDER);'
@@ -240,32 +241,32 @@ class GlRetracer(Retracer):
     def invokeFunction(self, function):
         # Infer the drawable size from GL calls
         if function.name == "glViewport":
-            print '    glretrace::updateDrawable(x + width, y + height);'
+            print '    glperfretrace::updateDrawable(x + width, y + height);'
         if function.name == "glViewportArray":
             # We are concerned about drawables so only care for the first viewport
             print '    if (first == 0 && count > 0) {'
             print '        GLfloat x = v[0], y = v[1], w = v[2], h = v[3];'
-            print '        glretrace::updateDrawable(x + w, y + h);'
+            print '        glperfretrace::updateDrawable(x + w, y + h);'
             print '    }'
         if function.name == "glViewportIndexedf":
             print '    if (index == 0) {'
-            print '        glretrace::updateDrawable(x + w, y + h);'
+            print '        glperfretrace::updateDrawable(x + w, y + h);'
             print '    }'
         if function.name == "glViewportIndexedfv":
             print '    if (index == 0) {'
             print '        GLfloat x = v[0], y = v[1], w = v[2], h = v[3];'
-            print '        glretrace::updateDrawable(x + w, y + h);'
+            print '        glperfretrace::updateDrawable(x + w, y + h);'
             print '    }'
         if function.name in ('glBlitFramebuffer', 'glBlitFramebufferEXT'):
             # Some applications do all their rendering in a framebuffer, and
             # then just blit to the drawable without ever calling glViewport.
-            print '    glretrace::updateDrawable(std::max(dstX0, dstX1), std::max(dstY0, dstY1));'
+            print '    glperfretrace::updateDrawable(std::max(dstX0, dstX1), std::max(dstY0, dstY1));'
 
         if function.name == "glEnd":
-            print '    glretrace::insideGlBeginEnd = false;'
+            print '    ctx->insideGlBeginEnd = false;'
 
         if function.name.startswith('gl') and not function.name.startswith('glX'):
-            print r'    if (retrace::debug && !glretrace::getCurrentContext()) {'
+            print r'    if (retrace::debug && !glperfretrace::getCurrentContext()) {'
             print r'        retrace::warning(call) << "no current context\n";'
             print r'    }'
 
@@ -314,24 +315,23 @@ class GlRetracer(Retracer):
         )
 
         if function.name in ('glUseProgram', 'glUseProgramObjectARB'):
-            print r'    glretrace::Context *currentContext = glretrace::getCurrentContext();'
-            print r'    if (currentContext) {'
-            print r'        currentContext->activeProgram = call.arg(0).toUInt();'
+            print r'    if ( ctx ) {'
+            print r'         ctx ->activeProgram = call.arg(0).toUInt();'
             print r'    }'
 
         # Only profile if not inside a list as the queries get inserted into list
         if function.name == 'glNewList':
-            print r'    glretrace::insideList = true;'
+            print r'    ctx->insideList = true;'
 
         if function.name == 'glEndList':
-            print r'    glretrace::insideList = false;'
+            print r'    ctx->insideList = false;'
 
         if function.name != 'glEnd':
-            print r'    if (!glretrace::insideList && !glretrace::insideGlBeginEnd && retrace::profiling) {'
+            print r'    if (!ctx->insideList && !ctx->insideGlBeginEnd && retrace::profiling) {'
             if profileDraw:
-                print r'        glretrace::beginProfile(call, true);'
+                print r'        glperfretrace::beginProfile(call, true);'
             else:
-                print r'        glretrace::beginProfile(call, false);'
+                print r'        glperfretrace::beginProfile(call, false);'
             print r'    }'
 
         if function.name == 'glCreateShaderProgramv':
@@ -360,26 +360,26 @@ class GlRetracer(Retracer):
             print r'            _result = 0;'
             print r'        }'
             print r'    } else {'
-            Retracer.invokeFunction(self, function)
+            PerfRetracer.invokeFunction(self, function)
             print r'    }'
         else:
-            Retracer.invokeFunction(self, function)
+            PerfRetracer.invokeFunction(self, function)
 
         if function.name == "glBegin":
-            print '    glretrace::insideGlBeginEnd = true;'
+            print '    ctx->insideGlBeginEnd = true;'
 
-        print r'    if (!glretrace::insideList && !glretrace::insideGlBeginEnd && retrace::profiling) {'
+        print r'    if (!ctx->insideList && !ctx->insideGlBeginEnd && retrace::profiling) {'
         if profileDraw:
-            print r'        glretrace::endProfile(call, true);'
+            print r'        glperfretrace::endProfile(call, true);'
         else:
-            print r'        glretrace::endProfile(call, false);'
+            print r'        glperfretrace::endProfile(call, false);'
         print r'    }'
 
         # Error checking
         if function.name.startswith('gl'):
             # glGetError is not allowed inside glBegin/glEnd
-            print '    if (retrace::debug && !glretrace::insideGlBeginEnd && glretrace::getCurrentContext()) {'
-            print '        glretrace::checkGlError(call);'
+            print '    if (retrace::debug && !ctx->insideGlBeginEnd && glperfretrace::getCurrentContext()) {'
+            print '        glperfretrace::checkGlError(call);'
             if function.name in ('glProgramStringARB', 'glProgramStringNV'):
                 print r'        GLint error_position = -1;'
                 print r'        glGetIntegerv(GL_PROGRAM_ERROR_POSITION_ARB, &error_position);'
@@ -493,10 +493,9 @@ class GlRetracer(Retracer):
            and 'program' not in function.argNames():
             # Determine the active program for uniforms swizzling
             print '    GLint program = -1;'
-            print '    if (glretrace::insideList) {'
+            print '    if (ctx->insideList) {'
             print '        // glUseProgram & glUseProgramObjectARB are display-list-able'
-            print r'    glretrace::Context *currentContext = glretrace::getCurrentContext();'
-            print '        program = _program_map[currentContext->activeProgram];'
+            print '        program = _program_map[ ctx ->activeProgram];'
             print '    } else {'
             print '        GLint pipeline = 0;'
             print '        if (_pipelineHasBeenBound) {'
@@ -514,7 +513,7 @@ class GlRetracer(Retracer):
            and 'programObj' not in function.argNames():
             print '    GLhandleARB programObj = glGetHandleARB(GL_PROGRAM_OBJECT_ARB);'
 
-        Retracer.extractArg(self, function, arg, arg_type, lvalue, rvalue)
+        PerfRetracer.extractArg(self, function, arg, arg_type, lvalue, rvalue)
 
         # Don't try to use more samples than the implementation supports
         if arg.name == 'samples':
@@ -537,14 +536,15 @@ if __name__ == '__main__':
 #include <string.h>
 
 #include "glproc.hpp"
-#include "glretrace.hpp"
+#include "glperfretrace.hpp"
 #include "glstate.hpp"
 
+using namespace glperfretrace;
 
 static bool _pipelineHasBeenBound = false;
 '''
     api = stdapi.API()
     api.addModule(glapi.glapi)
     api.addModule(glesapi.glesapi)
-    retracer = GlRetracer()
+    retracer = GlPerfRetracer()
     retracer.retraceApi(api)

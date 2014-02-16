@@ -128,12 +128,12 @@ endif ()
 
 add_library (glperfretrace_common STATIC
     glperfretrace_gl.cpp
-    glretrace_cgl.cpp
-    glretrace_glx.cpp
-    glretrace_wgl.cpp
-    glretrace_egl.cpp
-    glretrace_main.cpp
-    glretrace_ws.cpp
+    glperfretrace_cgl.cpp
+    glperfretrace_glx.cpp
+    glperfretrace_wgl.cpp
+    glperfretrace_egl.cpp
+    glperfretrace_main.cpp
+    glperfretrace_ws.cpp
     glstate.cpp
     glstate_images.cpp
     glstate_params.cpp

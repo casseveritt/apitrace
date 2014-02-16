@@ -540,6 +540,7 @@ if __name__ == '__main__':
 #include "glretrace.hpp"
 #include "glstate.hpp"
 
+using namespace glretrace;
 
 static bool _pipelineHasBeenBound = false;
 '''
