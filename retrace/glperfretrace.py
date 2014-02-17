@@ -205,8 +205,7 @@ class GlPerfRetracer(PerfRetracer):
                 print '        }'
 
             if is_draw_elements:
-                print '        GLint _element_array_buffer = 0;'
-                print '        glGetIntegerv(GL_ELEMENT_ARRAY_BUFFER_BINDING, &_element_array_buffer);'
+                print '        GLint _element_array_buffer = GLint( ctx->elementArrayBuffer );'
                 print '        if (!_element_array_buffer) {'
                 self.failFunction(function)
                 print '        }'
@@ -319,7 +318,8 @@ class GlPerfRetracer(PerfRetracer):
 
         if function.name == 'glBindBuffer':
             print r'    switch( target ) {'
-            print r'        case GL_ARRAY_BUFFER: ctx->arrayBuffer = call.arg(1).toUInt(); break;'
+            print r'        case GL_ARRAY_BUFFER: ctx->arrayBuffer = buffer; break;'
+            print r'        case GL_ELEMENT_ARRAY_BUFFER: ctx->elementArrayBuffer = buffer; break;'
             print r'        default: break;'
             print r'    }'
 

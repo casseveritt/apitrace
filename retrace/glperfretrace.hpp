@@ -38,6 +38,7 @@ struct Context {
           drawable(0),
           activeProgram(0),
           arrayBuffer(0),
+          elementArrayBuffer(0),
           insideList(false),
           insideGlBeginEnd(false),
           supportsARBShaderObjects(false),
@@ -54,6 +55,7 @@ struct Context {
 
     GLuint activeProgram;
     GLuint arrayBuffer;
+    GLuint elementArrayBuffer;
     bool insideList;
     bool insideGlBeginEnd;
     bool supportsARBShaderObjects;
