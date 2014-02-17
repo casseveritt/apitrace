@@ -191,12 +191,15 @@ class GlPerfRetracer(PerfRetracer):
         is_misc_draw = function.name in self.misc_draw_function_names
 
         print r'    glperfretrace::Context *ctx = glperfretrace::getCurrentContext();'
+        print  '    if ( ctx == NULL ) {'
+        print  '        return;'
+        print  '    }'
+
         if is_array_pointer or is_draw_array or is_draw_elements:
             print '    if (retrace::parser.version < 1) {'
 
             if is_array_pointer or is_draw_array:
-                print '        GLint _array_buffer = 0;'
-                print '        glGetIntegerv(GL_ARRAY_BUFFER_BINDING, &_array_buffer);'
+                print '        GLint _array_buffer = GLint( ctx->arrayBuffer );'
                 print '        if (!_array_buffer) {'
                 self.failFunction(function)
                 print '        }'
@@ -314,10 +317,14 @@ class GlPerfRetracer(PerfRetracer):
             function.name == 'glBegin'
         )
 
-        if function.name in ('glUseProgram', 'glUseProgramObjectARB'):
-            print r'    if ( ctx ) {'
-            print r'         ctx ->activeProgram = call.arg(0).toUInt();'
+        if function.name == 'glBindBuffer':
+            print r'    switch( target ) {'
+            print r'        case GL_ARRAY_BUFFER: ctx->arrayBuffer = call.arg(1).toUInt(); break;'
+            print r'        default: break;'
             print r'    }'
+
+        if function.name in ('glUseProgram', 'glUseProgramObjectARB'):
+            print r'    ctx ->activeProgram = call.arg(0).toUInt();'
 
         # Only profile if not inside a list as the queries get inserted into list
         if function.name == 'glNewList':

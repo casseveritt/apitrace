@@ -37,6 +37,7 @@ struct Context {
         : wsContext(context),
           drawable(0),
           activeProgram(0),
+          arrayBuffer(0),
           insideList(false),
           insideGlBeginEnd(false),
           supportsARBShaderObjects(false),
@@ -52,6 +53,7 @@ struct Context {
     glws::Drawable *drawable;
 
     GLuint activeProgram;
+    GLuint arrayBuffer;
     bool insideList;
     bool insideGlBeginEnd;
     bool supportsARBShaderObjects;
