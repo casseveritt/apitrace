@@ -28,6 +28,7 @@
 
 #include "glws.hpp"
 #include "retrace.hpp"
+#include <map>
 
 
 namespace glperfretrace {
@@ -41,6 +42,9 @@ struct Context {
           elementArrayBuffer(0),
           insideList(false),
           insideGlBeginEnd(false),
+          pixelPackBuffer(0),
+          program(0),
+          programPipeline(0),
           supportsARBShaderObjects(false),
           used(false)
     {
@@ -58,8 +62,13 @@ struct Context {
     GLuint elementArrayBuffer;
     bool insideList;
     bool insideGlBeginEnd;
+    GLuint pixelPackBuffer;
+    GLuint program;
+    GLuint programPipeline;
     bool supportsARBShaderObjects;
     bool used;
+
+    std::map<GLuint, GLuint> pipelineToActiveProgram;
     
     // Context must be current
     inline bool

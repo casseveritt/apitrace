@@ -214,8 +214,7 @@ class GlPerfRetracer(PerfRetracer):
 
         # When no pack buffer object is bound, the pack functions are no-ops.
         if function.name in self.pack_function_names:
-            print '    GLint _pack_buffer = 0;'
-            print '    glGetIntegerv(GL_PIXEL_PACK_BUFFER_BINDING, &_pack_buffer);'
+            print '    GLint _pack_buffer = GLint( ctx->pixelPackBuffer );'
             print '    if (!_pack_buffer) {'
             print '        return;'
             print '    }'
@@ -320,11 +319,25 @@ class GlPerfRetracer(PerfRetracer):
             print r'    switch( target ) {'
             print r'        case GL_ARRAY_BUFFER: ctx->arrayBuffer = buffer; break;'
             print r'        case GL_ELEMENT_ARRAY_BUFFER: ctx->elementArrayBuffer = buffer; break;'
+            print r'        case GL_PIXEL_PACK_BUFFER: ctx->pixelPackBuffer = buffer; break;'
             print r'        default: break;'
             print r'    }'
 
         if function.name in ('glUseProgram', 'glUseProgramObjectARB'):
-            print r'    ctx ->activeProgram = call.arg(0).toUInt();'
+            print r'    ctx->program = call.arg(0).toUInt();'
+
+        if function.name in ('glBindProgramPipeline'):
+            print r'    ctx->programPipeline = call.arg(0).toUInt();'
+            print r'    if( ctx->programPipeline && ctx->pipelineToActiveProgram.count( ctx->programPipeline ) ) {'
+            print r'        ctx->activeProgram = ctx->pipelineToActiveProgram[ ctx->programPipeline ];'
+            print r'    }'
+
+        # this needs more error checking - pipeline has to have been gen'd, 
+        if function.name in ('glActiveShaderProgram'):
+            print r'    GLuint pipe = call.arg(0).toUInt();'
+            print r'    if( pipe ) {'
+            print r'        ctx->pipelineToActiveProgram[ pipe ] = call.arg(1).toUInt();'
+            print r'    }'
 
         # Only profile if not inside a list as the queries get inserted into list
         if function.name == 'glNewList':
@@ -499,19 +512,13 @@ class GlPerfRetracer(PerfRetracer):
         if arg.type is glapi.GLlocation \
            and 'program' not in function.argNames():
             # Determine the active program for uniforms swizzling
-            print '    GLint program = -1;'
+            print '    GLint program = ctx->program;'
             print '    if (ctx->insideList) {'
             print '        // glUseProgram & glUseProgramObjectARB are display-list-able'
             print '        program = _program_map[ ctx ->activeProgram];'
             print '    } else {'
-            print '        GLint pipeline = 0;'
-            print '        if (_pipelineHasBeenBound) {'
-            print '            glGetIntegerv(GL_PROGRAM_PIPELINE_BINDING, &pipeline);'
-            print '        }'
-            print '        if (pipeline) {'
-            print '            glGetProgramPipelineiv(pipeline, GL_ACTIVE_PROGRAM, &program);'
-            print '        } else {'
-            print '            glGetIntegerv(GL_CURRENT_PROGRAM, &program);'
+            print '        if ( program == 0 && ctx->programPipeline != 0 ) {'
+            print '           program = ctx->activeProgram;' 
             print '        }'
             print '    }'
             print
