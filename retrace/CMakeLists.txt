@@ -28,7 +28,7 @@ add_custom_command (
     COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/glperfretrace.py > ${CMAKE_CURRENT_BINARY_DIR}/glperfretrace_gl.cpp
     DEPENDS
                 glperfretrace.py
-                retrace.py
+                perfretrace.py
                 ${CMAKE_SOURCE_DIR}/specs/glapi.py
                 ${CMAKE_SOURCE_DIR}/specs/glesapi.py
                 ${CMAKE_SOURCE_DIR}/specs/gltypes.py
@@ -126,6 +126,22 @@ if (WIN32 OR APPLE OR X11_FOUND)
     install (TARGETS glretrace RUNTIME DESTINATION bin) 
 endif ()
 
+add_library (perfretrace_common STATIC
+    perfretrace.cpp
+    perfretrace_main.cpp
+    perfretrace_stdc.cpp
+    perfretrace_swizzle.cpp
+    json.cpp
+)
+
+target_link_libraries (perfretrace_common
+    image
+    common
+    ${ZLIB_LIBRARIES}
+    ${SNAPPY_LIBRARIES}
+    ${GETOPT_LIBRARIES}
+)
+
 add_library (glperfretrace_common STATIC
     glperfretrace_gl.cpp
     glperfretrace_cgl.cpp
@@ -142,7 +158,7 @@ add_library (glperfretrace_common STATIC
 )
 add_dependencies (glperfretrace_common glproc)
 target_link_libraries (glperfretrace_common
-    retrace_common
+    perfretrace_common
 )
 
 if (WIN32 OR APPLE OR X11_FOUND)
@@ -153,7 +169,7 @@ if (WIN32 OR APPLE OR X11_FOUND)
     add_dependencies (glperfretrace glproc)
 
     target_link_libraries (glperfretrace
-        retrace_common
+        perfretrace_common
         glperfretrace_common
         glproc_gl
     )

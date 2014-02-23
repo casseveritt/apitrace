@@ -154,10 +154,10 @@ class ValueDeserializer(stdapi.Visitor, stdapi.ExpanderMixin):
         print '    %s = static_cast<%s>((%s).toPointer());' % (lvalue, pointer, rvalue)
 
     def visitObjPointer(self, pointer, lvalue, rvalue):
-        print '    %s = static_cast<%s>(retrace::toObjPointer(call, %s));' % (lvalue, pointer, rvalue)
+        print '    %s = static_cast<%s>(perfretrace::toObjPointer(call, %s));' % (lvalue, pointer, rvalue)
 
     def visitLinearPointer(self, pointer, lvalue, rvalue):
-        print '    %s = static_cast<%s>(retrace::toPointer(%s));' % (lvalue, pointer, rvalue)
+        print '    %s = static_cast<%s>(perfretrace::toPointer(%s));' % (lvalue, pointer, rvalue)
 
     def visitReference(self, reference, lvalue, rvalue):
         self.visit(reference.type, lvalue, rvalue);
@@ -166,7 +166,7 @@ class ValueDeserializer(stdapi.Visitor, stdapi.ExpanderMixin):
         #OpaqueValueDeserializer().visit(handle.type, lvalue, rvalue);
         self.visit(handle.type, lvalue, rvalue);
         new_lvalue = lookupHandle(handle, lvalue)
-        print '    if (retrace::verbosity >= 2) {'
+        print '    if (perfretrace::verbosity >= 2) {'
         print '        std::cout << "%s " << size_t(%s) << " <- " << size_t(%s) << "\\n";' % (handle.name, lvalue, new_lvalue)
         print '    }'
         if (new_lvalue.startswith('_program_map') or new_lvalue.startswith('_shader_map')):
@@ -214,7 +214,7 @@ class ValueDeserializer(stdapi.Visitor, stdapi.ExpanderMixin):
                 print r'        break;'
             if polymorphic.defaultType is None:
                 print r'    default:'
-                print r'        retrace::warning(call) << "unexpected polymorphic case" << %s << "\n";' % (switchExpr,)
+                print r'        perfretrace::warning(call) << "unexpected polymorphic case" << %s << "\n";' % (switchExpr,)
                 print r'        break;'
             print r'    }'
         else:
@@ -231,7 +231,7 @@ class OpaqueValueDeserializer(ValueDeserializer):
     in the context of handles.'''
 
     def visitOpaque(self, opaque, lvalue, rvalue):
-        print '    %s = static_cast<%s>(retrace::toPointer(%s));' % (lvalue, opaque, rvalue)
+        print '    %s = static_cast<%s>(perfretrace::toPointer(%s));' % (lvalue, opaque, rvalue)
 
 
 class SwizzledValueRegistrator(stdapi.Visitor, stdapi.ExpanderMixin):
@@ -274,12 +274,12 @@ class SwizzledValueRegistrator(stdapi.Visitor, stdapi.ExpanderMixin):
         pass
     
     def visitObjPointer(self, pointer, lvalue, rvalue):
-        print r'    retrace::addObj(call, %s, %s);' % (rvalue, lvalue)
+        print r'    perfretrace::addObj(call, %s, %s);' % (rvalue, lvalue)
     
     def visitLinearPointer(self, pointer, lvalue, rvalue):
         assert pointer.size is not None
         if pointer.size is not None:
-            print r'    retrace::addRegion((%s).toUIntPtr(), %s, %s);' % (rvalue, lvalue, pointer.size)
+            print r'    perfretrace::addRegion((%s).toUIntPtr(), %s, %s);' % (rvalue, lvalue, pointer.size)
 
     def visitReference(self, reference, lvalue, rvalue):
         pass
@@ -298,7 +298,7 @@ class SwizzledValueRegistrator(stdapi.Visitor, stdapi.ExpanderMixin):
                 print '}'
             else:
                 print "    %s = %s;" % (entry, lvalue)
-            print '    if (retrace::verbosity >= 2) {'
+            print '    if (perfretrace::verbosity >= 2) {'
             print '        std::cout << "{handle.name} " << {rvalue} << " -> " << {lvalue} << "\\n";'.format(**locals())
             print '    }'
         else:
@@ -308,7 +308,7 @@ class SwizzledValueRegistrator(stdapi.Visitor, stdapi.ExpanderMixin):
             entry = lookupHandle(handle, rvalue) 
             print '    for ({handle.type} {i} = 0; {i} < {handle.range}; ++{i}) {{'.format(**locals())
             print '        {entry} = {lvalue};'.format(**locals())
-            print '        if (retrace::verbosity >= 2) {'
+            print '        if (perfretrace::verbosity >= 2) {'
             print '            std::cout << "{handle.name} " << ({rvalue}) << " -> " << ({lvalue}) << "\\n";'.format(**locals())
             print '        }'
             print '    }'
@@ -396,13 +396,13 @@ class PerfRetracer:
 
     def deserializeThisPointer(self, interface):
         print r'    %s *_this;' % (interface.name,)
-        print r'    _this = static_cast<%s *>(retrace::toObjPointer(call, call.arg(0)));' % (interface.name,)
+        print r'    _this = static_cast<%s *>(perfretrace::toObjPointer(call, call.arg(0)));' % (interface.name,)
         print r'    if (!_this) {'
         print r'        return;'
         print r'    }'
 
     def deserializeArgs(self, function):
-        print '    retrace::ScopedAllocator _allocator;'
+        print '    perfretrace::ScopedAllocator _allocator;'
         print '    (void)_allocator;'
         success = True
         for arg in function.args:
@@ -443,8 +443,8 @@ class PerfRetracer:
                 print '    // XXX: result'
 
     def failFunction(self, function):
-        print '    if (retrace::verbosity >= 0) {'
-        print '        retrace::unsupported(call);'
+        print '    if (perfretrace::verbosity >= 0) {'
+        print '        perfretrace::unsupported(call);'
         print '    }'
         print '    return;'
 
@@ -482,7 +482,7 @@ class PerfRetracer:
         # trace.
         if method.name == 'Release':
             print '    if (call.ret->toUInt() == 0) {'
-            print '        retrace::delObj(call.arg(0));'
+            print '        perfretrace::delObj(call.arg(0));'
             print '    }'
 
         arg_names = ", ".join(method.argNames())
@@ -497,7 +497,7 @@ class PerfRetracer:
         if str(resultType) == 'HRESULT':
             print r'    if (FAILED(_result)) {'
             print '         static char szMessageBuffer[128];'
-            print r'        retrace::warning(call) << "call returned 0x" << std::hex << _result << std::dec << ": " << (FormatMessageA(FORMAT_MESSAGE_FROM_SYSTEM, NULL, _result, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), szMessageBuffer, sizeof szMessageBuffer, NULL) ? szMessageBuffer : "???") << "\n";'
+            print r'        perfretrace::warning(call) << "call returned 0x" << std::hex << _result << std::dec << ": " << (FormatMessageA(FORMAT_MESSAGE_FROM_SYSTEM, NULL, _result, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), szMessageBuffer, sizeof szMessageBuffer, NULL) ? szMessageBuffer : "???") << "\n";'
             print r'    }'
 
     def filterFunction(self, function):
@@ -509,8 +509,8 @@ class PerfRetracer:
 
         print '#include "os_time.hpp"'
         print '#include "trace_parser.hpp"'
-        print '#include "retrace.hpp"'
-        print '#include "retrace_swizzle.hpp"'
+        print '#include "perfretrace.hpp"'
+        print '#include "perfretrace_swizzle.hpp"'
         print
 
         types = api.getAllTypes()
@@ -519,10 +519,10 @@ class PerfRetracer:
         for handle in handles:
             if handle.name not in handle_names:
                 if handle.key is None:
-                    print 'static retrace::map<%s> _%s_map;' % (handle.type, handle.name)
+                    print 'static perfretrace::map<%s> _%s_map;' % (handle.type, handle.name)
                 else:
                     key_name, key_type = handle.key
-                    print 'static std::map<%s, retrace::map<%s> > _%s_map;' % (key_type, handle.type, handle.name)
+                    print 'static std::map<%s, perfretrace::map<%s> > _%s_map;' % (key_type, handle.type, handle.name)
                 handle_names.add(handle.name)
         print
 
@@ -536,7 +536,7 @@ class PerfRetracer:
                 if method.sideeffects and not method.internal:
                     self.retraceInterfaceMethod(interface, method)
 
-        print 'const retrace::Entry %s[] = {' % self.table_name
+        print 'const perfretrace::Entry %s[] = {' % self.table_name
         for function in functions:
             if not function.internal:
                 if function.sideeffects:
