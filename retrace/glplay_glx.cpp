@@ -25,7 +25,7 @@
 
 
 #include "glproc.hpp"
-#include "retrace.hpp"
+#include "play.hpp"
 #include "glplay.hpp"
 
 #if !defined(HAVE_X11)
@@ -86,7 +86,7 @@ getContext(unsigned long long context_ptr) {
     return it->second;
 }
 
-static void retrace_glXCreateContext(trace::Call &call) {
+static void play_glXCreateContext(trace::Call &call) {
     unsigned long long orig_context = call.ret->toUIntPtr();
     Context *share_context = getContext(call.arg(2).toUIntPtr());
 
@@ -94,7 +94,7 @@ static void retrace_glXCreateContext(trace::Call &call) {
     context_map[orig_context] = context;
 }
 
-static void retrace_glXCreateContextAttribsARB(trace::Call &call) {
+static void play_glXCreateContextAttribsARB(trace::Call &call) {
     unsigned long long orig_context = call.ret->toUIntPtr();
     Context *share_context = getContext(call.arg(2).toUIntPtr());
 
@@ -141,7 +141,7 @@ static void retrace_glXCreateContextAttribsARB(trace::Call &call) {
     context_map[orig_context] = context;
 }
 
-static void retrace_glXMakeCurrent(trace::Call &call) {
+static void play_glXMakeCurrent(trace::Call &call) {
     glws::Drawable *new_drawable = getDrawable(call.arg(1).toUInt());
     Context *new_context = getContext(call.arg(2).toUIntPtr());
 
@@ -149,7 +149,7 @@ static void retrace_glXMakeCurrent(trace::Call &call) {
 }
 
 
-static void retrace_glXDestroyContext(trace::Call &call) {
+static void play_glXDestroyContext(trace::Call &call) {
     ContextMap::iterator it;
     it = context_map.find(call.arg(1).toUIntPtr());
     if (it == context_map.end()) {
@@ -161,7 +161,7 @@ static void retrace_glXDestroyContext(trace::Call &call) {
     context_map.erase(it);
 }
 
-static void retrace_glXCopySubBufferMESA(trace::Call &call) {
+static void play_glXCopySubBufferMESA(trace::Call &call) {
     glws::Drawable *drawable = getDrawable(call.arg(1).toUInt());
     int x = call.arg(2).toSInt();
     int y = call.arg(3).toSInt();
@@ -171,11 +171,11 @@ static void retrace_glXCopySubBufferMESA(trace::Call &call) {
     drawable->copySubBuffer(x, y, width, height);
 }
 
-static void retrace_glXSwapBuffers(trace::Call &call) {
+static void play_glXSwapBuffers(trace::Call &call) {
     glws::Drawable *drawable = getDrawable(call.arg(1).toUInt());
 
     frame_complete(call);
-    if (retrace::doubleBuffer) {
+    if (play::doubleBuffer) {
         if (drawable) {
             drawable->swapBuffers();
         }
@@ -184,7 +184,7 @@ static void retrace_glXSwapBuffers(trace::Call &call) {
     }
 }
 
-static void retrace_glXCreateNewContext(trace::Call &call) {
+static void play_glXCreateNewContext(trace::Call &call) {
     unsigned long long orig_context = call.ret->toUIntPtr();
     Context *share_context = getContext(call.arg(3).toUIntPtr());
 
@@ -192,7 +192,7 @@ static void retrace_glXCreateNewContext(trace::Call &call) {
     context_map[orig_context] = context;
 }
 
-static void retrace_glXCreatePbuffer(trace::Call &call) {
+static void play_glXCreatePbuffer(trace::Call &call) {
     const trace::Value *attrib_list = call.arg(2).toArray();
     int width = glplay::parseAttrib(attrib_list, GLX_PBUFFER_WIDTH, 0);
     int height = glplay::parseAttrib(attrib_list, GLX_PBUFFER_HEIGHT, 0);
@@ -204,7 +204,7 @@ static void retrace_glXCreatePbuffer(trace::Call &call) {
     drawable_map[orig_drawable] = drawable;
 }
 
-static void retrace_glXDestroyPbuffer(trace::Call &call) {
+static void play_glXDestroyPbuffer(trace::Call &call) {
     glws::Drawable *drawable = getDrawable(call.arg(1).toUInt());
 
     if (!drawable) {
@@ -214,105 +214,105 @@ static void retrace_glXDestroyPbuffer(trace::Call &call) {
     delete drawable;
 }
 
-static void retrace_glXMakeContextCurrent(trace::Call &call) {
+static void play_glXMakeContextCurrent(trace::Call &call) {
     glws::Drawable *new_drawable = getDrawable(call.arg(1).toUInt());
     Context *new_context = getContext(call.arg(3).toUIntPtr());
 
     glplay::makeCurrent(call, new_drawable, new_context);
 }
 
-const retrace::Entry glplay::glx_callbacks[] = {
-    //{"glXBindChannelToWindowSGIX", &retrace_glXBindChannelToWindowSGIX},
-    //{"glXBindSwapBarrierNV", &retrace_glXBindSwapBarrierNV},
-    //{"glXBindSwapBarrierSGIX", &retrace_glXBindSwapBarrierSGIX},
-    {"glXBindTexImageEXT", &retrace::ignore},
-    //{"glXChannelRectSGIX", &retrace_glXChannelRectSGIX},
-    //{"glXChannelRectSyncSGIX", &retrace_glXChannelRectSyncSGIX},
-    {"glXChooseFBConfig", &retrace::ignore},
-    {"glXChooseFBConfigSGIX", &retrace::ignore},
-    {"glXChooseVisual", &retrace::ignore},
-    //{"glXCopyContext", &retrace_glXCopyContext},
-    //{"glXCopyImageSubDataNV", &retrace_glXCopyImageSubDataNV},
-    {"glXCopySubBufferMESA", &retrace_glXCopySubBufferMESA},
-    {"glXCreateContextAttribsARB", &retrace_glXCreateContextAttribsARB},
-    {"glXCreateContext", &retrace_glXCreateContext},
-    //{"glXCreateContextWithConfigSGIX", &retrace_glXCreateContextWithConfigSGIX},
-    //{"glXCreateGLXPbufferSGIX", &retrace_glXCreateGLXPbufferSGIX},
-    //{"glXCreateGLXPixmap", &retrace_glXCreateGLXPixmap},
-    //{"glXCreateGLXPixmapWithConfigSGIX", &retrace_glXCreateGLXPixmapWithConfigSGIX},
-    {"glXCreateNewContext", &retrace_glXCreateNewContext},
-    {"glXCreatePbuffer", &retrace_glXCreatePbuffer},
-    {"glXCreatePixmap", &retrace::ignore},
-    //{"glXCreateWindow", &retrace_glXCreateWindow},
-    //{"glXCushionSGI", &retrace_glXCushionSGI},
-    {"glXDestroyContext", &retrace_glXDestroyContext},
-    //{"glXDestroyGLXPbufferSGIX", &retrace_glXDestroyGLXPbufferSGIX},
-    //{"glXDestroyGLXPixmap", &retrace_glXDestroyGLXPixmap},
-    {"glXDestroyPbuffer", &retrace_glXDestroyPbuffer},
-    {"glXDestroyPixmap", &retrace::ignore},
-    //{"glXDestroyWindow", &retrace_glXDestroyWindow},
-    //{"glXFreeContextEXT", &retrace_glXFreeContextEXT},
-    {"glXGetAGPOffsetMESA", &retrace::ignore},
-    {"glXGetClientString", &retrace::ignore},
-    {"glXGetConfig", &retrace::ignore},
-    {"glXGetContextIDEXT", &retrace::ignore},
-    {"glXGetCurrentContext", &retrace::ignore},
-    {"glXGetCurrentDisplayEXT", &retrace::ignore},
-    {"glXGetCurrentDisplay", &retrace::ignore},
-    {"glXGetCurrentDrawable", &retrace::ignore},
-    {"glXGetCurrentReadDrawable", &retrace::ignore},
-    {"glXGetCurrentReadDrawableSGI", &retrace::ignore},
-    {"glXGetFBConfigAttrib", &retrace::ignore},
-    {"glXGetFBConfigAttribSGIX", &retrace::ignore},
-    {"glXGetFBConfigFromVisualSGIX", &retrace::ignore},
-    {"glXGetFBConfigs", &retrace::ignore},
-    {"glXGetMscRateOML", &retrace::ignore},
-    {"glXGetProcAddressARB", &retrace::ignore},
-    {"glXGetProcAddress", &retrace::ignore},
-    {"glXGetSelectedEvent", &retrace::ignore},
-    {"glXGetSelectedEventSGIX", &retrace::ignore},
-    {"glXGetSwapIntervalMESA", &retrace::ignore},
-    {"glXGetSyncValuesOML", &retrace::ignore},
-    {"glXGetVideoSyncSGI", &retrace::ignore},
-    {"glXGetVisualFromFBConfig", &retrace::ignore},
-    {"glXGetVisualFromFBConfigSGIX", &retrace::ignore},
-    //{"glXImportContextEXT", &retrace_glXImportContextEXT},
-    {"glXIsDirect", &retrace::ignore},
-    //{"glXJoinSwapGroupNV", &retrace_glXJoinSwapGroupNV},
-    //{"glXJoinSwapGroupSGIX", &retrace_glXJoinSwapGroupSGIX},
-    {"glXMakeContextCurrent", &retrace_glXMakeContextCurrent},
-    //{"glXMakeCurrentReadSGI", &retrace_glXMakeCurrentReadSGI},
-    {"glXMakeCurrent", &retrace_glXMakeCurrent},
-    {"glXQueryChannelDeltasSGIX", &retrace::ignore},
-    {"glXQueryChannelRectSGIX", &retrace::ignore},
-    {"glXQueryContextInfoEXT", &retrace::ignore},
-    {"glXQueryContext", &retrace::ignore},
-    {"glXQueryDrawable", &retrace::ignore},
-    {"glXQueryExtension", &retrace::ignore},
-    {"glXQueryExtensionsString", &retrace::ignore},
-    {"glXQueryFrameCountNV", &retrace::ignore},
-    {"glXQueryGLXPbufferSGIX", &retrace::ignore},
-    {"glXQueryMaxSwapBarriersSGIX", &retrace::ignore},
-    {"glXQueryMaxSwapGroupsNV", &retrace::ignore},
-    {"glXQueryServerString", &retrace::ignore},
-    {"glXQuerySwapGroupNV", &retrace::ignore},
-    {"glXQueryVersion", &retrace::ignore},
-    //{"glXReleaseBuffersMESA", &retrace_glXReleaseBuffersMESA},
-    {"glXReleaseTexImageEXT", &retrace::ignore},
-    //{"glXResetFrameCountNV", &retrace_glXResetFrameCountNV},
-    //{"glXSelectEvent", &retrace_glXSelectEvent},
-    //{"glXSelectEventSGIX", &retrace_glXSelectEventSGIX},
-    //{"glXSet3DfxModeMESA", &retrace_glXSet3DfxModeMESA},
-    //{"glXSwapBuffersMscOML", &retrace_glXSwapBuffersMscOML},
-    {"glXSwapBuffers", &retrace_glXSwapBuffers},
-    {"glXSwapIntervalEXT", &retrace::ignore},
-    {"glXSwapIntervalSGI", &retrace::ignore},
-    //{"glXUseXFont", &retrace_glXUseXFont},
-    {"glXWaitForMscOML", &retrace::ignore},
-    {"glXWaitForSbcOML", &retrace::ignore},
-    {"glXWaitGL", &retrace::ignore},
-    {"glXWaitVideoSyncSGI", &retrace::ignore},
-    {"glXWaitX", &retrace::ignore},
+const play::Entry glplay::glx_callbacks[] = {
+    //{"glXBindChannelToWindowSGIX", &play_glXBindChannelToWindowSGIX},
+    //{"glXBindSwapBarrierNV", &play_glXBindSwapBarrierNV},
+    //{"glXBindSwapBarrierSGIX", &play_glXBindSwapBarrierSGIX},
+    {"glXBindTexImageEXT", &play::ignore},
+    //{"glXChannelRectSGIX", &play_glXChannelRectSGIX},
+    //{"glXChannelRectSyncSGIX", &play_glXChannelRectSyncSGIX},
+    {"glXChooseFBConfig", &play::ignore},
+    {"glXChooseFBConfigSGIX", &play::ignore},
+    {"glXChooseVisual", &play::ignore},
+    //{"glXCopyContext", &play_glXCopyContext},
+    //{"glXCopyImageSubDataNV", &play_glXCopyImageSubDataNV},
+    {"glXCopySubBufferMESA", &play_glXCopySubBufferMESA},
+    {"glXCreateContextAttribsARB", &play_glXCreateContextAttribsARB},
+    {"glXCreateContext", &play_glXCreateContext},
+    //{"glXCreateContextWithConfigSGIX", &play_glXCreateContextWithConfigSGIX},
+    //{"glXCreateGLXPbufferSGIX", &play_glXCreateGLXPbufferSGIX},
+    //{"glXCreateGLXPixmap", &play_glXCreateGLXPixmap},
+    //{"glXCreateGLXPixmapWithConfigSGIX", &play_glXCreateGLXPixmapWithConfigSGIX},
+    {"glXCreateNewContext", &play_glXCreateNewContext},
+    {"glXCreatePbuffer", &play_glXCreatePbuffer},
+    {"glXCreatePixmap", &play::ignore},
+    //{"glXCreateWindow", &play_glXCreateWindow},
+    //{"glXCushionSGI", &play_glXCushionSGI},
+    {"glXDestroyContext", &play_glXDestroyContext},
+    //{"glXDestroyGLXPbufferSGIX", &play_glXDestroyGLXPbufferSGIX},
+    //{"glXDestroyGLXPixmap", &play_glXDestroyGLXPixmap},
+    {"glXDestroyPbuffer", &play_glXDestroyPbuffer},
+    {"glXDestroyPixmap", &play::ignore},
+    //{"glXDestroyWindow", &play_glXDestroyWindow},
+    //{"glXFreeContextEXT", &play_glXFreeContextEXT},
+    {"glXGetAGPOffsetMESA", &play::ignore},
+    {"glXGetClientString", &play::ignore},
+    {"glXGetConfig", &play::ignore},
+    {"glXGetContextIDEXT", &play::ignore},
+    {"glXGetCurrentContext", &play::ignore},
+    {"glXGetCurrentDisplayEXT", &play::ignore},
+    {"glXGetCurrentDisplay", &play::ignore},
+    {"glXGetCurrentDrawable", &play::ignore},
+    {"glXGetCurrentReadDrawable", &play::ignore},
+    {"glXGetCurrentReadDrawableSGI", &play::ignore},
+    {"glXGetFBConfigAttrib", &play::ignore},
+    {"glXGetFBConfigAttribSGIX", &play::ignore},
+    {"glXGetFBConfigFromVisualSGIX", &play::ignore},
+    {"glXGetFBConfigs", &play::ignore},
+    {"glXGetMscRateOML", &play::ignore},
+    {"glXGetProcAddressARB", &play::ignore},
+    {"glXGetProcAddress", &play::ignore},
+    {"glXGetSelectedEvent", &play::ignore},
+    {"glXGetSelectedEventSGIX", &play::ignore},
+    {"glXGetSwapIntervalMESA", &play::ignore},
+    {"glXGetSyncValuesOML", &play::ignore},
+    {"glXGetVideoSyncSGI", &play::ignore},
+    {"glXGetVisualFromFBConfig", &play::ignore},
+    {"glXGetVisualFromFBConfigSGIX", &play::ignore},
+    //{"glXImportContextEXT", &play_glXImportContextEXT},
+    {"glXIsDirect", &play::ignore},
+    //{"glXJoinSwapGroupNV", &play_glXJoinSwapGroupNV},
+    //{"glXJoinSwapGroupSGIX", &play_glXJoinSwapGroupSGIX},
+    {"glXMakeContextCurrent", &play_glXMakeContextCurrent},
+    //{"glXMakeCurrentReadSGI", &play_glXMakeCurrentReadSGI},
+    {"glXMakeCurrent", &play_glXMakeCurrent},
+    {"glXQueryChannelDeltasSGIX", &play::ignore},
+    {"glXQueryChannelRectSGIX", &play::ignore},
+    {"glXQueryContextInfoEXT", &play::ignore},
+    {"glXQueryContext", &play::ignore},
+    {"glXQueryDrawable", &play::ignore},
+    {"glXQueryExtension", &play::ignore},
+    {"glXQueryExtensionsString", &play::ignore},
+    {"glXQueryFrameCountNV", &play::ignore},
+    {"glXQueryGLXPbufferSGIX", &play::ignore},
+    {"glXQueryMaxSwapBarriersSGIX", &play::ignore},
+    {"glXQueryMaxSwapGroupsNV", &play::ignore},
+    {"glXQueryServerString", &play::ignore},
+    {"glXQuerySwapGroupNV", &play::ignore},
+    {"glXQueryVersion", &play::ignore},
+    //{"glXReleaseBuffersMESA", &play_glXReleaseBuffersMESA},
+    {"glXReleaseTexImageEXT", &play::ignore},
+    //{"glXResetFrameCountNV", &play_glXResetFrameCountNV},
+    //{"glXSelectEvent", &play_glXSelectEvent},
+    //{"glXSelectEventSGIX", &play_glXSelectEventSGIX},
+    //{"glXSet3DfxModeMESA", &play_glXSet3DfxModeMESA},
+    //{"glXSwapBuffersMscOML", &play_glXSwapBuffersMscOML},
+    {"glXSwapBuffers", &play_glXSwapBuffers},
+    {"glXSwapIntervalEXT", &play::ignore},
+    {"glXSwapIntervalSGI", &play::ignore},
+    //{"glXUseXFont", &play_glXUseXFont},
+    {"glXWaitForMscOML", &play::ignore},
+    {"glXWaitForSbcOML", &play::ignore},
+    {"glXWaitGL", &play::ignore},
+    {"glXWaitVideoSyncSGI", &play::ignore},
+    {"glXWaitX", &play::ignore},
     {NULL, NULL},
 };
 

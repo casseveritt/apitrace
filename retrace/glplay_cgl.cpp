@@ -27,7 +27,7 @@
 #include <string.h>
 
 #include "glproc.hpp"
-#include "retrace.hpp"
+#include "play.hpp"
 #include "glplay.hpp"
 
 
@@ -150,7 +150,7 @@ getContext(unsigned long long ctx) {
 }
 
 
-static void retrace_CGLChoosePixelFormat(trace::Call &call) {
+static void play_CGLChoosePixelFormat(trace::Call &call) {
     int profile = 0;
 
     const trace::Array * attribs = call.arg(0).toArray();
@@ -213,7 +213,7 @@ static void retrace_CGLChoosePixelFormat(trace::Call &call) {
                 break;
 
             default:
-                retrace::warning(call) << "unexpected attribute " << param << "\n";
+                play::warning(call) << "unexpected attribute " << param << "\n";
                 break;
             }
         }
@@ -233,13 +233,13 @@ static void retrace_CGLChoosePixelFormat(trace::Call &call) {
         glplay::defaultProfile = glws::PROFILE_4_1_CORE;
         break;
     default:
-        retrace::warning(call) << "unexpected opengl profile " << std::hex << profile << std::dec << "\n";
+        play::warning(call) << "unexpected opengl profile " << std::hex << profile << std::dec << "\n";
         break;
     }
 }
 
 
-static void retrace_CGLCreateContext(trace::Call &call) {
+static void play_CGLCreateContext(trace::Call &call) {
     unsigned long long share = call.arg(1).toUIntPtr();
     Context *sharedContext = getContext(share);
 
@@ -252,7 +252,7 @@ static void retrace_CGLCreateContext(trace::Call &call) {
 }
 
 
-static void retrace_CGLDestroyContext(trace::Call &call) {
+static void play_CGLDestroyContext(trace::Call &call) {
     unsigned long long ctx = call.arg(0).toUIntPtr();
 
     ContextMap::iterator it;
@@ -267,7 +267,7 @@ static void retrace_CGLDestroyContext(trace::Call &call) {
 }
 
 
-static void retrace_CGLSetSurface(trace::Call &call) {
+static void play_CGLSetSurface(trace::Call &call) {
     unsigned long long ctx = call.arg(0).toUIntPtr();
     unsigned long long cid = call.arg(1).toUInt();
     int wid = call.arg(2).toUInt();
@@ -282,14 +282,14 @@ static void retrace_CGLSetSurface(trace::Call &call) {
 }
 
 
-static void retrace_CGLClearDrawable(trace::Call &call) {
+static void play_CGLClearDrawable(trace::Call &call) {
     unsigned long long ctx = call.arg(0).toUIntPtr();
 
     context_drawable_map[ctx] = NULL;
 }
 
 
-static void retrace_CGLSetCurrentContext(trace::Call &call) {
+static void play_CGLSetCurrentContext(trace::Call &call) {
     unsigned long long ctx = call.arg(0).toUIntPtr();
 
     glws::Drawable *new_drawable = getDrawableFromContext(ctx);
@@ -299,22 +299,22 @@ static void retrace_CGLSetCurrentContext(trace::Call &call) {
 }
 
 
-static void retrace_CGLFlushDrawable(trace::Call &call) {
+static void play_CGLFlushDrawable(trace::Call &call) {
     unsigned long long ctx = call.arg(0).toUIntPtr();
     Context *context = getContext(ctx);
 
     if (context) {
         glws::Drawable *drawable = getDrawableFromContext(ctx);
         if (drawable) {
-            if (retrace::doubleBuffer) {
+            if (play::doubleBuffer) {
                 drawable->swapBuffers();
             } else {
                 glFlush();
             }
             frame_complete(call);
         } else {
-            if (retrace::debug) {
-                retrace::warning(call) << "context has no drawable\n";
+            if (play::debug) {
+                play::warning(call) << "context has no drawable\n";
             }
         }
     }
@@ -329,9 +329,9 @@ static void retrace_CGLFlushDrawable(trace::Call &call) {
  * See also:
  * - /System/Library/Frameworks/OpenGL.framework/Headers/CGLIOSurface.h
  */
-static void retrace_CGLTexImageIOSurface2D(trace::Call &call) {
-    if (retrace::debug) {
-        retrace::warning(call) << "external IOSurface not supported\n";
+static void play_CGLTexImageIOSurface2D(trace::Call &call) {
+    if (play::debug) {
+        play::warning(call) << "external IOSurface not supported\n";
     }
 
     unsigned long long ctxNum = call.arg(0).toUIntPtr();
@@ -363,40 +363,40 @@ static void retrace_CGLTexImageIOSurface2D(trace::Call &call) {
 
     Context * ctx = glplay::getCurrentContext();
     if ( ctx != context ) {
-        if (retrace::debug) {
-            retrace::warning(call) << "current context mismatch\n";
+        if (play::debug) {
+            play::warning(call) << "current context mismatch\n";
         }
     }
 
     glTexImage2D(target, level, internalformat, width, height, border, format, type, pixels);
 
-    if (retrace::debug && !ctx->insideGlBeginEnd) {
+    if (play::debug && !ctx->insideGlBeginEnd) {
         glplay::checkGlError(call);
     }
 }
 
 
-const retrace::Entry glplay::cgl_callbacks[] = {
-    {"CGLChoosePixelFormat", &retrace_CGLChoosePixelFormat},
-    {"CGLClearDrawable", &retrace_CGLClearDrawable},
-    {"CGLCreateContext", &retrace_CGLCreateContext},
-    {"CGLDestroyContext", &retrace_CGLDestroyContext},
-    {"CGLDestroyPixelFormat", &retrace::ignore},
-    {"CGLDisable", &retrace::ignore},
-    {"CGLEnable", &retrace::ignore},
-    {"CGLErrorString", &retrace::ignore},
-    {"CGLFlushDrawable", &retrace_CGLFlushDrawable},
-    {"CGLGetCurrentContext", &retrace::ignore},
-    {"CGLGetOption", &retrace::ignore},
-    {"CGLGetParameter", &retrace::ignore},
-    {"CGLGetVersion", &retrace::ignore},
-    {"CGLGetVirtualScreen", &retrace::ignore},
-    {"CGLIsEnabled", &retrace::ignore},
-    {"CGLSetCurrentContext", &retrace_CGLSetCurrentContext},
-    {"CGLSetSurface", &retrace_CGLSetSurface},
-    {"CGLSetParameter", &retrace::ignore},
-    {"CGLTexImageIOSurface2D", &retrace_CGLTexImageIOSurface2D},
-    {"CGLUpdateContext", &retrace::ignore},
+const play::Entry glplay::cgl_callbacks[] = {
+    {"CGLChoosePixelFormat", &play_CGLChoosePixelFormat},
+    {"CGLClearDrawable", &play_CGLClearDrawable},
+    {"CGLCreateContext", &play_CGLCreateContext},
+    {"CGLDestroyContext", &play_CGLDestroyContext},
+    {"CGLDestroyPixelFormat", &play::ignore},
+    {"CGLDisable", &play::ignore},
+    {"CGLEnable", &play::ignore},
+    {"CGLErrorString", &play::ignore},
+    {"CGLFlushDrawable", &play_CGLFlushDrawable},
+    {"CGLGetCurrentContext", &play::ignore},
+    {"CGLGetOption", &play::ignore},
+    {"CGLGetParameter", &play::ignore},
+    {"CGLGetVersion", &play::ignore},
+    {"CGLGetVirtualScreen", &play::ignore},
+    {"CGLIsEnabled", &play::ignore},
+    {"CGLSetCurrentContext", &play_CGLSetCurrentContext},
+    {"CGLSetSurface", &play_CGLSetSurface},
+    {"CGLSetParameter", &play::ignore},
+    {"CGLTexImageIOSurface2D", &play_CGLTexImageIOSurface2D},
+    {"CGLUpdateContext", &play::ignore},
     {NULL, NULL},
 };
 

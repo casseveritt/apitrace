@@ -28,7 +28,7 @@
 
 #include <string.h>
 
-#include "retrace.hpp"
+#include "play.hpp"
 #include "glproc.hpp"
 #include "glstate.hpp"
 #include "glplay.hpp"
@@ -81,7 +81,7 @@ void
 checkGlError(trace::Call &call) {
     GLenum error = glGetError();
     while (error != GL_NO_ERROR) {
-        std::ostream & os = retrace::warning(call);
+        std::ostream & os = play::warning(call);
 
         os << "glGetError(";
         os << call.name();
@@ -124,7 +124,7 @@ checkGlError(trace::Call &call) {
 
 static inline int64_t
 getCurrentTime(void) {
-    if (retrace::profilingGpuTimes && supportsTimestamp) {
+    if (play::profilingGpuTimes && supportsTimestamp) {
         /* Get the current GL time without stalling */
         GLint64 timestamp = 0;
         glGetInteger64v(GL_TIMESTAMP, &timestamp);
@@ -136,7 +136,7 @@ getCurrentTime(void) {
 
 static inline int64_t
 getTimeFrequency(void) {
-    if (retrace::profilingGpuTimes && supportsTimestamp) {
+    if (play::profilingGpuTimes && supportsTimestamp) {
         return 1000000000;
     } else {
         return os::timeFrequency;
@@ -159,7 +159,7 @@ completeCallQuery(CallQuery& query) {
     int64_t gpuStart = 0, gpuDuration = 0, cpuDuration = 0, pixels = 0, vsizeDuration = 0, rssDuration = 0;
 
     if (query.isDraw) {
-        if (retrace::profilingGpuTimes) {
+        if (play::profilingGpuTimes) {
             if (supportsTimestamp) {
                 glGetQueryObjecti64vEXT(query.ids[GPU_START], GL_QUERY_RESULT, &gpuStart);
             }
@@ -167,7 +167,7 @@ completeCallQuery(CallQuery& query) {
             glGetQueryObjecti64vEXT(query.ids[GPU_DURATION], GL_QUERY_RESULT, &gpuDuration);
         }
 
-        if (retrace::profilingPixelsDrawn) {
+        if (play::profilingPixelsDrawn) {
             glGetQueryObjecti64vEXT(query.ids[OCCLUSION], GL_QUERY_RESULT, &pixels);
         }
 
@@ -175,13 +175,13 @@ completeCallQuery(CallQuery& query) {
         pixels = -1;
     }
 
-    if (retrace::profilingCpuTimes) {
+    if (play::profilingCpuTimes) {
         double cpuTimeScale = 1.0E9 / getTimeFrequency();
         cpuDuration = (query.cpuEnd - query.cpuStart) * cpuTimeScale;
         query.cpuStart *= cpuTimeScale;
     }
 
-    if (retrace::profilingMemoryUsage) {
+    if (play::profilingMemoryUsage) {
         vsizeDuration = query.vsizeEnd - query.vsizeStart;
         rssDuration = query.rssEnd - query.rssStart;
     }
@@ -189,7 +189,7 @@ completeCallQuery(CallQuery& query) {
     glDeleteQueries(NUM_QUERIES, query.ids);
 
     /* Add call to profile */
-    retrace::profiler.addCall(query.call, query.sig->name, query.program, pixels, gpuStart, gpuDuration, query.cpuStart, cpuDuration, query.vsizeStart, vsizeDuration, query.rssStart, rssDuration);
+    play::profiler.addCall(query.call, query.sig->name, query.program, pixels, gpuStart, gpuDuration, query.cpuStart, cpuDuration, query.vsizeStart, vsizeDuration, query.rssStart, rssDuration);
 }
 
 void
@@ -216,7 +216,7 @@ beginProfile(trace::Call &call, bool isDraw) {
 
     /* GPU profiling only for draw calls */
     if (isDraw) {
-        if (retrace::profilingGpuTimes) {
+        if (play::profilingGpuTimes) {
             if (supportsTimestamp) {
                 glQueryCounter(query.ids[GPU_START], GL_TIMESTAMP);
             }
@@ -224,7 +224,7 @@ beginProfile(trace::Call &call, bool isDraw) {
             glBeginQuery(GL_TIME_ELAPSED, query.ids[GPU_DURATION]);
         }
 
-        if (retrace::profilingPixelsDrawn) {
+        if (play::profilingPixelsDrawn) {
             glBeginQuery(GL_SAMPLES_PASSED, query.ids[OCCLUSION]);
         }
     }
@@ -232,12 +232,12 @@ beginProfile(trace::Call &call, bool isDraw) {
     callQueries.push_back(query);
 
     /* CPU profiling for all calls */
-    if (retrace::profilingCpuTimes) {
+    if (play::profilingCpuTimes) {
         CallQuery& query = callQueries.back();
         query.cpuStart = getCurrentTime();
     }
 
-    if (retrace::profilingMemoryUsage) {
+    if (play::profilingMemoryUsage) {
         CallQuery& query = callQueries.back();
         query.vsizeStart = os::getVsize();
         query.rssStart = os::getRss();
@@ -248,23 +248,23 @@ void
 endProfile(trace::Call &call, bool isDraw) {
 
     /* CPU profiling for all calls */
-    if (retrace::profilingCpuTimes) {
+    if (play::profilingCpuTimes) {
         CallQuery& query = callQueries.back();
         query.cpuEnd = getCurrentTime();
     }
 
     /* GPU profiling only for draw calls */
     if (isDraw) {
-        if (retrace::profilingGpuTimes) {
+        if (play::profilingGpuTimes) {
             glEndQuery(GL_TIME_ELAPSED);
         }
 
-        if (retrace::profilingPixelsDrawn) {
+        if (play::profilingPixelsDrawn) {
             glEndQuery(GL_SAMPLES_PASSED);
         }
     }
 
-    if (retrace::profilingMemoryUsage) {
+    if (play::profilingMemoryUsage) {
         CallQuery& query = callQueries.back();
         query.vsizeEnd = os::getVsize();
         query.rssEnd = os::getRss();
@@ -284,7 +284,7 @@ initContext() {
     currentContext->supportsARBShaderObjects = currentContext->hasExtension("GL_ARB_shader_objects");
 
     /* Check for timer query support */
-    if (retrace::profilingGpuTimes) {
+    if (play::profilingGpuTimes) {
         if (!supportsTimestamp && !supportsElapsed) {
             std::cout << "Error: Cannot run profile, GL_EXT_timer_query extension is not supported." << std::endl;
             exit(-1);
@@ -300,13 +300,13 @@ initContext() {
     }
 
     /* Check for occlusion query support */
-    if (retrace::profilingPixelsDrawn && !supportsOcclusion) {
+    if (play::profilingPixelsDrawn && !supportsOcclusion) {
         std::cout << "Error: Cannot run profile, GL_ARB_occlusion_query extension is not supported." << std::endl;
         exit(-1);
     }
 
     /* Setup debug message call back */
-    if (retrace::debug && supportsDebugOutput) {
+    if (play::debug && supportsDebugOutput) {
         glplay::Context *currentContext = glplay::getCurrentContext();
         glDebugMessageControlARB(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, 0, GL_TRUE);
         glDebugMessageCallbackARB(&debugOutputCallback, currentContext);
@@ -317,35 +317,35 @@ initContext() {
     }
 
     /* Sync the gpu and cpu start times */
-    if (retrace::profilingCpuTimes || retrace::profilingGpuTimes) {
-        if (!retrace::profiler.hasBaseTimes()) {
+    if (play::profilingCpuTimes || play::profilingGpuTimes) {
+        if (!play::profiler.hasBaseTimes()) {
             double cpuTimeScale = 1.0E9 / getTimeFrequency();
             GLint64 currentTime = getCurrentTime() * cpuTimeScale;
-            retrace::profiler.setBaseCpuTime(currentTime);
-            retrace::profiler.setBaseGpuTime(currentTime);
+            play::profiler.setBaseCpuTime(currentTime);
+            play::profiler.setBaseGpuTime(currentTime);
         }
     }
 
-    if (retrace::profilingMemoryUsage) {
+    if (play::profilingMemoryUsage) {
         GLint64 currentVsize, currentRss;
         getCurrentVsize(currentVsize);
-        retrace::profiler.setBaseVsizeUsage(currentVsize);
+        play::profiler.setBaseVsizeUsage(currentVsize);
         getCurrentRss(currentRss);
-        retrace::profiler.setBaseRssUsage(currentRss);
+        play::profiler.setBaseRssUsage(currentRss);
     }
 }
 
 void
 frame_complete(trace::Call &call) {
-    if (retrace::profiling) {
+    if (play::profiling) {
         /* Complete any remaining queries */
         flushQueries();
 
         /* Indicate end of current frame */
-        retrace::profiler.addFrameEnd();
+        play::profiler.addFrameEnd();
     }
 
-    retrace::frameComplete(call);
+    play::frameComplete(call);
 
     glplay::Context *currentContext = glplay::getCurrentContext();
     if (!currentContext) {
@@ -353,8 +353,8 @@ frame_complete(trace::Call &call) {
     }
 
     assert(currentContext->drawable);
-    if (retrace::debug && !currentContext->drawable->visible) {
-        retrace::warning(call) << "could not infer drawable size (glViewport never called)\n";
+    if (play::debug && !currentContext->drawable->visible) {
+        play::warning(call) << "could not infer drawable size (glViewport never called)\n";
     }
 }
 
@@ -430,7 +430,7 @@ debugOutputCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsi
     if (severity == GL_DEBUG_SEVERITY_LOW_ARB &&
         --maxLowSeverityMessages <= 0) {
         if (maxLowSeverityMessages == 0) {
-            std::cerr << retrace::callNo << ": ";
+            std::cerr << play::callNo << ": ";
             std::cerr << "glDebugOutputCallback: ";
             std::cerr << "too many low severity messages";
             std::cerr << std::endl;
@@ -438,7 +438,7 @@ debugOutputCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsi
         return;
     }
 
-    std::cerr << retrace::callNo << ": ";
+    std::cerr << play::callNo << ": ";
     std::cerr << "glDebugOutputCallback: ";
     std::cerr << getDebugOutputSeverity(severity) << " severity ";
     std::cerr << getDebugOutputSource(source) << " " << getDebugOutputType(type);
@@ -450,7 +450,7 @@ debugOutputCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsi
 } /* namespace glplay */
 
 
-class GLDumper : public retrace::Dumper {
+class GLDumper : public play::Dumper {
 public:
     image::Image *
     getSnapshot(void) {
@@ -476,32 +476,32 @@ static GLDumper glDumper;
 
 
 void
-retrace::setFeatureLevel(const char *featureLevel)
+play::setFeatureLevel(const char *featureLevel)
 {
     glplay::defaultProfile = glws::PROFILE_3_2_CORE;
 }
 
 
 void
-retrace::setUp(void) {
+play::setUp(void) {
     glws::init();
     dumper = &glDumper;
 }
 
 
 void
-retrace::addCallbacks(retrace::Retracer &retracer)
+play::addCallbacks(play::Player &player)
 {
-    retracer.addCallbacks(glplay::gl_callbacks);
-    retracer.addCallbacks(glplay::glx_callbacks);
-    retracer.addCallbacks(glplay::wgl_callbacks);
-    retracer.addCallbacks(glplay::cgl_callbacks);
-    retracer.addCallbacks(glplay::egl_callbacks);
+    player.addCallbacks(glplay::gl_callbacks);
+    player.addCallbacks(glplay::glx_callbacks);
+    player.addCallbacks(glplay::wgl_callbacks);
+    player.addCallbacks(glplay::cgl_callbacks);
+    player.addCallbacks(glplay::egl_callbacks);
 }
 
 
 void
-retrace::flushRendering(void) {
+play::flushRendering(void) {
     glplay::Context *currentContext = glplay::getCurrentContext();
     if (currentContext) {
         glplay::flushQueries();
@@ -509,7 +509,7 @@ retrace::flushRendering(void) {
 }
 
 void
-retrace::finishRendering(void) {
+play::finishRendering(void) {
     glplay::Context *currentContext = glplay::getCurrentContext();
     if (currentContext) {
         glFinish();
@@ -517,7 +517,7 @@ retrace::finishRendering(void) {
 }
 
 void
-retrace::waitForInput(void) {
+play::waitForInput(void) {
     flushRendering();
     while (glws::processEvents()) {
         os::sleep(100*1000);
@@ -525,6 +525,6 @@ retrace::waitForInput(void) {
 }
 
 void
-retrace::cleanUp(void) {
+play::cleanUp(void) {
     glws::cleanup();
 }

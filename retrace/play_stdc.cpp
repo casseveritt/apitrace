@@ -29,11 +29,11 @@
 
 #include <iostream>
 
-#include "retrace.hpp"
-#include "retrace_swizzle.hpp"
+#include "play.hpp"
+#include "play_swizzle.hpp"
 
 
-static void retrace_malloc(trace::Call &call) {
+static void play_malloc(trace::Call &call) {
     size_t size = call.arg(0).toUInt();
     unsigned long long address = call.ret->toUIntPtr();
 
@@ -47,13 +47,13 @@ static void retrace_malloc(trace::Call &call) {
         return;
     }
 
-    retrace::addRegion(address, buffer, size);
+    play::addRegion(address, buffer, size);
 }
 
 
-static void retrace_memcpy(trace::Call &call) {
-    void * dest = retrace::toPointer(call.arg(0));
-    void * src  = retrace::toPointer(call.arg(1));
+static void play_memcpy(trace::Call &call) {
+    void * dest = play::toPointer(call.arg(0));
+    void * src  = play::toPointer(call.arg(1));
     size_t n    = call.arg(2).toUInt();
 
     if (!dest || !src || !n) {
@@ -64,8 +64,8 @@ static void retrace_memcpy(trace::Call &call) {
 }
 
 
-const retrace::Entry retrace::stdc_callbacks[] = {
-    {"malloc", &retrace_malloc},
-    {"memcpy", &retrace_memcpy},
+const play::Entry play::stdc_callbacks[] = {
+    {"malloc", &play_malloc},
+    {"memcpy", &play_memcpy},
     {NULL, NULL}
 };

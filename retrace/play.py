@@ -227,7 +227,7 @@ class ValueDeserializer(stdapi.Visitor, stdapi.ExpanderMixin):
 class OpaqueValueDeserializer(ValueDeserializer):
     '''Value extractor that also understands opaque values.
 
-    Normally opaque values can't be retraced, unless they are being extracted
+    Normally opaque values can't be playd, unless they are being extracted
     in the context of handles.'''
 
     def visitOpaque(self, opaque, lvalue, rvalue):
@@ -340,21 +340,21 @@ class SwizzledValueRegistrator(stdapi.Visitor, stdapi.ExpanderMixin):
         pass
 
 
-class PerfRetracer:
+class Player:
 
-    def retraceFunction(self, function):
-        print 'static void retrace_%s(trace::Call &call) {' % function.name
-        self.retraceFunctionBody(function)
+    def playFunction(self, function):
+        print 'static void play_%s(trace::Call &call) {' % function.name
+        self.playFunctionBody(function)
         print '}'
         print
 
-    def retraceInterfaceMethod(self, interface, method):
-        print 'static void retrace_%s__%s(trace::Call &call) {' % (interface.name, method.name)
-        self.retraceInterfaceMethodBody(interface, method)
+    def playInterfaceMethod(self, interface, method):
+        print 'static void play_%s__%s(trace::Call &call) {' % (interface.name, method.name)
+        self.playInterfaceMethodBody(interface, method)
         print '}'
         print
 
-    def retraceFunctionBody(self, function):
+    def playFunctionBody(self, function):
         assert function.sideeffects
 
         if function.type is not stdapi.Void:
@@ -367,7 +367,7 @@ class PerfRetracer:
 
         self.swizzleValues(function)
 
-    def retraceInterfaceMethodBody(self, interface, method):
+    def playInterfaceMethodBody(self, interface, method):
         assert method.sideeffects
 
         if method.type is not stdapi.Void:
@@ -503,9 +503,9 @@ class PerfRetracer:
     def filterFunction(self, function):
         return True
 
-    table_name = 'retrace::callbacks'
+    table_name = 'play::callbacks'
 
-    def retraceApi(self, api):
+    def playApi(self, api):
 
         print '#include "os_time.hpp"'
         print '#include "trace_parser.hpp"'
@@ -529,26 +529,26 @@ class PerfRetracer:
         functions = filter(self.filterFunction, api.getAllFunctions())
         for function in functions:
             if function.sideeffects and not function.internal:
-                self.retraceFunction(function)
+                self.playFunction(function)
         interfaces = api.getAllInterfaces()
         for interface in interfaces:
             for method in interface.iterMethods():
                 if method.sideeffects and not method.internal:
-                    self.retraceInterfaceMethod(interface, method)
+                    self.playInterfaceMethod(interface, method)
 
         print 'const play::Entry %s[] = {' % self.table_name
         for function in functions:
             if not function.internal:
                 if function.sideeffects:
-                    print '    {"%s", &retrace_%s},' % (function.name, function.name)
+                    print '    {"%s", &play_%s},' % (function.name, function.name)
                 else:
-                    print '    {"%s", &retrace::ignore},' % (function.name,)
+                    print '    {"%s", &play::ignore},' % (function.name,)
         for interface in interfaces:
             for method in interface.iterMethods():                
                 if method.sideeffects:
-                    print '    {"%s::%s", &retrace_%s__%s},' % (interface.name, method.name, interface.name, method.name)
+                    print '    {"%s::%s", &play_%s__%s},' % (interface.name, method.name, interface.name, method.name)
                 else:
-                    print '    {"%s::%s", &retrace::ignore},' % (interface.name, method.name)
+                    print '    {"%s::%s", &play::ignore},' % (interface.name, method.name)
         print '    {NULL, NULL}'
         print '};'
         print

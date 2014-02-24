@@ -29,7 +29,7 @@
 
 
 #include "glproc.hpp"
-#include "retrace.hpp"
+#include "play.hpp"
 #include "glplay.hpp"
 #include "os.hpp"
 #include "eglsize.hpp"
@@ -114,20 +114,20 @@ static void createDrawable(unsigned long long orig_config, unsigned long long or
     drawable_map[orig_surface] = drawable;
 }
 
-static void retrace_eglCreateWindowSurface(trace::Call &call) {
+static void play_eglCreateWindowSurface(trace::Call &call) {
     unsigned long long orig_config = call.arg(1).toUIntPtr();
     unsigned long long orig_surface = call.ret->toUIntPtr();
     createDrawable(orig_config, orig_surface);
 }
 
-static void retrace_eglCreatePbufferSurface(trace::Call &call) {
+static void play_eglCreatePbufferSurface(trace::Call &call) {
     unsigned long long orig_config = call.arg(1).toUIntPtr();
     unsigned long long orig_surface = call.ret->toUIntPtr();
     createDrawable(orig_config, orig_surface);
     // TODO: Respect the pbuffer dimensions too
 }
 
-static void retrace_eglDestroySurface(trace::Call &call) {
+static void play_eglDestroySurface(trace::Call &call) {
     unsigned long long orig_surface = call.arg(1).toUIntPtr();
 
     DrawableMap::iterator it;
@@ -143,12 +143,12 @@ static void retrace_eglDestroySurface(trace::Call &call) {
     }
 }
 
-static void retrace_eglBindAPI(trace::Call &call) {
+static void play_eglBindAPI(trace::Call &call) {
     current_api = call.arg(0).toUInt();
     eglBindAPI(current_api);
 }
 
-static void retrace_eglCreateContext(trace::Call &call) {
+static void play_eglCreateContext(trace::Call &call) {
     unsigned long long orig_context = call.ret->toUIntPtr();
     unsigned long long orig_config = call.arg(1).toUIntPtr();
     Context *share_context = getContext(call.arg(2).toUIntPtr());
@@ -195,7 +195,7 @@ static void retrace_eglCreateContext(trace::Call &call) {
             break;
         }
 
-        retrace::warning(call) << "Failed to create " << name << " context.\n";
+        play::warning(call) << "Failed to create " << name << " context.\n";
         exit(1);
     }
 
@@ -204,7 +204,7 @@ static void retrace_eglCreateContext(trace::Call &call) {
     last_profile = profile;
 }
 
-static void retrace_eglDestroyContext(trace::Call &call) {
+static void play_eglDestroyContext(trace::Call &call) {
     unsigned long long orig_context = call.arg(1).toUIntPtr();
 
     ContextMap::iterator it;
@@ -220,7 +220,7 @@ static void retrace_eglDestroyContext(trace::Call &call) {
     }
 }
 
-static void retrace_eglMakeCurrent(trace::Call &call) {
+static void play_eglMakeCurrent(trace::Call &call) {
     glws::Drawable *new_drawable = getDrawable(call.arg(1).toUIntPtr());
     Context *new_context = getContext(call.arg(3).toUIntPtr());
 
@@ -228,12 +228,12 @@ static void retrace_eglMakeCurrent(trace::Call &call) {
 }
 
 
-static void retrace_eglSwapBuffers(trace::Call &call) {
+static void play_eglSwapBuffers(trace::Call &call) {
     glws::Drawable *drawable = getDrawable(call.arg(1).toUIntPtr());
 
     frame_complete(call);
 
-    if (retrace::doubleBuffer) {
+    if (play::doubleBuffer) {
         if (drawable) {
             drawable->swapBuffers();
         }
@@ -242,43 +242,43 @@ static void retrace_eglSwapBuffers(trace::Call &call) {
     }
 }
 
-const retrace::Entry glplay::egl_callbacks[] = {
-    {"eglGetError", &retrace::ignore},
-    {"eglGetDisplay", &retrace::ignore},
-    {"eglInitialize", &retrace::ignore},
-    {"eglTerminate", &retrace::ignore},
-    {"eglQueryString", &retrace::ignore},
-    {"eglGetConfigs", &retrace::ignore},
-    {"eglChooseConfig", &retrace::ignore},
-    {"eglGetConfigAttrib", &retrace::ignore},
-    {"eglCreateWindowSurface", &retrace_eglCreateWindowSurface},
-    {"eglCreatePbufferSurface", &retrace_eglCreatePbufferSurface},
-    //{"eglCreatePixmapSurface", &retrace::ignore},
-    {"eglDestroySurface", &retrace_eglDestroySurface},
-    {"eglQuerySurface", &retrace::ignore},
-    {"eglBindAPI", &retrace_eglBindAPI},
-    {"eglQueryAPI", &retrace::ignore},
-    //{"eglWaitClient", &retrace::ignore},
-    //{"eglReleaseThread", &retrace::ignore},
-    //{"eglCreatePbufferFromClientBuffer", &retrace::ignore},
-    //{"eglSurfaceAttrib", &retrace::ignore},
-    //{"eglBindTexImage", &retrace::ignore},
-    //{"eglReleaseTexImage", &retrace::ignore},
-    {"eglSwapInterval", &retrace::ignore},
-    {"eglCreateContext", &retrace_eglCreateContext},
-    {"eglDestroyContext", &retrace_eglDestroyContext},
-    {"eglMakeCurrent", &retrace_eglMakeCurrent},
-    {"eglGetCurrentContext", &retrace::ignore},
-    {"eglGetCurrentSurface", &retrace::ignore},
-    {"eglGetCurrentDisplay", &retrace::ignore},
-    {"eglQueryContext", &retrace::ignore},
-    {"eglWaitGL", &retrace::ignore},
-    {"eglWaitNative", &retrace::ignore},
-    {"eglSwapBuffers", &retrace_eglSwapBuffers},
-    //{"eglCopyBuffers", &retrace::ignore},
-    {"eglGetProcAddress", &retrace::ignore},
-    {"eglCreateImageKHR", &retrace::ignore},
-    {"eglDestroyImageKHR", &retrace::ignore},
-    {"glEGLImageTargetTexture2DOES", &retrace::ignore},
+const play::Entry glplay::egl_callbacks[] = {
+    {"eglGetError", &play::ignore},
+    {"eglGetDisplay", &play::ignore},
+    {"eglInitialize", &play::ignore},
+    {"eglTerminate", &play::ignore},
+    {"eglQueryString", &play::ignore},
+    {"eglGetConfigs", &play::ignore},
+    {"eglChooseConfig", &play::ignore},
+    {"eglGetConfigAttrib", &play::ignore},
+    {"eglCreateWindowSurface", &play_eglCreateWindowSurface},
+    {"eglCreatePbufferSurface", &play_eglCreatePbufferSurface},
+    //{"eglCreatePixmapSurface", &play::ignore},
+    {"eglDestroySurface", &play_eglDestroySurface},
+    {"eglQuerySurface", &play::ignore},
+    {"eglBindAPI", &play_eglBindAPI},
+    {"eglQueryAPI", &play::ignore},
+    //{"eglWaitClient", &play::ignore},
+    //{"eglReleaseThread", &play::ignore},
+    //{"eglCreatePbufferFromClientBuffer", &play::ignore},
+    //{"eglSurfaceAttrib", &play::ignore},
+    //{"eglBindTexImage", &play::ignore},
+    //{"eglReleaseTexImage", &play::ignore},
+    {"eglSwapInterval", &play::ignore},
+    {"eglCreateContext", &play_eglCreateContext},
+    {"eglDestroyContext", &play_eglDestroyContext},
+    {"eglMakeCurrent", &play_eglMakeCurrent},
+    {"eglGetCurrentContext", &play::ignore},
+    {"eglGetCurrentSurface", &play::ignore},
+    {"eglGetCurrentDisplay", &play::ignore},
+    {"eglQueryContext", &play::ignore},
+    {"eglWaitGL", &play::ignore},
+    {"eglWaitNative", &play::ignore},
+    {"eglSwapBuffers", &play_eglSwapBuffers},
+    //{"eglCopyBuffers", &play::ignore},
+    {"eglGetProcAddress", &play::ignore},
+    {"eglCreateImageKHR", &play::ignore},
+    {"eglDestroyImageKHR", &play::ignore},
+    {"glEGLImageTargetTexture2DOES", &play::ignore},
     {NULL, NULL},
 };

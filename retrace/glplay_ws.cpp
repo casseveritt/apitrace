@@ -34,7 +34,7 @@
 #include <map>
 
 #include "os_thread.hpp"
-#include "retrace.hpp"
+#include "play.hpp"
 #include "glproc.hpp"
 #include "glstate.hpp"
 #include "glplay.hpp"
@@ -51,7 +51,7 @@ inline glws::Visual *
 getVisual(glws::Profile profile) {
     std::map<glws::Profile, glws::Visual *>::iterator it = visuals.find(profile);
     if (it == visuals.end()) {
-        glws::Visual *visual = glws::createVisual(retrace::doubleBuffer, retrace::samples, profile);
+        glws::Visual *visual = glws::createVisual(play::doubleBuffer, play::samples, profile);
         if (!visual) {
             std::cerr << "error: failed to create OpenGL visual\n";
             exit(1);
@@ -98,7 +98,7 @@ Context *
 createContext(Context *shareContext, glws::Profile profile) {
     glws::Visual *visual = getVisual(profile);
     glws::Context *shareWsContext = shareContext ? shareContext->wsContext : NULL;
-    glws::Context *ctx = glws::createContext(visual, shareWsContext, retrace::debug);
+    glws::Context *ctx = glws::createContext(visual, shareWsContext, play::debug);
     if (!ctx) {
         std::cerr << "error: failed to create OpenGL context\n";
         exit(1);
@@ -140,7 +140,7 @@ makeCurrent(trace::Call &call, glws::Drawable *drawable, Context *context)
 
     if (currentContext) {
         glFlush();
-        if (!retrace::doubleBuffer) {
+        if (!play::doubleBuffer) {
             frame_complete(call);
         }
     }

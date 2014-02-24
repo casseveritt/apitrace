@@ -148,7 +148,7 @@ struct stringComparer {
 extern const Entry stdc_callbacks[];
 
 
-class Retracer
+class Player
 {
     typedef std::map<const char *, Callback, stringComparer> Map;
     Map map;
@@ -156,16 +156,16 @@ class Retracer
     std::vector<Callback> callbacks;
 
 public:
-    Retracer() {
+    Player() {
         addCallbacks(stdc_callbacks);
     }
 
-    virtual ~Retracer() {}
+    virtual ~Player() {}
 
     void addCallback(const Entry *entry);
     void addCallbacks(const Entry *entries);
 
-    void retrace(trace::Call &call);
+    void play(trace::Call &call);
 };
 
 
@@ -194,7 +194,7 @@ void
 setUp(void);
 
 void
-addCallbacks(play::Retracer &retracer);
+addCallbacks(play::Player &player);
 
 void
 frameComplete(trace::Call &call);

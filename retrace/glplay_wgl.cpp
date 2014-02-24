@@ -25,7 +25,7 @@
 
 
 #include "glproc.hpp"
-#include "retrace.hpp"
+#include "play.hpp"
 #include "glplay.hpp"
 
 
@@ -54,13 +54,13 @@ getDrawable(unsigned long long hdc) {
     return it->second;
 }
 
-static void retrace_wglCreateContext(trace::Call &call) {
+static void play_wglCreateContext(trace::Call &call) {
     unsigned long long orig_context = call.ret->toUIntPtr();
     Context *context = glplay::createContext();
     context_map[orig_context] = context;
 }
 
-static void retrace_wglDeleteContext(trace::Call &call) {
+static void play_wglDeleteContext(trace::Call &call) {
     unsigned long long hglrc = call.arg(0).toUIntPtr();
 
     ContextMap::iterator it;
@@ -74,7 +74,7 @@ static void retrace_wglDeleteContext(trace::Call &call) {
     context_map.erase(it);
 }
 
-static void retrace_wglMakeCurrent(trace::Call &call) {
+static void play_wglMakeCurrent(trace::Call &call) {
     bool ret = call.ret->toBool();
 
     glws::Drawable *new_drawable = NULL;
@@ -90,23 +90,23 @@ static void retrace_wglMakeCurrent(trace::Call &call) {
     glplay::makeCurrent(call, new_drawable, new_context);
 }
 
-static void retrace_wglCopyContext(trace::Call &call) {
+static void play_wglCopyContext(trace::Call &call) {
 }
 
-static void retrace_wglChoosePixelFormat(trace::Call &call) {
+static void play_wglChoosePixelFormat(trace::Call &call) {
 }
 
-static void retrace_wglDescribePixelFormat(trace::Call &call) {
+static void play_wglDescribePixelFormat(trace::Call &call) {
 }
 
-static void retrace_wglSetPixelFormat(trace::Call &call) {
+static void play_wglSetPixelFormat(trace::Call &call) {
 }
 
-static void retrace_wglSwapBuffers(trace::Call &call) {
+static void play_wglSwapBuffers(trace::Call &call) {
     glws::Drawable *drawable = getDrawable(call.arg(0).toUIntPtr());
 
     frame_complete(call);
-    if (retrace::doubleBuffer) {
+    if (play::doubleBuffer) {
         if (drawable) {
             drawable->swapBuffers();
         } else {
@@ -120,7 +120,7 @@ static void retrace_wglSwapBuffers(trace::Call &call) {
     }
 }
 
-static void retrace_wglShareLists(trace::Call &call) {
+static void play_wglShareLists(trace::Call &call) {
     unsigned long long hglrc1 = call.arg(0).toUIntPtr();
     unsigned long long hglrc2 = call.arg(1).toUIntPtr();
 
@@ -140,57 +140,57 @@ static void retrace_wglShareLists(trace::Call &call) {
     }
 }
 
-static void retrace_wglCreateLayerContext(trace::Call &call) {
-    retrace_wglCreateContext(call);
+static void play_wglCreateLayerContext(trace::Call &call) {
+    play_wglCreateContext(call);
 }
 
-static void retrace_wglDescribeLayerPlane(trace::Call &call) {
+static void play_wglDescribeLayerPlane(trace::Call &call) {
 }
 
-static void retrace_wglSetLayerPaletteEntries(trace::Call &call) {
+static void play_wglSetLayerPaletteEntries(trace::Call &call) {
 }
 
-static void retrace_wglRealizeLayerPalette(trace::Call &call) {
+static void play_wglRealizeLayerPalette(trace::Call &call) {
 }
 
-static void retrace_wglSwapLayerBuffers(trace::Call &call) {
-    retrace_wglSwapBuffers(call);
+static void play_wglSwapLayerBuffers(trace::Call &call) {
+    play_wglSwapBuffers(call);
 }
 
-static void retrace_wglUseFontBitmapsA(trace::Call &call) {
+static void play_wglUseFontBitmapsA(trace::Call &call) {
 }
 
-static void retrace_wglUseFontBitmapsW(trace::Call &call) {
+static void play_wglUseFontBitmapsW(trace::Call &call) {
 }
 
-static void retrace_wglSwapMultipleBuffers(trace::Call &call) {
+static void play_wglSwapMultipleBuffers(trace::Call &call) {
 }
 
-static void retrace_wglUseFontOutlinesA(trace::Call &call) {
+static void play_wglUseFontOutlinesA(trace::Call &call) {
 }
 
-static void retrace_wglUseFontOutlinesW(trace::Call &call) {
+static void play_wglUseFontOutlinesW(trace::Call &call) {
 }
 
-static void retrace_wglCreateBufferRegionARB(trace::Call &call) {
+static void play_wglCreateBufferRegionARB(trace::Call &call) {
 }
 
-static void retrace_wglDeleteBufferRegionARB(trace::Call &call) {
+static void play_wglDeleteBufferRegionARB(trace::Call &call) {
 }
 
-static void retrace_wglSaveBufferRegionARB(trace::Call &call) {
+static void play_wglSaveBufferRegionARB(trace::Call &call) {
 }
 
-static void retrace_wglRestoreBufferRegionARB(trace::Call &call) {
+static void play_wglRestoreBufferRegionARB(trace::Call &call) {
 }
 
-static void retrace_wglChoosePixelFormatARB(trace::Call &call) {
+static void play_wglChoosePixelFormatARB(trace::Call &call) {
 }
 
-static void retrace_wglMakeContextCurrentARB(trace::Call &call) {
+static void play_wglMakeContextCurrentARB(trace::Call &call) {
 }
 
-static void retrace_wglCreatePbufferARB(trace::Call &call) {
+static void play_wglCreatePbufferARB(trace::Call &call) {
     int iWidth = call.arg(2).toUInt();
     int iHeight = call.arg(3).toUInt();
 
@@ -200,7 +200,7 @@ static void retrace_wglCreatePbufferARB(trace::Call &call) {
     pbuffer_map[orig_pbuffer] = drawable;
 }
 
-static void retrace_wglGetPbufferDCARB(trace::Call &call) {
+static void play_wglGetPbufferDCARB(trace::Call &call) {
     glws::Drawable *pbuffer = pbuffer_map[call.arg(0).toUIntPtr()];
 
     unsigned long long orig_hdc = call.ret->toUIntPtr();
@@ -208,25 +208,25 @@ static void retrace_wglGetPbufferDCARB(trace::Call &call) {
     drawable_map[orig_hdc] = pbuffer;
 }
 
-static void retrace_wglReleasePbufferDCARB(trace::Call &call) {
+static void play_wglReleasePbufferDCARB(trace::Call &call) {
 }
 
-static void retrace_wglDestroyPbufferARB(trace::Call &call) {
+static void play_wglDestroyPbufferARB(trace::Call &call) {
 }
 
-static void retrace_wglQueryPbufferARB(trace::Call &call) {
+static void play_wglQueryPbufferARB(trace::Call &call) {
 }
 
-static void retrace_wglBindTexImageARB(trace::Call &call) {
+static void play_wglBindTexImageARB(trace::Call &call) {
 }
 
-static void retrace_wglReleaseTexImageARB(trace::Call &call) {
+static void play_wglReleaseTexImageARB(trace::Call &call) {
 }
 
-static void retrace_wglSetPbufferAttribARB(trace::Call &call) {
+static void play_wglSetPbufferAttribARB(trace::Call &call) {
 }
 
-static void retrace_wglCreateContextAttribsARB(trace::Call &call) {
+static void play_wglCreateContextAttribsARB(trace::Call &call) {
     unsigned long long orig_context = call.ret->toUIntPtr();
     Context *share_context = NULL;
 
@@ -238,83 +238,83 @@ static void retrace_wglCreateContextAttribsARB(trace::Call &call) {
     context_map[orig_context] = context;
 }
 
-static void retrace_wglMakeContextCurrentEXT(trace::Call &call) {
+static void play_wglMakeContextCurrentEXT(trace::Call &call) {
 }
 
-static void retrace_wglChoosePixelFormatEXT(trace::Call &call) {
+static void play_wglChoosePixelFormatEXT(trace::Call &call) {
 }
 
-static void retrace_wglSwapIntervalEXT(trace::Call &call) {
+static void play_wglSwapIntervalEXT(trace::Call &call) {
 }
 
-static void retrace_wglAllocateMemoryNV(trace::Call &call) {
+static void play_wglAllocateMemoryNV(trace::Call &call) {
 }
 
-static void retrace_wglFreeMemoryNV(trace::Call &call) {
+static void play_wglFreeMemoryNV(trace::Call &call) {
 }
 
-static void retrace_glAddSwapHintRectWIN(trace::Call &call) {
+static void play_glAddSwapHintRectWIN(trace::Call &call) {
 }
 
-static void retrace_wglGetProcAddress(trace::Call &call) {
+static void play_wglGetProcAddress(trace::Call &call) {
 }
 
-const retrace::Entry glplay::wgl_callbacks[] = {
-    {"glAddSwapHintRectWIN", &retrace_glAddSwapHintRectWIN},
-    {"wglAllocateMemoryNV", &retrace_wglAllocateMemoryNV},
-    {"wglBindTexImageARB", &retrace_wglBindTexImageARB},
-    {"wglChoosePixelFormat", &retrace_wglChoosePixelFormat},
-    {"wglChoosePixelFormatARB", &retrace_wglChoosePixelFormatARB},
-    {"wglChoosePixelFormatEXT", &retrace_wglChoosePixelFormatEXT},
-    {"wglCopyContext", &retrace_wglCopyContext},
-    {"wglCreateBufferRegionARB", &retrace_wglCreateBufferRegionARB},
-    {"wglCreateContext", &retrace_wglCreateContext},
-    {"wglCreateContextAttribsARB", &retrace_wglCreateContextAttribsARB},
-    {"wglCreateLayerContext", &retrace_wglCreateLayerContext},
-    {"wglCreatePbufferARB", &retrace_wglCreatePbufferARB},
-    {"wglDeleteBufferRegionARB", &retrace_wglDeleteBufferRegionARB},
-    {"wglDeleteContext", &retrace_wglDeleteContext},
-    {"wglDescribeLayerPlane", &retrace_wglDescribeLayerPlane},
-    {"wglDescribePixelFormat", &retrace_wglDescribePixelFormat},
-    {"wglDestroyPbufferARB", &retrace_wglDestroyPbufferARB},
-    {"wglFreeMemoryNV", &retrace_wglFreeMemoryNV},
-    {"wglGetCurrentContext", &retrace::ignore},
-    {"wglGetCurrentDC", &retrace::ignore},
-    {"wglGetCurrentReadDCARB", &retrace::ignore},
-    {"wglGetCurrentReadDCEXT", &retrace::ignore},
-    {"wglGetDefaultProcAddress", &retrace::ignore},
-    {"wglGetExtensionsStringARB", &retrace::ignore},
-    {"wglGetExtensionsStringEXT", &retrace::ignore},
-    {"wglGetLayerPaletteEntries", &retrace::ignore},
-    {"wglGetPbufferDCARB", &retrace_wglGetPbufferDCARB},
-    {"wglGetPixelFormat", &retrace::ignore},
-    {"wglGetPixelFormatAttribfvARB", &retrace::ignore},
-    {"wglGetPixelFormatAttribfvEXT", &retrace::ignore},
-    {"wglGetPixelFormatAttribivARB", &retrace::ignore},
-    {"wglGetPixelFormatAttribivEXT", &retrace::ignore},
-    {"wglGetProcAddress", &retrace_wglGetProcAddress},
-    {"wglGetSwapIntervalEXT", &retrace::ignore},
-    {"wglMakeContextCurrentARB", &retrace_wglMakeContextCurrentARB},
-    {"wglMakeContextCurrentEXT", &retrace_wglMakeContextCurrentEXT},
-    {"wglMakeCurrent", &retrace_wglMakeCurrent},
-    {"wglQueryPbufferARB", &retrace_wglQueryPbufferARB},
-    {"wglRealizeLayerPalette", &retrace_wglRealizeLayerPalette},
-    {"wglReleasePbufferDCARB", &retrace_wglReleasePbufferDCARB},
-    {"wglReleaseTexImageARB", &retrace_wglReleaseTexImageARB},
-    {"wglRestoreBufferRegionARB", &retrace_wglRestoreBufferRegionARB},
-    {"wglSaveBufferRegionARB", &retrace_wglSaveBufferRegionARB},
-    {"wglSetLayerPaletteEntries", &retrace_wglSetLayerPaletteEntries},
-    {"wglSetPbufferAttribARB", &retrace_wglSetPbufferAttribARB},
-    {"wglSetPixelFormat", &retrace_wglSetPixelFormat},
-    {"wglShareLists", &retrace_wglShareLists},
-    {"wglSwapBuffers", &retrace_wglSwapBuffers},
-    {"wglSwapIntervalEXT", &retrace_wglSwapIntervalEXT},
-    {"wglSwapLayerBuffers", &retrace_wglSwapLayerBuffers},
-    {"wglSwapMultipleBuffers", &retrace_wglSwapMultipleBuffers},
-    {"wglUseFontBitmapsA", &retrace_wglUseFontBitmapsA},
-    {"wglUseFontBitmapsW", &retrace_wglUseFontBitmapsW},
-    {"wglUseFontOutlinesA", &retrace_wglUseFontOutlinesA},
-    {"wglUseFontOutlinesW", &retrace_wglUseFontOutlinesW},
+const play::Entry glplay::wgl_callbacks[] = {
+    {"glAddSwapHintRectWIN", &play_glAddSwapHintRectWIN},
+    {"wglAllocateMemoryNV", &play_wglAllocateMemoryNV},
+    {"wglBindTexImageARB", &play_wglBindTexImageARB},
+    {"wglChoosePixelFormat", &play_wglChoosePixelFormat},
+    {"wglChoosePixelFormatARB", &play_wglChoosePixelFormatARB},
+    {"wglChoosePixelFormatEXT", &play_wglChoosePixelFormatEXT},
+    {"wglCopyContext", &play_wglCopyContext},
+    {"wglCreateBufferRegionARB", &play_wglCreateBufferRegionARB},
+    {"wglCreateContext", &play_wglCreateContext},
+    {"wglCreateContextAttribsARB", &play_wglCreateContextAttribsARB},
+    {"wglCreateLayerContext", &play_wglCreateLayerContext},
+    {"wglCreatePbufferARB", &play_wglCreatePbufferARB},
+    {"wglDeleteBufferRegionARB", &play_wglDeleteBufferRegionARB},
+    {"wglDeleteContext", &play_wglDeleteContext},
+    {"wglDescribeLayerPlane", &play_wglDescribeLayerPlane},
+    {"wglDescribePixelFormat", &play_wglDescribePixelFormat},
+    {"wglDestroyPbufferARB", &play_wglDestroyPbufferARB},
+    {"wglFreeMemoryNV", &play_wglFreeMemoryNV},
+    {"wglGetCurrentContext", &play::ignore},
+    {"wglGetCurrentDC", &play::ignore},
+    {"wglGetCurrentReadDCARB", &play::ignore},
+    {"wglGetCurrentReadDCEXT", &play::ignore},
+    {"wglGetDefaultProcAddress", &play::ignore},
+    {"wglGetExtensionsStringARB", &play::ignore},
+    {"wglGetExtensionsStringEXT", &play::ignore},
+    {"wglGetLayerPaletteEntries", &play::ignore},
+    {"wglGetPbufferDCARB", &play_wglGetPbufferDCARB},
+    {"wglGetPixelFormat", &play::ignore},
+    {"wglGetPixelFormatAttribfvARB", &play::ignore},
+    {"wglGetPixelFormatAttribfvEXT", &play::ignore},
+    {"wglGetPixelFormatAttribivARB", &play::ignore},
+    {"wglGetPixelFormatAttribivEXT", &play::ignore},
+    {"wglGetProcAddress", &play_wglGetProcAddress},
+    {"wglGetSwapIntervalEXT", &play::ignore},
+    {"wglMakeContextCurrentARB", &play_wglMakeContextCurrentARB},
+    {"wglMakeContextCurrentEXT", &play_wglMakeContextCurrentEXT},
+    {"wglMakeCurrent", &play_wglMakeCurrent},
+    {"wglQueryPbufferARB", &play_wglQueryPbufferARB},
+    {"wglRealizeLayerPalette", &play_wglRealizeLayerPalette},
+    {"wglReleasePbufferDCARB", &play_wglReleasePbufferDCARB},
+    {"wglReleaseTexImageARB", &play_wglReleaseTexImageARB},
+    {"wglRestoreBufferRegionARB", &play_wglRestoreBufferRegionARB},
+    {"wglSaveBufferRegionARB", &play_wglSaveBufferRegionARB},
+    {"wglSetLayerPaletteEntries", &play_wglSetLayerPaletteEntries},
+    {"wglSetPbufferAttribARB", &play_wglSetPbufferAttribARB},
+    {"wglSetPixelFormat", &play_wglSetPixelFormat},
+    {"wglShareLists", &play_wglShareLists},
+    {"wglSwapBuffers", &play_wglSwapBuffers},
+    {"wglSwapIntervalEXT", &play_wglSwapIntervalEXT},
+    {"wglSwapLayerBuffers", &play_wglSwapLayerBuffers},
+    {"wglSwapMultipleBuffers", &play_wglSwapMultipleBuffers},
+    {"wglUseFontBitmapsA", &play_wglUseFontBitmapsA},
+    {"wglUseFontBitmapsW", &play_wglUseFontBitmapsW},
+    {"wglUseFontOutlinesA", &play_wglUseFontOutlinesA},
+    {"wglUseFontOutlinesW", &play_wglUseFontOutlinesW},
     {NULL, NULL}
 };
 

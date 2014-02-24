@@ -59,7 +59,7 @@ static trace::ParseBookmark lastFrameStart;
 
 static unsigned dumpStateCallNo = ~0;
 
-play::Retracer retracer;
+play::Player player;
 
 
 namespace play {
@@ -155,13 +155,13 @@ takeSnapshot(unsigned call_no) {
 
 
 /**
- * Retrace one call.
+ * Play one call.
  *
  * Take snapshots before/after retracing (as appropriate) and dispatch it to
  * the respective handler.
  */
 static void
-retraceCall(trace::Call *call) {
+playCall(trace::Call *call) {
     bool swapRenderTarget = call->flags &
         trace::CALL_FLAG_SWAP_RENDERTARGET;
     bool doSnapshot = snapshotFrequency.contains(*call);
@@ -181,7 +181,7 @@ retraceCall(trace::Call *call) {
     }
 
     callNo = call->no;
-    retracer.retrace(*call);
+    player.play(*call);
 
     if (doSnapshot && !swapRenderTarget)
         takeSnapshot(call->no);
@@ -332,7 +332,7 @@ public:
                 parser.getBookmark(frameStart);
             }
 
-            retraceCall(call);
+            playCall(call);
             delete call;
             call = parser.parse_call();
 
@@ -515,7 +515,7 @@ RelayRace::stopRunners(void) {
 
 static void
 mainLoop() {
-    addCallbacks(retracer);
+    addCallbacks(player);
 
     long long startTime = 0; 
     frameNo = 0;
@@ -525,7 +525,7 @@ mainLoop() {
     if (singleThread) {
         trace::Call *call;
         while ((call = parser.parse_call())) {
-            retraceCall(call);
+            playCall(call);
             delete call;
         };
     } else {

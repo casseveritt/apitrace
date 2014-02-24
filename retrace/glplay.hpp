@@ -27,7 +27,7 @@
 #define _GLPERFRETRACE_HPP_
 
 #include "glws.hpp"
-#include "retrace.hpp"
+#include "play.hpp"
 #include <map>
 
 
@@ -109,11 +109,11 @@ makeCurrent(trace::Call &call, glws::Drawable *drawable, Context *context);
 void
 checkGlError(trace::Call &call);
 
-extern const retrace::Entry gl_callbacks[];
-extern const retrace::Entry cgl_callbacks[];
-extern const retrace::Entry glx_callbacks[];
-extern const retrace::Entry wgl_callbacks[];
-extern const retrace::Entry egl_callbacks[];
+extern const play::Entry gl_callbacks[];
+extern const play::Entry cgl_callbacks[];
+extern const play::Entry glx_callbacks[];
+extern const play::Entry wgl_callbacks[];
+extern const play::Entry egl_callbacks[];
 
 void frame_complete(trace::Call &call);
 void initContext();

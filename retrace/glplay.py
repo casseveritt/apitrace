@@ -24,21 +24,21 @@
 ##########################################################################/
 
 
-"""GL retracer generator."""
+"""GL player generator."""
 
 
-from play import PerfRetracer
+from play import Player
 import specs.stdapi as stdapi
 import specs.glapi as glapi
 import specs.glesapi as glesapi
 
 
-class GlPerfRetracer(PerfRetracer):
+class GlPlayer(Player):
 
     table_name = 'glplay::gl_callbacks'
 
-    def retraceFunction(self, function):
-        PerfRetracer.retraceFunction(self, function)
+    def playFunction(self, function):
+        Player.playFunction(self, function)
 
     array_pointer_function_names = set((
         "glVertexPointer",
@@ -184,7 +184,7 @@ class GlPerfRetracer(PerfRetracer):
         'glUnmapObjectBufferATI',
     ])
 
-    def retraceFunctionBody(self, function):
+    def playFunctionBody(self, function):
         is_array_pointer = function.name in self.array_pointer_function_names
         is_draw_array = function.name in self.draw_array_function_names
         is_draw_elements = function.name in self.draw_elements_function_names
@@ -196,7 +196,7 @@ class GlPerfRetracer(PerfRetracer):
         print  '    }'
 
         if is_array_pointer or is_draw_array or is_draw_elements:
-            print '    if (retrace::parser.version < 1) {'
+            print '    if (play::parser.version < 1) {'
 
             if is_array_pointer or is_draw_array:
                 print '        GLint _array_buffer = GLint( ctx->arrayBuffer );'
@@ -228,7 +228,7 @@ class GlPerfRetracer(PerfRetracer):
             print '    glplay::frame_complete(call);'
             return
 
-        PerfRetracer.retraceFunctionBody(self, function)
+        Player.playFunctionBody(self, function)
 
         # Post-snapshots
         if function.name in ('glFlush', 'glFinish'):
@@ -380,10 +380,10 @@ class GlPerfRetracer(PerfRetracer):
             print r'            _result = 0;'
             print r'        }'
             print r'    } else {'
-            PerfRetracer.invokeFunction(self, function)
+            Player.invokeFunction(self, function)
             print r'    }'
         else:
-            PerfRetracer.invokeFunction(self, function)
+            Player.invokeFunction(self, function)
 
         if function.name == "glBegin":
             print '    ctx->insideGlBeginEnd = true;'
@@ -527,7 +527,7 @@ class GlPerfRetracer(PerfRetracer):
            and 'programObj' not in function.argNames():
             print '    GLhandleARB programObj = glGetHandleARB(GL_PROGRAM_OBJECT_ARB);'
 
-        PerfRetracer.extractArg(self, function, arg, arg_type, lvalue, rvalue)
+        Player.extractArg(self, function, arg, arg_type, lvalue, rvalue)
 
         # Don't try to use more samples than the implementation supports
         if arg.name == 'samples':
@@ -560,5 +560,5 @@ static bool _pipelineHasBeenBound = false;
     api = stdapi.API()
     api.addModule(glapi.glapi)
     api.addModule(glesapi.glesapi)
-    retracer = GlPerfRetracer()
-    retracer.retraceApi(api)
+    player = GlPlayer()
+    player.playApi(api)

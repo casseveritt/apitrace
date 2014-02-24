@@ -28,11 +28,11 @@
 
 #include <string.h>
 
-#include "retrace.hpp"
-#include "retrace_swizzle.hpp"
+#include "play.hpp"
+#include "play_swizzle.hpp"
 
 
-namespace retrace {
+namespace play {
 
 
 struct Region
@@ -101,7 +101,7 @@ upperBound(unsigned long long address) {
 void
 addRegion(unsigned long long address, void *buffer, unsigned long long size)
 {
-    if (retrace::verbosity >= 2) {
+    if (play::verbosity >= 2) {
         std::cout
             << "region "
             << std::hex
@@ -190,7 +190,7 @@ lookupAddress(unsigned long long address) {
         assert(offset < it->second.size);
         void *addr = (char *)it->second.buffer + offset;
 
-        if (retrace::verbosity >= 2) {
+        if (play::verbosity >= 2) {
             std::cout
                 << "region "
                 << std::hex
@@ -204,7 +204,7 @@ lookupAddress(unsigned long long address) {
         return addr;
     }
 
-    if (retrace::debug && address >= 64 * 1024 * 1024) {
+    if (play::debug && address >= 64 * 1024 * 1024) {
         /* Likely not an offset, but an address that should had been swizzled */
         std::cerr << "warning: passing high address 0x" << std::hex << address << std::dec << " as uintptr_t\n";
     }
@@ -271,7 +271,7 @@ addObj(trace::Call &call, trace::Value &value, void *obj) {
 
     _obj_map[address] = obj;
     
-    if (retrace::verbosity >= 2) {
+    if (play::verbosity >= 2) {
         std::cout << std::hex << "obj 0x" << address << " -> 0x" << size_t(obj) << std::dec << "\n";
     }
 }
@@ -280,7 +280,7 @@ void
 delObj(trace::Value &value) {
     unsigned long long address = value.toUIntPtr();
     _obj_map.erase(address);
-    if (retrace::verbosity >= 2) {
+    if (play::verbosity >= 2) {
         std::cout << std::hex << "obj 0x" << address << " del\n";
     }
 }
@@ -299,7 +299,7 @@ toObjPointer(trace::Call &call, trace::Value &value) {
         obj = NULL;
     }
 
-    if (retrace::verbosity >= 2) {
+    if (play::verbosity >= 2) {
         std::cout << std::hex << "obj 0x" << address << " <- 0x" << size_t(obj) << std::dec << "\n";
     }
 
@@ -307,4 +307,4 @@ toObjPointer(trace::Call &call, trace::Value &value) {
 }
 
 
-} /* retrace */
+} /* play */
