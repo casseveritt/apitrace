@@ -293,6 +293,11 @@ createContext(const Visual *visual, Context *shareContext, bool debug)
                shareContext:share_context];
     assert(context != nil);
 
+#if 1 || APITRACE_PLAY
+    GLint swapInt = 0;
+    [context setValues:&swapInt forParameter:NSOpenGLCPSwapInterval];
+#endif
+
     return new CocoaContext(visual, context);
 }
 

@@ -266,11 +266,6 @@ class GlPlayer(Player):
         if function.name == "glEnd":
             print '    ctx->insideGlBeginEnd = false;'
 
-        if function.name.startswith('gl') and not function.name.startswith('glX'):
-            print r'    if (play::debug && !glplay::getCurrentContext()) {'
-            print r'        play::warning(call) << "no current context\n";'
-            print r'    }'
-
         if function.name == 'memcpy':
             print '    if (!dest || !src || !n) return;'
 
@@ -398,16 +393,9 @@ class GlPlayer(Player):
         # Error checking
         if function.name.startswith('gl'):
             # glGetError is not allowed inside glBegin/glEnd
-            print '    if (play::debug && !ctx->insideGlBeginEnd && glplay::getCurrentContext()) {'
-            print '        glplay::checkGlError(call);'
-            if function.name in ('glProgramStringARB', 'glProgramStringNV'):
-                print r'        GLint error_position = -1;'
-                print r'        glGetIntegerv(GL_PROGRAM_ERROR_POSITION_ARB, &error_position);'
-                print r'        if (error_position != -1) {'
-                print r'            const char *error_string = (const char *)glGetString(GL_PROGRAM_ERROR_STRING_ARB);'
-                print r'            play::warning(call) << error_string << "\n";'
-                print r'        }'
             if function.name == 'glCompileShader':
+                print r'    if (play::debug && !ctx->insideGlBeginEnd && glplay::getCurrentContext()) {'
+                print r'        glplay::checkGlError(call);'
                 print r'        GLint compile_status = 0;'
                 print r'        glGetShaderiv(shader, GL_COMPILE_STATUS, &compile_status);'
                 print r'        if (!compile_status) {'
@@ -418,7 +406,10 @@ class GlPlayer(Player):
                 print r'             play::warning(call) << infoLog << "\n";'
                 print r'             delete [] infoLog;'
                 print r'        }'
+                print r'    }'
             if function.name in ('glLinkProgram', 'glCreateShaderProgramv', 'glCreateShaderProgramEXT'):
+                print r'    if (play::debug && !ctx->insideGlBeginEnd && glplay::getCurrentContext()) {'
+                print r'        glplay::checkGlError(call);'
                 if function.name != 'glLinkProgram':
                     print r'        GLuint program = _result;'
                 print r'        GLint link_status = 0;'
@@ -431,7 +422,10 @@ class GlPlayer(Player):
                 print r'             play::warning(call) << infoLog << "\n";'
                 print r'             delete [] infoLog;'
                 print r'        }'
+                print r'    }'
             if function.name == 'glCompileShaderARB':
+                print r'    if (play::debug && !ctx->insideGlBeginEnd && glplay::getCurrentContext()) {'
+                print r'        glplay::checkGlError(call);'
                 print r'        GLint compile_status = 0;'
                 print r'        glGetObjectParameterivARB(shaderObj, GL_OBJECT_COMPILE_STATUS_ARB, &compile_status);'
                 print r'        if (!compile_status) {'
@@ -442,7 +436,10 @@ class GlPlayer(Player):
                 print r'             play::warning(call) << infoLog << "\n";'
                 print r'             delete [] infoLog;'
                 print r'        }'
+                print r'    }'
             if function.name == 'glLinkProgramARB':
+                print r'    if (play::debug && !ctx->insideGlBeginEnd && glplay::getCurrentContext()) {'
+                print r'        glplay::checkGlError(call);'
                 print r'        GLint link_status = 0;'
                 print r'        glGetObjectParameterivARB(programObj, GL_OBJECT_LINK_STATUS_ARB, &link_status);'
                 print r'        if (!link_status) {'
@@ -453,26 +450,38 @@ class GlPlayer(Player):
                 print r'             play::warning(call) << infoLog << "\n";'
                 print r'             delete [] infoLog;'
                 print r'        }'
+                print r'    }'
             if function.name in self.map_function_names:
+                print r'    if (play::debug && !ctx->insideGlBeginEnd && glplay::getCurrentContext()) {'
+                print r'        glplay::checkGlError(call);'
                 print r'        if (!_result) {'
                 print r'             play::warning(call) << "failed to map buffer\n";'
                 print r'        }'
+                print r'    }'
             if function.name in self.unmap_function_names and function.type is not stdapi.Void:
+                print r'    if (play::debug && !ctx->insideGlBeginEnd && glplay::getCurrentContext()) {'
+                print r'        glplay::checkGlError(call);'
                 print r'        if (!_result) {'
                 print r'             play::warning(call) << "failed to unmap buffer\n";'
                 print r'        }'
+                print r'    }'
             if function.name in ('glGetAttribLocation', 'glGetAttribLocationARB'):
-                print r'    GLint _origResult = call.ret->toSInt();'
-                print r'    if (_result != _origResult) {'
-                print r'        play::warning(call) << "vertex attrib location mismatch " << _origResult << " -> " << _result << "\n";'
+                print r'    if (play::debug && !ctx->insideGlBeginEnd && glplay::getCurrentContext()) {'
+                print r'        glplay::checkGlError(call);'
+                print r'        GLint _origResult = call.ret->toSInt();'
+                print r'        if (_result != _origResult) {'
+                print r'            play::warning(call) << "vertex attrib location mismatch " << _origResult << " -> " << _result << "\n";'
+                print r'        }'
                 print r'    }'
             if function.name in ('glCheckFramebufferStatus', 'glCheckFramebufferStatusEXT', 'glCheckNamedFramebufferStatusEXT'):
-                print r'    GLint _origResult = call.ret->toSInt();'
-                print r'    if (_origResult == GL_FRAMEBUFFER_COMPLETE &&'
-                print r'        _result != GL_FRAMEBUFFER_COMPLETE) {'
-                print r'        play::warning(call) << "incomplete framebuffer (" << glstate::enumToString(_result) << ")\n";'
+                print r'    if (play::debug && !ctx->insideGlBeginEnd && glplay::getCurrentContext()) {'
+                print r'        glplay::checkGlError(call);'
+                print r'        GLint _origResult = call.ret->toSInt();'
+                print r'        if (_origResult == GL_FRAMEBUFFER_COMPLETE &&'
+                print r'            _result != GL_FRAMEBUFFER_COMPLETE) {'
+                print r'            play::warning(call) << "incomplete framebuffer (" << glstate::enumToString(_result) << ")\n";'
+                print r'        }'
                 print r'    }'
-            print '    }'
 
         # Query the buffer length for whole buffer mappings
         if function.name in self.map_function_names:

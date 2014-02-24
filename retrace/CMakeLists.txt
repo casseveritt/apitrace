@@ -156,6 +156,7 @@ add_library (glplay_common STATIC
     glstate_shaders.cpp
     glws.cpp
 )
+set_target_properties (glplay_common PROPERTIES COMPILE_DEFINITIONS "APITRACE_PLAY=1")
 add_dependencies (glplay_common glproc)
 target_link_libraries (glplay_common
     play_common
@@ -165,6 +166,8 @@ if (WIN32 OR APPLE OR X11_FOUND)
     add_executable (glplay
         ${glws_os}
     )
+
+    set_target_properties (glplay PROPERTIES COMPILE_DEFINITIONS "APITRACE_PLAY=1")
 
     add_dependencies (glplay glproc)
 
