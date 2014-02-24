@@ -24,11 +24,11 @@ add_custom_command (
 )
 
 add_custom_command (
-    OUTPUT glperfretrace_gl.cpp
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/glperfretrace.py > ${CMAKE_CURRENT_BINARY_DIR}/glperfretrace_gl.cpp
+    OUTPUT glplay_gl.cpp
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/glplay.py > ${CMAKE_CURRENT_BINARY_DIR}/glplay_gl.cpp
     DEPENDS
-                glperfretrace.py
-                perfretrace.py
+                glplay.py
+                play.py
                 ${CMAKE_SOURCE_DIR}/specs/glapi.py
                 ${CMAKE_SOURCE_DIR}/specs/glesapi.py
                 ${CMAKE_SOURCE_DIR}/specs/gltypes.py
@@ -126,15 +126,15 @@ if (WIN32 OR APPLE OR X11_FOUND)
     install (TARGETS glretrace RUNTIME DESTINATION bin) 
 endif ()
 
-add_library (perfretrace_common STATIC
-    perfretrace.cpp
-    perfretrace_main.cpp
-    perfretrace_stdc.cpp
-    perfretrace_swizzle.cpp
+add_library (play_common STATIC
+    play.cpp
+    play_main.cpp
+    play_stdc.cpp
+    play_swizzle.cpp
     json.cpp
 )
 
-target_link_libraries (perfretrace_common
+target_link_libraries (play_common
     image
     common
     ${ZLIB_LIBRARIES}
@@ -142,51 +142,51 @@ target_link_libraries (perfretrace_common
     ${GETOPT_LIBRARIES}
 )
 
-add_library (glperfretrace_common STATIC
-    glperfretrace_gl.cpp
-    glperfretrace_cgl.cpp
-    glperfretrace_glx.cpp
-    glperfretrace_wgl.cpp
-    glperfretrace_egl.cpp
-    glperfretrace_main.cpp
-    glperfretrace_ws.cpp
+add_library (glplay_common STATIC
+    glplay_gl.cpp
+    glplay_cgl.cpp
+    glplay_glx.cpp
+    glplay_wgl.cpp
+    glplay_egl.cpp
+    glplay_main.cpp
+    glplay_ws.cpp
     glstate.cpp
     glstate_images.cpp
     glstate_params.cpp
     glstate_shaders.cpp
     glws.cpp
 )
-add_dependencies (glperfretrace_common glproc)
-target_link_libraries (glperfretrace_common
-    perfretrace_common
+add_dependencies (glplay_common glproc)
+target_link_libraries (glplay_common
+    play_common
 )
 
 if (WIN32 OR APPLE OR X11_FOUND)
-    add_executable (glperfretrace
+    add_executable (glplay
         ${glws_os}
     )
 
-    add_dependencies (glperfretrace glproc)
+    add_dependencies (glplay glproc)
 
-    target_link_libraries (glperfretrace
-        perfretrace_common
-        glperfretrace_common
+    target_link_libraries (glplay
+        play_common
+        glplay_common
         glproc_gl
     )
 
     if (WIN32)
     else ()
         if (APPLE)
-            target_link_libraries (glperfretrace
+            target_link_libraries (glplay
                 "-framework Cocoa"
                 "-framework ApplicationServices" # CGS*
                 #"-framework OpenGL" # CGL*
             )
         else ()
-            target_link_libraries (glperfretrace ${X11_X11_LIB})
+            target_link_libraries (glplay ${X11_X11_LIB})
         endif ()
 
-        target_link_libraries (glperfretrace
+        target_link_libraries (glplay
             # gdb doesn't like when pthreads is loaded through dlopen (which happens
             # when dlopen'ing libGL), so link pthreads to avoid this issue.  See also
             # http://stackoverflow.com/questions/2702628/gdb-cannot-find-new-threads-generic-error
@@ -195,15 +195,15 @@ if (WIN32 OR APPLE OR X11_FOUND)
         )
 
         if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-            target_link_libraries (glperfretrace rt)
+            target_link_libraries (glplay rt)
             if (READPROC_H_FOUND)
-                target_link_libraries (glperfretrace ${proc_LIBRARY})
+                target_link_libraries (glplay ${proc_LIBRARY})
             endif ()
         endif ()
 
     endif ()
 
-    install (TARGETS glperfretrace RUNTIME DESTINATION bin) 
+    install (TARGETS glplay RUNTIME DESTINATION bin) 
 endif ()
 
 if (ENABLE_EGL AND X11_FOUND AND NOT WIN32 AND NOT APPLE AND NOT ENABLE_WAFFLE)

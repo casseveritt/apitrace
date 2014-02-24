@@ -31,7 +31,7 @@
 #include "retrace.hpp"
 #include "glproc.hpp"
 #include "glstate.hpp"
-#include "glperfretrace.hpp"
+#include "glplay.hpp"
 #include "os_time.hpp"
 #include "os_memory.hpp"
 
@@ -41,7 +41,7 @@
  */
 #define DEBUG_OUTPUT_SYNCHRONOUS 0
 
-namespace glperfretrace {
+namespace glplay {
 
 glws::Profile defaultProfile = glws::PROFILE_COMPAT;
 
@@ -203,7 +203,7 @@ flushQueries() {
 
 void
 beginProfile(trace::Call &call, bool isDraw) {
-    glperfretrace::Context *currentContext = glperfretrace::getCurrentContext();
+    glplay::Context *currentContext = glplay::getCurrentContext();
 
     /* Create call query */
     CallQuery query;
@@ -273,7 +273,7 @@ endProfile(trace::Call &call, bool isDraw) {
 
 void
 initContext() {
-    glperfretrace::Context *currentContext = glperfretrace::getCurrentContext();
+    glplay::Context *currentContext = glplay::getCurrentContext();
 
     /* Ensure we have adequate extension support */
     assert(currentContext);
@@ -307,7 +307,7 @@ initContext() {
 
     /* Setup debug message call back */
     if (retrace::debug && supportsDebugOutput) {
-        glperfretrace::Context *currentContext = glperfretrace::getCurrentContext();
+        glplay::Context *currentContext = glplay::getCurrentContext();
         glDebugMessageControlARB(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, 0, GL_TRUE);
         glDebugMessageCallbackARB(&debugOutputCallback, currentContext);
 
@@ -347,7 +347,7 @@ frame_complete(trace::Call &call) {
 
     retrace::frameComplete(call);
 
-    glperfretrace::Context *currentContext = glperfretrace::getCurrentContext();
+    glplay::Context *currentContext = glplay::getCurrentContext();
     if (!currentContext) {
         return;
     }
@@ -447,14 +447,14 @@ debugOutputCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsi
     std::cerr << std::endl;
 }
 
-} /* namespace glperfretrace */
+} /* namespace glplay */
 
 
 class GLDumper : public retrace::Dumper {
 public:
     image::Image *
     getSnapshot(void) {
-        if (!glperfretrace::getCurrentContext()) {
+        if (!glplay::getCurrentContext()) {
             return NULL;
         }
         return glstate::getDrawBufferImage();
@@ -462,7 +462,7 @@ public:
 
     bool
     dumpState(std::ostream &os) {
-        glperfretrace::Context *currentContext = glperfretrace::getCurrentContext();
+        glplay::Context *currentContext = glplay::getCurrentContext();
         if (currentContext->insideGlBeginEnd ||
             !currentContext) {
             return false;
@@ -478,7 +478,7 @@ static GLDumper glDumper;
 void
 retrace::setFeatureLevel(const char *featureLevel)
 {
-    glperfretrace::defaultProfile = glws::PROFILE_3_2_CORE;
+    glplay::defaultProfile = glws::PROFILE_3_2_CORE;
 }
 
 
@@ -492,25 +492,25 @@ retrace::setUp(void) {
 void
 retrace::addCallbacks(retrace::Retracer &retracer)
 {
-    retracer.addCallbacks(glperfretrace::gl_callbacks);
-    retracer.addCallbacks(glperfretrace::glx_callbacks);
-    retracer.addCallbacks(glperfretrace::wgl_callbacks);
-    retracer.addCallbacks(glperfretrace::cgl_callbacks);
-    retracer.addCallbacks(glperfretrace::egl_callbacks);
+    retracer.addCallbacks(glplay::gl_callbacks);
+    retracer.addCallbacks(glplay::glx_callbacks);
+    retracer.addCallbacks(glplay::wgl_callbacks);
+    retracer.addCallbacks(glplay::cgl_callbacks);
+    retracer.addCallbacks(glplay::egl_callbacks);
 }
 
 
 void
 retrace::flushRendering(void) {
-    glperfretrace::Context *currentContext = glperfretrace::getCurrentContext();
+    glplay::Context *currentContext = glplay::getCurrentContext();
     if (currentContext) {
-        glperfretrace::flushQueries();
+        glplay::flushQueries();
     }
 }
 
 void
 retrace::finishRendering(void) {
-    glperfretrace::Context *currentContext = glperfretrace::getCurrentContext();
+    glplay::Context *currentContext = glplay::getCurrentContext();
     if (currentContext) {
         glFinish();
     }

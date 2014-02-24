@@ -27,7 +27,7 @@
 """GL retracer generator."""
 
 
-from perfretrace import PerfRetracer
+from play import PerfRetracer
 import specs.stdapi as stdapi
 import specs.glapi as glapi
 import specs.glesapi as glesapi
@@ -35,7 +35,7 @@ import specs.glesapi as glesapi
 
 class GlPerfRetracer(PerfRetracer):
 
-    table_name = 'glperfretrace::gl_callbacks'
+    table_name = 'glplay::gl_callbacks'
 
     def retraceFunction(self, function):
         PerfRetracer.retraceFunction(self, function)
@@ -190,7 +190,7 @@ class GlPerfRetracer(PerfRetracer):
         is_draw_elements = function.name in self.draw_elements_function_names
         is_misc_draw = function.name in self.misc_draw_function_names
 
-        print r'    glperfretrace::Context *ctx = glperfretrace::getCurrentContext();'
+        print r'    glplay::Context *ctx = glplay::getCurrentContext();'
         print  '    if ( ctx == NULL ) {'
         print  '        return;'
         print  '    }'
@@ -225,15 +225,15 @@ class GlPerfRetracer(PerfRetracer):
         if function.name == 'glStringMarkerGREMEDY':
             return
         if function.name == 'glFrameTerminatorGREMEDY':
-            print '    glperfretrace::frame_complete(call);'
+            print '    glplay::frame_complete(call);'
             return
 
         PerfRetracer.retraceFunctionBody(self, function)
 
         # Post-snapshots
         if function.name in ('glFlush', 'glFinish'):
-            print '    if (!retrace::doubleBuffer) {'
-            print '        glperfretrace::frame_complete(call);'
+            print '    if (!play::doubleBuffer) {'
+            print '        glplay::frame_complete(call);'
             print '    }'
         if is_draw_array or is_draw_elements or is_misc_draw:
             print '    assert(call.flags & trace::CALL_FLAG_RENDER);'
@@ -242,33 +242,33 @@ class GlPerfRetracer(PerfRetracer):
     def invokeFunction(self, function):
         # Infer the drawable size from GL calls
         if function.name == "glViewport":
-            print '    glperfretrace::updateDrawable(x + width, y + height);'
+            print '    glplay::updateDrawable(x + width, y + height);'
         if function.name == "glViewportArray":
             # We are concerned about drawables so only care for the first viewport
             print '    if (first == 0 && count > 0) {'
             print '        GLfloat x = v[0], y = v[1], w = v[2], h = v[3];'
-            print '        glperfretrace::updateDrawable(x + w, y + h);'
+            print '        glplay::updateDrawable(x + w, y + h);'
             print '    }'
         if function.name == "glViewportIndexedf":
             print '    if (index == 0) {'
-            print '        glperfretrace::updateDrawable(x + w, y + h);'
+            print '        glplay::updateDrawable(x + w, y + h);'
             print '    }'
         if function.name == "glViewportIndexedfv":
             print '    if (index == 0) {'
             print '        GLfloat x = v[0], y = v[1], w = v[2], h = v[3];'
-            print '        glperfretrace::updateDrawable(x + w, y + h);'
+            print '        glplay::updateDrawable(x + w, y + h);'
             print '    }'
         if function.name in ('glBlitFramebuffer', 'glBlitFramebufferEXT'):
             # Some applications do all their rendering in a framebuffer, and
             # then just blit to the drawable without ever calling glViewport.
-            print '    glperfretrace::updateDrawable(std::max(dstX0, dstX1), std::max(dstY0, dstY1));'
+            print '    glplay::updateDrawable(std::max(dstX0, dstX1), std::max(dstY0, dstY1));'
 
         if function.name == "glEnd":
             print '    ctx->insideGlBeginEnd = false;'
 
         if function.name.startswith('gl') and not function.name.startswith('glX'):
-            print r'    if (retrace::debug && !glperfretrace::getCurrentContext()) {'
-            print r'        retrace::warning(call) << "no current context\n";'
+            print r'    if (play::debug && !glplay::getCurrentContext()) {'
+            print r'        play::warning(call) << "no current context\n";'
             print r'    }'
 
         if function.name == 'memcpy':
@@ -296,9 +296,9 @@ class GlPerfRetracer(PerfRetracer):
             else:
                 assert False
             print r'        if (ptr) {'
-            print r'            retrace::delRegionByPointer(ptr);'
+            print r'            play::delRegionByPointer(ptr);'
             print r'        } else {'
-            print r'            retrace::warning(call) << "no current context\n";'
+            print r'            play::warning(call) << "no current context\n";'
             print r'        }'
 
         if function.name in ('glBindProgramPipeline', 'glBindProgramPipelineEXT'):
@@ -347,17 +347,17 @@ class GlPerfRetracer(PerfRetracer):
             print r'    ctx->insideList = false;'
 
         if function.name != 'glEnd':
-            print r'    if (!ctx->insideList && !ctx->insideGlBeginEnd && retrace::profiling) {'
+            print r'    if (!ctx->insideList && !ctx->insideGlBeginEnd && play::profiling) {'
             if profileDraw:
-                print r'        glperfretrace::beginProfile(call, true);'
+                print r'        glplay::beginProfile(call, true);'
             else:
-                print r'        glperfretrace::beginProfile(call, false);'
+                print r'        glplay::beginProfile(call, false);'
             print r'    }'
 
         if function.name == 'glCreateShaderProgramv':
             # When dumping state, break down glCreateShaderProgramv so that the
             # shader source can be recovered.
-            print r'    if (retrace::dumpingState) {'
+            print r'    if (play::dumpingState) {'
             print r'        GLuint _shader = glCreateShader(type);'
             print r'        if (_shader) {'
             print r'            glShaderSource(_shader, count, strings, NULL);'
@@ -388,24 +388,24 @@ class GlPerfRetracer(PerfRetracer):
         if function.name == "glBegin":
             print '    ctx->insideGlBeginEnd = true;'
 
-        print r'    if (!ctx->insideList && !ctx->insideGlBeginEnd && retrace::profiling) {'
+        print r'    if (!ctx->insideList && !ctx->insideGlBeginEnd && play::profiling) {'
         if profileDraw:
-            print r'        glperfretrace::endProfile(call, true);'
+            print r'        glplay::endProfile(call, true);'
         else:
-            print r'        glperfretrace::endProfile(call, false);'
+            print r'        glplay::endProfile(call, false);'
         print r'    }'
 
         # Error checking
         if function.name.startswith('gl'):
             # glGetError is not allowed inside glBegin/glEnd
-            print '    if (retrace::debug && !ctx->insideGlBeginEnd && glperfretrace::getCurrentContext()) {'
-            print '        glperfretrace::checkGlError(call);'
+            print '    if (play::debug && !ctx->insideGlBeginEnd && glplay::getCurrentContext()) {'
+            print '        glplay::checkGlError(call);'
             if function.name in ('glProgramStringARB', 'glProgramStringNV'):
                 print r'        GLint error_position = -1;'
                 print r'        glGetIntegerv(GL_PROGRAM_ERROR_POSITION_ARB, &error_position);'
                 print r'        if (error_position != -1) {'
                 print r'            const char *error_string = (const char *)glGetString(GL_PROGRAM_ERROR_STRING_ARB);'
-                print r'            retrace::warning(call) << error_string << "\n";'
+                print r'            play::warning(call) << error_string << "\n";'
                 print r'        }'
             if function.name == 'glCompileShader':
                 print r'        GLint compile_status = 0;'
@@ -415,7 +415,7 @@ class GlPerfRetracer(PerfRetracer):
                 print r'             glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &info_log_length);'
                 print r'             GLchar *infoLog = new GLchar[info_log_length];'
                 print r'             glGetShaderInfoLog(shader, info_log_length, NULL, infoLog);'
-                print r'             retrace::warning(call) << infoLog << "\n";'
+                print r'             play::warning(call) << infoLog << "\n";'
                 print r'             delete [] infoLog;'
                 print r'        }'
             if function.name in ('glLinkProgram', 'glCreateShaderProgramv', 'glCreateShaderProgramEXT'):
@@ -428,7 +428,7 @@ class GlPerfRetracer(PerfRetracer):
                 print r'             glGetProgramiv(program, GL_INFO_LOG_LENGTH, &info_log_length);'
                 print r'             GLchar *infoLog = new GLchar[info_log_length];'
                 print r'             glGetProgramInfoLog(program, info_log_length, NULL, infoLog);'
-                print r'             retrace::warning(call) << infoLog << "\n";'
+                print r'             play::warning(call) << infoLog << "\n";'
                 print r'             delete [] infoLog;'
                 print r'        }'
             if function.name == 'glCompileShaderARB':
@@ -439,7 +439,7 @@ class GlPerfRetracer(PerfRetracer):
                 print r'             glGetObjectParameterivARB(shaderObj, GL_OBJECT_INFO_LOG_LENGTH_ARB, &info_log_length);'
                 print r'             GLchar *infoLog = new GLchar[info_log_length];'
                 print r'             glGetInfoLogARB(shaderObj, info_log_length, NULL, infoLog);'
-                print r'             retrace::warning(call) << infoLog << "\n";'
+                print r'             play::warning(call) << infoLog << "\n";'
                 print r'             delete [] infoLog;'
                 print r'        }'
             if function.name == 'glLinkProgramARB':
@@ -450,27 +450,27 @@ class GlPerfRetracer(PerfRetracer):
                 print r'             glGetObjectParameterivARB(programObj, GL_OBJECT_INFO_LOG_LENGTH_ARB, &info_log_length);'
                 print r'             GLchar *infoLog = new GLchar[info_log_length];'
                 print r'             glGetInfoLogARB(programObj, info_log_length, NULL, infoLog);'
-                print r'             retrace::warning(call) << infoLog << "\n";'
+                print r'             play::warning(call) << infoLog << "\n";'
                 print r'             delete [] infoLog;'
                 print r'        }'
             if function.name in self.map_function_names:
                 print r'        if (!_result) {'
-                print r'             retrace::warning(call) << "failed to map buffer\n";'
+                print r'             play::warning(call) << "failed to map buffer\n";'
                 print r'        }'
             if function.name in self.unmap_function_names and function.type is not stdapi.Void:
                 print r'        if (!_result) {'
-                print r'             retrace::warning(call) << "failed to unmap buffer\n";'
+                print r'             play::warning(call) << "failed to unmap buffer\n";'
                 print r'        }'
             if function.name in ('glGetAttribLocation', 'glGetAttribLocationARB'):
                 print r'    GLint _origResult = call.ret->toSInt();'
                 print r'    if (_result != _origResult) {'
-                print r'        retrace::warning(call) << "vertex attrib location mismatch " << _origResult << " -> " << _result << "\n";'
+                print r'        play::warning(call) << "vertex attrib location mismatch " << _origResult << " -> " << _result << "\n";'
                 print r'    }'
             if function.name in ('glCheckFramebufferStatus', 'glCheckFramebufferStatusEXT', 'glCheckNamedFramebufferStatusEXT'):
                 print r'    GLint _origResult = call.ret->toSInt();'
                 print r'    if (_origResult == GL_FRAMEBUFFER_COMPLETE &&'
                 print r'        _result != GL_FRAMEBUFFER_COMPLETE) {'
-                print r'        retrace::warning(call) << "incomplete framebuffer (" << glstate::enumToString(_result) << ")\n";'
+                print r'        play::warning(call) << "incomplete framebuffer (" << glstate::enumToString(_result) << ")\n";'
                 print r'    }'
             print '    }'
 
@@ -494,7 +494,7 @@ class GlPerfRetracer(PerfRetracer):
 
     def extractArg(self, function, arg, arg_type, lvalue, rvalue):
         if function.name in self.array_pointer_function_names and arg.name == 'pointer':
-            print '    %s = static_cast<%s>(retrace::toPointer(%s, true));' % (lvalue, arg_type, rvalue)
+            print '    %s = static_cast<%s>(play::toPointer(%s, true));' % (lvalue, arg_type, rvalue)
             return
 
         if function.name in self.draw_elements_function_names and arg.name == 'indices' or\
@@ -550,10 +550,10 @@ if __name__ == '__main__':
 #include <string.h>
 
 #include "glproc.hpp"
-#include "glperfretrace.hpp"
+#include "glplay.hpp"
 #include "glstate.hpp"
 
-using namespace glperfretrace;
+using namespace glplay;
 
 static bool _pipelineHasBeenBound = false;
 '''

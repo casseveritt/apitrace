@@ -29,8 +29,8 @@
 
 #include <iostream>
 
-#include "perfretrace.hpp"
-#include "perfretrace_swizzle.hpp"
+#include "play.hpp"
+#include "play_swizzle.hpp"
 
 
 static void retrace_malloc(trace::Call &call) {
@@ -47,13 +47,13 @@ static void retrace_malloc(trace::Call &call) {
         return;
     }
 
-    perfretrace::addRegion(address, buffer, size);
+    play::addRegion(address, buffer, size);
 }
 
 
 static void retrace_memcpy(trace::Call &call) {
-    void * dest = perfretrace::toPointer(call.arg(0));
-    void * src  = perfretrace::toPointer(call.arg(1));
+    void * dest = play::toPointer(call.arg(0));
+    void * src  = play::toPointer(call.arg(1));
     size_t n    = call.arg(2).toUInt();
 
     if (!dest || !src || !n) {
@@ -64,7 +64,7 @@ static void retrace_memcpy(trace::Call &call) {
 }
 
 
-const perfretrace::Entry perfretrace::stdc_callbacks[] = {
+const play::Entry play::stdc_callbacks[] = {
     {"malloc", &retrace_malloc},
     {"memcpy", &retrace_memcpy},
     {NULL, NULL}

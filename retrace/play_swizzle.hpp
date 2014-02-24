@@ -32,7 +32,7 @@
 #include "trace_model.hpp"
 
 
-namespace perfretrace {
+namespace play {
 
 
 /**
@@ -118,7 +118,7 @@ void *
 toObjPointer(trace::Call &call, trace::Value &value);
 
 
-} /* namespace perfretrace */
+} /* namespace play */
 
 #endif /* _PERFRETRACE_SWIZZLE_HPP_ */
 

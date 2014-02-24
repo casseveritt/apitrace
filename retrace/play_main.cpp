@@ -41,7 +41,7 @@
 #include "trace_callset.hpp"
 #include "trace_dump.hpp"
 #include "trace_option.hpp"
-#include "perfretrace.hpp"
+#include "play.hpp"
 
 
 static bool waitOnFinish = false;
@@ -59,10 +59,10 @@ static trace::ParseBookmark lastFrameStart;
 
 static unsigned dumpStateCallNo = ~0;
 
-perfretrace::Retracer retracer;
+play::Retracer retracer;
 
 
-namespace perfretrace {
+namespace play {
 
 
 trace::Parser parser;
@@ -140,7 +140,7 @@ takeSnapshot(unsigned call_no) {
             os::String filename = os::String::format("%s%010u.png",
                                                      snapshotPrefix,
                                                      useCallNos ? call_no : snapshot_no);
-            if (src->writePNG(filename) && perfretrace::verbosity >= 0) {
+            if (src->writePNG(filename) && play::verbosity >= 0) {
                 std::cout << "Wrote " << filename << "\n";
             }
         }
@@ -537,7 +537,7 @@ mainLoop() {
     long long endTime = os::getTime();
     float timeInterval = (endTime - startTime) * (1.0 / os::timeFrequency);
 
-    if ((perfretrace::verbosity >= -1) || (perfretrace::profiling)) {
+    if ((play::verbosity >= -1) || (play::profiling)) {
         std::cout << 
             "Rendered " << frameNo << " frames"
             " in " <<  timeInterval << " secs,"
@@ -552,7 +552,7 @@ mainLoop() {
 }
 
 
-} /* namespace perfretrace */
+} /* namespace play */
 
 
 static void
@@ -629,14 +629,14 @@ longOptions[] = {
 
 static void exceptionCallback(void)
 {
-    std::cerr << perfretrace::callNo << ": error: caught an unhandled exception\n";
+    std::cerr << play::callNo << ": error: caught an unhandled exception\n";
 }
 
 
 extern "C"
 int main(int argc, char **argv)
 {
-    using namespace perfretrace;
+    using namespace play;
     int i;
 
     assert(snapshotFrequency.empty());
@@ -648,8 +648,8 @@ int main(int argc, char **argv)
             usage(argv[0]);
             return 0;
         case 'b':
-            perfretrace::debug = false;
-            perfretrace::verbosity = -1;
+            play::debug = false;
+            play::verbosity = -1;
             break;
         case CALL_NOS_OPT:
             useCallNos = trace::boolOption(optarg);
@@ -657,16 +657,16 @@ int main(int argc, char **argv)
         case 'D':
             dumpStateCallNo = atoi(optarg);
             dumpingState = true;
-            perfretrace::verbosity = -2;
+            play::verbosity = -2;
             break;
         case CORE_OPT:
-            perfretrace::setFeatureLevel("3_2_core");
+            play::setFeatureLevel("3_2_core");
             break;
         case DB_OPT:
-            perfretrace::doubleBuffer = true;
+            play::doubleBuffer = true;
             break;
         case SAMPLES_OPT:
-            perfretrace::samples = atoi(optarg);
+            play::samples = atoi(optarg);
             break;
         case DRIVER_OPT:
             if (strcasecmp(optarg, "hw") == 0) {
@@ -683,10 +683,10 @@ int main(int argc, char **argv)
             }
             break;
         case SB_OPT:
-            perfretrace::doubleBuffer = false;
+            play::doubleBuffer = false;
             break;
         case SINGLETHREAD_OPT:
-            perfretrace::singleThread = true;
+            play::singleThread = true;
             break;
         case 's':
             snapshotPrefix = optarg;
@@ -695,7 +695,7 @@ int main(int argc, char **argv)
             }
             if (snapshotPrefix[0] == '-' && snapshotPrefix[1] == 0) {
                 os::setBinaryMode(stdout);
-                perfretrace::verbosity = -2;
+                play::verbosity = -2;
             } else {
                 /*
                  * Create the snapshot directory if it does not exist.
@@ -730,7 +730,7 @@ int main(int argc, char **argv)
             }
             break;
         case 'v':
-            ++perfretrace::verbosity;
+            ++play::verbosity;
             break;
         case 'w':
             waitOnFinish = true;
@@ -739,32 +739,32 @@ int main(int argc, char **argv)
             loopOnFinish = true;
             break;
         case PGPU_OPT:
-            perfretrace::debug = false;
-            perfretrace::profiling = true;
-            perfretrace::verbosity = -1;
+            play::debug = false;
+            play::profiling = true;
+            play::verbosity = -1;
 
-            perfretrace::profilingGpuTimes = true;
+            play::profilingGpuTimes = true;
             break;
         case PCPU_OPT:
-            perfretrace::debug = false;
-            perfretrace::profiling = true;
-            perfretrace::verbosity = -1;
+            play::debug = false;
+            play::profiling = true;
+            play::verbosity = -1;
 
-            perfretrace::profilingCpuTimes = true;
+            play::profilingCpuTimes = true;
             break;
         case PPD_OPT:
-            perfretrace::debug = false;
-            perfretrace::profiling = true;
-            perfretrace::verbosity = -1;
+            play::debug = false;
+            play::profiling = true;
+            play::verbosity = -1;
 
-            perfretrace::profilingPixelsDrawn = true;
+            play::profilingPixelsDrawn = true;
             break;
         case PMEM_OPT:
-            perfretrace::debug = false;
-            perfretrace::profiling = true;
-            perfretrace::verbosity = -1;
+            play::debug = false;
+            play::profiling = true;
+            play::verbosity = -1;
 
-            perfretrace::profilingMemoryUsage = true;
+            play::profilingMemoryUsage = true;
             break;
         default:
             std::cerr << "error: unknown option " << opt << "\n";
@@ -779,27 +779,27 @@ int main(int argc, char **argv)
     }
 #endif
 
-    perfretrace::setUp();
-    if (perfretrace::profiling) {
-        perfretrace::profiler.setup(perfretrace::profilingCpuTimes, perfretrace::profilingGpuTimes, perfretrace::profilingPixelsDrawn, perfretrace::profilingMemoryUsage);
+    play::setUp();
+    if (play::profiling) {
+        play::profiler.setup(play::profilingCpuTimes, play::profilingGpuTimes, play::profilingPixelsDrawn, play::profilingMemoryUsage);
     }
 
     os::setExceptionCallback(exceptionCallback);
 
     for (i = optind; i < argc; ++i) {
-        if (!perfretrace::parser.open(argv[i])) {
+        if (!play::parser.open(argv[i])) {
             return 1;
         }
 
-        perfretrace::mainLoop();
+        play::mainLoop();
 
-        perfretrace::parser.close();
+        play::parser.close();
     }
     
     os::resetExceptionCallback();
 
     // XXX: X often hangs on XCloseDisplay
-    //perfretrace::cleanUp();
+    //play::cleanUp();
 
     return 0;
 }

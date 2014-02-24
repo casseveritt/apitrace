@@ -26,7 +26,7 @@
 
 #include "glproc.hpp"
 #include "retrace.hpp"
-#include "glperfretrace.hpp"
+#include "glplay.hpp"
 
 #if !defined(HAVE_X11)
 
@@ -47,7 +47,7 @@
 #endif /* !HAVE_X11 */
 
 
-using namespace glperfretrace;
+using namespace glplay;
 
 
 typedef std::map<unsigned long, glws::Drawable *> DrawableMap;
@@ -65,7 +65,7 @@ getDrawable(unsigned long drawable_id) {
     DrawableMap::const_iterator it;
     it = drawable_map.find(drawable_id);
     if (it == drawable_map.end()) {
-        return (drawable_map[drawable_id] = glperfretrace::createDrawable());
+        return (drawable_map[drawable_id] = glplay::createDrawable());
     }
 
     return it->second;
@@ -80,7 +80,7 @@ getContext(unsigned long long context_ptr) {
     ContextMap::const_iterator it;
     it = context_map.find(context_ptr);
     if (it == context_map.end()) {
-        return (context_map[context_ptr] = glperfretrace::createContext());
+        return (context_map[context_ptr] = glplay::createContext());
     }
 
     return it->second;
@@ -90,7 +90,7 @@ static void retrace_glXCreateContext(trace::Call &call) {
     unsigned long long orig_context = call.ret->toUIntPtr();
     Context *share_context = getContext(call.arg(2).toUIntPtr());
 
-    Context *context = glperfretrace::createContext(share_context);
+    Context *context = glplay::createContext(share_context);
     context_map[orig_context] = context;
 }
 
@@ -137,7 +137,7 @@ static void retrace_glXCreateContextAttribsARB(trace::Call &call) {
         profile = (glws::Profile)((core ? 0x100 : 0) | (major << 4) | minor);
     }
 
-    Context *context = glperfretrace::createContext(share_context, profile);
+    Context *context = glplay::createContext(share_context, profile);
     context_map[orig_context] = context;
 }
 
@@ -145,7 +145,7 @@ static void retrace_glXMakeCurrent(trace::Call &call) {
     glws::Drawable *new_drawable = getDrawable(call.arg(1).toUInt());
     Context *new_context = getContext(call.arg(2).toUIntPtr());
 
-    glperfretrace::makeCurrent(call, new_drawable, new_context);
+    glplay::makeCurrent(call, new_drawable, new_context);
 }
 
 
@@ -188,18 +188,18 @@ static void retrace_glXCreateNewContext(trace::Call &call) {
     unsigned long long orig_context = call.ret->toUIntPtr();
     Context *share_context = getContext(call.arg(3).toUIntPtr());
 
-    Context *context = glperfretrace::createContext(share_context);
+    Context *context = glplay::createContext(share_context);
     context_map[orig_context] = context;
 }
 
 static void retrace_glXCreatePbuffer(trace::Call &call) {
     const trace::Value *attrib_list = call.arg(2).toArray();
-    int width = glperfretrace::parseAttrib(attrib_list, GLX_PBUFFER_WIDTH, 0);
-    int height = glperfretrace::parseAttrib(attrib_list, GLX_PBUFFER_HEIGHT, 0);
+    int width = glplay::parseAttrib(attrib_list, GLX_PBUFFER_WIDTH, 0);
+    int height = glplay::parseAttrib(attrib_list, GLX_PBUFFER_HEIGHT, 0);
 
     unsigned long long orig_drawable = call.ret->toUInt();
 
-    glws::Drawable *drawable = glperfretrace::createPbuffer(width, height);
+    glws::Drawable *drawable = glplay::createPbuffer(width, height);
     
     drawable_map[orig_drawable] = drawable;
 }
@@ -218,10 +218,10 @@ static void retrace_glXMakeContextCurrent(trace::Call &call) {
     glws::Drawable *new_drawable = getDrawable(call.arg(1).toUInt());
     Context *new_context = getContext(call.arg(3).toUIntPtr());
 
-    glperfretrace::makeCurrent(call, new_drawable, new_context);
+    glplay::makeCurrent(call, new_drawable, new_context);
 }
 
-const retrace::Entry glperfretrace::glx_callbacks[] = {
+const retrace::Entry glplay::glx_callbacks[] = {
     //{"glXBindChannelToWindowSGIX", &retrace_glXBindChannelToWindowSGIX},
     //{"glXBindSwapBarrierNV", &retrace_glXBindSwapBarrierNV},
     //{"glXBindSwapBarrierSGIX", &retrace_glXBindSwapBarrierSGIX},

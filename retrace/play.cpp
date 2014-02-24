@@ -28,10 +28,10 @@
 #include <iostream>
 
 #include "os_time.hpp"
-#include "perfretrace.hpp"
+#include "play.hpp"
 
 
-namespace perfretrace {
+namespace play {
 
 
 trace::DumpFlags dumpFlags = 0;
@@ -120,4 +120,4 @@ void Retracer::retrace(trace::Call &call) {
 }
 
 
-} /* namespace perfretrace */
+} /* namespace play */

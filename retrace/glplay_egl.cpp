@@ -3,7 +3,7 @@
  * Copyright 2011 LunarG, Inc.
  * All Rights Reserved.
  *
- * Based on glperfretrace_glx.cpp, which has
+ * Based on glplay_glx.cpp, which has
  *
  *   Copyright 2011 Jose Fonseca
  *
@@ -30,7 +30,7 @@
 
 #include "glproc.hpp"
 #include "retrace.hpp"
-#include "glperfretrace.hpp"
+#include "glplay.hpp"
 #include "os.hpp"
 #include "eglsize.hpp"
 
@@ -42,7 +42,7 @@
 #endif
 
 
-using namespace glperfretrace;
+using namespace glplay;
 
 
 typedef std::map<unsigned long long, glws::Drawable *> DrawableMap;
@@ -110,7 +110,7 @@ static void createDrawable(unsigned long long orig_config, unsigned long long or
         profile = last_profile;
     }
 
-    glws::Drawable *drawable = glperfretrace::createDrawable(profile);
+    glws::Drawable *drawable = glplay::createDrawable(profile);
     drawable_map[orig_surface] = drawable;
 }
 
@@ -134,7 +134,7 @@ static void retrace_eglDestroySurface(trace::Call &call) {
     it = drawable_map.find(orig_surface);
 
     if (it != drawable_map.end()) {
-        glperfretrace::Context *currentContext = glperfretrace::getCurrentContext();
+        glplay::Context *currentContext = glplay::getCurrentContext();
         if (!currentContext || it->second != currentContext->drawable) {
             // TODO: reference count
             delete it->second;
@@ -177,7 +177,7 @@ static void retrace_eglCreateContext(trace::Call &call) {
     }
 
 
-    Context *context = glperfretrace::createContext(share_context, profile);
+    Context *context = glplay::createContext(share_context, profile);
     if (!context) {
         const char *name;
         switch (profile) {
@@ -211,7 +211,7 @@ static void retrace_eglDestroyContext(trace::Call &call) {
     it = context_map.find(orig_context);
 
     if (it != context_map.end()) {
-        glperfretrace::Context *currentContext = glperfretrace::getCurrentContext();
+        glplay::Context *currentContext = glplay::getCurrentContext();
         if (it->second != currentContext) {
             // TODO: reference count
             delete it->second;
@@ -224,7 +224,7 @@ static void retrace_eglMakeCurrent(trace::Call &call) {
     glws::Drawable *new_drawable = getDrawable(call.arg(1).toUIntPtr());
     Context *new_context = getContext(call.arg(3).toUIntPtr());
 
-    glperfretrace::makeCurrent(call, new_drawable, new_context);
+    glplay::makeCurrent(call, new_drawable, new_context);
 }
 
 
@@ -242,7 +242,7 @@ static void retrace_eglSwapBuffers(trace::Call &call) {
     }
 }
 
-const retrace::Entry glperfretrace::egl_callbacks[] = {
+const retrace::Entry glplay::egl_callbacks[] = {
     {"eglGetError", &retrace::ignore},
     {"eglGetDisplay", &retrace::ignore},
     {"eglInitialize", &retrace::ignore},

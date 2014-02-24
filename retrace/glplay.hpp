@@ -31,7 +31,7 @@
 #include <map>
 
 
-namespace glperfretrace {
+namespace glplay {
 
 struct Context {
     Context(glws::Context* context)
@@ -125,7 +125,7 @@ void flushQueries();
 void beginProfile(trace::Call &call, bool isDraw);
 void endProfile(trace::Call &call, bool isDraw);
 
-} /* namespace glperfretrace */
+} /* namespace glplay */
 
 
 #endif /* _GLPERFRETRACE_HPP_ */

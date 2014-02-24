@@ -28,7 +28,7 @@
 
 #include "glproc.hpp"
 #include "retrace.hpp"
-#include "glperfretrace.hpp"
+#include "glplay.hpp"
 
 
 #define kCGLPFAAllRenderers            1
@@ -79,7 +79,7 @@
 #define kCGLOGLPVersion_GL4_Core 0x4100
 
 
-using namespace glperfretrace;
+using namespace glplay;
 
 
 typedef std::map<unsigned long long, glws::Drawable *> DrawableMap;
@@ -106,7 +106,7 @@ getDrawable(unsigned long drawable_id) {
     DrawableMap::const_iterator it;
     it = drawable_map.find(drawable_id);
     if (it == drawable_map.end()) {
-        return (drawable_map[drawable_id] = glperfretrace::createDrawable());
+        return (drawable_map[drawable_id] = glplay::createDrawable());
     }
 
     return it->second;
@@ -122,7 +122,7 @@ getDrawableFromContext(unsigned long long ctx) {
     DrawableMap::const_iterator it;
     it = context_drawable_map.find(ctx);
     if (it == context_drawable_map.end()) {
-        return (context_drawable_map[ctx] = glperfretrace::createDrawable());
+        return (context_drawable_map[ctx] = glplay::createDrawable());
     }
 
     return it->second;
@@ -139,7 +139,7 @@ getContext(unsigned long long ctx) {
     it = context_map.find(ctx);
     if (it == context_map.end()) {
         Context *context;
-        context_map[ctx] = context = glperfretrace::createContext(sharedContext);
+        context_map[ctx] = context = glplay::createContext(sharedContext);
         if (!sharedContext) {
             sharedContext = context;
         }
@@ -224,13 +224,13 @@ static void retrace_CGLChoosePixelFormat(trace::Call &call) {
     case 0:
         break;
     case kCGLOGLPVersion_Legacy:
-        glperfretrace::defaultProfile = glws::PROFILE_COMPAT;
+        glplay::defaultProfile = glws::PROFILE_COMPAT;
         break;
     case kCGLOGLPVersion_GL3_Core:
-        glperfretrace::defaultProfile = glws::PROFILE_3_2_CORE;
+        glplay::defaultProfile = glws::PROFILE_3_2_CORE;
         break;
     case kCGLOGLPVersion_GL4_Core:
-        glperfretrace::defaultProfile = glws::PROFILE_4_1_CORE;
+        glplay::defaultProfile = glws::PROFILE_4_1_CORE;
         break;
     default:
         retrace::warning(call) << "unexpected opengl profile " << std::hex << profile << std::dec << "\n";
@@ -247,7 +247,7 @@ static void retrace_CGLCreateContext(trace::Call &call) {
     assert(ctx_ptr);
     unsigned long long ctx = ctx_ptr->values[0]->toUIntPtr();
 
-    Context *context = glperfretrace::createContext(sharedContext);
+    Context *context = glplay::createContext(sharedContext);
     context_map[ctx] = context;
 }
 
@@ -295,7 +295,7 @@ static void retrace_CGLSetCurrentContext(trace::Call &call) {
     glws::Drawable *new_drawable = getDrawableFromContext(ctx);
     Context *new_context = getContext(ctx);
 
-    glperfretrace::makeCurrent(call, new_drawable, new_context);
+    glplay::makeCurrent(call, new_drawable, new_context);
 }
 
 
@@ -361,7 +361,7 @@ static void retrace_CGLTexImageIOSurface2D(trace::Call &call) {
 
     GLvoid * pixels = NULL;
 
-    Context * ctx = glperfretrace::getCurrentContext();
+    Context * ctx = glplay::getCurrentContext();
     if ( ctx != context ) {
         if (retrace::debug) {
             retrace::warning(call) << "current context mismatch\n";
@@ -371,12 +371,12 @@ static void retrace_CGLTexImageIOSurface2D(trace::Call &call) {
     glTexImage2D(target, level, internalformat, width, height, border, format, type, pixels);
 
     if (retrace::debug && !ctx->insideGlBeginEnd) {
-        glperfretrace::checkGlError(call);
+        glplay::checkGlError(call);
     }
 }
 
 
-const retrace::Entry glperfretrace::cgl_callbacks[] = {
+const retrace::Entry glplay::cgl_callbacks[] = {
     {"CGLChoosePixelFormat", &retrace_CGLChoosePixelFormat},
     {"CGLClearDrawable", &retrace_CGLClearDrawable},
     {"CGLCreateContext", &retrace_CGLCreateContext},

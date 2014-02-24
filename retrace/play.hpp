@@ -48,7 +48,7 @@ namespace image {
 }
 
 
-namespace perfretrace {
+namespace play {
 
 
 extern trace::Parser parser;
@@ -194,7 +194,7 @@ void
 setUp(void);
 
 void
-addCallbacks(perfretrace::Retracer &retracer);
+addCallbacks(play::Retracer &retracer);
 
 void
 frameComplete(trace::Call &call);
@@ -219,6 +219,6 @@ void
 cleanUp(void);
 
 
-} /* namespace perfretrace */
+} /* namespace play */
 
 #endif /* _PERFRETRACE_HPP_ */

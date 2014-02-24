@@ -25,7 +25,7 @@
 
 
 /**
- * Window system helpers for glperfretrace.
+ * Window system helpers for glplay.
  */
 
 
@@ -37,10 +37,10 @@
 #include "retrace.hpp"
 #include "glproc.hpp"
 #include "glstate.hpp"
-#include "glperfretrace.hpp"
+#include "glplay.hpp"
 
 
-namespace glperfretrace {
+namespace glplay {
 
 
 static std::map<glws::Profile, glws::Visual *>
@@ -246,4 +246,4 @@ parseAttrib(const trace::Value *attribs, int param, int default_ = 0) {
 }
 
 
-} /* namespace glperfretrace */
+} /* namespace glplay */
