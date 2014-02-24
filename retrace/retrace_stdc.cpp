@@ -29,8 +29,8 @@
 
 #include <iostream>
 
-#include "play.hpp"
-#include "play_swizzle.hpp"
+#include "retrace.hpp"
+#include "retrace_swizzle.hpp"
 
 
 static void retrace_malloc(trace::Call &call) {
@@ -47,13 +47,13 @@ static void retrace_malloc(trace::Call &call) {
         return;
     }
 
-    play::addRegion(address, buffer, size);
+    retrace::addRegion(address, buffer, size);
 }
 
 
 static void retrace_memcpy(trace::Call &call) {
-    void * dest = play::toPointer(call.arg(0));
-    void * src  = play::toPointer(call.arg(1));
+    void * dest = retrace::toPointer(call.arg(0));
+    void * src  = retrace::toPointer(call.arg(1));
     size_t n    = call.arg(2).toUInt();
 
     if (!dest || !src || !n) {
@@ -64,7 +64,7 @@ static void retrace_memcpy(trace::Call &call) {
 }
 
 
-const play::Entry play::stdc_callbacks[] = {
+const retrace::Entry retrace::stdc_callbacks[] = {
     {"malloc", &retrace_malloc},
     {"memcpy", &retrace_memcpy},
     {NULL, NULL}
