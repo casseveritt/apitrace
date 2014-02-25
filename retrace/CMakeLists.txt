@@ -136,7 +136,7 @@ add_library (play_common STATIC
 
 target_link_libraries (play_common
     image
-    common
+    common_play
     ${ZLIB_LIBRARIES}
     ${SNAPPY_LIBRARIES}
     ${GETOPT_LIBRARIES}

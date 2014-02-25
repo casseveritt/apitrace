@@ -360,6 +360,43 @@ if (ANDROID)
     )
 endif ()
 
+add_library (common_play STATIC
+    common/trace_callset.cpp
+    common/trace_dump.cpp
+    common/trace_fast_callset.cpp
+    common/trace_file.cpp
+    common/trace_file_read.cpp
+    common/trace_file_write.cpp
+    common/trace_file_zlib.cpp
+    common/trace_file_snappy.cpp
+    common/trace_model.cpp
+    common/trace_parser.cpp
+    common/trace_parser_flags.cpp
+    common/trace_writer.cpp
+    common/trace_writer_local.cpp
+    common/trace_writer_model.cpp
+    common/trace_loader.cpp
+    common/trace_profiler.cpp
+    common/trace_option.cpp
+    common/${os}
+    common/os_backtrace.cpp
+)
+
+set_target_properties (common_play PROPERTIES
+    # Ensure it can be statically linked in shared libraries
+    COMPILE_FLAGS "${CMAKE_SHARED_LIBRARY_CXX_FLAGS}"
+    COMPILE_DEFINITIONS "APITRACE_PLAY=1"
+)
+
+target_link_libraries (common_play
+    ${LIBBACKTRACE_LIBRARIES}
+)
+if (ANDROID)
+    target_link_libraries (common_play
+        log
+    )
+endif ()
+
 
 ##############################################################################
 # Sub-directories
