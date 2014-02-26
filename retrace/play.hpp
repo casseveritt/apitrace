@@ -34,11 +34,14 @@
 #include <list>
 #include <map>
 #include <ostream>
+#include <deque>
 
 #include "trace_model.hpp"
 #include "trace_parser.hpp"
 #include "trace_profiler.hpp"
 #include "trace_dump.hpp"
+
+
 
 #include "scoped_allocator.hpp"
 
@@ -50,9 +53,19 @@ namespace image {
 
 namespace play {
 
+  struct ThreadedParser {
+    ThreadedParser() : version(parser.version) {}
+    bool open( const char * file );
+    void close();
+    void getBookmark( trace::ParseBookmark & bm ); 
+    void setBookmark( const trace::ParseBookmark & bm );
+    trace::Call * parse_call();
+    trace::Parser parser;
+    unsigned long long & version;
+    std::deque<trace::Call *> queuedCalls, retiredCalls;
+  };
 
-extern trace::Parser parser;
-extern trace::Profiler profiler;
+extern ThreadedParser parser;
 
 
 class ScopedAllocator : public ::ScopedAllocator

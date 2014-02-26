@@ -188,8 +188,6 @@ completeCallQuery(CallQuery& query) {
 
     glDeleteQueries(NUM_QUERIES, query.ids);
 
-    /* Add call to profile */
-    play::profiler.addCall(query.call, query.sig->name, query.program, pixels, gpuStart, gpuDuration, query.cpuStart, cpuDuration, query.vsizeStart, vsizeDuration, query.rssStart, rssDuration);
 }
 
 void
@@ -316,35 +314,10 @@ initContext() {
         }
     }
 
-    /* Sync the gpu and cpu start times */
-    if (play::profilingCpuTimes || play::profilingGpuTimes) {
-        if (!play::profiler.hasBaseTimes()) {
-            double cpuTimeScale = 1.0E9 / getTimeFrequency();
-            GLint64 currentTime = getCurrentTime() * cpuTimeScale;
-            play::profiler.setBaseCpuTime(currentTime);
-            play::profiler.setBaseGpuTime(currentTime);
-        }
-    }
-
-    if (play::profilingMemoryUsage) {
-        GLint64 currentVsize, currentRss;
-        getCurrentVsize(currentVsize);
-        play::profiler.setBaseVsizeUsage(currentVsize);
-        getCurrentRss(currentRss);
-        play::profiler.setBaseRssUsage(currentRss);
-    }
 }
 
 void
 frame_complete(trace::Call &call) {
-    if (play::profiling) {
-        /* Complete any remaining queries */
-        flushQueries();
-
-        /* Indicate end of current frame */
-        play::profiler.addFrameEnd();
-    }
-
     play::frameComplete(call);
 
     glplay::Context *currentContext = glplay::getCurrentContext();

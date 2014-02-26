@@ -64,9 +64,43 @@ play::Player player;
 
 namespace play {
 
+  bool ThreadedParser::open( const char * file ) {
+    return parser.open(file);
+  }
+  void ThreadedParser::close() {
+    parser.close();
+  }
+  void ThreadedParser::getBookmark( trace::ParseBookmark & bm ) {
+    parser.getBookmark(bm);
+  }
+  void ThreadedParser::setBookmark( const trace::ParseBookmark & bm ) {
+    parser.setBookmark(bm);
+  }
+  trace::Call * ThreadedParser::parse_call() {
+    while( queuedCalls.size() < 1000 ) {
+       trace::Call * call = parser.parse_call();
+       if( call == NULL ) {
+           break;
+       }
+       queuedCalls.push_back( call );
+    }
+    if( queuedCalls.size() == 0 ) {
+        return NULL;
+    }
+    trace::Call * call = queuedCalls.front();
+    queuedCalls.pop_front();
+    retiredCalls.push_back( call );
+    if( retiredCalls.size() > 1000 ) {
+      while( retiredCalls.size() > 5 ) {
+          delete retiredCalls.front();
+          retiredCalls.pop_front();
+      }
+    }
+    return call;
+  }
 
-  trace::Parser parser;
-  trace::Profiler profiler;
+
+  ThreadedParser parser;
 
 
   int verbosity = 0;
@@ -333,7 +367,6 @@ namespace play {
             }
 
             playCall(call);
-            delete call;
             call = parser.parse_call();
 
             /* Restart last frame if looping is requested. */
@@ -522,16 +555,8 @@ namespace play {
 
       startTime = os::getTime();
 
-      if (singleThread) {
-        trace::Call *call;
-        while ((call = parser.parse_call())) {
-          playCall(call);
-          delete call;
-        };
-      } else {
-        RelayRace race;
-        race.run();
-      }
+      RelayRace race;
+      race.run();
       finishRendering();
 
       long long endTime = os::getTime();
@@ -629,9 +654,6 @@ int main(int argc, char **argv)
 #endif
 
   play::setUp();
-  if (play::profiling) {
-    play::profiler.setup(play::profilingCpuTimes, play::profilingGpuTimes, play::profilingPixelsDrawn, play::profilingMemoryUsage);
-  }
 
   os::setExceptionCallback(exceptionCallback);
 
