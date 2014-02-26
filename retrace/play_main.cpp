@@ -61,11 +61,76 @@ static unsigned dumpStateCallNo = ~0;
 
 play::Player player;
 
+#define ASYNC_READER_SLEEP 1000
+#define ASYNC_READER_CALLS 10000000
 
 namespace play {
 
+  os::mutex readerMutex;
+  ThreadedParser *inbox;
+  std::map< ThreadedParser *, std::vector< trace::Call *> > outbox;
+  std::vector< trace::Call * > retired;
+  os::thread * readerThread = NULL;
+  bool enqueue_read( ThreadedParser * tp ) {
+    os::unique_lock<os::mutex> lock(readerMutex);
+    if( inbox != 0 ) {
+      return false;
+    }
+    inbox = tp;
+    return true;
+  }
+
+  bool fetch_read( ThreadedParser * tp ) {
+    os::unique_lock<os::mutex> lock(readerMutex);
+    if( outbox.count( tp ) == 0 ) {
+        return false;
+    }
+    std::vector< trace::Call * > &calls = outbox[ tp ];
+    tp->queuedCalls.insert( tp->queuedCalls.end(), calls.begin(), calls.end() );
+    outbox.erase( tp );
+    return true;
+  }
+
+  void delete_retired_calls( ThreadedParser * tp ) {
+    os::unique_lock<os::mutex> lock(readerMutex);
+    retired.insert( retired.end(), tp->retiredCalls.begin(), tp->retiredCalls.end() );
+    tp->retiredCalls.clear();
+  }
+
+  void async_reader() {
+    for(;;) {
+      os::unique_lock<os::mutex> lock(readerMutex);
+      if( inbox == NULL ) {
+        os::sleep( ASYNC_READER_SLEEP );
+      } else {
+        ThreadedParser *tp = inbox;
+        inbox = NULL;
+        assert( outbox.count( tp ) == 0 );
+        outbox[ tp ] = std::vector< trace::Call * >();
+        std::vector< trace::Call * > &calls = outbox[ tp ];
+
+        while( calls.size() < ASYNC_READER_CALLS ) {
+          calls.push_back( tp->parser.parse_call() );
+          if( calls.back() == NULL ) {
+            calls.pop_back();
+            break;
+          }
+        }
+      }
+    }
+  }
+
   bool ThreadedParser::open( const char * file ) {
-    return parser.open(file);
+    if( readerThread == NULL ) {
+      readerThread = new os::thread( async_reader, NULL );
+    }
+    bool ret = parser.open(file);
+    if( ret ) {
+      enqueue_read( this );
+      os::sleep(100000);
+      fetch_read( this );
+    }
+    return ret;
   }
   void ThreadedParser::close() {
     parser.close();
@@ -77,28 +142,24 @@ namespace play {
     parser.setBookmark(bm);
   }
   trace::Call * ThreadedParser::parse_call() {
-    while( queuedCalls.size() < 1000 ) {
-       trace::Call * call = parser.parse_call();
-       if( call == NULL ) {
-           break;
-       }
-       queuedCalls.push_back( call );
+    if( queuedCalls.size() == ASYNC_READER_CALLS ) {
+        enqueue_read( this );
+    }
+    if( queuedCalls.size() == 2 ) {
+        fetch_read( this );
     }
     if( queuedCalls.size() == 0 ) {
+        delete_retired_calls( this );
         return NULL;
     }
     trace::Call * call = queuedCalls.front();
     queuedCalls.pop_front();
-    retiredCalls.push_back( call );
-    if( retiredCalls.size() > 1000 ) {
-      while( retiredCalls.size() > 5 ) {
-          delete retiredCalls.front();
-          retiredCalls.pop_front();
-      }
+    if( retiredCalls.size() >= ASYNC_READER_CALLS ) {
+      delete_retired_calls( this );
     }
+    retiredCalls.push_back( call );
     return call;
   }
-
 
   ThreadedParser parser;
 
