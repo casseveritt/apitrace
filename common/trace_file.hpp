@@ -56,6 +56,7 @@ public:
 public:
     static File *createZLib(void);
     static File *createSnappy(void);
+    static File *createUncompressed(void);
     static File *createForRead(const char *filename);
     static File *createForWrite(const char *filename);
 public:

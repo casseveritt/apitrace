@@ -34,7 +34,7 @@
 #include "trace_file.hpp"
 
 
-static const char *synopsis = "Repack a trace file with Snappy compression.";
+static const char *synopsis = "Repack a trace file with different compression.";
 
 static void
 usage(void)
@@ -49,25 +49,27 @@ usage(void)
 }
 
 const static char *
-shortOptions = "h";
+shortOptions = "hsu";
 
 const static struct option
 longOptions[] = {
     {"help", no_argument, 0, 'h'},
+    {"snappy", no_argument, 0, 's'},
+    {"uncompressed", no_argument, 0, 'u'},
     {0, 0, 0, 0}
 };
 
 static int
-repack(const char *inFileName, const char *outFileName)
+repack(const char *inFileName, const char *outFileName, char compression)
 {
     trace::File *inFile = trace::File::createForRead(inFileName);
     if (!inFile) {
         return 1;
     }
 
-    trace::File *outFile = trace::File::createForWrite(outFileName);
+    trace::File *outFile = trace::File::createForWrite(outFileName, compression);
     if (!outFile) {
-        delete inFile;
+      delete inFile;
         return 1;
     }
 
@@ -90,11 +92,20 @@ static int
 command(int argc, char *argv[])
 {
     int opt;
+    char compression = 0;
     while ((opt = getopt_long(argc, argv, shortOptions, longOptions, NULL)) != -1) {
         switch (opt) {
         case 'h':
             usage();
             return 0;
+        case 's':
+        case 'u':
+            if( compression != 0 ) {
+              std::cerr << "error: Already chose compression '" << compression << "'\n";
+              usage();
+              return 1;
+            }
+            compression = (char)opt;
         default:
             std::cerr << "error: unexpected option `" << (char)opt << "`\n";
             usage();
@@ -108,7 +119,12 @@ command(int argc, char *argv[])
         return 1;
     }
 
-    return repack(argv[optind], argv[optind + 1]);
+
+    if( compression == 0 ) {
+        compression = 's';
+    }
+
+    return repack(argv[optind], argv[optind + 1], compression);
 }
 
 const Command repack_command = {
