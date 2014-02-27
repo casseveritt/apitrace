@@ -54,7 +54,7 @@ namespace image {
 namespace play {
 
   struct ThreadedParser {
-    ThreadedParser() : version(parser.version) {}
+    ThreadedParser() : version(parser.version), bookmark(~0) {}
     bool open( const char * file );
     void close();
     void getBookmark( trace::ParseBookmark & bm ); 
@@ -63,6 +63,7 @@ namespace play {
     trace::Parser parser;
     unsigned long long & version;
     std::deque<trace::Call *> queuedCalls, retiredCalls;
+    unsigned bookmark;
   };
 
 extern ThreadedParser parser;

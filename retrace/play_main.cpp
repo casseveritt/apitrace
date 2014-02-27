@@ -93,8 +93,17 @@ namespace play {
 
   void delete_retired_calls( ThreadedParser * tp ) {
     os::unique_lock<os::mutex> lock(readerMutex);
-    retired.insert( retired.end(), tp->retiredCalls.begin(), tp->retiredCalls.end() );
-    tp->retiredCalls.clear();
+    std::deque< trace::Call * >::iterator end = tp->retiredCalls.end();
+    if( tp->bookmark != ~0 ) {
+      for( size_t i = 0; i < tp->retiredCalls.size(); i++ ) {
+        if( tp->retiredCalls[i]->no == tp->bookmark ) {
+          end = tp->retiredCalls.begin() + i;
+          break;
+        }
+      }
+    }
+    retired.insert( retired.end(), tp->retiredCalls.begin(), end );
+    tp->retiredCalls.erase( tp->retiredCalls.begin(), end );
   }
 
   void async_reader() {
@@ -117,6 +126,10 @@ namespace play {
           }
         }
       }
+      for( size_t i = 0; i < retired.size(); i++ ) {
+        delete retired[i];
+      }
+      retired.clear();
     }
   }
 
@@ -137,9 +150,13 @@ namespace play {
   }
   void ThreadedParser::getBookmark( trace::ParseBookmark & bm ) {
     parser.getBookmark(bm);
+    bookmark = bm.next_call_no;
   }
   void ThreadedParser::setBookmark( const trace::ParseBookmark & bm ) {
     parser.setBookmark(bm);
+    delete_retired_calls( this );
+    queuedCalls.insert( queuedCalls.begin(), retiredCalls.begin(), retiredCalls.end() );
+    retiredCalls.clear();
   }
   trace::Call * ThreadedParser::parse_call() {
     if( queuedCalls.size() == ASYNC_READER_CALLS ) {
@@ -647,34 +664,17 @@ usage(const char *argv0) {
     "Usage: " << argv0 << " [OPTION] TRACE [...]\n"
     "Replay TRACE.\n"
     "\n"
-    "  -b, --benchmark         benchmark mode (no error checking or warning messages)\n"
-    "      --pcpu              cpu profiling (cpu times per call)\n"
-    "      --pgpu              gpu profiling (gpu times per draw call)\n"
-    "      --ppd               pixels drawn profiling (pixels drawn per draw call)\n"
-    "      --pmem              memory usage profiling (vsize rss per call)\n"
-    "      --call-nos[=BOOL]   use call numbers in snapshot filenames\n"
-    "      --core              use core profile\n"
-    "      --db                use a double buffer visual (default)\n"
-    "      --samples=N         use GL_ARB_multisample (default is 1)\n"
-    "      --driver=DRIVER     force driver type (`hw`, `sw`, `ref`, `null`, or driver module name)\n"
-    "      --sb                use a single buffer visual\n"
-    "  -s, --snapshot-prefix=PREFIX    take snapshots; `-` for PNM stdout output\n"
-    "      --snapshot-format=FMT       use (PNM, RGB, or MD5; default is PNM) when writing to stdout output\n"
-    "  -S, --snapshot=CALLSET  calls to snapshot (default is every frame)\n"
-    "  -v, --verbose           increase output verbosity\n"
-    "  -D, --dump-state=CALL   dump state at specific call no\n"
-    "  -w, --wait              waitOnFinish on final frame\n"
-    "      --loop              continuously loop, replaying final frame.\n"
-    "      --singlethread      use a single thread to replay command stream\n";
+    "      --help              print this message\n"
+    "      --loop              continuously loop, replaying final frame\n";
 }
 
 const static char *
-shortOptions = "bD:hs:S:vw";
+shortOptions = "hl";
 
 const static struct option
 longOptions[] = {
-  {"benchmark", no_argument, 0, 'b'},
   {"help", no_argument, 0, 'h'},
+  {"loop", no_argument, 0, 'l'},
   {0, 0, 0, 0}
 };
 
