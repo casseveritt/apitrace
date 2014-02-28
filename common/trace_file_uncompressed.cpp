@@ -113,7 +113,7 @@ int UncompressedFile::rawGetc()
 {
     char c = 0;
     m_stream.get( c );
-    return c;
+    return *reinterpret_cast<unsigned char *>(&c);
 }
 
 void UncompressedFile::rawClose()
