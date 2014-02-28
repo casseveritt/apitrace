@@ -113,6 +113,9 @@ int UncompressedFile::rawGetc()
 {
     char c = 0;
     m_stream.get( c );
+    if( m_stream.gcount() != 1 ) {
+      return -1;
+    }
     return *reinterpret_cast<unsigned char *>(&c);
 }
 
