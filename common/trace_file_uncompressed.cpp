@@ -284,7 +284,14 @@ bool UncompressedFile::rawSkip(size_t length)
 
 int UncompressedFile::rawPercentRead()
 {
-    return int(100 * (double(m_stream.tellg()) / double(m_endPos)));
+  double num = m_stream.tellg();
+  if( num == -1.0 ) {
+    return 100;
+  }
+  double denom = m_endPos;
+  double frc = num / denom;
+  int pct = 100.0 * frc;
+  return pct;
 }
 
 

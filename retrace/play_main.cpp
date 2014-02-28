@@ -61,8 +61,8 @@ static unsigned dumpStateCallNo = ~0;
 
 play::Player player;
 
-#define ASYNC_READER_SLEEP 1000
-#define ASYNC_READER_CALLS 100000
+#define ASYNC_READER_SLEEP 10
+#define ASYNC_READER_CALLS 10000
 
 namespace play {
 
@@ -98,47 +98,66 @@ namespace play {
   
   os::mutex readerMutex;
   ThreadedParser *inbox;
-  std::map< ThreadedParser *, std::vector< trace::Call *> > outbox;
+  std::vector< trace::Call *> calls;
   os::thread * readerThread = NULL;
+  ThreadedParser * currentAsync = false;
   bool enqueue_read( ThreadedParser * tp ) {
-    os::unique_lock<os::mutex> lock(readerMutex);
-    if( inbox != 0 ) {
-      return false;
+    for(;;) {
+      os::unique_lock<os::mutex> lock(readerMutex);
+      if( inbox == NULL ) {
+        inbox = tp;
+        printf( "enqueue calls for %p\n", tp );
+        return true;
+      }
+      lock.unlock();
+      os::sleep(ASYNC_READER_SLEEP);
     }
-    inbox = tp;
-    return true;
+    return false;
   }
 
   bool fetch_read( ThreadedParser * tp ) {
-    os::unique_lock<os::mutex> lock(readerMutex);
-    if( outbox.count( tp ) == 0 ) {
-        return false;
+    for(;;) {
+      os::unique_lock<os::mutex> lock(readerMutex);
+      if( calls.size() ) {
+        printf( "fetching %d calls from outbox %p ...", int(calls.size()), tp );
+        tp->queuedCalls.insert( tp->queuedCalls.end(), calls.begin(), calls.end() );
+        printf( " done.\n" );
+        calls.clear();
+        return true;
+      }
+      /*
+      if( tp->parser.percentRead() == 100 ) {
+        return true;
+      }
+      */
+      lock.unlock();
+      os::sleep(10 * ASYNC_READER_SLEEP);
     }
-    std::vector< trace::Call * > &calls = outbox[ tp ];
-    tp->queuedCalls.insert( tp->queuedCalls.end(), calls.begin(), calls.end() );
-    outbox.erase( tp );
-    return true;
+    return false;
   }
 
   void async_reader() {
     for(;;) {
       os::unique_lock<os::mutex> lock(readerMutex);
-      if( inbox == NULL ) {
-        os::sleep( ASYNC_READER_SLEEP );
-      } else {
+      if( inbox != NULL ) {
         ThreadedParser *tp = inbox;
         inbox = NULL;
-        assert( outbox.count( tp ) == 0 );
-        outbox[ tp ] = std::vector< trace::Call * >();
-        std::vector< trace::Call * > &calls = outbox[ tp ];
+        std::vector< trace::Call * > c;
 
-        while( calls.size() < ASYNC_READER_CALLS ) {
-          calls.push_back( tp->parser.parse_call() );
-          if( calls.back() == NULL ) {
-            calls.pop_back();
+        lock.unlock();
+        while( c.size() < ASYNC_READER_CALLS ) {
+          c.push_back( tp->parser.parse_call() );
+          if( c.back() == NULL ) {
+            c.pop_back();
             break;
           }
         }
+        lock.lock(); // who's there?
+        printf( "writing %d calls to outbox %p\n", int(c.size()), tp );
+        calls = c;
+      } else {
+        lock.unlock();
+        os::sleep(ASYNC_READER_SLEEP);
       }
     }
   }
