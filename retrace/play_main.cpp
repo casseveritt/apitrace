@@ -61,8 +61,8 @@ static unsigned dumpStateCallNo = ~0;
 
 play::Player player;
 
-#define ASYNC_READER_SLEEP 100
-#define ASYNC_READER_CALLS 10000
+#define ASYNC_READER_SLEEP 1000
+#define ASYNC_READER_CALLS 100000
 
 namespace play {
 
