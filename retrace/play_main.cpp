@@ -66,10 +66,39 @@ play::Player player;
 
 namespace play {
 
+  os::mutex destroyerMutex;
+  std::vector< trace::Call * > retired;
+  os::thread * destroyerThread = NULL;
+
+  void delete_retired_calls( ThreadedParser * tp ) {
+    os::unique_lock<os::mutex> lock(destroyerMutex);
+    std::deque< trace::Call * >::iterator end = tp->retiredCalls.end();
+    if( tp->bookmark != ~0 ) {
+      for( size_t i = 0; i < tp->retiredCalls.size(); i++ ) {
+        if( tp->retiredCalls[i]->no == tp->bookmark ) {
+          end = tp->retiredCalls.begin() + i;
+          break;
+        }
+      }
+    }
+    retired.insert( retired.end(), tp->retiredCalls.begin(), end );
+    tp->retiredCalls.erase( tp->retiredCalls.begin(), end );
+  }
+  
+  void async_destroyer() {
+    for(;;) {
+      os::unique_lock<os::mutex> lock(destroyerMutex);
+      for( size_t i = 0; i < retired.size(); i++ ) {
+        delete retired[i];
+      }
+      retired.clear();
+    }
+  }
+  
+  
   os::mutex readerMutex;
   ThreadedParser *inbox;
   std::map< ThreadedParser *, std::vector< trace::Call *> > outbox;
-  std::vector< trace::Call * > retired;
   os::thread * readerThread = NULL;
   bool enqueue_read( ThreadedParser * tp ) {
     os::unique_lock<os::mutex> lock(readerMutex);
@@ -89,21 +118,6 @@ namespace play {
     tp->queuedCalls.insert( tp->queuedCalls.end(), calls.begin(), calls.end() );
     outbox.erase( tp );
     return true;
-  }
-
-  void delete_retired_calls( ThreadedParser * tp ) {
-    os::unique_lock<os::mutex> lock(readerMutex);
-    std::deque< trace::Call * >::iterator end = tp->retiredCalls.end();
-    if( tp->bookmark != ~0 ) {
-      for( size_t i = 0; i < tp->retiredCalls.size(); i++ ) {
-        if( tp->retiredCalls[i]->no == tp->bookmark ) {
-          end = tp->retiredCalls.begin() + i;
-          break;
-        }
-      }
-    }
-    retired.insert( retired.end(), tp->retiredCalls.begin(), end );
-    tp->retiredCalls.erase( tp->retiredCalls.begin(), end );
   }
 
   void async_reader() {
@@ -126,16 +140,15 @@ namespace play {
           }
         }
       }
-      for( size_t i = 0; i < retired.size(); i++ ) {
-        delete retired[i];
-      }
-      retired.clear();
     }
   }
 
   bool ThreadedParser::open( const char * file ) {
     if( readerThread == NULL ) {
       readerThread = new os::thread( async_reader, NULL );
+    }
+    if( destroyerThread == NULL ) {
+      destroyerThread = new os::thread( async_destroyer, NULL );
     }
     bool ret = parser.open(file);
     if( ret ) {
