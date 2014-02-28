@@ -40,8 +40,11 @@ static void
 usage(void)
 {
     std::cout
-        << "usage: apitrace repack <in-trace-file> <out-trace-file>\n"
+        << "usage: apitrace repack [-u|-s] <in-trace-file> <out-trace-file>\n"
         << synopsis << "\n"
+        << "\n"
+        << "  -u  Write uncompressed trace file.\n"
+        << "  -s  Write snappy compressed trace file (default).\n"
         << "\n"
         << "Snappy compression allows for faster replay and smaller memory footprint,\n"
         << "at the expense of a slightly smaller compression ratio than zlib\n"
@@ -100,12 +103,14 @@ command(int argc, char *argv[])
             return 0;
         case 's':
         case 'u':
+            //std::cerr << "Got option '" << (char)opt << "'\n";
             if( compression != 0 ) {
               std::cerr << "error: Already chose compression '" << compression << "'\n";
               usage();
               return 1;
             }
             compression = (char)opt;
+            break;
         default:
             std::cerr << "error: unexpected option `" << (char)opt << "`\n";
             usage();

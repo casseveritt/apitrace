@@ -49,6 +49,8 @@ File::createForRead(const char *filename)
     File *file;
     if (byte1 == SNAPPY_BYTE1 && byte2 == SNAPPY_BYTE2) {
         file = File::createSnappy();
+    } else if (byte1 == UNCOMPRESSED_BYTE1 && byte2 == UNCOMPRESSED_BYTE2) {
+        file = File::createUncompressed();
     } else if (byte1 == 0x1f && byte2 == 0x8b) {
         file = File::createZLib();
     } else  {

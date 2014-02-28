@@ -23,8 +23,6 @@
  *
  **************************************************************************/
 
-#include <snappy.h>
-
 #include <iostream>
 #include <algorithm>
 
@@ -80,6 +78,22 @@ bool UncompressedFile::rawOpen(const std::string &filename, File::Mode mode)
     }
 
     m_stream.open(filename.c_str(), fmode);
+
+    //read in the initial buffer if we're reading
+    if (m_stream.is_open() && mode == File::Read) {
+        m_stream.seekg(0, std::ios::beg);
+
+        // read the uncompressed file identifier
+        unsigned char byte1, byte2;
+        m_stream >> byte1;
+        m_stream >> byte2;
+        assert(byte1 == UNCOMPRESSED_BYTE1 && byte2 == UNCOMPRESSED_BYTE2);
+    } else if (m_stream.is_open() && mode == File::Write) {
+        // write the uncompressed file identifier
+        m_stream << UNCOMPRESSED_BYTE1;
+        m_stream << UNCOMPRESSED_BYTE2;
+    }
+ 
     return m_stream.is_open();
 }
 

@@ -35,6 +35,9 @@
 #define SNAPPY_BYTE1 'a'
 #define SNAPPY_BYTE2 't'
 
+#define UNCOMPRESSED_BYTE1 'p'
+#define UNCOMPRESSED_BYTE2 '3'
+
 
 namespace trace {
 
@@ -58,7 +61,7 @@ public:
     static File *createSnappy(void);
     static File *createUncompressed(void);
     static File *createForRead(const char *filename);
-    static File *createForWrite(const char *filename);
+    static File *createForWrite(const char *filename, char compression = 's');
 public:
     File(const std::string &filename = std::string(),
          File::Mode mode = File::Read);

@@ -32,10 +32,21 @@ using namespace trace;
 
 
 File *
-File::createForWrite(const char *filename)
+File::createForWrite(const char *filename, char compression)
 {
-    File *file;
-    file = File::createSnappy();
+    File *file = NULL;
+
+    switch( compression ) {
+      case 's':
+        file = File::createSnappy();
+        break;
+      case 'u':
+        file = File::createUncompressed();
+        break;
+      default:
+        break;
+    }
+
     if (!file) {
         return NULL;
     }

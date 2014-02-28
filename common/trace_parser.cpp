@@ -952,8 +952,13 @@ Parser::read_sint(void) {
     case trace::TYPE_UINT:
         return read_uint();
     default:
+        {
         std::cerr << "error: unexpected type " << c << "\n";
+        File::Offset o = file->currentOffset();
+        std::cerr << "error: Current offset: " << o.chunk << ", " << o.offsetInChunk << "\n";
+
         exit(1);
+        }
     case -1:
         return 0;
     }
