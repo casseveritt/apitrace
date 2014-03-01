@@ -90,7 +90,7 @@ UncompressedFile::UncompressedFile(const std::string &filename,
     : File(),
       m_cache(new char [UNCOMPRESSED_CACHE_SIZE]),
       m_cachePtr(m_cache),
-      m_cacheSize(0)
+      m_cacheSize(UNCOMPRESSED_CACHE_SIZE)
 {
 }
 
