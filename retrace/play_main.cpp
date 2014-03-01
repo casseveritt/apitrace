@@ -99,14 +99,14 @@ namespace play {
   os::mutex readerMutex;
   ThreadedParser *inbox;
   std::vector< trace::Call *> calls;
+  int numCalls = -1;
   os::thread * readerThread = NULL;
-  ThreadedParser * currentAsync = false;
   bool enqueue_read( ThreadedParser * tp ) {
     for(;;) {
       os::unique_lock<os::mutex> lock(readerMutex);
       if( inbox == NULL ) {
         inbox = tp;
-        printf( "enqueue calls for %p\n", tp );
+        //printf("e\n");
         return true;
       }
       lock.unlock();
@@ -118,20 +118,15 @@ namespace play {
   bool fetch_read( ThreadedParser * tp ) {
     for(;;) {
       os::unique_lock<os::mutex> lock(readerMutex);
-      if( calls.size() ) {
-        printf( "fetching %d calls from outbox %p ...", int(calls.size()), tp );
+      if( numCalls >= 0 ) {
         tp->queuedCalls.insert( tp->queuedCalls.end(), calls.begin(), calls.end() );
-        printf( " done.\n" );
         calls.clear();
+        numCalls = -1;
+        //printf("  f\n");
         return true;
       }
-      /*
-      if( tp->parser.percentRead() == 100 ) {
-        return true;
-      }
-      */
       lock.unlock();
-      os::sleep(10 * ASYNC_READER_SLEEP);
+      os::sleep(ASYNC_READER_SLEEP);
     }
     return false;
   }
@@ -153,8 +148,9 @@ namespace play {
           }
         }
         lock.lock(); // who's there?
-        printf( "writing %d calls to outbox %p\n", int(c.size()), tp );
         calls = c;
+        numCalls = calls.size();
+        //printf(" r %d\n", numCalls );
       } else {
         lock.unlock();
         os::sleep(ASYNC_READER_SLEEP);
@@ -172,8 +168,6 @@ namespace play {
     bool ret = parser.open(file);
     if( ret ) {
       enqueue_read( this );
-      os::sleep(100000);
-      fetch_read( this );
     }
     return ret;
   }
@@ -191,15 +185,13 @@ namespace play {
     retiredCalls.clear();
   }
   trace::Call * ThreadedParser::parse_call() {
-    if( queuedCalls.size() == ASYNC_READER_CALLS ) {
-        enqueue_read( this );
-    }
-    if( queuedCalls.size() == 2 ) {
-        fetch_read( this );
-    }
     if( queuedCalls.size() == 0 ) {
-        delete_retired_calls( this );
-        return NULL;
+        fetch_read( this );
+        if( queuedCalls.size() == 0 ) {
+            delete_retired_calls( this );
+            return NULL;
+        }
+        enqueue_read( this );
     }
     trace::Call * call = queuedCalls.front();
     queuedCalls.pop_front();
