@@ -29,11 +29,18 @@
 #include <assert.h>
 #include <string.h>
 
+#if 1 // this should go in an os_mem.h file or something
+#include <sys/mman.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+#endif
+
 #include "trace_file.hpp"
 
 using namespace trace;
 
-#define UNCOMPRESSED_CACHE_SIZE (3<<29)
+#define UNCOMPRESSED_CACHE_SIZE (1<<20)
 
 class UncompressedFile : public File {
 public:
@@ -71,7 +78,7 @@ private:
     }
     inline bool endOfData() const
     {
-        return m_stream.eof() && freeCacheSize() == 0;
+        return (fd != -1 || m_stream.eof()) && freeCacheSize() == 0;
     }
     void flushWriteCache();
     void flushReadCache(size_t skipLength = 0);
@@ -79,18 +86,20 @@ private:
     std::fstream m_stream;
     char *m_cache;
     char *m_cachePtr;
-    int m_cacheSize;
+    size_t m_cacheSize;
 
     File::Offset m_currentOffset;
     std::streampos m_endPos;
+    int fd;
 };
 
 UncompressedFile::UncompressedFile(const std::string &filename,
                               File::Mode mode)
     : File(),
-      m_cache(new char [UNCOMPRESSED_CACHE_SIZE]),
+      m_cache(NULL),
       m_cachePtr(m_cache),
-      m_cacheSize(UNCOMPRESSED_CACHE_SIZE)
+      m_cacheSize(0),
+      fd(-1)
 {
 }
 
@@ -102,6 +111,22 @@ UncompressedFile::~UncompressedFile()
 
 bool UncompressedFile::rawOpen(const std::string &filename, File::Mode mode)
 {
+    // try to mmap first
+    if( mode == File::Read ) {
+        fd = ::open( filename.c_str(), O_RDONLY );
+        if( fd != -1 ) {
+            struct stat sb;
+            fstat( fd, &sb );
+            m_cache = static_cast<char *>(mmap( NULL, sb.st_size, PROT_READ, MAP_SHARED, fd, 0 ));
+            if( m_cache ) {
+                m_cachePtr = m_cache+2;
+                m_cacheSize = sb.st_size;
+                assert(m_cache[0] == UNCOMPRESSED_BYTE1 && m_cache[1] == UNCOMPRESSED_BYTE2);
+
+                return true;
+            }
+        }
+    }
     std::ios_base::openmode fmode = std::fstream::binary;
     if (mode == File::Write) {
         fmode |= (std::fstream::out | std::fstream::trunc);
@@ -110,6 +135,10 @@ bool UncompressedFile::rawOpen(const std::string &filename, File::Mode mode)
     }
 
     m_stream.open(filename.c_str(), fmode);
+
+    m_cacheSize = UNCOMPRESSED_CACHE_SIZE;
+    m_cache = new char[m_cacheSize];
+    m_cachePtr = m_cache;
 
     //read in the initial buffer if we're reading
     if (m_stream.is_open() && mode == File::Read) {
@@ -181,6 +210,9 @@ size_t UncompressedFile::rawRead(void *buffer, size_t length)
             m_cachePtr += chunkSize;
             sizeToRead -= chunkSize;
             if (sizeToRead > 0) {
+                if( fd != -1 ) {
+                    return length - sizeToRead;
+                }
                 flushReadCache();
             }
         }
@@ -199,6 +231,13 @@ int UncompressedFile::rawGetc()
 
 void UncompressedFile::rawClose()
 {
+    if( fd != -1 ) {
+        munmap( m_cache, m_cacheSize );
+        ::close(fd );
+        m_cachePtr = m_cache = 0;
+        m_cacheSize = 0;
+        return;
+    }
     if (m_mode == File::Write) {
         flushWriteCache();
     }
@@ -228,6 +267,9 @@ void UncompressedFile::flushWriteCache()
 
 void UncompressedFile::flushReadCache(size_t skipLength)
 {
+    if( fd != -1 ) {
+        return;
+    }
     //assert(m_cachePtr == m_cache + m_cacheSize);
     m_currentOffset.chunk = m_stream.tellg();
     m_stream.read((char*)m_cache, UNCOMPRESSED_CACHE_SIZE);
