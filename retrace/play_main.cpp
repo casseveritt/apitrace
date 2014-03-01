@@ -69,6 +69,7 @@ namespace play {
   os::mutex destroyerMutex;
   std::vector< trace::Call * > retired;
   os::thread * destroyerThread = NULL;
+  bool die = false;
 
   void delete_retired_calls( ThreadedParser * tp ) {
     os::unique_lock<os::mutex> lock(destroyerMutex);
@@ -86,7 +87,7 @@ namespace play {
   }
   
   void async_destroyer() {
-    for(;;) {
+    for(;die==false;) {
       os::unique_lock<os::mutex> lock(destroyerMutex);
       if( retired.size() ) {
         for( size_t i = 0; i < retired.size(); i++ ) {
@@ -137,7 +138,7 @@ namespace play {
   }
 
   void async_reader() {
-    for(;;) {
+    for(;die==false;) {
       os::unique_lock<os::mutex> lock(readerMutex);
       if( inbox != NULL ) {
         ThreadedParser *tp = inbox;
@@ -194,6 +195,9 @@ namespace play {
         fetch_read( this );
         if( queuedCalls.size() == 0 ) {
             delete_retired_calls( this );
+            die = true;
+            destroyerThread->join();
+            readerThread->join();
             return NULL;
         }
         enqueue_read( this );

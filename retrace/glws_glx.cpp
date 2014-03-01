@@ -403,6 +403,9 @@ makeCurrent(Drawable *drawable, Context *context)
         GlxDrawable *glxDrawable = static_cast<GlxDrawable *>(drawable);
         GlxContext *glxContext = static_cast<GlxContext *>(context);
 
+#if 1 || APITRACE_PLAY
+        //glXSwapIntervalEXT(display, glxDrawable->window, 0);
+#endif
         return glXMakeCurrent(display, glxDrawable->window, glxContext->context);
     }
 }
