@@ -33,7 +33,7 @@
 
 using namespace trace;
 
-#define UNCOMPRESSED_CACHE_SIZE (1<<20)
+#define UNCOMPRESSED_CACHE_SIZE (3<<29)
 
 class UncompressedFile : public File {
 public:

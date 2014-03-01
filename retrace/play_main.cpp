@@ -62,7 +62,7 @@ static unsigned dumpStateCallNo = ~0;
 play::Player player;
 
 #define ASYNC_READER_SLEEP 10
-#define ASYNC_READER_CALLS 10000
+#define ASYNC_READER_CALLS 100000
 
 namespace play {
 
@@ -88,10 +88,15 @@ namespace play {
   void async_destroyer() {
     for(;;) {
       os::unique_lock<os::mutex> lock(destroyerMutex);
-      for( size_t i = 0; i < retired.size(); i++ ) {
-        delete retired[i];
+      if( retired.size() ) {
+        for( size_t i = 0; i < retired.size(); i++ ) {
+          delete retired[i];
+        }
+        retired.clear();
+      } else {
+        lock.unlock();
+        os::sleep(ASYNC_READER_SLEEP);
       }
-      retired.clear();
     }
   }
   
